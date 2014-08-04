@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31C2659198F6E1E007C9614 /* UserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C2657198F6E1E007C9614 /* UserCollectionViewCell.m */; };
+		C31C265A198F6E1E007C9614 /* UserCollelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31C2658198F6E1E007C9614 /* UserCollelectionView.xib */; };
+		C31C2663198F7A86007C9614 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C2661198F7A86007C9614 /* UserInfoViewController.m */; };
+		C31C2664198F7A86007C9614 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31C2662198F7A86007C9614 /* UserInfoViewController.xib */; };
+		C31C2668198F7B18007C9614 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C2666198F7B18007C9614 /* AboutViewController.m */; };
+		C31C2669198F7B18007C9614 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31C2667198F7B18007C9614 /* AboutViewController.xib */; };
+		C31C266D198F7BF2007C9614 /* ExerciseMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C266B198F7BF2007C9614 /* ExerciseMainViewController.m */; };
+		C31C266E198F7BF2007C9614 /* ExerciseMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31C266C198F7BF2007C9614 /* ExerciseMainViewController.xib */; };
 		C3443879198BE08500133B51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3443878198BE08500133B51 /* Foundation.framework */; };
 		C344387B198BE08500133B51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C344387A198BE08500133B51 /* CoreGraphics.framework */; };
 		C344387D198BE08500133B51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C344387C198BE08500133B51 /* UIKit.framework */; };
@@ -79,6 +87,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31C2656198F6E1E007C9614 /* UserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionViewCell.h; sourceTree = "<group>"; };
+		C31C2657198F6E1E007C9614 /* UserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionViewCell.m; sourceTree = "<group>"; };
+		C31C2658198F6E1E007C9614 /* UserCollelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCollelectionView.xib; sourceTree = "<group>"; };
+		C31C2660198F7A86007C9614 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		C31C2661198F7A86007C9614 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		C31C2662198F7A86007C9614 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
+		C31C2665198F7B18007C9614 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		C31C2666198F7B18007C9614 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		C31C2667198F7B18007C9614 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		C31C266A198F7BF2007C9614 /* ExerciseMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMainViewController.h; sourceTree = "<group>"; };
+		C31C266B198F7BF2007C9614 /* ExerciseMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMainViewController.m; sourceTree = "<group>"; };
+		C31C266C198F7BF2007C9614 /* ExerciseMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMainViewController.xib; sourceTree = "<group>"; };
 		C3443875198BE08500133B51 /* iTrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3443878198BE08500133B51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C344387A198BE08500133B51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -278,9 +298,18 @@
 		C34438A8198BE09700133B51 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C31C2660198F7A86007C9614 /* UserInfoViewController.h */,
+				C31C2661198F7A86007C9614 /* UserInfoViewController.m */,
+				C31C2662198F7A86007C9614 /* UserInfoViewController.xib */,
 				C3443930198BE47C00133B51 /* MainViewController.h */,
 				C3443931198BE47C00133B51 /* MainViewController.m */,
 				C3443932198BE47C00133B51 /* MainViewController.xib */,
+				C31C2665198F7B18007C9614 /* AboutViewController.h */,
+				C31C2666198F7B18007C9614 /* AboutViewController.m */,
+				C31C2667198F7B18007C9614 /* AboutViewController.xib */,
+				C31C266A198F7BF2007C9614 /* ExerciseMainViewController.h */,
+				C31C266B198F7BF2007C9614 /* ExerciseMainViewController.m */,
+				C31C266C198F7BF2007C9614 /* ExerciseMainViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -328,6 +357,9 @@
 		C34438AE198BE0CC00133B51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C31C2656198F6E1E007C9614 /* UserCollectionViewCell.h */,
+				C31C2657198F6E1E007C9614 /* UserCollectionViewCell.m */,
+				C31C2658198F6E1E007C9614 /* UserCollelectionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -535,8 +567,11 @@
 				C3784481198C7230003BE6D0 /* ul_xinjian@2x.png in Resources */,
 				C3784484198C7230003BE6D0 /* main_shezhin@2x.png in Resources */,
 				C378446D198C7230003BE6D0 /* user_icon3@2x.png in Resources */,
+				C31C265A198F6E1E007C9614 /* UserCollelectionView.xib in Resources */,
+				C31C266E198F7BF2007C9614 /* ExerciseMainViewController.xib in Resources */,
 				C378446B198C7230003BE6D0 /* user_icon1@2x.png in Resources */,
 				C378446F198C7230003BE6D0 /* user_icon5@2x.png in Resources */,
+				C31C2664198F7A86007C9614 /* UserInfoViewController.xib in Resources */,
 				C378446E198C7230003BE6D0 /* user_icon4@2x.png in Resources */,
 				C3784476198C7230003BE6D0 /* ul_back@2x.png in Resources */,
 				C3784470198C7230003BE6D0 /* user_icon6@2x.png in Resources */,
@@ -556,6 +591,7 @@
 				C3443934198BE47C00133B51 /* MainViewController.xib in Resources */,
 				C378447D198C7230003BE6D0 /* ul_touxiang2@2x.png in Resources */,
 				C3784478198C7230003BE6D0 /* ul_di@2x.png in Resources */,
+				C31C2669198F7B18007C9614 /* AboutViewController.xib in Resources */,
 				C378446C198C7230003BE6D0 /* user_icon2@2x.png in Resources */,
 				C3784475198C7230003BE6D0 /* train_xunlian@2x.png in Resources */,
 				C3784472198C7230003BE6D0 /* train_pic@2x.png in Resources */,
@@ -585,15 +621,19 @@
 				C3443962198BE61D00133B51 /* UIImage+Util.m in Sources */,
 				C3443960198BE61D00133B51 /* OSHelper.m in Sources */,
 				C344395D198BE61D00133B51 /* NSString+IP.m in Sources */,
+				C31C2668198F7B18007C9614 /* AboutViewController.m in Sources */,
 				C3443933198BE47C00133B51 /* MainViewController.m in Sources */,
 				C344395E198BE61D00133B51 /* NSString+MD5_32.m in Sources */,
 				C3443958198BE61D00133B51 /* UITextView+Placeholder.m in Sources */,
 				C3443961198BE61D00133B51 /* UIColor+Utils.m in Sources */,
+				C31C2663198F7A86007C9614 /* UserInfoViewController.m in Sources */,
+				C31C266D198F7BF2007C9614 /* ExerciseMainViewController.m in Sources */,
 				C344395C198BE61D00133B51 /* NSDate+Utils.m in Sources */,
 				C344395F198BE61D00133B51 /* NSString+Utils.m in Sources */,
 				C3443885198BE08500133B51 /* main.m in Sources */,
 				C3443964198BE61D00133B51 /* VersionManager.m in Sources */,
 				C344395A198BE61D00133B51 /* HWConnect.m in Sources */,
+				C31C2659198F6E1E007C9614 /* UserCollectionViewCell.m in Sources */,
 				C3443959198BE61D00133B51 /* CommonViewController.m in Sources */,
 				C344395B198BE61D00133B51 /* IO.m in Sources */,
 			);
