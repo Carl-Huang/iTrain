@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserInfoViewController : UIViewController
+@interface UserInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, retain) NSArray *dataList;
+@property (nonatomic, retain) NSArray *imageList;
 
+//@property (weak, nonatomic) IBOutlet UITableView *userTabelView;
+@property (nonatomic, retain) UITableView *myTableView;
+//@property (nonatomic, retain) UILabel *label;
 @end

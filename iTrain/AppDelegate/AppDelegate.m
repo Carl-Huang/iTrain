@@ -13,26 +13,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    MainViewController *rootView = [[MainViewController alloc] init];
+//    rootView.title = @"Root View";
 
-    MainViewController *main = [[MainViewController alloc]init];
-    
-    
-     [self.window addSubview:main.view];
+    self.navController = [[UINavigationController alloc] init];
+    [self.navController pushViewController:rootView animated:YES];
+    [self.window setRootViewController:_navController];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarStyleDefault];
+   
+   
+    [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
+    
+//    [self.navController setNavigationBarHidden:YES animated:NO];
     return YES;
-    
-    
-    
-    
-   
-    
-   
-  
-  
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -54,7 +54,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleBlackTranslucent;
 }
 
 - (void)didReceiveMemoryWarning

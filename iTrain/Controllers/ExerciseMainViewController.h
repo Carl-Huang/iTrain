@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ExerciseMainViewController : UIViewController
+@property (strong, nonatomic) UINavigationController *navController;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
