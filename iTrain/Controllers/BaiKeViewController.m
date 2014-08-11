@@ -46,10 +46,10 @@
 }
 
 
-//- (void)gotoSecondView:(id)sender {
+- (void)gotoSecondView:(id)sender {
 //    _ecerciseView= [[ExerciseMainViewController alloc] init];
 //    [self.navigationController pushViewController:_ecerciseView animated:YES];
-//}
+}
 
 
 - (void)didReceiveMemoryWarning

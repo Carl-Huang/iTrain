@@ -86,14 +86,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     
-//    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-    
-        [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
-        
-        [self.navigationController.navigationBar setTranslucent:NO];
-        
-//    }
-    
+
 
 }
 
