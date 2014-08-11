@@ -16,11 +16,13 @@
     MainViewController *rootView = [[MainViewController alloc] init];
 //    rootView.title = @"Root View";
 
-    self.navController = [[UINavigationController alloc] init];
+     self.navController = [[UINavigationController alloc] init];
     [self.navController pushViewController:rootView animated:YES];
     [self.window setRootViewController:_navController];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarStyleDefault];
-   
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+//    backItem.image=[UIImage imageNamed:@"back"];
+//    self.navController.navigationBarHidden;
    
     [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
