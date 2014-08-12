@@ -7,13 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    MainViewController *rootView = [[MainViewController alloc] init];
+     rootView = [[MainViewController alloc] init];
 //    rootView.title = @"Root View";
 
     self.navController = [[UINavigationController alloc] init];
@@ -22,7 +23,7 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarStyleDefault];
    
    
-    [self.window addSubview:rootView.view];
+//    [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
     
 //    [self.navController setNavigationBarHidden:YES animated:NO];

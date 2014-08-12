@@ -30,15 +30,18 @@
     self.dataList = list;
     self.imageList=imagelist;
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped] ;
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain] ;
     // 设置tableView的数据源
     tableView.dataSource = self;
     // 设置tableView的委托
     tableView.delegate = self;
     // 设置tableView的背景图
     tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
+
     self.myTableView = tableView;
+    [self setExtraCellLineHidden:_myTableView];
     [self.view addSubview:_myTableView];
+  
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,7 +57,7 @@
     if (!cell) {
         
         //导航风格
-        cell.accessoryType = UITableViewStyleGrouped;
+
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdenifer ];
       
         cell.showsReorderControl = YES;
@@ -70,31 +73,21 @@
     
     cell.imageView.backgroundColor = [UIColor clearColor];
     cell.imageView.image = [UIImage imageNamed:[_imageList objectAtIndex:row]] ;
-
-   
     return cell;
 }
+//隐藏TabelView下面多余分割线
 
+- (void)setExtraCellLineHidden: (UITableView *)tableView
 
-
-
-
-
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    
-//    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-    
-        [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
-        
-        [self.navigationController.navigationBar setTranslucent:NO];
-        
-//    }
-    
-
 }
 
 

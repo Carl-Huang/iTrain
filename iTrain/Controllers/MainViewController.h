@@ -14,6 +14,9 @@
 #import "BaiKeViewController.h"
 @interface MainViewController : CommonViewController
 {
+//@interface MainViewController : UIViewController
+//{
+
 //    UIImageView* exercise;
 //    UIImageView* userInfo;
 //    UIImageView* setting;

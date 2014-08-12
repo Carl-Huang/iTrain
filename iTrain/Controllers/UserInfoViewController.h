@@ -12,7 +12,5 @@
 @property (nonatomic, retain) NSArray *dataList;
 @property (nonatomic, retain) NSArray *imageList;
 
-//@property (weak, nonatomic) IBOutlet UITableView *userTabelView;
 @property (nonatomic, retain) UITableView *myTableView;
-//@property (nonatomic, retain) UILabel *label;
 @end

@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "klpView.h"
+@interface BaiKeViewController : UIViewController<UIScrollViewDelegate>{
+	NSArray *imgArr;
+	klpView *klp;
+	int index;
+}
 
-@interface BaiKeViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *zhengimage;
 
 @end

@@ -135,6 +135,7 @@
 		C3784484198C7230003BE6D0 /* main_shezhin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3784467198C7230003BE6D0 /* main_shezhin@2x.png */; };
 		C3784485198C7230003BE6D0 /* main_xunlian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3784468198C7230003BE6D0 /* main_xunlian@2x.png */; };
 		C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */; };
+		C3AA4F6C1999FCB0003E8DD9 /* klpView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA4F6B1999FCB0003E8DD9 /* klpView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,6 +306,8 @@
 		C3784467198C7230003BE6D0 /* main_shezhin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_shezhin@2x.png"; sourceTree = "<group>"; };
 		C3784468198C7230003BE6D0 /* main_xunlian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_xunlian@2x.png"; sourceTree = "<group>"; };
 		C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMainViewController.xib; sourceTree = "<group>"; };
+		C3AA4F6A1999FCB0003E8DD9 /* klpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = klpView.h; sourceTree = "<group>"; };
+		C3AA4F6B1999FCB0003E8DD9 /* klpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = klpView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -599,6 +602,8 @@
 		C34438AE198BE0CC00133B51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3AA4F6A1999FCB0003E8DD9 /* klpView.h */,
+				C3AA4F6B1999FCB0003E8DD9 /* klpView.m */,
 				C31C2657198F6E1E007C9614 /* UserCollectionViewCell.m */,
 				C31C2656198F6E1E007C9614 /* UserCollectionViewCell.h */,
 				C31C2658198F6E1E007C9614 /* UserCollelectionView.xib */,
@@ -948,6 +953,7 @@
 				C344395A198BE61D00133B51 /* HWConnect.m in Sources */,
 				C31C2659198F6E1E007C9614 /* UserCollectionViewCell.m in Sources */,
 				C3443959198BE61D00133B51 /* CommonViewController.m in Sources */,
+				C3AA4F6C1999FCB0003E8DD9 /* klpView.m in Sources */,
 				C344395B198BE61D00133B51 /* IO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

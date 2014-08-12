@@ -10,9 +10,9 @@
 #import "ExerciseMainViewController.h"
 
 
-//@interface MainViewController ()
-//
-//@end
+@interface MainViewController ()
+
+@end
 
 @implementation MainViewController
 
