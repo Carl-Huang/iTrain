@@ -71,11 +71,14 @@
 //    _about= [[AboutViewController alloc] init];
 //    [self.navigationController pushViewController:_about animated:YES];
 //}
+//- (void)gotoUserinfoView:(id)sender {
+//    _userinfoView= [[UserInfoViewController alloc] init];
+//    [self.navigationController pushViewController:_userinfoView animated:YES];
+//}
 - (void)gotoUserinfoView:(id)sender {
-    _userinfoView= [[UserInfoViewController alloc] init];
-    [self.navigationController pushViewController:_userinfoView animated:YES];
+    userView= [[UserViewController alloc] init];
+    [self.navigationController pushViewController:userView animated:YES];
 }
-
 
 
 - (void)didReceiveMemoryWarning

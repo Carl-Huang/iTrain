@@ -13,6 +13,7 @@
 #import "SettingViewController.h"
 #import "BaiKeViewController.h"
 #import "AboutViewController.h"
+#import "UserViewController.h"
 @interface MainViewController : CommonViewController
 {
 //@interface MainViewController : UIViewController
@@ -27,6 +28,7 @@
     SettingViewController * _settingView;
     BaiKeViewController * _baike;
     AboutViewController * _about;
+    UserViewController *userView;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (weak, nonatomic) IBOutlet UIImageView *exercise;

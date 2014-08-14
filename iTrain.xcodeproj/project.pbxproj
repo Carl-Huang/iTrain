@@ -135,6 +135,8 @@
 		C3784483198C7230003BE6D0 /* main_geren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3784466198C7230003BE6D0 /* main_geren@2x.png */; };
 		C3784484198C7230003BE6D0 /* main_shezhin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3784467198C7230003BE6D0 /* main_shezhin@2x.png */; };
 		C3784485198C7230003BE6D0 /* main_xunlian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3784468198C7230003BE6D0 /* main_xunlian@2x.png */; };
+		C37F9382199C510600B0153D /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37F9380199C510600B0153D /* UserViewController.m */; };
+		C37F9383199C510600B0153D /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37F9381199C510600B0153D /* UserViewController.xib */; };
 		C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */; };
 		C3AA4F6C1999FCB0003E8DD9 /* klpView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA4F6B1999FCB0003E8DD9 /* klpView.m */; };
 /* End PBXBuildFile section */
@@ -307,6 +309,9 @@
 		C3784466198C7230003BE6D0 /* main_geren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_geren@2x.png"; sourceTree = "<group>"; };
 		C3784467198C7230003BE6D0 /* main_shezhin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_shezhin@2x.png"; sourceTree = "<group>"; };
 		C3784468198C7230003BE6D0 /* main_xunlian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_xunlian@2x.png"; sourceTree = "<group>"; };
+		C37F937F199C510600B0153D /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		C37F9380199C510600B0153D /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		C37F9381199C510600B0153D /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
 		C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMainViewController.xib; sourceTree = "<group>"; };
 		C3AA4F6A1999FCB0003E8DD9 /* klpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = klpView.h; sourceTree = "<group>"; };
 		C3AA4F6B1999FCB0003E8DD9 /* klpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = klpView.m; sourceTree = "<group>"; };
@@ -557,6 +562,9 @@
 				C32C4312199B3182009FED09 /* SettingViewController.h */,
 				C32C4313199B3182009FED09 /* SettingViewController.m */,
 				C32C4314199B3182009FED09 /* SettingViewController.xib */,
+				C37F937F199C510600B0153D /* UserViewController.h */,
+				C37F9380199C510600B0153D /* UserViewController.m */,
+				C37F9381199C510600B0153D /* UserViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -910,6 +918,7 @@
 				C3206EA3198FDF3800C1F995 /* detail_fenxiang@2x.png in Resources */,
 				C3206EA2198FDF3800C1F995 /* detail_fasongchenggong@2x.png in Resources */,
 				C3784472198C7230003BE6D0 /* train_pic@2x.png in Resources */,
+				C37F9383199C510600B0153D /* UserViewController.xib in Resources */,
 				C378447B198C7230003BE6D0 /* ul_kuang@2x.png in Resources */,
 				C320D1EA1995BCC6005637BF /* MainViewController.xib in Resources */,
 				C3206E94198FDF3800C1F995 /* start_quan3@2x.png in Resources */,
@@ -951,6 +960,7 @@
 				C31C266D198F7BF2007C9614 /* ExerciseMainViewController.m in Sources */,
 				C344395C198BE61D00133B51 /* NSDate+Utils.m in Sources */,
 				C344395F198BE61D00133B51 /* NSString+Utils.m in Sources */,
+				C37F9382199C510600B0153D /* UserViewController.m in Sources */,
 				C3443885198BE08500133B51 /* main.m in Sources */,
 				C3443964198BE61D00133B51 /* VersionManager.m in Sources */,
 				C344395A198BE61D00133B51 /* HWConnect.m in Sources */,
