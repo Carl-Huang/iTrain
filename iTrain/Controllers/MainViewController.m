@@ -38,6 +38,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    self.navigationItem.title = @"首页";
     
     //图片的点击事件
     
@@ -62,14 +63,14 @@
    _ecerciseView= [[ExerciseMainViewController alloc] init];
     [self.navigationController pushViewController:_ecerciseView animated:YES];
 }
-//- (void)gotoSettingView:(id)sender {
-//    _settingView= [[SettingViewController alloc] init];
-//    [self.navigationController pushViewController:_settingView animated:YES];
-//}
 - (void)gotoSettingView:(id)sender {
-    _baike= [[BaiKeViewController alloc] init];
-    [self.navigationController pushViewController:_baike animated:YES];
+    _settingView= [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:_settingView animated:YES];
 }
+//- (void)gotoSettingView:(id)sender {
+//    _about= [[AboutViewController alloc] init];
+//    [self.navigationController pushViewController:_about animated:YES];
+//}
 - (void)gotoUserinfoView:(id)sender {
     _userinfoView= [[UserInfoViewController alloc] init];
     [self.navigationController pushViewController:_userinfoView animated:YES];

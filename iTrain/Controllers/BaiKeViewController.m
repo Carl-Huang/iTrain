@@ -102,6 +102,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.title = @"百科";
     
     //图片的点击事件
     

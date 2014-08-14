@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+
+@property (nonatomic, retain) NSArray *dataList;
+
+@property (weak, nonatomic) IBOutlet UITableView *seTabelView;
+
 
 @end

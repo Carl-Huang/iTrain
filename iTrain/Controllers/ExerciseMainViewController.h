@@ -10,6 +10,6 @@
 
 @interface ExerciseMainViewController : UIViewController
 @property (strong, nonatomic) UINavigationController *navController;
-@property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) UIView *tabelView;
 
 @end

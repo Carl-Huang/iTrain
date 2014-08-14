@@ -25,8 +25,8 @@
 {
     [super viewDidLoad];
     // 初始化tableView的数据
-    NSArray *list = [NSArray arrayWithObjects:@"武汉",@"上海",@"北京",@"深圳",@"广州",@"重庆", nil];
-    NSArray *imagelist = [NSArray arrayWithObjects:@"user_icon1",@"user_icon2",@"user_icon3",@"user_icon4",@"user_icon5",@"user_icon6", nil];
+    NSArray *list = [NSArray arrayWithObjects:@"头像",@"姓名",@"性别",@"年龄",@"身高",@"体重",@"单位", nil];
+    NSArray *imagelist = [NSArray arrayWithObjects:@"user_icon",@"user_icon1",@"user_icon2",@"user_icon3",@"user_icon4",@"user_icon5",@"user_icon6", nil];
     self.dataList = list;
     self.imageList=imagelist;
     
@@ -55,9 +55,7 @@
     static NSString *cellIdenifer = @"UserInfoViewController";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenifer];
     if (!cell) {
-        
         //导航风格
-
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdenifer ];
       
         cell.showsReorderControl = YES;
@@ -67,13 +65,24 @@
     NSInteger row=[indexPath row];
     
     cell.textLabel.text= [NSString stringWithFormat:@"%@", [_dataList objectAtIndex:row]];
-    
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [_dataList objectAtIndex:row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [_dataList objectAtIndex:row]];
     [cell.contentView addSubview:cell.textLabel];
     
     cell.imageView.backgroundColor = [UIColor clearColor];
     cell.imageView.image = [UIImage imageNamed:[_imageList objectAtIndex:row]] ;
+    
+    
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row]==0) {
+        return 70;
+    }
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
 }
 //隐藏TabelView下面多余分割线
 
@@ -89,8 +98,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
