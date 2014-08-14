@@ -137,6 +137,12 @@
 		C3784485198C7230003BE6D0 /* main_xunlian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3784468198C7230003BE6D0 /* main_xunlian@2x.png */; };
 		C37F9382199C510600B0153D /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37F9380199C510600B0153D /* UserViewController.m */; };
 		C37F9383199C510600B0153D /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37F9381199C510600B0153D /* UserViewController.xib */; };
+		C37F99B2199C9C3B00B0153D /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37F99B0199C9C3B00B0153D /* HelpViewController.m */; };
+		C37F99B3199C9C3B00B0153D /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37F99B1199C9C3B00B0153D /* HelpViewController.xib */; };
+		C37F99CC199CB92C00B0153D /* DownAccessory.png in Resources */ = {isa = PBXBuildFile; fileRef = C37F99C8199CB92B00B0153D /* DownAccessory.png */; };
+		C37F99CD199CB92C00B0153D /* DownAccessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37F99C9199CB92C00B0153D /* DownAccessory@2x.png */; };
+		C37F99CE199CB92C00B0153D /* UpAccessory.png in Resources */ = {isa = PBXBuildFile; fileRef = C37F99CA199CB92C00B0153D /* UpAccessory.png */; };
+		C37F99CF199CB92C00B0153D /* UpAccessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37F99CB199CB92C00B0153D /* UpAccessory@2x.png */; };
 		C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */; };
 		C3AA4F6C1999FCB0003E8DD9 /* klpView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA4F6B1999FCB0003E8DD9 /* klpView.m */; };
 /* End PBXBuildFile section */
@@ -312,6 +318,13 @@
 		C37F937F199C510600B0153D /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		C37F9380199C510600B0153D /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		C37F9381199C510600B0153D /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
+		C37F99AF199C9C3B00B0153D /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		C37F99B0199C9C3B00B0153D /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		C37F99B1199C9C3B00B0153D /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		C37F99C8199CB92B00B0153D /* DownAccessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DownAccessory.png; sourceTree = "<group>"; };
+		C37F99C9199CB92C00B0153D /* DownAccessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DownAccessory@2x.png"; sourceTree = "<group>"; };
+		C37F99CA199CB92C00B0153D /* UpAccessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpAccessory.png; sourceTree = "<group>"; };
+		C37F99CB199CB92C00B0153D /* UpAccessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UpAccessory@2x.png"; sourceTree = "<group>"; };
 		C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMainViewController.xib; sourceTree = "<group>"; };
 		C3AA4F6A1999FCB0003E8DD9 /* klpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = klpView.h; sourceTree = "<group>"; };
 		C3AA4F6B1999FCB0003E8DD9 /* klpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = klpView.m; sourceTree = "<group>"; };
@@ -448,6 +461,10 @@
 		C320D1F019961015005637BF /* 导航栏 */ = {
 			isa = PBXGroup;
 			children = (
+				C37F99C8199CB92B00B0153D /* DownAccessory.png */,
+				C37F99C9199CB92C00B0153D /* DownAccessory@2x.png */,
+				C37F99CA199CB92C00B0153D /* UpAccessory.png */,
+				C37F99CB199CB92C00B0153D /* UpAccessory@2x.png */,
 				C320D1F719961CC8005637BF /* tittle_bg.png */,
 				C320D1F119961015005637BF /* back@2x.png */,
 				C320D1F219961015005637BF /* right_btn@2x.png */,
@@ -565,6 +582,9 @@
 				C37F937F199C510600B0153D /* UserViewController.h */,
 				C37F9380199C510600B0153D /* UserViewController.m */,
 				C37F9381199C510600B0153D /* UserViewController.xib */,
+				C37F99AF199C9C3B00B0153D /* HelpViewController.h */,
+				C37F99B0199C9C3B00B0153D /* HelpViewController.m */,
+				C37F99B1199C9C3B00B0153D /* HelpViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -842,6 +862,7 @@
 				C3784484198C7230003BE6D0 /* main_shezhin@2x.png in Resources */,
 				C3206EC8198FDF5100C1F995 /* setting_baike@2x.png in Resources */,
 				C378446D198C7230003BE6D0 /* user_icon3@2x.png in Resources */,
+				C37F99CD199CB92C00B0153D /* DownAccessory@2x.png in Resources */,
 				C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */,
 				C31C265A198F6E1E007C9614 /* UserCollelectionView.xib in Resources */,
 				C3206E9F198FDF3800C1F995 /* start_zuoshou@2x.png in Resources */,
@@ -856,12 +877,14 @@
 				C3206EC0198FDF5100C1F995 /* plan_guan@2x.png in Resources */,
 				C378446E198C7230003BE6D0 /* user_icon4@2x.png in Resources */,
 				C3206E9A198FDF3800C1F995 /* start_ren@2x.png in Resources */,
+				C37F99CE199CB92C00B0153D /* UpAccessory.png in Resources */,
 				C3784476198C7230003BE6D0 /* ul_back@2x.png in Resources */,
 				C3784470198C7230003BE6D0 /* user_icon6@2x.png in Resources */,
 				C3206EBE198FDF5100C1F995 /* plan_bi@2x.png in Resources */,
 				C3784477198C7230003BE6D0 /* ul_biaoti@2x.png in Resources */,
 				C3206ECE198FDF5100C1F995 /* setting_renti@2x.png in Resources */,
 				C378447F198C7230003BE6D0 /* ul_touxiang@2x.png in Resources */,
+				C37F99B3199C9C3B00B0153D /* HelpViewController.xib in Resources */,
 				C3443883198BE08500133B51 /* InfoPlist.strings in Resources */,
 				C3206E8D198FDF3800C1F995 /* record_xuanzhongbeijing@2x.png in Resources */,
 				C3206E95198FDF3800C1F995 /* start_quan4@2x.png in Resources */,
@@ -913,12 +936,14 @@
 				C3206E93198FDF3800C1F995 /* start_quan2@2x.png in Resources */,
 				C378446C198C7230003BE6D0 /* user_icon2@2x.png in Resources */,
 				C3784475198C7230003BE6D0 /* train_xunlian@2x.png in Resources */,
+				C37F99CC199CB92C00B0153D /* DownAccessory.png in Resources */,
 				C3206ECA198FDF5100C1F995 /* setting_lanya@2x.png in Resources */,
 				C3206EC6198FDF5100C1F995 /* about_line@2x.png in Resources */,
 				C3206EA3198FDF3800C1F995 /* detail_fenxiang@2x.png in Resources */,
 				C3206EA2198FDF3800C1F995 /* detail_fasongchenggong@2x.png in Resources */,
 				C3784472198C7230003BE6D0 /* train_pic@2x.png in Resources */,
 				C37F9383199C510600B0153D /* UserViewController.xib in Resources */,
+				C37F99CF199CB92C00B0153D /* UpAccessory@2x.png in Resources */,
 				C378447B198C7230003BE6D0 /* ul_kuang@2x.png in Resources */,
 				C320D1EA1995BCC6005637BF /* MainViewController.xib in Resources */,
 				C3206E94198FDF3800C1F995 /* start_quan3@2x.png in Resources */,
@@ -953,6 +978,7 @@
 				C31C2668198F7B18007C9614 /* AboutViewController.m in Sources */,
 				C3443933198BE47C00133B51 /* MainViewController.m in Sources */,
 				C344395E198BE61D00133B51 /* NSString+MD5_32.m in Sources */,
+				C37F99B2199C9C3B00B0153D /* HelpViewController.m in Sources */,
 				C3443958198BE61D00133B51 /* UITextView+Placeholder.m in Sources */,
 				C3443961198BE61D00133B51 /* UIColor+Utils.m in Sources */,
 				C3061FDB199389240075E8AC /* BaiKeViewController.m in Sources */,

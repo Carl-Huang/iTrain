@@ -102,7 +102,9 @@
 //        _baike= [[BaiKeViewController alloc] init];
 //        [self.navigationController pushViewController:_baike animated:YES];
     }else if(indexPath.row==3){
-        
+        //        跳转到百科页面
+        help= [[HelpViewController alloc] init];
+        [self.navigationController pushViewController:help animated:YES];
     }
     
 }

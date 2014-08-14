@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "BaiKeViewController.h"
+#import "AboutViewController.h"
 
 @interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     BaiKeViewController *_baike;
+     AboutViewController *_about;
 }
 @property (nonatomic, retain) NSArray *dataList;
 @property (nonatomic, retain) NSArray *imageList;

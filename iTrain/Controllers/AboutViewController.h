@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HelpViewController.h"
 
 @interface AboutViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-
+{
+    HelpViewController *help;
+    
+}
 @property (nonatomic, retain) NSArray *dataList;
 
 @property (weak, nonatomic) IBOutlet UITableView *seTabelView;
