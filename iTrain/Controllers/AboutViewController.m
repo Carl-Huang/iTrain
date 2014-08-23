@@ -95,14 +95,18 @@
     
     
     if (indexPath.row==0) {
-        
+      
     }else if(indexPath.row==1){
+        //        跳转系统通知页面
+        sugg= [[SuggestViewController alloc] init];
+        [self.navigationController pushViewController:sugg
+                                            animated:YES];
     }else if(indexPath.row==2){
-        //        跳转到百科页面
-//        _baike= [[BaiKeViewController alloc] init];
-//        [self.navigationController pushViewController:_baike animated:YES];
+        //        跳转系统通知页面
+        sys= [[SysNotiViewController alloc] init];
+        [self.navigationController pushViewController:sys animated:YES];
     }else if(indexPath.row==3){
-        //        跳转到百科页面
+        //        跳转到帮助页面
         help= [[HelpViewController alloc] init];
         [self.navigationController pushViewController:help animated:YES];
     }

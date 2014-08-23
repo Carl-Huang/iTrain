@@ -10,6 +10,7 @@
 
 @interface ExerciseMainViewController ()
 
+
 @end
 
 @implementation ExerciseMainViewController
@@ -29,13 +30,25 @@
      
     [super viewDidLoad];
    
+    _startView.userInteractionEnabled=YES;
+    UITapGestureRecognizer *gotoStartView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoStartView:)];
+    [_startView addGestureRecognizer:gotoStartView];
+    
+    
+}
+
+
+- (void)gotoStartView:(id)sender {
+    start= [[StarExerciseViewController alloc] init];
+    [self.navigationController pushViewController:start animated:YES];
+}
 
     
 
 //    [self.navController setNavigationBarHidden:YES animated:NO];
  
     // Do any additional setup after loading the view from its nib.
-}
+
 
 
 - (void)viewWillAppear:(BOOL)animated

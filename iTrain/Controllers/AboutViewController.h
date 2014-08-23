@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "HelpViewController.h"
+#import "SysNotiViewController.h"
+#import "SuggestViewController.h"
+#import "BlueToothViewController.h"
 
 @interface AboutViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 {
     HelpViewController *help;
+    SysNotiViewController *sys;
+    SuggestViewController *sugg;
+
     
 }
 @property (nonatomic, retain) NSArray *dataList;

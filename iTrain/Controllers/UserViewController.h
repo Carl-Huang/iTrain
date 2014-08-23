@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #include "UserCollectionViewCell.h"
 @interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
-    UserCollectionViewCell *cell;
+    UserCollectionViewCell *scell;
 }
 
 @property (nonatomic, retain) NSArray *dataList;

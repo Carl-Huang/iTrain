@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "ParamSetViewController.h"
 
 @interface SettingViewController ()
 
@@ -114,8 +115,14 @@
     
     
     if (indexPath.row==0) {
-        
+        _blueTooth= [[BlueToothViewController alloc] init];
+        [self.navigationController pushViewController:_blueTooth
+                                             animated:YES];
     }else if(indexPath.row==1){
+       _paramSet = [[ParamSetViewController alloc] init];
+        [self.navigationController pushViewController:_paramSet
+                                             animated:YES];
+
     }else if(indexPath.row==2){
         //        跳转到百科页面
         _baike= [[BaiKeViewController alloc] init];

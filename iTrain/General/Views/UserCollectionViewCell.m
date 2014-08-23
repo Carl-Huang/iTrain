@@ -18,16 +18,6 @@
 @synthesize selectImage =_selectImage;
 
 //使用手动的方法来定义cell里面的控件内容
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//      
-//    }
-//    return self;
-//}
-
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
    
@@ -35,7 +25,6 @@
 //        全部显示图片，但是可能有空白
         self.userImage.contentMode = UIViewContentModeScaleAspectFit;
         self.selectImage.contentMode = UIViewContentModeScaleAspectFit;
-       
     }
 	
     return self;
@@ -46,9 +35,6 @@
     
     // Configure the view for the selected state
 }
-
-
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

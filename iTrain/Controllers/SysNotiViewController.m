@@ -1,54 +1,48 @@
 //
-//  HelpViewController.m
+//  SysNotiViewController.m
 //  iTrain
 //
-//  Created by Interest on 14-8-14.
+//  Created by Interest on 14-8-18.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "HelpViewController.h"
-#import "UserCollectionViewCell.h"
+#import "SysNotiViewController.h"
 
-@interface HelpViewController ()
+@interface SysNotiViewController ()
 
 @end
 
-NSInteger second=-1;
+NSInteger second;
+@implementation SysNotiViewController
 
-@implementation HelpViewController
 UIView *headView;
-
-
-- (void)didReceiveMemoryWarning
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-
-    [super didReceiveMemoryWarning];
-    
-    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
-#pragma mark - View lifecycle
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+    second=-1;
     self.tv.delegate = self;
     self.tv.dataSource = self;
     [self.view addSubview:self.tv];
-    [self setExtraCellLineHidden:self.tv];
+//    [self setExtraCellLineHidden:self.tv];
     
     child_array= [[NSMutableArray alloc]initWithObjects:@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。",@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。",@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。", nil];
     father_array= [[NSMutableArray alloc]initWithObjects:@"本产品适用于各个年龄阶段的人么？",@"肌肉会不会锻炼过度或者过度疲劳?", @"使用本产品又没有什么禁忌?", nil];
-//    UINib * nib = [UINib nibWithNibName:@"HelpChildCell" bundle:[NSBundle bundleForClass:[HelpChildCell class]]];
-//    [_tv registerNib:nib forCellReuseIdentifier:@"Cell"];
+    //    UINib * nib = [UINib nibWithNibName:@"HelpChildCell" bundle:[NSBundle bundleForClass:[HelpChildCell class]]];
+    //    [_tv registerNib:nib forCellReuseIdentifier:@"Cell"];
     UIColor *bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
     _tv.backgroundColor=bg;
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
-}
 
+}
 - (void)tapSetion:(UIGestureRecognizer *)sender
 {
     UIView * view = sender.view;
@@ -101,13 +95,13 @@ UIView *headView;
 {
     UIView *sview = [[UIView alloc]init];
     sview.backgroundColor = [UIColor blackColor];
-  
+    
     [tableView setTableFooterView:sview];
 }
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -153,23 +147,25 @@ UIView *headView;
     CGRect rect = [cell.textLabel textRectForBounds:cell.textLabel.frame limitedToNumberOfLines:0];
     UIColor *bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
     cell.backgroundColor=bg;
-  
+    
     // 設置顯示榘形大小
     rect.size = size;
     // 重置列文本區域
-
-    cell.textLabel.frame= rect;    
+    
+    cell.textLabel.frame= rect;
     cell.textLabel.text = content;
     // 設置自動換行(重要)
     cell.textLabel.numberOfLines = 0;
     // 設置顯示字體(一定要和之前計算時使用字體一至)
     cell.textLabel.font = font;
-
+    
     return cell;
 }
 
-
-
-
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

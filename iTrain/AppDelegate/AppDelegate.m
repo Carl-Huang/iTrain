@@ -26,7 +26,8 @@
    
 //    [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
-    
+    /**延长启动页面时间**/
+    [NSThread sleepForTimeInterval:1];
 //    [self.navController setNavigationBarHidden:YES animated:NO];
     return YES;
 }

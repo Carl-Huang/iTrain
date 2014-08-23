@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "StarExerciseViewController.h"
 @interface ExerciseMainViewController : UIViewController
+{
+    StarExerciseViewController * start;
+}
 @property (strong, nonatomic) UINavigationController *navController;
 @property (weak, nonatomic) UIView *tabelView;
+@property (weak, nonatomic) IBOutlet UIImageView *startView;
+@property (weak, nonatomic) IBOutlet UIImageView *recordView;
+@property (weak, nonatomic) IBOutlet UIImageView *planView;
 
 @end
