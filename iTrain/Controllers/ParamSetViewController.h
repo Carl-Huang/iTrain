@@ -11,5 +11,6 @@
 
 @interface ParamSetViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *save;
 
 @end

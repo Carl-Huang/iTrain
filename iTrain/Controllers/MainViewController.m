@@ -32,17 +32,6 @@
     [super viewDidLoad];
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"main_bg"]];
     
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-//    self.navigationItem.title = @"首页";
-    
-    //图片的点击事件
-    
-    
     _exercise.userInteractionEnabled = YES;
     UITapGestureRecognizer *gotoExerciseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoSecondView:)];
     [_exercise addGestureRecognizer:gotoExerciseTap];
@@ -54,8 +43,16 @@
     _userinfo.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoUserinfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoUserinfoView:)];
     [_userinfo addGestureRecognizer:gotoUserinfoTap];
+    
+}
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.title = @"首页";
+    
+    //图片的点击事件
 }
 
 

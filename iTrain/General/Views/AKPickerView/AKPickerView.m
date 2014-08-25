@@ -25,12 +25,22 @@
 
 - (void)initialize
 {
+    
+     CGRect bframe =self.bounds;
+    bframe.size.width=320;
+    bframe.size.height=45;
+    UIImageView *backImageView=[[UIImageView alloc]initWithFrame:bframe];
+    [backImageView setImage:[UIImage imageNamed:@"xunlian_02"]];
+    NSLog(@"%f%f",backImageView.frame.size.width,backImageView.frame.size.height);
+    [self addSubview:backImageView];
 	self.font = self.font ?: [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
 	self.textColor = self.textColor ?: [UIColor darkGrayColor];
 	self.highlightedTextColor = self.highlightedTextColor ?: [UIColor blackColor];
 
 	if (self.collectionView) [self.collectionView removeFromSuperview];
-	CGRect frame = CGRectInset(self.bounds, 0, (self.bounds.size.height - ceilf(self.font.lineHeight)) / 2);
+//	CGRect frame = CGRectInset(self.bounds, 0, (self.bounds.size.height - ceilf(self.font.lineHeight)) / 2);
+    CGRect frame =self.bounds;
+     NSLog(@"%f%f",frame.size.width,frame.size.height);
 	self.collectionView = [[UICollectionView alloc] initWithFrame:frame
 											 collectionViewLayout:[AKCollectionViewLayout new]];
 	self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -52,7 +62,9 @@
 	maskLayer.locations = @[@0.0, @0.33, @0.66, @1.0];
 	maskLayer.startPoint = CGPointMake(0.0, 0.0);
 	maskLayer.endPoint = CGPointMake(1.0, 0.0);
-	self.collectionView.layer.mask = maskLayer;
+    self.collectionView.layer.mask = maskLayer;
+    self.collectionView.backgroundColor=[UIColor clearColor];
+   
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -170,7 +182,7 @@
 	}
 
 	[cell.label sizeToFit];
-
+    //cell.backgroundColor=[UIColor blackColor];
 	return cell;
 }
 
@@ -183,12 +195,13 @@
 	} else {
 		size = [title sizeWithFont:self.font];
 	}
-	return CGSizeMake(ceilf(size.width), ceilf(size.height));
+    CGFloat width=self.frame.size.width/5;
+	return CGSizeMake(width-5, ceilf(size.height));
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-	return self.interitemSpacing;
+	return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -278,7 +291,7 @@
 	if (self) {
 		self.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
 		self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-		self.minimumLineSpacing = 100.0;
+		self.minimumLineSpacing = 0.0;
 	}
 	return self;
 }
@@ -287,7 +300,7 @@
 {
 	CGRect visibleRect = (CGRect){self.collectionView.contentOffset, self.collectionView.bounds.size};
 	self.midX = CGRectGetMidX(visibleRect);
-	self.width = CGRectGetWidth(visibleRect) / 2;
+	self.width = (CGRectGetWidth(visibleRect) / 2);
 	self.maxAngle = M_PI_2;
 }
 
@@ -303,9 +316,8 @@
 	CGFloat distance = CGRectGetMidX(attributes.frame) - self.midX;
 	CGFloat currentAngle = self.maxAngle * distance / self.width;
 	CGFloat delta = sinf(currentAngle) * self.width - distance;
-
-	attributes.transform3D = CATransform3DConcat(CATransform3DMakeRotation(currentAngle, 0, 1, 0),
-												 CATransform3DMakeTranslation(delta, 0, 0));
+	attributes.transform3D = CATransform3DConcat(CATransform3DMakeRotation(0, 0, 1, 0),
+												 CATransform3DMakeTranslation(0, 0, 0));
 
 	attributes.alpha = (ABS(distance) < self.width);
 
@@ -316,7 +328,7 @@
 {
 	NSMutableArray *attributes = [NSMutableArray array];
     for (NSInteger i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++) {
-         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
 		[attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
     }
     return attributes;

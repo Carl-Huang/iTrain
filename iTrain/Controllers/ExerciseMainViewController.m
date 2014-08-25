@@ -26,44 +26,35 @@
 
 - (void)viewDidLoad
 {
-    
-     
     [super viewDidLoad];
-   
+    
     _startView.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoStartView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoStartView:)];
     [_startView addGestureRecognizer:gotoStartView];
     
-    
+    _recordView.userInteractionEnabled=YES;
+    UITapGestureRecognizer *gotoRecordView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoRecordView:)];
+    [_recordView addGestureRecognizer:gotoRecordView];
 }
-
-
 - (void)gotoStartView:(id)sender {
     start= [[StarExerciseViewController alloc] init];
     [self.navigationController pushViewController:start animated:YES];
 }
-
-    
-
-//    [self.navController setNavigationBarHidden:YES animated:NO];
- 
-    // Do any additional setup after loading the view from its nib.
-
-
-
+- (void)gotoRecordView:(id)sender {
+    record= [[ExerciseRecordViewController alloc] init];
+    [self.navigationController pushViewController:record animated:YES];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"train_bg"]];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title =@"训练";
     
     NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-   
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

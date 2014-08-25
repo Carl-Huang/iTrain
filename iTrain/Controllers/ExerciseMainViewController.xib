@@ -10,7 +10,7 @@
                 <outlet property="planView" destination="bKz-Bi-uks" id="ZQF-qS-e3j"/>
                 <outlet property="recordView" destination="MgG-Xm-6fe" id="7jx-r7-jpe"/>
                 <outlet property="startView" destination="2xt-ss-KlE" id="V5n-GX-GPB"/>
-                <outlet property="view" destination="1" id="Buj-iA-FtH"/>
+                <outlet property="view" destination="1" id="dvJ-XV-D4k"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

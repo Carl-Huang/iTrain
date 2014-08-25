@@ -11,6 +11,7 @@
 
 @interface ParamSetViewController () <AKPickerViewDelegate>
 @property (nonatomic, strong) AKPickerView *pickerView;
+@property (nonatomic, strong) AKPickerView *pickerView2;
 @property (nonatomic, strong) NSArray *titles;
 @end
 
@@ -30,9 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.pickerView = [[AKPickerView alloc] initWithFrame:self.view.bounds];
-//    self.pickerView.frame=CGRectMake(0, 100, 320, 80);
-	self.pickerView.backgroundColor=  [UIColor colorWithPatternImage:[UIImage imageNamed:@"setting_param_bg"]];
+    self.pickerView = [[AKPickerView alloc] init];
+    self.pickerView.frame=CGRectMake(0, 120, 320, 45);
     self.pickerView.delegate = self;
 	[self.view addSubview:self.pickerView];
     
@@ -47,7 +47,31 @@
 					@"900",
 					@"1000"];
     
+    self.pickerView2 = [[AKPickerView alloc] init];
+
+    self.pickerView2.frame=CGRectMake(0, 250, 320, 45);
+    self.pickerView2.delegate = self;
+	[self.view addSubview:self.pickerView2];
+    
 	[self.pickerView reloadData];
+    [self.pickerView2 reloadData];
+
+    //设置按钮按下状态图片
+    [_save setImage:[UIImage imageNamed:@"baocun.png"] forState:UIControlStateNormal];
+     [_save setImage:[UIImage imageNamed:@"baocun_1.png"] forState:UIControlStateHighlighted];
+    
+                                                                  
+                                                                  
+//                                                                  
+//    [_save setImage:[UIImage imageNamed:@"baocun"] forState:UIControlStateNormal];
+//    
+//    [_save addTarget:self action:@selector(selectedBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+   }
+-(void)selectedBtnPressed:(id)sender{
+    
+//    [_save setImage:[UIImage imageNamed:@"baocun_1"] forState:UIControlStateNormal];
+    
 }
 
 

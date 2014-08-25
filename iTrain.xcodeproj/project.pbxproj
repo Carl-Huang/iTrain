@@ -57,7 +57,11 @@
 		C365B73A19A346D500554CF6 /* BlueToothCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C365B73919A346D500554CF6 /* BlueToothCell.xib */; };
 		C365B73E19A356F600554CF6 /* ParamSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C365B73C19A356F600554CF6 /* ParamSetViewController.m */; };
 		C365B73F19A356F600554CF6 /* ParamSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C365B73D19A356F600554CF6 /* ParamSetViewController.xib */; };
-		C37AC9BC19A6F7E600F3332A /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37AC9BB19A6F7E600F3332A /* AKPickerView.m */; };
+		C36EC62E19AB1DC000813ACD /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C36EC62D19AB1DC000813ACD /* AKPickerView.m */; };
+		C36EC63019AB1DD300813ACD /* xunlian_02.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC62F19AB1DD300813ACD /* xunlian_02.png */; };
+		C36EC63319AB28E500813ACD /* baocun_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63119AB28E500813ACD /* baocun_1.png */; };
+		C36EC63419AB28E500813ACD /* baocun.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63219AB28E500813ACD /* baocun.png */; };
+		C36EC63819AB30CA00813ACD /* record_shanchujilu_01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63719AB30CA00813ACD /* record_shanchujilu_01@2x.png */; };
 		C37ACAC019A7494B00F3332A /* train_canshu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACA5619A7494A00F3332A /* train_canshu@2x.png */; };
 		C37ACAC119A7494B00F3332A /* train_tingzhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACA5719A7494A00F3332A /* train_tingzhi@2x.png */; };
 		C37ACAC219A7494B00F3332A /* record_hengkuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACA5919A7494A00F3332A /* record_hengkuang@2x.png */; };
@@ -163,6 +167,10 @@
 		C3DD699719A2539C0026D272 /* SysNotiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DD699519A2539C0026D272 /* SysNotiViewController.xib */; };
 		C3DD699B19A256F20026D272 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD699919A256F20026D272 /* SuggestViewController.m */; };
 		C3DD699C19A256F20026D272 /* SuggestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DD699A19A256F20026D272 /* SuggestViewController.xib */; };
+		C3FE2C0619A8494300892B73 /* ExerciseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FE2C0519A8494300892B73 /* ExerciseRecordCell.m */; };
+		C3FE2C0819A8495500892B73 /* ExerciseRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FE2C0719A8495500892B73 /* ExerciseRecordCell.xib */; };
+		C3FE2C0C19A890B300892B73 /* ExerciseRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FE2C0A19A890B300892B73 /* ExerciseRecordViewController.m */; };
+		C3FE2C0D19A890B300892B73 /* ExerciseRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FE2C0B19A890B300892B73 /* ExerciseRecordViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,8 +267,12 @@
 		C365B73B19A356F600554CF6 /* ParamSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamSetViewController.h; sourceTree = "<group>"; };
 		C365B73C19A356F600554CF6 /* ParamSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamSetViewController.m; sourceTree = "<group>"; };
 		C365B73D19A356F600554CF6 /* ParamSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParamSetViewController.xib; sourceTree = "<group>"; };
-		C37AC9BA19A6F7E600F3332A /* AKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPickerView.h; sourceTree = "<group>"; };
-		C37AC9BB19A6F7E600F3332A /* AKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKPickerView.m; sourceTree = "<group>"; };
+		C36EC62C19AB1DC000813ACD /* AKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPickerView.h; sourceTree = "<group>"; };
+		C36EC62D19AB1DC000813ACD /* AKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKPickerView.m; sourceTree = "<group>"; };
+		C36EC62F19AB1DD300813ACD /* xunlian_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xunlian_02.png; sourceTree = "<group>"; };
+		C36EC63119AB28E500813ACD /* baocun_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baocun_1.png; sourceTree = "<group>"; };
+		C36EC63219AB28E500813ACD /* baocun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baocun.png; sourceTree = "<group>"; };
+		C36EC63719AB30CA00813ACD /* record_shanchujilu_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_shanchujilu_01@2x.png"; sourceTree = "<group>"; };
 		C37ACA5619A7494A00F3332A /* train_canshu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train_canshu@2x.png"; sourceTree = "<group>"; };
 		C37ACA5719A7494A00F3332A /* train_tingzhi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train_tingzhi@2x.png"; sourceTree = "<group>"; };
 		C37ACA5919A7494A00F3332A /* record_hengkuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_hengkuang@2x.png"; sourceTree = "<group>"; };
@@ -371,6 +383,12 @@
 		C3DD699819A256F20026D272 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		C3DD699919A256F20026D272 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
 		C3DD699A19A256F20026D272 /* SuggestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestViewController.xib; sourceTree = "<group>"; };
+		C3FE2C0419A8494300892B73 /* ExerciseRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseRecordCell.h; sourceTree = "<group>"; };
+		C3FE2C0519A8494300892B73 /* ExerciseRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseRecordCell.m; sourceTree = "<group>"; };
+		C3FE2C0719A8495500892B73 /* ExerciseRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExerciseRecordCell.xib; path = AKPickerView/ExerciseRecordCell.xib; sourceTree = "<group>"; };
+		C3FE2C0919A890B300892B73 /* ExerciseRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseRecordViewController.h; sourceTree = "<group>"; };
+		C3FE2C0A19A890B300892B73 /* ExerciseRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseRecordViewController.m; sourceTree = "<group>"; };
+		C3FE2C0B19A890B300892B73 /* ExerciseRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseRecordViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,6 +546,9 @@
 				C365B73B19A356F600554CF6 /* ParamSetViewController.h */,
 				C365B73C19A356F600554CF6 /* ParamSetViewController.m */,
 				C365B73D19A356F600554CF6 /* ParamSetViewController.xib */,
+				C3FE2C0919A890B300892B73 /* ExerciseRecordViewController.h */,
+				C3FE2C0A19A890B300892B73 /* ExerciseRecordViewController.m */,
+				C3FE2C0B19A890B300892B73 /* ExerciseRecordViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -584,6 +605,9 @@
 				C365B73319A346BB00554CF6 /* BlueToothCell.h */,
 				C365B73419A346BB00554CF6 /* BlueToothCell.m */,
 				C365B73919A346D500554CF6 /* BlueToothCell.xib */,
+				C3FE2C0419A8494300892B73 /* ExerciseRecordCell.h */,
+				C3FE2C0519A8494300892B73 /* ExerciseRecordCell.m */,
+				C3FE2C0719A8495500892B73 /* ExerciseRecordCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -663,8 +687,8 @@
 		C37AC9B919A6F7E600F3332A /* AKPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				C37AC9BA19A6F7E600F3332A /* AKPickerView.h */,
-				C37AC9BB19A6F7E600F3332A /* AKPickerView.m */,
+				C36EC62C19AB1DC000813ACD /* AKPickerView.h */,
+				C36EC62D19AB1DC000813ACD /* AKPickerView.m */,
 			);
 			path = AKPickerView;
 			sourceTree = "<group>";
@@ -681,6 +705,7 @@
 		C37ACA5819A7494A00F3332A /* 09训练记录 */ = {
 			isa = PBXGroup;
 			children = (
+				C36EC63719AB30CA00813ACD /* record_shanchujilu_01@2x.png */,
 				C37ACA5919A7494A00F3332A /* record_hengkuang@2x.png */,
 				C37ACA5A19A7494A00F3332A /* record_jiantou@2x.png */,
 				C37ACA5B19A7494A00F3332A /* record_nian@2x.png */,
@@ -693,6 +718,7 @@
 		C37ACA5E19A7494A00F3332A /* 11训练计划 */ = {
 			isa = PBXGroup;
 			children = (
+				C36EC62F19AB1DD300813ACD /* xunlian_02.png */,
 				C37ACA5F19A7494A00F3332A /* plan_bi@2x.png */,
 				C37ACA6019A7494A00F3332A /* plan_chongxinjihua@2x.png */,
 				C37ACA6119A7494A00F3332A /* plan_guan@2x.png */,
@@ -775,6 +801,8 @@
 		C37ACA9219A7494A00F3332A /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				C36EC63119AB28E500813ACD /* baocun_1.png */,
+				C36EC63219AB28E500813ACD /* baocun.png */,
 				C37ACA9319A7494A00F3332A /* setting_app@2x.png */,
 				C37ACA9419A7494A00F3332A /* setting_baike@2x.png */,
 				C37ACA9519A7494A00F3332A /* setting_icom@2x.png */,
@@ -895,6 +923,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = helloworld;
 				TargetAttributes = {
+					C3443874198BE08500133B51 = {
+						DevelopmentTeam = Y8CJPVFVEM;
+					};
 					C344388F198BE08500133B51 = {
 						TestTargetID = C3443874198BE08500133B51;
 					};
@@ -951,6 +982,7 @@
 				C37ACAD719A7494B00F3332A /* UpAccessory@2x.png in Resources */,
 				C37ACADB19A7494B00F3332A /* user_icon2@2x.png in Resources */,
 				C37ACACC19A7494B00F3332A /* plan_neirongbeijing@2x.png in Resources */,
+				C36EC63319AB28E500813ACD /* baocun_1.png in Resources */,
 				C37ACAEB19A7494B00F3332A /* start_quan5@2x.png in Resources */,
 				C37ACB1519A7494B00F3332A /* ul_touxiang3@2x.png in Resources */,
 				C37ACAF819A7494B00F3332A /* setting_icom@2x.png in Resources */,
@@ -972,6 +1004,7 @@
 				C37ACB1B19A7494B00F3332A /* main_logo@2x.png in Resources */,
 				C37ACAC419A7494B00F3332A /* record_nian@2x.png in Resources */,
 				C320D1EC1995BDE4005637BF /* UserInfoViewController.xib in Resources */,
+				C36EC63419AB28E500813ACD /* baocun.png in Resources */,
 				C37ACAFC19A7494B00F3332A /* setting_pic2@2x.png in Resources */,
 				C37ACB1C19A7494B00F3332A /* main_shezhin@2x.png in Resources */,
 				C37ACAFD19A7494B00F3332A /* setting_renti2@2x.png in Resources */,
@@ -981,6 +1014,7 @@
 				C37ACAFB19A7494B00F3332A /* setting_pic1@2x.png in Resources */,
 				C37ACAD819A7494B00F3332A /* user_bianji@2x.png in Resources */,
 				C37ACACF19A7494B00F3332A /* DownAccessory.png in Resources */,
+				C36EC63019AB1DD300813ACD /* xunlian_02.png in Resources */,
 				C37ACAF619A7494B00F3332A /* setting_app@2x.png in Resources */,
 				C365B72D19A329F300554CF6 /* StarExerciseViewController.xib in Resources */,
 				C37ACAD619A7494B00F3332A /* UpAccessory.png in Resources */,
@@ -1005,6 +1039,7 @@
 				C37ACAE419A7494B00F3332A /* start_fanmian@2x.png in Resources */,
 				C37ACAC519A7494B00F3332A /* record_shanchujilu@2x.png in Resources */,
 				C37ACACB19A7494B00F3332A /* plan_naozhongshezhi@2x.png in Resources */,
+				C3FE2C0819A8495500892B73 /* ExerciseRecordCell.xib in Resources */,
 				C37ACADC19A7494B00F3332A /* user_icon3@2x.png in Resources */,
 				C37ACB0519A7494B00F3332A /* detail_kuang@2x.png in Resources */,
 				C37F9383199C510600B0153D /* UserViewController.xib in Resources */,
@@ -1017,6 +1052,7 @@
 				C37ACAEA19A7494B00F3332A /* start_quan4@2x.png in Resources */,
 				C37ACB0B19A7494B00F3332A /* train_xunlian3@2x.png in Resources */,
 				C37ACAF719A7494B00F3332A /* setting_baike@2x.png in Resources */,
+				C3FE2C0D19A890B300892B73 /* ExerciseRecordViewController.xib in Resources */,
 				C37ACB0419A7494B00F3332A /* detail_kuang2@2x.png in Resources */,
 				C37ACAF419A7494B00F3332A /* start_zuoshou@2x.png in Resources */,
 				C37ACAC919A7494B00F3332A /* plan_guan@2x.png in Resources */,
@@ -1035,6 +1071,7 @@
 				C37ACAC219A7494B00F3332A /* record_hengkuang@2x.png in Resources */,
 				C37ACB0D19A7494B00F3332A /* ul_back@2x.png in Resources */,
 				C37ACACA19A7494B00F3332A /* plan_kai@2x.png in Resources */,
+				C36EC63819AB30CA00813ACD /* record_shanchujilu_01@2x.png in Resources */,
 				C3061FDC199389240075E8AC /* BaiKeViewController.xib in Resources */,
 				C37ACAEC19A7494B00F3332A /* start_quan6@2x.png in Resources */,
 			);
@@ -1062,6 +1099,7 @@
 				C3DD699B19A256F20026D272 /* SuggestViewController.m in Sources */,
 				C3443960198BE61D00133B51 /* OSHelper.m in Sources */,
 				C365B73519A346BB00554CF6 /* BlueToothCell.m in Sources */,
+				C36EC62E19AB1DC000813ACD /* AKPickerView.m in Sources */,
 				C3DD699619A2539C0026D272 /* SysNotiViewController.m in Sources */,
 				C365B72C19A329F300554CF6 /* StarExerciseViewController.m in Sources */,
 				C344395D198BE61D00133B51 /* NSString+IP.m in Sources */,
@@ -1082,8 +1120,9 @@
 				C3443885198BE08500133B51 /* main.m in Sources */,
 				C3443964198BE61D00133B51 /* VersionManager.m in Sources */,
 				C344395A198BE61D00133B51 /* HWConnect.m in Sources */,
+				C3FE2C0619A8494300892B73 /* ExerciseRecordCell.m in Sources */,
 				C31C2659198F6E1E007C9614 /* UserCollectionViewCell.m in Sources */,
-				C37AC9BC19A6F7E600F3332A /* AKPickerView.m in Sources */,
+				C3FE2C0C19A890B300892B73 /* ExerciseRecordViewController.m in Sources */,
 				C3443959198BE61D00133B51 /* CommonViewController.m in Sources */,
 				C3AA4F6C1999FCB0003E8DD9 /* klpView.m in Sources */,
 				C344395B198BE61D00133B51 /* IO.m in Sources */,
@@ -1204,6 +1243,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iTrain/Vendors/Vendors/ShareSDK/Connection",
@@ -1223,6 +1263,7 @@
 					"$(PROJECT_DIR)/iTrain/Vendors/Vendors/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "76999BA8-6205-4386-881F-2D53549A5D0B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1233,6 +1274,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iTrain/Vendors/Vendors/ShareSDK/Connection",
@@ -1252,6 +1294,7 @@
 					"$(PROJECT_DIR)/iTrain/Vendors/Vendors/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "76999BA8-6205-4386-881F-2D53549A5D0B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
