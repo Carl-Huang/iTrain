@@ -35,6 +35,10 @@
     _recordView.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoRecordView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoRecordView:)];
     [_recordView addGestureRecognizer:gotoRecordView];
+    
+    _planView.userInteractionEnabled=YES;
+    UITapGestureRecognizer *gotoPlanView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPlanView:)];
+    [_planView addGestureRecognizer:gotoPlanView];
 }
 - (void)gotoStartView:(id)sender {
     start= [[StarExerciseViewController alloc] init];
@@ -43,6 +47,10 @@
 - (void)gotoRecordView:(id)sender {
     record= [[ExerciseRecordViewController alloc] init];
     [self.navigationController pushViewController:record animated:YES];
+}
+- (void)gotoPlanView:(id)sender {
+    plan= [[ExercisePlanViewController alloc] init];
+    [self.navigationController pushViewController:plan animated:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

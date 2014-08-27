@@ -38,5 +38,12 @@
             result[12], result[13], result[14], result[15]
             ];
 }
+//CFUUIDRef 转化为 NSString
++(NSString *)convertCFUUIDIntoString:(CFUUIDRef)uuid
+{
+    NSAssert(uuid != NULL, @"The CFUUID is null.");
+    NSString * uuidStr = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    return uuidStr;
+}
 
 @end

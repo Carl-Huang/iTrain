@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ExerciseRecordCell.h"
-
+#import "ExerciseRecordDetailViewController.h"
 @interface ExerciseRecordViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     ExerciseRecordCell *scell;
+    ExerciseRecordDetailViewController * _detail;
     
 }
 @property (nonatomic, retain) NSArray *dateList;

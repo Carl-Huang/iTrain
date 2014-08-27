@@ -11,6 +11,13 @@
 		C3061FDC199389240075E8AC /* BaiKeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3061FDA199389240075E8AC /* BaiKeViewController.xib */; };
 		C3072B35199F2A3A00EC101D /* HelpHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3072B34199F2A3A00EC101D /* HelpHeadView.xib */; };
 		C3112DF1199E0A74002809FA /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3112DF0199E0A74002809FA /* UserCollectionViewCell.xib */; };
+		C31AA84119AC2BD400CF3035 /* CBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AA83E19AC2BD400CF3035 /* CBLEManager.m */; };
+		C31AA84219AC2BD400CF3035 /* CBLEPeriphral.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AA84019AC2BD400CF3035 /* CBLEPeriphral.m */; };
+		C31AA84B19AC3D7000CF3035 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AA84A19AC3D7000CF3035 /* Device.m */; };
+		C31AAFD419AC917500CF3035 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31AAFD319AC917500CF3035 /* Images.xcassets */; };
+		C31AAFD919ACA51A00CF3035 /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = C31AAFD619ACA51A00CF3035 /* 114.png */; };
+		C31AAFDA19ACA51A00CF3035 /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = C31AAFD719ACA51A00CF3035 /* 57.png */; };
+		C31AAFDB19ACA51A00CF3035 /* 80.png in Resources */ = {isa = PBXBuildFile; fileRef = C31AAFD819ACA51A00CF3035 /* 80.png */; };
 		C31C2659198F6E1E007C9614 /* UserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C2657198F6E1E007C9614 /* UserCollectionViewCell.m */; };
 		C31C2663198F7A86007C9614 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C2661198F7A86007C9614 /* UserInfoViewController.m */; };
 		C31C2668198F7B18007C9614 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31C2666198F7B18007C9614 /* AboutViewController.m */; };
@@ -26,7 +33,6 @@
 		C3443883198BE08500133B51 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3443881198BE08500133B51 /* InfoPlist.strings */; };
 		C3443885198BE08500133B51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3443884198BE08500133B51 /* main.m */; };
 		C3443889198BE08500133B51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3443888198BE08500133B51 /* AppDelegate.m */; };
-		C344388B198BE08500133B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C344388A198BE08500133B51 /* Images.xcassets */; };
 		C3443892198BE08500133B51 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3443891198BE08500133B51 /* XCTest.framework */; };
 		C3443893198BE08500133B51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3443878198BE08500133B51 /* Foundation.framework */; };
 		C3443894198BE08500133B51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C344387C198BE08500133B51 /* UIKit.framework */; };
@@ -62,6 +68,15 @@
 		C36EC63319AB28E500813ACD /* baocun_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63119AB28E500813ACD /* baocun_1.png */; };
 		C36EC63419AB28E500813ACD /* baocun.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63219AB28E500813ACD /* baocun.png */; };
 		C36EC63819AB30CA00813ACD /* record_shanchujilu_01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63719AB30CA00813ACD /* record_shanchujilu_01@2x.png */; };
+		C36EC65B19AB44DA00813ACD /* ExerciseRecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36EC65919AB44DA00813ACD /* ExerciseRecordDetailViewController.m */; };
+		C36EC65C19AB44DA00813ACD /* ExerciseRecordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36EC65A19AB44DA00813ACD /* ExerciseRecordDetailViewController.xib */; };
+		C36EC65E19AB52FB00813ACD /* ExerciseRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36EC65D19AB52FB00813ACD /* ExerciseRecordDetailCell.xib */; };
+		C36EC66219AB5A1900813ACD /* ExerciseParamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36EC66019AB5A1900813ACD /* ExerciseParamViewController.m */; };
+		C36EC66319AB5A1900813ACD /* ExerciseParamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36EC66119AB5A1900813ACD /* ExerciseParamViewController.xib */; };
+		C36EC66719AB5E2400813ACD /* ExercisePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36EC66519AB5E2400813ACD /* ExercisePlanViewController.m */; };
+		C36EC66819AB5E2400813ACD /* ExercisePlanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36EC66619AB5E2400813ACD /* ExercisePlanViewController.xib */; };
+		C36EC66E19AB604C00813ACD /* ExercisePlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C36EC66D19AB604C00813ACD /* ExercisePlanCell.m */; };
+		C36EC67219AB608200813ACD /* ExercisePlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36EC67119AB608200813ACD /* ExercisePlanCell.xib */; };
 		C37ACAC019A7494B00F3332A /* train_canshu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACA5619A7494A00F3332A /* train_canshu@2x.png */; };
 		C37ACAC119A7494B00F3332A /* train_tingzhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACA5719A7494A00F3332A /* train_tingzhi@2x.png */; };
 		C37ACAC219A7494B00F3332A /* record_hengkuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACA5919A7494A00F3332A /* record_hengkuang@2x.png */; };
@@ -189,6 +204,16 @@
 		C3061FDA199389240075E8AC /* BaiKeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaiKeViewController.xib; sourceTree = "<group>"; };
 		C3072B34199F2A3A00EC101D /* HelpHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpHeadView.xib; sourceTree = "<group>"; };
 		C3112DF0199E0A74002809FA /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
+		C31AA83D19AC2BD400CF3035 /* CBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLEManager.h; sourceTree = "<group>"; };
+		C31AA83E19AC2BD400CF3035 /* CBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLEManager.m; sourceTree = "<group>"; };
+		C31AA83F19AC2BD400CF3035 /* CBLEPeriphral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLEPeriphral.h; sourceTree = "<group>"; };
+		C31AA84019AC2BD400CF3035 /* CBLEPeriphral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLEPeriphral.m; sourceTree = "<group>"; };
+		C31AA84919AC3D7000CF3035 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		C31AA84A19AC3D7000CF3035 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		C31AAFD319AC917500CF3035 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C31AAFD619ACA51A00CF3035 /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		C31AAFD719ACA51A00CF3035 /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		C31AAFD819ACA51A00CF3035 /* 80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80.png; sourceTree = "<group>"; };
 		C31C2656198F6E1E007C9614 /* UserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionViewCell.h; sourceTree = "<group>"; };
 		C31C2657198F6E1E007C9614 /* UserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionViewCell.m; sourceTree = "<group>"; };
 		C31C2660198F7A86007C9614 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
@@ -213,7 +238,6 @@
 		C3443886198BE08500133B51 /* iTrain-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTrain-Prefix.pch"; sourceTree = "<group>"; };
 		C3443887198BE08500133B51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3443888198BE08500133B51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C344388A198BE08500133B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C3443890198BE08500133B51 /* iTrainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTrainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3443891198BE08500133B51 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C3443899198BE08500133B51 /* iTrainTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTrainTests-Info.plist"; sourceTree = "<group>"; };
@@ -273,6 +297,19 @@
 		C36EC63119AB28E500813ACD /* baocun_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baocun_1.png; sourceTree = "<group>"; };
 		C36EC63219AB28E500813ACD /* baocun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baocun.png; sourceTree = "<group>"; };
 		C36EC63719AB30CA00813ACD /* record_shanchujilu_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_shanchujilu_01@2x.png"; sourceTree = "<group>"; };
+		C36EC65819AB44DA00813ACD /* ExerciseRecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseRecordDetailViewController.h; sourceTree = "<group>"; };
+		C36EC65919AB44DA00813ACD /* ExerciseRecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseRecordDetailViewController.m; sourceTree = "<group>"; };
+		C36EC65A19AB44DA00813ACD /* ExerciseRecordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseRecordDetailViewController.xib; sourceTree = "<group>"; };
+		C36EC65D19AB52FB00813ACD /* ExerciseRecordDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseRecordDetailCell.xib; sourceTree = "<group>"; };
+		C36EC65F19AB5A1900813ACD /* ExerciseParamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseParamViewController.h; sourceTree = "<group>"; };
+		C36EC66019AB5A1900813ACD /* ExerciseParamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseParamViewController.m; sourceTree = "<group>"; };
+		C36EC66119AB5A1900813ACD /* ExerciseParamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseParamViewController.xib; sourceTree = "<group>"; };
+		C36EC66419AB5E2400813ACD /* ExercisePlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExercisePlanViewController.h; sourceTree = "<group>"; };
+		C36EC66519AB5E2400813ACD /* ExercisePlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExercisePlanViewController.m; sourceTree = "<group>"; };
+		C36EC66619AB5E2400813ACD /* ExercisePlanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExercisePlanViewController.xib; sourceTree = "<group>"; };
+		C36EC66C19AB604C00813ACD /* ExercisePlanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExercisePlanCell.h; sourceTree = "<group>"; };
+		C36EC66D19AB604C00813ACD /* ExercisePlanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExercisePlanCell.m; sourceTree = "<group>"; };
+		C36EC67119AB608200813ACD /* ExercisePlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExercisePlanCell.xib; sourceTree = "<group>"; };
 		C37ACA5619A7494A00F3332A /* train_canshu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train_canshu@2x.png"; sourceTree = "<group>"; };
 		C37ACA5719A7494A00F3332A /* train_tingzhi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train_tingzhi@2x.png"; sourceTree = "<group>"; };
 		C37ACA5919A7494A00F3332A /* record_hengkuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_hengkuang@2x.png"; sourceTree = "<group>"; };
@@ -417,6 +454,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C31AA83C19AC2BD400CF3035 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				C31AA83D19AC2BD400CF3035 /* CBLEManager.h */,
+				C31AA83E19AC2BD400CF3035 /* CBLEManager.m */,
+				C31AA83F19AC2BD400CF3035 /* CBLEPeriphral.h */,
+				C31AA84019AC2BD400CF3035 /* CBLEPeriphral.m */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		C31AAFD519ACA51A00CF3035 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				C31AAFD619ACA51A00CF3035 /* 114.png */,
+				C31AAFD719ACA51A00CF3035 /* 57.png */,
+				C31AAFD819ACA51A00CF3035 /* 80.png */,
+			);
+			path = icon;
+			sourceTree = "<group>";
+		};
 		C344386C198BE08500133B51 = {
 			isa = PBXGroup;
 			children = (
@@ -459,7 +517,7 @@
 				C34438A9198BE0A200133B51 /* Macros */,
 				C34438A8198BE09700133B51 /* Controllers */,
 				C34438A7198BE08E00133B51 /* AppDelegate */,
-				C344388A198BE08500133B51 /* Images.xcassets */,
+				C31AAFD319AC917500CF3035 /* Images.xcassets */,
 				C344387F198BE08500133B51 /* Supporting Files */,
 			);
 			path = iTrain;
@@ -549,6 +607,16 @@
 				C3FE2C0919A890B300892B73 /* ExerciseRecordViewController.h */,
 				C3FE2C0A19A890B300892B73 /* ExerciseRecordViewController.m */,
 				C3FE2C0B19A890B300892B73 /* ExerciseRecordViewController.xib */,
+				C36EC65819AB44DA00813ACD /* ExerciseRecordDetailViewController.h */,
+				C36EC65919AB44DA00813ACD /* ExerciseRecordDetailViewController.m */,
+				C36EC65A19AB44DA00813ACD /* ExerciseRecordDetailViewController.xib */,
+				C36EC65D19AB52FB00813ACD /* ExerciseRecordDetailCell.xib */,
+				C36EC65F19AB5A1900813ACD /* ExerciseParamViewController.h */,
+				C36EC66019AB5A1900813ACD /* ExerciseParamViewController.m */,
+				C36EC66119AB5A1900813ACD /* ExerciseParamViewController.xib */,
+				C36EC66419AB5E2400813ACD /* ExercisePlanViewController.h */,
+				C36EC66519AB5E2400813ACD /* ExercisePlanViewController.m */,
+				C36EC66619AB5E2400813ACD /* ExercisePlanViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -580,6 +648,7 @@
 		C34438AC198BE0BC00133B51 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				C31AA83C19AC2BD400CF3035 /* BLE */,
 				C34438AF198BE0D400133B51 /* Golbal */,
 				C34438AE198BE0CC00133B51 /* Views */,
 			);
@@ -589,6 +658,8 @@
 		C34438AD198BE0C300133B51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C31AA84919AC3D7000CF3035 /* Device.h */,
+				C31AA84A19AC3D7000CF3035 /* Device.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -608,6 +679,9 @@
 				C3FE2C0419A8494300892B73 /* ExerciseRecordCell.h */,
 				C3FE2C0519A8494300892B73 /* ExerciseRecordCell.m */,
 				C3FE2C0719A8495500892B73 /* ExerciseRecordCell.xib */,
+				C36EC66C19AB604C00813ACD /* ExercisePlanCell.h */,
+				C36EC66D19AB604C00813ACD /* ExercisePlanCell.m */,
+				C36EC67119AB608200813ACD /* ExercisePlanCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -622,6 +696,7 @@
 		C34438B0198BE10400133B51 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C31AAFD519ACA51A00CF3035 /* icon */,
 				C37ACA5519A7494A00F3332A /* 08训练2 */,
 				C37ACA5819A7494A00F3332A /* 09训练记录 */,
 				C37ACA5E19A7494A00F3332A /* 11训练计划 */,
@@ -959,10 +1034,14 @@
 				C365B73A19A346D500554CF6 /* BlueToothCell.xib in Resources */,
 				C37ACAD319A7494B00F3332A /* start1@2x.png in Resources */,
 				C3DD699C19A256F20026D272 /* SuggestViewController.xib in Resources */,
+				C36EC66319AB5A1900813ACD /* ExerciseParamViewController.xib in Resources */,
 				C37ACAFA19A7494B00F3332A /* setting_param_bg.png in Resources */,
 				C37ACAFE19A7494B00F3332A /* setting_renti@2x.png in Resources */,
 				C37ACB0619A7494B00F3332A /* detail_quxiao@2x.png in Resources */,
 				C37ACB1019A7494B00F3332A /* ul_gou2@2x.png in Resources */,
+				C31AAFD419AC917500CF3035 /* Images.xcassets in Resources */,
+				C31AAFD919ACA51A00CF3035 /* 114.png in Resources */,
+				C36EC66819AB5E2400813ACD /* ExercisePlanViewController.xib in Resources */,
 				C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */,
 				C37ACAE719A7494B00F3332A /* start_kaishixunlian@2x.png in Resources */,
 				C37F99B3199C9C3B00B0153D /* HelpViewController.xib in Resources */,
@@ -988,7 +1067,7 @@
 				C37ACAF819A7494B00F3332A /* setting_icom@2x.png in Resources */,
 				C37ACAD419A7494B00F3332A /* start2@2x.png in Resources */,
 				C37ACADE19A7494B00F3332A /* user_icon5@2x.png in Resources */,
-				C344388B198BE08500133B51 /* Images.xcassets in Resources */,
+				C31AAFDB19ACA51A00CF3035 /* 80.png in Resources */,
 				C37ACB0119A7494B00F3332A /* detail_facebook@2x.png in Resources */,
 				C37ACAC019A7494B00F3332A /* train_canshu@2x.png in Resources */,
 				C37ACAF519A7494B00F3332A /* start_zuotui@2x.png in Resources */,
@@ -1021,8 +1100,10 @@
 				C37ACAE319A7494B00F3332A /* start_daren@2x.png in Resources */,
 				C37ACAD019A7494B00F3332A /* DownAccessory@2x.png in Resources */,
 				C37ACAF219A7494B00F3332A /* start_youshou@2x.png in Resources */,
+				C36EC67219AB608200813ACD /* ExercisePlanCell.xib in Resources */,
 				C37ACAF319A7494B00F3332A /* start_youtui@2x.png in Resources */,
 				C37ACB0019A7494B00F3332A /* setting_shezhi@2x.png in Resources */,
+				C36EC65E19AB52FB00813ACD /* ExerciseRecordDetailCell.xib in Resources */,
 				C37ACADF19A7494B00F3332A /* user_icon6@2x.png in Resources */,
 				C3112DF1199E0A74002809FA /* UserCollectionViewCell.xib in Resources */,
 				C37ACB0A19A7494B00F3332A /* train_xunlian2@2x.png in Resources */,
@@ -1045,6 +1126,7 @@
 				C37F9383199C510600B0153D /* UserViewController.xib in Resources */,
 				C37ACAE919A7494B00F3332A /* start_quan3@2x.png in Resources */,
 				C37ACB1A19A7494B00F3332A /* main_geren@2x.png in Resources */,
+				C31AAFDA19ACA51A00CF3035 /* 57.png in Resources */,
 				C37ACAE119A7494B00F3332A /* about_icon@2x.png in Resources */,
 				C37ACAF919A7494B00F3332A /* setting_lanya@2x.png in Resources */,
 				C37ACAFF19A7494B00F3332A /* setting_shebei@2x.png in Resources */,
@@ -1059,6 +1141,7 @@
 				C37ACB1619A7494B00F3332A /* ul_touxiang@2x.png in Resources */,
 				C37ACB0C19A7494B00F3332A /* train_xunlian@2x.png in Resources */,
 				C37ACB1119A7494B00F3332A /* ul_gou@2x.png in Resources */,
+				C36EC65C19AB44DA00813ACD /* ExerciseRecordDetailViewController.xib in Resources */,
 				C37ACAD919A7494B00F3332A /* user_hang@2x.png in Resources */,
 				C37ACADD19A7494B00F3332A /* user_icon4@2x.png in Resources */,
 				C320D1EA1995BCC6005637BF /* MainViewController.xib in Resources */,
@@ -1096,6 +1179,7 @@
 				C3443963198BE61D00133B51 /* UIViewController+BarItem.m in Sources */,
 				C3443957198BE61D00133B51 /* UITableView+Addition.m in Sources */,
 				C3443962198BE61D00133B51 /* UIImage+Util.m in Sources */,
+				C36EC65B19AB44DA00813ACD /* ExerciseRecordDetailViewController.m in Sources */,
 				C3DD699B19A256F20026D272 /* SuggestViewController.m in Sources */,
 				C3443960198BE61D00133B51 /* OSHelper.m in Sources */,
 				C365B73519A346BB00554CF6 /* BlueToothCell.m in Sources */,
@@ -1104,8 +1188,11 @@
 				C365B72C19A329F300554CF6 /* StarExerciseViewController.m in Sources */,
 				C344395D198BE61D00133B51 /* NSString+IP.m in Sources */,
 				C31C2668198F7B18007C9614 /* AboutViewController.m in Sources */,
+				C36EC66719AB5E2400813ACD /* ExercisePlanViewController.m in Sources */,
+				C36EC66219AB5A1900813ACD /* ExerciseParamViewController.m in Sources */,
 				C3443933198BE47C00133B51 /* MainViewController.m in Sources */,
 				C344395E198BE61D00133B51 /* NSString+MD5_32.m in Sources */,
+				C31AA84119AC2BD400CF3035 /* CBLEManager.m in Sources */,
 				C37F99B2199C9C3B00B0153D /* HelpViewController.m in Sources */,
 				C3443958198BE61D00133B51 /* UITextView+Placeholder.m in Sources */,
 				C365B73E19A356F600554CF6 /* ParamSetViewController.m in Sources */,
@@ -1117,9 +1204,12 @@
 				C344395C198BE61D00133B51 /* NSDate+Utils.m in Sources */,
 				C344395F198BE61D00133B51 /* NSString+Utils.m in Sources */,
 				C37F9382199C510600B0153D /* UserViewController.m in Sources */,
+				C36EC66E19AB604C00813ACD /* ExercisePlanCell.m in Sources */,
 				C3443885198BE08500133B51 /* main.m in Sources */,
 				C3443964198BE61D00133B51 /* VersionManager.m in Sources */,
 				C344395A198BE61D00133B51 /* HWConnect.m in Sources */,
+				C31AA84B19AC3D7000CF3035 /* Device.m in Sources */,
+				C31AA84219AC2BD400CF3035 /* CBLEPeriphral.m in Sources */,
 				C3FE2C0619A8494300892B73 /* ExerciseRecordCell.m in Sources */,
 				C31C2659198F6E1E007C9614 /* UserCollectionViewCell.m in Sources */,
 				C3FE2C0C19A890B300892B73 /* ExerciseRecordViewController.m in Sources */,

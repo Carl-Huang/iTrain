@@ -8,11 +8,17 @@
 
 #import "UserViewController.h"
 
-@interface UserViewController ()
+@interface UserViewController (){
+    UserViewController* sview;
+}
+@property (nonatomic, readonly) UIButton *m_btnNaviRight;
+
 
 @end
 UIColor *bg;
 @implementation UserViewController
+
+@synthesize m_btnNaviRight = _btnNaviRight;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,8 +52,13 @@ UIColor *bg;
 //    _userTabelView.scrollEnabled = NO;
     
     [self setExtraCellLineHidden:_userTabelView];
-    [self.view addSubview:_userTabelView];
+//    [self.view addSubview:_userTabelView];
     
+    //设置按钮按下状态图片
+    [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian.png"] forState:UIControlStateNormal];
+    [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian2.png"] forState:UIControlStateHighlighted];
+    sview=self;
+
     
 }
 //Itme个数
@@ -55,9 +66,6 @@ UIColor *bg;
 {
     return 4;
 }
-
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    static NSString *CustomCellIdentifier = @"Cell";
@@ -70,7 +78,9 @@ UIColor *bg;
     cell.divline.backgroundColor=bg;
 //    禁止选中效果
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+//    //设置按钮按下状态图片
+//    [scell.select setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateNormal];
+//    [scell.select setImage:[UIImage imageNamed:@"ul_gou2.png"] forState:UIControlStateHighlighted];
     return cell;
 }
 
@@ -94,6 +104,32 @@ UIColor *bg;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     //    self.navigationItem.title = @"设置";
+
+    
+    // 创建一个自定义的按钮，并添加到导航条右侧。
+//    _btnNaviRight = [CustomNaviBarView createNormalNaviBarBtnByTitle:@"Next" target:self action:@selector(btnNext:)];
+//    [self setLeftCustomBarItem:@"ul_kuang.png" action:@selector(gotoSecondView:)];
+    
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(gotoSecondView:)];
+    //self
+
+}
+
+- (void)gotoSecondView:(id)sender  {
+
+    NSLog(@"点击我了");
+}
+- (IBAction)popoverBtnClicked:(id)sender forEvent:(UIEvent *)event {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if(!window) {
+        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    }
+    NSSet *set = event.allTouches;
+    UITouch *touch = [set anyObject];
+    CGPoint point1 = [touch locationInView:window];
+    //    CGPoint point = sender.center;
+//    [KWPopoverView showPopoverAtPoint:point1 inView:self.view withContentView:_contentView];
 }
 
 
@@ -109,9 +145,7 @@ UIColor *bg;
 //响应用户单击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
     if (indexPath.row==0) {
-        
     }else if(indexPath.row==1){
     }else if(indexPath.row==2){
         //        跳转到百科页面

@@ -15,7 +15,7 @@
 @synthesize userAge = _userAge;
 
 @synthesize userImage = _userImage;
-@synthesize selectImage =_selectImage;
+//@synthesize selectImage =_selectImage;
 
 //使用手动的方法来定义cell里面的控件内容
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -24,7 +24,7 @@
     if (self) {
 //        全部显示图片，但是可能有空白
         self.userImage.contentMode = UIViewContentModeScaleAspectFit;
-        self.selectImage.contentMode = UIViewContentModeScaleAspectFit;
+//        self.selectImage.contentMode = UIViewContentModeScaleAspectFit;
     }
 	
     return self;

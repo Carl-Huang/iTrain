@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "StarExerciseViewController.h"
 #import "ExerciseRecordViewController.h"
+#import "ExercisePlanViewController.h"
 @interface ExerciseMainViewController : UIViewController
 {
     StarExerciseViewController * start;
     ExerciseRecordViewController * record;
+    ExercisePlanViewController * plan;
 }
 @property (strong, nonatomic) UINavigationController *navController;
 @property (weak, nonatomic) UIView *tabelView;

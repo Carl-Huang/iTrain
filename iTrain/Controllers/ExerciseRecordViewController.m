@@ -109,7 +109,8 @@ UIColor *bg;
     
     
     if (indexPath.row==0) {
-        
+        _detail=[[ExerciseRecordDetailViewController alloc]init];
+        [self.navigationController pushViewController:_detail animated:YES];
     }else if(indexPath.row==1){
     }else if(indexPath.row==2){
         //        跳转到百科页面

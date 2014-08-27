@@ -24,7 +24,7 @@
 @property (nonatomic, strong) IBOutlet  UILabel             *userAge;
 
 @property (nonatomic, strong) IBOutlet  UIImageView         *userImage;
-@property (nonatomic, strong) IBOutlet  UIImageView         *selectImage;
+@property (nonatomic, strong) IBOutlet  UIButton         *select;
 @property (nonatomic, strong) IBOutlet  UIView         *view;
 @property (nonatomic, strong) IBOutlet  UIImageView         *divline;
 @end

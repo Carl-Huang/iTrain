@@ -45,10 +45,14 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ul_gou.png" highlighted="YES" id="R3f-XF-JrQ">
-                                <rect key="frame" x="246" y="22" width="40" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T32-jl-eiA">
+                                <rect key="frame" x="228" y="20" width="72" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="ul_gou.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                     </view>
@@ -56,12 +60,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="divline" destination="yo3-Tx-KaE" id="hcK-gs-5Ye"/>
-                <outlet property="selectImage" destination="R3f-XF-JrQ" id="qxv-KR-s3C"/>
+                <outlet property="select" destination="T32-jl-eiA" id="yHU-bs-9kF"/>
                 <outlet property="userAge" destination="IsA-zC-JFz" id="ilo-ee-agI"/>
                 <outlet property="userImage" destination="kEo-V6-ekN" id="bJs-dR-3bO"/>
                 <outlet property="userLabel" destination="VBB-eG-PtY" id="rud-El-N4H"/>
                 <outlet property="userName" destination="X0R-Je-aNr" id="khf-fO-j2S"/>
-                <outlet property="view" destination="R3f-XF-JrQ" id="sk4-EV-lg8"/>
             </connections>
         </tableViewCell>
     </objects>
