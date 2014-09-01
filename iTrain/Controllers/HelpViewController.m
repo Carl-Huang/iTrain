@@ -31,6 +31,18 @@ UIView *headView;
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"帮助与反馈";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [self setRightCustomBarItems:_suggestView];
+    //    [ _suggestBtn addTarget:self action:@selector(gotoSuggestView) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,7 +59,11 @@ UIView *headView;
     UIColor *bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
     _tv.backgroundColor=bg;
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
+     [_suggestBtn addTarget:self action:@selector(gotoSuggestView)forControlEvents:UIControlEventTouchUpInside];
 }
+
+
+
 
 - (void)tapSetion:(UIGestureRecognizer *)sender
 {
@@ -107,6 +123,14 @@ UIView *headView;
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+
+}
+-(void)gotoSuggestView{
+//    UIButton *btn=sender;
+    suggView= [[SuggestViewController alloc] init];
+    [self.navigationController pushViewController:suggView
+                                         animated:YES];
+
 
 }
 

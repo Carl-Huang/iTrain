@@ -25,6 +25,9 @@
   *  @param SEL selector 按钮的点击事件
   *  @return void
   */
+-(void)setRightCustomBarItems:(UIView*)view;
+
+
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector;
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets;
 

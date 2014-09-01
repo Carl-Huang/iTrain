@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "SuggestViewController.h"
 
 
 @interface HelpViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-
+    SuggestViewController *suggView;
     NSMutableArray *child_array;
     NSMutableArray *father_array;
 
 }
 @property (weak, nonatomic) IBOutlet UITableView *tv;
+@property (weak, nonatomic) IBOutlet UIView *suggestView;
+@property (weak, nonatomic) IBOutlet UIButton *suggestBtn;
+
 
 @end

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserInfoViewController">
             <connections>
+                <outlet property="myTableView" destination="eDS-dB-u8s" id="b5J-IV-tK9"/>
                 <outlet property="view" destination="QMb-cY-jb4" id="SjB-Kb-W0x"/>
             </connections>
         </placeholder>
@@ -14,10 +15,28 @@
         <view contentMode="scaleToFill" id="QMb-cY-jb4">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="eDS-dB-u8s">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="398"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JcH-0V-wV9">
+                    <rect key="frame" x="-27" y="431" width="375" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="user_bianji.png" backgroundImage="user_hang.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93725496529999996" green="0.93725496529999996" blue="0.93725496529999996" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
         </view>
     </objects>
+    <resources>
+        <image name="user_bianji.png" width="320" height="49"/>
+        <image name="user_hang.png" width="320" height="41"/>
+    </resources>
 </document>

@@ -22,6 +22,7 @@
     [self.window setRootViewController:_navController];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarStyleDefault];
     
+    
 
    
 //    [self.window addSubview:rootView.view];

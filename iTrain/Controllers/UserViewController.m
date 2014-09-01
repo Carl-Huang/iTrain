@@ -7,83 +7,107 @@
 //
 
 #import "UserViewController.h"
+#import "KWPopoverView.h"
+#import "NewUserViewController.h"
+#import "UserInfoViewController.h"
 
 @interface UserViewController (){
     UserViewController* sview;
+    NewUserViewController *newUser;
+    UserInfoViewController *UserInfo;
 }
 @property (nonatomic, readonly) UIButton *m_btnNaviRight;
-
+//@property (nonatomic, readonly)UIImageView *mimageview;
 
 @end
 UIColor *bg;
 @implementation UserViewController
-
+NSString   *currentName;
+NSString   *currentImg;
+NSString   *currentAge;
+NSString   *currentUser;
+NSInteger _index;
 @synthesize m_btnNaviRight = _btnNaviRight;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _index=-1;
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // 初始化tableView的数据
-    NSArray *list = [NSArray arrayWithObjects:@"蓝牙连接",@"高级设置",@"百科",@"关于APP功能选择", nil];
-//    NSArray *imagelist = [NSArray arrayWithObjects:@"setting_lanya",@"setting_shezhi",@"setting_baike",@"setting_app", nil];
-    self.dataList = list;
-//    self.imageList=imagelist;
-
-    // 设置tableView的数据源
-    _userTabelView.dataSource = self;
-    // 设置tableView的委托
-    _userTabelView.delegate = self;
-    // 设置tableView的背景图
-    bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
-    self.view.backgroundColor=bg;
-    _userTabelView.backgroundColor=bg;
-    _userTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-//    self.userTabelView = tableView;
-//    禁止滑动
-//    _userTabelView.scrollEnabled = NO;
-    
-    [self setExtraCellLineHidden:_userTabelView];
-//    [self.view addSubview:_userTabelView];
-    
-    //设置按钮按下状态图片
-    [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian.png"] forState:UIControlStateNormal];
-    [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian2.png"] forState:UIControlStateHighlighted];
-    sview=self;
-
-    
+    [self initUI];
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *CustomCellIdentifier = @"Cell";
-    
-    UserCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCollectionViewCell"];
-    if(!cell) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"UserCollectionViewCell" owner:self options:nil]lastObject];
+    if (tableView==_userTabelView) {
+        return 4;
+    }else{
+        return _contentImageList.count;
     }
-    cell.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ul_ti"]];
-    cell.divline.backgroundColor=bg;
-//    禁止选中效果
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    //设置按钮按下状态图片
-//    [scell.select setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateNormal];
-//    [scell.select setImage:[UIImage imageNamed:@"ul_gou2.png"] forState:UIControlStateHighlighted];
-    return cell;
 }
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(tableView ==_userTabelView){
+        UserCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCollectionViewCell"];
+        if(!cell) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"UserCollectionViewCell" owner:self options:nil]lastObject];
+        }
+        cell.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ul_ti"]];
+        NSLog(@"%i",indexPath.row);
+        if(_index!=-1&&_index==indexPath.row){
+            
+            [cell.select setImage:[UIImage imageNamed:@"ul_gou2.png"] forState:UIControlStateHighlighted];
+        }else{
+            
+            [cell.select setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateNormal];
+        }
+        //          [cell.select setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateNormal];
+        cell.divline.backgroundColor=bg;
+        //    禁止选中效果
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.select setTag:indexPath.row];
+        [cell.select addTarget:self action:@selector(selectClicked:forEvent:)forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    }else{
+        static NSString *cellIdenifer = @"SettingViewController";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdenifer];
+        if (!cell) {
+            //导航风格
+            
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdenifer ];
+            
+            cell.showsReorderControl = YES;
+        }
+        NSInteger row=[indexPath row];
+        bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+        
+        UIView *cellView ;//=[[UIView alloc]init];
+        NSArray *nibViews=[[NSBundle mainBundle] loadNibNamed:@"UserSettingCell" owner:self options:nil]; //通过这个方法,取得我们的视图
+        cellView=[nibViews objectAtIndex:0];
+        cellView.userInteractionEnabled = YES;
+        
+        UILabel *textLabel=[[cellView subviews] objectAtIndex:0];
+        textLabel.text=[NSString stringWithFormat:@"%@", [_contentNameList objectAtIndex:row]];
+        UIImageView *iconImage=[[cellView subviews] objectAtIndex:1];
+        iconImage.image=[UIImage imageNamed:[_contentImageList objectAtIndex:row]];
+        //
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+            _contentUserLine.hidden=NO;
+        }else {
+            _contentUserLine.hidden=YES;
+        }
+        [cell addSubview:cellView];
+        cell.backgroundColor=bg;
+        return cell;
+    }
+    
+    
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -103,60 +127,122 @@ UIColor *bg;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    //    self.navigationItem.title = @"设置";
-
-    
-    // 创建一个自定义的按钮，并添加到导航条右侧。
-//    _btnNaviRight = [CustomNaviBarView createNormalNaviBarBtnByTitle:@"Next" target:self action:@selector(btnNext:)];
-//    [self setLeftCustomBarItem:@"ul_kuang.png" action:@selector(gotoSecondView:)];
-    
+    self.title = @"用户列表";
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(gotoSecondView:)];
-    //self
-
+    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(popoverBtnClicked:forEvent:)];
 }
 
-- (void)gotoSecondView:(id)sender  {
-
-    NSLog(@"点击我了");
+-(void)initUI{
+    _contentView.hidden = YES;
+    // 初始化tableView的数据
+    NSArray *list = [NSArray arrayWithObjects:@"蓝牙连接",@"高级设置",@"百科",@"关于APP功能选择", nil];
+    NSArray *namelist = [NSArray arrayWithObjects:@"详情",@"设置",@"删除", nil];
+    NSArray *imagelist = [NSArray arrayWithObjects:@"user_xiangqing@2x.png",@"user_shezhi@2x.png",@"user_shanchu@2x.png", nil];
+    self.dataList = list;
+    self.contentImageList=imagelist;
+    self.contentNameList=namelist;
+    // 设置tableView的数据源
+    _userTabelView.dataSource = self;
+    // 设置tableView的委托
+    _userTabelView.delegate = self;
+    // 设置tableView的背景图
+    // 设置tableView的数据源
+    _contetTabelView.dataSource = self;
+    // 设置tableView的委托
+    _contetTabelView.delegate = self;
+    // 设置tableView的背景图
+    
+    bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+    self.view.backgroundColor=bg;
+    _userTabelView.backgroundColor=bg;
+    _userTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _contetTabelView.backgroundColor=bg;
+    _contetTabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine
+    ;
+    //    禁止滑动
+    _contetTabelView.scrollEnabled = NO;
+    _contetTabelView.tableHeaderView=_contentCell;
+    [self setExtraCellLineHidden:_userTabelView];
+    
+    //设置按钮按下状态图片
+    [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian.png"] forState:UIControlStateNormal];
+    [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian2.png"] forState:UIControlStateHighlighted];
+    sview=self;
+    [_addBtn addTarget:self action:@selector(addPage)forControlEvents:UIControlEventTouchUpInside];
+    
+    
 }
-- (IBAction)popoverBtnClicked:(id)sender forEvent:(UIEvent *)event {
+-(void)addPage{
+    newUser= [[NewUserViewController alloc] init];
+    [self.navigationController pushViewController:newUser animated:YES];
+    
+}
+
+- (void)selectClicked:(id)sender forEvent:(UIEvent *)event{
+    UIButton *btn=sender;
+    //    [btn tag]=@"c";
+    //    UserCollectionViewCell * cell;
+    //    if([btn.superview.superview.superview isKindOfClass:[UserCollectionViewCell class]])
+    //
+    //    {
+    //        cell = (UserCollectionViewCell *)btn.superview.superview.superview;
+    //    }
+    //    else if([btn.superview.superview isKindOfClass:[UserCollectionViewCell class]])
+    //    {
+    //        cell = (UserCollectionViewCell *)btn.superview.superview;
+    //    }
+    //    else
+    //    {
+    //        cell = (UserCollectionViewCell *)btn.superview;
+    //    }
+    //
+    //    NSIndexPath * indexPath = [_userTabelView indexPathForCell:cell];
+    if(_index==btn.tag){
+        _index=-1;
+    }else{
+        _index=btn.tag;
+        
+    }
+    
+    [_userTabelView reloadData];
+    //          NSLog(@"%i",btn.tag);
+    
+}
+- (void)popoverBtnClicked:(id)sender forEvent:(UIEvent *)event {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if(!window) {
         window = [[UIApplication sharedApplication].windows objectAtIndex:0];
     }
+    //    _contentView =[[UIView alloc]init];
     NSSet *set = event.allTouches;
     UITouch *touch = [set anyObject];
+    //未显示之前停留的位置
+    
     CGPoint point1 = [touch locationInView:window];
-    //    CGPoint point = sender.center;
-//    [KWPopoverView showPopoverAtPoint:point1 inView:self.view withContentView:_contentView];
+    [KWPopoverView showPopoverAtPoint:point1 inView:_contentView withContentView:_contentView];
 }
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-//
-
 
 
 //响应用户单击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row==0) {
-    }else if(indexPath.row==1){
-    }else if(indexPath.row==2){
-        //        跳转到百科页面
-//        _baike= [[BaiKeViewController alloc] init];
-//        [self.navigationController pushViewController:_baike animated:YES];
-    }else if(indexPath.row==3){
-//        _about= [[AboutViewController alloc] init];
-//        [self.navigationController pushViewController:_about animated:YES];
-        
+    if (tableView==_contetTabelView) {
+        if (indexPath.row==0) {
+            NSLog(@"qqq0");
+        }else if(indexPath.row==1){
+            NSLog(@"qqq1");
+        }else if(indexPath.row==2){
+        }else if(indexPath.row==3){
+            //        _about= [[AboutViewController alloc] init];
+            //        [self.navigationController pushViewController:_about animated:YES];
+            
+        }
+    }else {
+        NSLog(@"qqq1");
     }
     
+    
 }
+
 
 @end

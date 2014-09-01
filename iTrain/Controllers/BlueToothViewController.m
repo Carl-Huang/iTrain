@@ -11,9 +11,9 @@
 #import "CBLEPeriphral.h"
 #import "Device.h"
 
+
 @interface BlueToothViewController ()
 @property (nonatomic,strong) NSArray * dataSource;
-
 @end
 
 @implementation BlueToothViewController
@@ -25,31 +25,6 @@
         _dataSource = @[];
     }
     return self;
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    //self.navigationItem.title = @"蓝牙连接";
-    
-    [[CBLEManager sharedManager] startScan];
-    [[CBLEManager sharedManager] setDiscoverHandler:^(void){
-        _dataSource = [[CBLEManager sharedManager] foundPeripherals];
-        [_tv reloadData];
-    }];
-    
-    [[CBLEManager sharedManager] setConnectedHandler:^(CBPeripheral * peripheral){
-        
-        
-    }];
-    
-    [[CBLEManager sharedManager] setConnectedAllCompleteHandler:^(CBPeripheral * peripheral){
-
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSLog(@"aaaaaaaaa");
-    }];
-
-    [_tv reloadData];
 }
 
 
@@ -149,10 +124,34 @@
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"开始训练";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [[CBLEManager sharedManager] startScan];
+    [[CBLEManager sharedManager] setDiscoverHandler:^(void){
+        _dataSource = [[CBLEManager sharedManager] foundPeripherals];
+        [_tv reloadData];
+    }];
+    
+    [[CBLEManager sharedManager] setConnectedHandler:^(CBPeripheral * peripheral){
 
+    }];
+    
+    [[CBLEManager sharedManager] setConnectedAllCompleteHandler:^(CBPeripheral * peripheral){
+        
+        //[MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self getMoelData];
+    }];
+    
+    [_tv reloadData];
+}
 
-
-
+-(void)getMoelData{
+    [[CBLEManager sharedManager] createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x03], nil]];
+}
 
 - (void)didReceiveMemoryWarning
 {

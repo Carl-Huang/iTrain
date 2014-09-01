@@ -89,6 +89,15 @@ UIView *headView;
     return 40.0f;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"系统通知";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+}
+
+
 
 //隐藏TabelView下面多余分割线
 - (void)setExtraCellLineHidden: (UITableView *)tableView

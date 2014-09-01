@@ -40,8 +40,15 @@
     UITapGestureRecognizer *gotoPlanView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPlanView:)];
     [_planView addGestureRecognizer:gotoPlanView];
 }
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 - (void)gotoStartView:(id)sender {
-    start= [[StarExerciseViewController alloc] init];
+
+    if (DEVICE_IS_IPHONE5) {
+        start= [[StarExerciseViewController alloc] initWithNibName:@"StarExerciseViewController4" bundle:nil];
+    }else {
+         start= [[StarExerciseViewController alloc] initWithNibName:@"StarExerciseViewController" bundle:nil];
+    }
+    
     [self.navigationController pushViewController:start animated:YES];
 }
 - (void)gotoRecordView:(id)sender {
@@ -56,10 +63,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title =@"训练";
-    
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-}
+    self.title = @"训练";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

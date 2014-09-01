@@ -17,6 +17,7 @@
 
 @interface AKPickerView () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *collectionView;
+
 - (CGFloat)offsetForItem:(NSUInteger)item;
 - (void)didEndScrolling;
 @end
@@ -26,21 +27,18 @@
 - (void)initialize
 {
     
-     CGRect bframe =self.bounds;
+    CGRect bframe =self.bounds;
     bframe.size.width=320;
     bframe.size.height=45;
     UIImageView *backImageView=[[UIImageView alloc]initWithFrame:bframe];
     [backImageView setImage:[UIImage imageNamed:@"xunlian_02"]];
-    NSLog(@"%f%f",backImageView.frame.size.width,backImageView.frame.size.height);
     [self addSubview:backImageView];
 	self.font = self.font ?: [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
 	self.textColor = self.textColor ?: [UIColor darkGrayColor];
 	self.highlightedTextColor = self.highlightedTextColor ?: [UIColor blackColor];
-
+    
 	if (self.collectionView) [self.collectionView removeFromSuperview];
-//	CGRect frame = CGRectInset(self.bounds, 0, (self.bounds.size.height - ceilf(self.font.lineHeight)) / 2);
     CGRect frame =self.bounds;
-     NSLog(@"%f%f",frame.size.width,frame.size.height);
 	self.collectionView = [[UICollectionView alloc] initWithFrame:frame
 											 collectionViewLayout:[AKCollectionViewLayout new]];
 	self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -52,7 +50,7 @@
 	[self.collectionView registerClass:[AKCollectionViewCell class]
 			forCellWithReuseIdentifier:NSStringFromClass([AKCollectionViewCell class])];
 	[self addSubview:self.collectionView];
-
+    
 	CAGradientLayer *maskLayer = [CAGradientLayer layer];
 	maskLayer.frame = self.collectionView.bounds;
 	maskLayer.colors = @[(id)[[UIColor clearColor] CGColor],
@@ -64,7 +62,9 @@
 	maskLayer.endPoint = CGPointMake(1.0, 0.0);
     self.collectionView.layer.mask = maskLayer;
     self.collectionView.backgroundColor=[UIColor clearColor];
-   
+    _oldindex=-1;
+    [self scrollViewDidScroll:self.collectionView];
+    [self didEndScrolling];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -107,36 +107,22 @@
 - (CGFloat)offsetForItem:(NSUInteger)item
 {
 	CGFloat offset = 0.0;
-	for (NSInteger i = 0; i < item; i++) {
-		NSIndexPath *_indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-		AKCollectionViewCell *cell = (AKCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:_indexPath];
-		offset += cell.bounds.size.width;
-	}
-
-	NSIndexPath *firstIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-	CGSize firstSize = [self.collectionView cellForItemAtIndexPath:firstIndexPath].bounds.size;
-	NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:item inSection:0];
-	CGSize selectedSize = [self.collectionView cellForItemAtIndexPath:selectedIndexPath].bounds.size;
-	offset -= (firstSize.width - selectedSize.width) / 2;
-
-	offset += self.interitemSpacing * item;
+    offset=64*item;
+    NSLog(@"%f",offset);
 	return offset;
 }
 
 - (void)scrollToItem:(NSUInteger)item animated:(BOOL)animated
 {
-	[self.collectionView setContentOffset:CGPointMake([self offsetForItem:item],
-													  self.collectionView.contentOffset.y)
-								 animated:animated];
+	[self.collectionView setContentOffset:CGPointMake([self offsetForItem:item],self.collectionView.contentOffset.y)animated:animated];
 }
 
 - (void)selectItem:(NSUInteger)item animated:(BOOL)animated
 {
-	[self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:0]
-									  animated:animated
-								scrollPosition:UICollectionViewScrollPositionNone];
+	[self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:0]animated:animated scrollPosition:UICollectionViewScrollPositionNone];
 	[self scrollToItem:item animated:animated];
-
+    _oldindex=item;
+    [self.collectionView reloadData];
 	if ([self.delegate respondsToSelector:@selector(pickerView:didSelectItem:)])
 		[self.delegate pickerView:self didSelectItem:item];
 }
@@ -168,21 +154,21 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSString *title = [self.delegate pickerView:self titleForItem:indexPath.item];
-
-	AKCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([AKCollectionViewCell class])
-																		   forIndexPath:indexPath];
-	cell.label.textColor = self.textColor;
+	AKCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([AKCollectionViewCell class])forIndexPath:indexPath];
+    if(_oldindex==indexPath.row){
+        cell.label.textColor=[UIColor redColor];
+    }else{
+        cell.label.textColor = self.textColor;
+    }
 	cell.label.highlightedTextColor = self.highlightedTextColor;
 	cell.label.font = self.font;
-	
-	if ([cell.label respondsToSelector:@selector(setAttributedText:)]) {
+		if ([cell.label respondsToSelector:@selector(setAttributedText:)]) {
 		cell.label.attributedText = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: self.font}];
 	} else {
 		cell.label.text = title;
 	}
-
-	[cell.label sizeToFit];
-    //cell.backgroundColor=[UIColor blackColor];
+    cell.label.frame=CGRectMake(cell.label.frame.origin.x, cell.label.frame.origin.y,cell.frame.size.width,cell.frame.size.height);
+    [cell.label setTextAlignment:NSTextAlignmentCenter];
 	return cell;
 }
 
@@ -196,7 +182,7 @@
 		size = [title sizeWithFont:self.font];
 	}
     CGFloat width=self.frame.size.width/5;
-	return CGSizeMake(width-5, ceilf(size.height));
+	return CGSizeMake(width, ceilf(size.height));
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -312,15 +298,15 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-
+    
 	CGFloat distance = CGRectGetMidX(attributes.frame) - self.midX;
-	CGFloat currentAngle = self.maxAngle * distance / self.width;
-	CGFloat delta = sinf(currentAngle) * self.width - distance;
+	//CGFloat currentAngle = self.maxAngle * distance / self.width;
+	//CGFloat delta = sinf(currentAngle) * self.width - distance;
 	attributes.transform3D = CATransform3DConcat(CATransform3DMakeRotation(0, 0, 1, 0),
 												 CATransform3DMakeTranslation(0, 0, 0));
-
+    
 	attributes.alpha = (ABS(distance) < self.width);
-
+    
 	return attributes;
 }
 

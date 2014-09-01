@@ -51,10 +51,9 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.title = @"首页";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     
-    //图片的点击事件
 }
-
 
 - (void)gotoSecondView:(id)sender {
    _ecerciseView= [[ExerciseMainViewController alloc] init];

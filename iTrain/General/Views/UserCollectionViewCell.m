@@ -25,6 +25,11 @@
 //        全部显示图片，但是可能有空白
         self.userImage.contentMode = UIViewContentModeScaleAspectFit;
 //        self.selectImage.contentMode = UIViewContentModeScaleAspectFit;
+        
+        
+        //设置按钮按下状态图片
+//        [self.select setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateNormal];
+//        
     }
 	
     return self;
@@ -33,7 +38,9 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
-    // Configure the view for the selected state
+    
+    
+    
 }
 
 /*

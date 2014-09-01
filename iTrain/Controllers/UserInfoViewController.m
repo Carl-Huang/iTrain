@@ -29,24 +29,22 @@
     NSArray *imagelist = [NSArray arrayWithObjects:@"user_icon",@"user_icon1",@"user_icon2",@"user_icon3",@"user_icon4",@"user_icon5",@"user_icon6", nil];
     self.dataList = list;
     self.imageList=imagelist;
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain] ;
+   
     // 设置tableView的数据源
-    tableView.dataSource = self;
+    _myTableView.dataSource = self;
     // 设置tableView的委托
-    tableView.delegate = self;
+    _myTableView.delegate = self;
     // 设置tableView的背景图
-    tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
+    _myTableView.scrollEnabled=NO;
 
-    self.myTableView = tableView;
     [self setExtraCellLineHidden:_myTableView];
-    [self.view addSubview:_myTableView];
+//    [self.view addSubview:_myTableView];
   
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return 6;
+        return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,8 +78,6 @@
     
     cell.imageView.backgroundColor = [UIColor clearColor];
     cell.imageView.image = [UIImage imageNamed:[_imageList objectAtIndex:row]] ;
-    
-    
     return cell;
 }
 
@@ -104,15 +100,19 @@
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"个人信息";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+ 
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
 }
 
 @end

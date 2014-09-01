@@ -141,7 +141,9 @@ UIColor *bg;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title =@"详细记录";
+    self.title = @"详细记录";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [self setRightCustomBarItem:@"detail_fenxiang.png" action:@selector(popoverBtnClicked:forEvent:)];
 }
 - (void)didReceiveMemoryWarning
 {

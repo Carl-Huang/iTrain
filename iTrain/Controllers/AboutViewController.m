@@ -74,11 +74,15 @@
 }
 //隐藏TabelView下面多余分割线
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"关于系统";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -98,9 +102,9 @@
       
     }else if(indexPath.row==1){
         //        跳转系统通知页面
-        sugg= [[SuggestViewController alloc] init];
-        [self.navigationController pushViewController:sugg
-                                            animated:YES];
+//        sugg= [[SuggestViewController alloc] init];
+//        [self.navigationController pushViewController:sugg
+//                                            animated:YES];
     }else if(indexPath.row==2){
         //        跳转系统通知页面
         sys= [[SysNotiViewController alloc] init];

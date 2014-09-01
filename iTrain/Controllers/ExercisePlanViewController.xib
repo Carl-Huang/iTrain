@@ -7,6 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExercisePlanViewController">
             <connections>
+                <outlet property="clockBtn" destination="1Ly-AS-4io" id="t5q-lI-gjc"/>
+                <outlet property="clockLabel" destination="1TL-Lz-nav" id="Qfq-vQ-uNk"/>
+                <outlet property="createPlan" destination="o69-7m-dEf" id="7lO-R6-vIO"/>
+                <outlet property="editPlan" destination="hAF-3F-5h1" id="fhc-KT-bmE"/>
+                <outlet property="notifySetting" destination="aqE-s5-5Al" id="Apr-k0-x9W"/>
+                <outlet property="notifyView" destination="Xes-c1-j8t" id="jzv-f8-OU2"/>
                 <outlet property="tabelView" destination="T6c-HE-Ou4" id="yoJ-Au-eo7"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -17,14 +23,65 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T6c-HE-Ou4">
-                    <rect key="frame" x="0.0" y="8" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="10" width="320" height="493"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" id="Smt-oA-qCb">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o69-7m-dEf">
+                            <rect key="frame" x="54" y="4" width="65" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <state key="normal" image="plan_chongxinjihua.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAF-3F-5h1">
+                            <rect key="frame" x="127" y="4" width="65" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <state key="normal" image="plan_bi.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aqE-s5-5Al">
+                            <rect key="frame" x="202" y="4" width="65" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <state key="normal" image="plan_naozhongshezhi.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <view contentMode="scaleToFill" id="Xes-c1-j8t">
+            <rect key="frame" x="0.0" y="0.0" width="95" height="28"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="闹钟" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1TL-Lz-nav">
+                    <rect key="frame" x="0.0" y="3" width="29" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Ly-AS-4io">
+                    <rect key="frame" x="10" y="0.0" width="85" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                </button>
+            </subviews>
+        </view>
     </objects>
+    <resources>
+        <image name="plan_bi.png" width="39" height="33"/>
+        <image name="plan_chongxinjihua.png" width="40" height="33"/>
+        <image name="plan_naozhongshezhi.png" width="39" height="33"/>
+    </resources>
 </document>

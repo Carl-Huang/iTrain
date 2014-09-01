@@ -20,7 +20,15 @@
     self.navigationItem.leftBarButtonItem = [self customBarItem:imageName action:selector size:CGSizeMake(60, 32) imageEdgeInsets:sets];
 }
 
-
+-(void)setRightCustomBarItems:(UIView*)sview{
+//
+//    UIBarButtonItem *badPushBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"糟糕的", @"") style:UIBarButtonItemStylePlain target:self action:@selector(badPushBarButtonItemHandle)];
+//    
+//    UIBarButtonItem *likePushBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"喜欢的", @"") style:UIBarButtonItemStylePlain target:self action:@selector(likePushBarButtonItemHandle)];
+//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:badPushBarButtonItem, likePushBarButtonItem, nil];
+    UIBarButtonItem *bar=[[UIBarButtonItem alloc]initWithCustomView:sview];
+    self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:bar, nil];
+}
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector
 {
     self.navigationItem.rightBarButtonItem = [self customBarItem:imageName action:selector];

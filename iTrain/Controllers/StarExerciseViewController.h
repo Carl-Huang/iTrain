@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKPickerView.h"
+#import "ExerciseParamViewController.h"
 
-@interface StarExerciseViewController : UIViewController
-
+@interface StarExerciseViewController : UIViewController{
+    ExerciseParamViewController *exerciseParam;
+}
+@property (weak, nonatomic) IBOutlet UIImageView *body;
+@property (weak, nonatomic) IBOutlet AKPickerView *paramView;
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (nonatomic, strong) NSMutableArray *titles;
+@property (nonatomic, assign) NSInteger timeIndex;
+@property (nonatomic, strong) NSMutableArray *modelArray;
 @end

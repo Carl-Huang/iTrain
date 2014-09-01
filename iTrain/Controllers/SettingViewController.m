@@ -94,11 +94,10 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-//    self.navigationItem.title = @"设置";
-
-    
-    
+    self.title = @"设置";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
+
 
 
 - (void)didReceiveMemoryWarning

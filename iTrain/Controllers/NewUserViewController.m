@@ -1,18 +1,18 @@
 //
-//  SuggestViewController.m
+//  NewUserViewController.m
 //  iTrain
 //
-//  Created by Interest on 14-8-18.
+//  Created by Interest on 14-8-28.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "SuggestViewController.h"
+#import "NewUserViewController.h"
 
-@interface SuggestViewController ()
+@interface NewUserViewController ()
 
 @end
 
-@implementation SuggestViewController
+@implementation NewUserViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,21 +22,26 @@
     }
     return self;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"意见与反馈";
-    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-}
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
+    [self initUI];
 
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"新建用户";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+
+}
+-(void)initUI{
+//设置圆角
+    _userInfoView.layer.cornerRadius = 8;
+    _userInfoView.layer.masksToBounds = YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -49,11 +49,6 @@
 	
 	self.imgScroll.pagingEnabled = YES;
     self.imgScroll.showsHorizontalScrollIndicator = NO;
-	
-	
-	
-	
-	
 	UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [singleTap setNumberOfTapsRequired:2];
     
@@ -102,18 +97,11 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.title = @"百科";
-    
-    //图片的点击事件
-    
-    
-//    _zhengimage.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *gotoExerciseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoSecondView:)];
-//    [_zhengimage addGestureRecognizer:gotoExerciseTap];
-    
-    
-    
+    self.title = @"百科";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
+
+
 
 
 #pragma mark 手势

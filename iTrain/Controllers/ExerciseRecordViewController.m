@@ -128,7 +128,6 @@ UIColor *bg;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-     self.title =@"训练";
-    
-}
+    self.title = @"训练";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];}
 @end

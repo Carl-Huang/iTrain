@@ -12,6 +12,7 @@
 
 @end
 UIColor *bg;
+BOOL *isOpen;
 @implementation ExercisePlanViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,8 +31,15 @@ UIColor *bg;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initUI];
+    
+    
+}
+
+-(void)initUI{
+    
     // 初始化tableView的数据
-    NSArray *list = [NSArray arrayWithObjects:@"蓝牙连接",@"高级设置",@"百科",@"关于APP功能选择", nil];
+    //    NSArray *list = [NSArray arrayWithObjects:@"蓝牙连接",@"高级设置",@"百科",@"关于APP功能选择", nil];
     //    NSArray *imagelist = [NSArray arrayWithObjects:@"setting_lanya",@"setting_shezhi",@"setting_baike",@"setting_app", nil];
     //self.dataList = list;
     //    self.imageList=imagelist;
@@ -45,14 +53,15 @@ UIColor *bg;
     self.view.backgroundColor=bg;
     self.tabelView.backgroundColor=bg;
     self.tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
+    isOpen=NO;
+    [_clockBtn setImage:[UIImage imageNamed:@"plan_guan.png"] forState:UIControlStateNormal];
     //    self.userTabelView = tableView;
     //    禁止滑动
     //    _userTabelView.scrollEnabled = NO;
     
     [self setExtraCellLineHidden: self.tabelView];
-    [self.view addSubview: self.tabelView];
-    
+    //    [self.view addSubview: self.tabelView];
+    [_clockBtn addTarget:self action:@selector(selectClicked:forEvent:)forControlEvents:UIControlEventTouchUpInside];
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,7 +76,7 @@ UIColor *bg;
     }else{
         scell.contentView.backgroundColor=[UIColor whiteColor];
     }
-
+    
     //    禁止选中效果
     scell.num.text=@"1";
     scell.num.layer.borderColor  = [UIColor darkGrayColor].CGColor;
@@ -75,8 +84,11 @@ UIColor *bg;
     scell.name.text=@"手臂";
     scell.time.text=@"13:30";
     scell.timeLong.text=@"30min";
+    if (indexPath.row%2) {
+        scell.backgroundColor=[UIColor clearColor];
+    }
     
-//    scell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //    scell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return scell;
 }
@@ -96,22 +108,39 @@ UIColor *bg;
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    //    self.navigationItem.title = @"设置";
+    self.title = @"训练计划";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    //    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(popoverBtnClicked:forEvent:)];
+    [self setRightCustomBarItems:_notifyView];
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+
+//#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
+
+- (void)selectClicked:(id)sender forEvent:(UIEvent *)event{
+    UIButton *btn=sender;
+    
+    if (!isOpen) {
+        
+        [btn setImage:[UIImage imageNamed:@"plan_kai.png"] forState:UIControlStateNormal];
+        isOpen=YES;
+        
+    }else{
+        [btn setImage:[UIImage imageNamed:@"plan_guan.png"] forState:UIControlStateNormal];
+        
+        
+        isOpen=NO;
+    }
 }
-//
-
-
 
 //响应用户单击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -131,6 +160,13 @@ UIColor *bg;
     }
     
 }
+
+
+
+
+
+
+
 
 
 @end

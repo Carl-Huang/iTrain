@@ -12,6 +12,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #define Peripheral_Count 1
 typedef void (^DiscoverNewPeripheralHandler)(void);
+typedef void (^SendDataHandler)(NSString *st);
 typedef void (^ConnectedPeripheralHandler)(CBPeripheral * peripheral);
 typedef void (^ConnectedAllCompleteHandler)(CBPeripheral * peripheral);
 typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
@@ -25,6 +26,8 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 @property (nonatomic,copy) ConnectedPeripheralHandler connectedHandler;
 @property (nonatomic,copy) ConnectedAllCompleteHandler connectedAllCompleteHandler;
 @property (nonatomic,copy) DisconnectPeripheralHandler disconnectHandler;
+@property (nonatomic,copy) SendDataHandler sendDataHandler;
+@property (nonatomic ,copy)NSArray *modelArray;
 +(CBLEManager *)sharedManager;
 -(void)startScan;
 -(void)startScan:(NSArray *)services;
@@ -34,7 +37,9 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 -(void)disconnect;
 -(void)clear;
 -(void)sendData:(NSData *)data;
-
+-(void)createData:(NSArray *)array;
+-(BOOL)isConnected;
+-(NSArray *)getModel;
 
 
 

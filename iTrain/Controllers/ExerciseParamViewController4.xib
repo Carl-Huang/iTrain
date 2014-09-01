@@ -7,44 +7,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExerciseParamViewController">
             <connections>
-                <outlet property="btn" destination="uod-tk-2bL" id="40C-W3-JYQ"/>
-                <outlet property="btn2" destination="Js5-kX-MfE" id="THC-Wg-8tZ"/>
-                <outlet property="pickerView" destination="ntF-Rv-ee6" id="j6d-vd-ZaJ"/>
-                <outlet property="pickerView2" destination="ByT-Xd-tQG" id="K5d-G9-c3I"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="btn" destination="ArL-e0-qbk" id="G1e-6d-5C4"/>
+                <outlet property="btn2" destination="oLC-cC-g2x" id="zue-Vm-oCP"/>
+                <outlet property="pickerView" destination="mQw-5s-O9a" id="pJ4-5p-vZa"/>
+                <outlet property="pickerView2" destination="XiL-G8-tbv" id="nxA-rI-xFi"/>
+                <outlet property="view" destination="Zgv-rc-6j0" id="awM-K1-xSq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+        <view contentMode="scaleToFill" id="Zgv-rc-6j0">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="强度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5In-GU-4CR">
-                    <rect key="frame" x="18" y="78" width="42" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="强度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ez-mR-xxg">
+                    <rect key="frame" x="18" y="90" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="速度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xfV-K3-7xh">
-                    <rect key="frame" x="20" y="181" width="42" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="速度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ag0-21-ndc">
+                    <rect key="frame" x="20" y="218" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Cbb-EP-bGJ">
+                <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xmW-kC-iFr">
                     <rect key="frame" x="0.0" y="10" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cbb-EP-bGJ" id="sek-ee-2tb">
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xmW-kC-iFr" id="c52-Ys-GxO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="train_canshu.png" id="LS7-ec-LfB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="train_canshu.png" id="Bzf-Ua-gzM">
                                 <rect key="frame" x="15" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="训练参数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IBT-jW-ozA">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="训练参数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PXQ-bq-iC2">
                                 <rect key="frame" x="57" y="11" width="142" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -54,23 +54,23 @@
                     </tableViewCellContentView>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                 </tableViewCell>
-                <view contentMode="scaleToFill" id="5rS-1F-jU5">
-                    <rect key="frame" x="0.0" y="353" width="320" height="127"/>
+                <view contentMode="scaleToFill" id="4fQ-4e-ofC">
+                    <rect key="frame" x="0.0" y="431" width="320" height="137"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Js5-kX-MfE">
-                            <rect key="frame" x="35" y="73" width="250" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oLC-cC-g2x">
+                            <rect key="frame" x="35" y="83" width="250" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Button" image="train_tingzhi.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uod-tk-2bL">
-                            <rect key="frame" x="35" y="23" width="250" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ArL-e0-qbk">
+                            <rect key="frame" x="35" y="27" width="250" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="Button" image="train_tingzhi.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Button" image="baocun.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -78,21 +78,22 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="-20" maxX="0.0" maxY="20"/>
                 </view>
-                <view contentMode="scaleToFill" id="ntF-Rv-ee6" customClass="AKPickerView">
-                    <rect key="frame" x="0.0" y="104" width="320" height="47"/>
+                <view contentMode="scaleToFill" id="mQw-5s-O9a" customClass="AKPickerView">
+                    <rect key="frame" x="0.0" y="119" width="320" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </view>
-                <view contentMode="scaleToFill" id="ByT-Xd-tQG" customClass="AKPickerView">
-                    <rect key="frame" x="0.0" y="208" width="320" height="47"/>
+                <view contentMode="scaleToFill" id="XiL-G8-tbv" customClass="AKPickerView">
+                    <rect key="frame" x="0.0" y="247" width="320" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="baocun.png" width="491" height="71"/>
         <image name="train_canshu.png" width="22" height="21"/>
         <image name="train_tingzhi.png" width="249" height="38"/>
     </resources>
