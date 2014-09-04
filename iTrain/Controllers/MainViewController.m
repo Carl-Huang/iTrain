@@ -55,8 +55,16 @@
     
 }
 
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
+
 - (void)gotoSecondView:(id)sender {
-   _ecerciseView= [[ExerciseMainViewController alloc] init];
+    
+    if (DEVICE_IS_IPHONE5) {
+      _ecerciseView= [[ExerciseMainViewController alloc]initWithNibName:@"ExerciseMainViewController4" bundle:nil];
+    }else {
+       _ecerciseView= [[ExerciseMainViewController alloc]initWithNibName:@"ExerciseMainViewController" bundle:nil];
+    }
+   
     [self.navigationController pushViewController:_ecerciseView animated:YES];
 }
 - (void)gotoSettingView:(id)sender {

@@ -7,12 +7,10 @@
 //
 
 #import "ParamSetViewController.h"
-#import  "AKPickerView.h"
-#import "CBLEManager.h"
+
 
 @interface ParamSetViewController () <AKPickerViewDelegate>
-@property (nonatomic, strong) AKPickerView *pickerView;
-@property (nonatomic, strong) AKPickerView *pickerView2;
+
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic, strong) NSMutableArray *titles2;
 @end
@@ -43,31 +41,15 @@ NSMutableArray *modelArray;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.pickerView = [[AKPickerView alloc] init];
-    self.pickerView.frame=CGRectMake(0, 120, 320, 45);
     self.pickerView.delegate = self;
-	[self.view addSubview:self.pickerView];
-    self.titles=[[NSMutableArray alloc]initWithArray:@[@"100",
-                                                       @"200",
-                                                       @"300",
-                                                       @"400",
-                                                       ]];
-    self.titles2=[[NSMutableArray alloc]initWithArray:@[@"100",
-                                                        @"200",
-                                                        @"250",
-                                                        @"333",
-                                                        @"500",
-                                                        ]];
-    
-    self.pickerView2 = [[AKPickerView alloc] init];
-
-    self.pickerView2.frame=CGRectMake(0, 250, 320, 45);
+//	[self.view addSubview:self.pickerView];
+    self.titles=[[NSMutableArray alloc]initWithArray:
+  @[@"100",@"200",@"300",@"400",@"500",@"600",@"700"]];
+    self.titles2=[[NSMutableArray alloc]initWithArray:
+  @[@"10",@"20",@"30",@"40",@"50",@"60",@"70",@"80"]];
     self.pickerView2.delegate = self;
-	[self.view addSubview:self.pickerView2];
-    
 	[self.pickerView reloadData];
     [self.pickerView2 reloadData];
-    
     /**
      *先定位到第一个，让数据显示，再定位到要显示的项
      **/

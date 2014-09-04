@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ShareSDK/ShareSDK.h>
 
 @interface ExerciseRecordDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;

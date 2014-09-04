@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AKPickerView.h"
 #import "ExerciseParamViewController.h"
+#import "DXAlertView.h";
+#import "BlueToothViewController.h"
 
 @interface StarExerciseViewController : UIViewController{
     ExerciseParamViewController *exerciseParam;
+     BlueToothViewController *connectBT;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *body;
 @property (weak, nonatomic) IBOutlet AKPickerView *paramView;

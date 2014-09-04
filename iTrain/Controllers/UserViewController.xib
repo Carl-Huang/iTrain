@@ -39,11 +39,11 @@
                     </state>
                 </button>
                 <view contentMode="scaleToFill" id="9qC-gB-HFZ">
-                    <rect key="frame" x="160" y="0.0" width="150" height="181"/>
+                    <rect key="frame" x="160" y="0.0" width="150" height="140"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="4X6-Jg-6wL">
-                            <rect key="frame" x="0.0" y="0.0" width="150" height="188"/>
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="140"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" red="0.25131536989795922" green="0.25131536989795922" blue="0.25131536989795922" alpha="1" colorSpace="calibratedRGB"/>

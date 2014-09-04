@@ -33,7 +33,7 @@
     UIImageView *backImageView=[[UIImageView alloc]initWithFrame:bframe];
     [backImageView setImage:[UIImage imageNamed:@"xunlian_02"]];
     [self addSubview:backImageView];
-	self.font = self.font ?: [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+	self.font = self.font ?: [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
 	self.textColor = self.textColor ?: [UIColor darkGrayColor];
 	self.highlightedTextColor = self.highlightedTextColor ?: [UIColor blackColor];
     
@@ -176,11 +176,13 @@
 {
 	NSString *title = [self.delegate pickerView:self titleForItem:indexPath.item];
 	CGSize size;
+     UIFont *font=[UIFont fontWithName:@"HelveticaNeue-Light" size:20];
 	if ([title respondsToSelector:@selector(sizeWithAttributes:)]) {
 		size = [title sizeWithAttributes:@{NSFontAttributeName: self.font}];
 	} else {
-		size = [title sizeWithFont:self.font];
+		size = [title sizeWithFont:font];
 	}
+    size = [title sizeWithFont:font];
     CGFloat width=self.frame.size.width/5;
 	return CGSizeMake(width, ceilf(size.height));
 }

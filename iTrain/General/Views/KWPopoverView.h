@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KWPopoverView : UIView
 
+@interface KWPopoverView : UIView{
+    
+}
 + (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView;
-
++(void)Dismiss;
 @end
+

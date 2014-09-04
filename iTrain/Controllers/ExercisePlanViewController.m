@@ -7,10 +7,12 @@
 //
 
 #import "ExercisePlanViewController.h"
+
 //训练计划
-@interface ExercisePlanViewController ()
+@interface ExercisePlanViewController()
 
 @end
+
 UIColor *bg;
 BOOL *isOpen;
 @implementation ExercisePlanViewController
@@ -80,10 +82,14 @@ BOOL *isOpen;
     //    禁止选中效果
     scell.num.text=@"1";
     scell.num.layer.borderColor  = [UIColor darkGrayColor].CGColor;
-    scell.num.layer.cornerRadius = 12.0f;
+    scell.num.layer.cornerRadius = 10.0f;
     scell.name.text=@"手臂";
     scell.time.text=@"13:30";
     scell.timeLong.text=@"30min";
+    [scell.modifyOrDel addTarget:self action:@selector(twoBtnClicked:)forControlEvents:UIControlEventTouchUpInside];
+    
+//     [btn1 addTarget:self action:@selector(twoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
     if (indexPath.row%2) {
         scell.backgroundColor=[UIColor clearColor];
     }
@@ -92,6 +98,23 @@ BOOL *isOpen;
     
     return scell;
 }
+
+- (void)twoBtnClicked:(id)sender
+{
+    DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:@"请选择操作类型" leftButtonTitle:@"删除" rightButtonTitle:@"修改"];
+    [alert show];
+    alert.leftBlock = ^() {
+        NSLog(@"left button clicked");
+    };
+    alert.rightBlock = ^() {
+        NSLog(@"right button clicked");
+    };
+    alert.dismissBlock = ^() {
+        NSLog(@"Do something interesting after dismiss block");
+    };
+}
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -121,16 +144,12 @@ BOOL *isOpen;
 }
 
 
-
-
-
 //#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
 - (void)selectClicked:(id)sender forEvent:(UIEvent *)event{
     UIButton *btn=sender;
     
     if (!isOpen) {
-        
         [btn setImage:[UIImage imageNamed:@"plan_kai.png"] forState:UIControlStateNormal];
         isOpen=YES;
         

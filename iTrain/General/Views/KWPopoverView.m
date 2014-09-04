@@ -8,14 +8,14 @@
 
 #import "KWPopoverView.h"
 
-@interface KWPopoverView()
-
+@interface KWPopoverView()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, assign) CGRect boxFrame;
 
 @end
-@implementation KWPopoverView
 
+@implementation KWPopoverView
+static KWPopoverView *popView;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -28,13 +28,22 @@
 
 + (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView
 {
-    KWPopoverView *popView = [[KWPopoverView alloc] initWithFrame:CGRectZero];
-    [popView showPopoverAtPoint:point inView:view withContentView:cView];
+    if(popView){
+        [popView setHidden:NO];
+        [popView showPopoverAtPoint:point inView:view withContentView:cView];
+    }else{
+        popView = [[KWPopoverView alloc] initWithFrame:CGRectZero];
+        [popView create:point inView:view withContentView:cView];
+        [popView showPopoverAtPoint:point inView:view withContentView:cView];
+    }
 }
 
-- (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView
-{
-//    self.boxFrame = cView.frame;
++(void)Dismiss{
+     if(popView&&![popView isHidden]){
+         [popView dismiss];
+     }
+}
+-(void)create:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView{
     self.boxFrame = CGRectMake(cView.frame.origin.x,65.0f,cView.frame.size.width,cView.frame.size.height);
     self.contentView = cView;
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -55,11 +64,45 @@
     
     [topView addSubview:self];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    tap.delegate=self;
     [self addGestureRecognizer:tap];
+    
     self.userInteractionEnabled = YES;
     
     self.alpha = 0.f;
     self.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+
+}
+- (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView
+{
+//    self.boxFrame = cView.frame;
+//    self.boxFrame = CGRectMake(cView.frame.origin.x,65.0f,cView.frame.size.width,cView.frame.size.height);
+//    self.contentView = cView;
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    if(!window) {
+//        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+//    }
+//    UIView *topView = [[window subviews] objectAtIndex:0];
+//    
+//    CGPoint topPoint = [topView convertPoint:point fromView:view];
+//    CGRect topViewBounds = topView.bounds;
+//    _contentView.frame = _boxFrame;
+//    _contentView.hidden = NO;
+//    [self addSubview:_contentView];
+//    
+//    self.layer.anchorPoint = CGPointMake(topPoint.x / topViewBounds.size.width, topPoint.y / topViewBounds.size.height);
+//    self.frame = topViewBounds;
+//    [self setNeedsDisplay];
+//    
+//    [topView addSubview:self];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+//    tap.delegate=self;
+//    [self addGestureRecognizer:tap];
+//    
+//    self.userInteractionEnabled = YES;
+//    
+//    self.alpha = 0.f;
+//    self.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
     
     [UIView animateWithDuration:0.2f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.alpha = 1.f;
@@ -138,10 +181,21 @@
         self.alpha = 0.1f;
         self.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
     } completion:^(BOOL finished) {
-       // [self removeFromSuperview];
+       //[self removeFromSuperview];
         [self setHidden:true];
-        [self dismiss];
+        //[self dismiss];
     }];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // 输出点击的view的类名
+    NSLog(@"%@", NSStringFromClass([touch.view class]));
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
 }
 
 @end

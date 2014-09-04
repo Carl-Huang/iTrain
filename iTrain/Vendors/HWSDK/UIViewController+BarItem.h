@@ -19,15 +19,16 @@
 - (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector;
 - (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets;
 
+
 /*
   *  @desc 设置导航栏的右边按钮
   *  @param NSString imageName 图标名称
   *  @param SEL selector 按钮的点击事件
   *  @return void
   */
+
+
 -(void)setRightCustomBarItems:(UIView*)view;
-
-
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector;
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets;
 

@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *timeLong;
+@property (weak, nonatomic) IBOutlet UIButton * modifyOrDel;
 @end

@@ -49,7 +49,12 @@ NSInteger _time;
                                                        @"25",
                                                        @"30",
                                                        ]];
- [_startBtn addTarget:self action:@selector(gotoStartView)forControlEvents:UIControlEventTouchUpInside];
+    
+       if ([[CBLEManager sharedManager] isConnected]) {
+           [_startBtn addTarget:self action:@selector(gotoStartView)forControlEvents:UIControlEventTouchUpInside];}
+       else{
+            [_startBtn addTarget:self action:@selector(twoBtnClicked:)forControlEvents:UIControlEventTouchUpInside];
+       }
     self.paramView.delegate=self;
     [self setModel];
     [self.paramView selectItem:1 animated:NO];
@@ -61,13 +66,31 @@ NSInteger _time;
         if (DEVICE_IS_IPHONE5) {
             exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];}
         else{
-             exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController" bundle:nil];
+            exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController" bundle:nil];
         }
-    [_modelArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithInteger:_time]];
-    exerciseParam.modelArray=_modelArray;
-   [self.navigationController pushViewController:exerciseParam animated:YES];
+        [_modelArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithInteger:_time]];
+        exerciseParam.modelArray=_modelArray;
+        [self.navigationController pushViewController:exerciseParam animated:YES];
 }
 
+
+
+- (void)twoBtnClicked:(id)sender
+{
+    DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:@"您还没有连接蓝牙，是否要去蓝牙页面连接蓝牙？" leftButtonTitle:@"是" rightButtonTitle:@"否"];
+    [alert show];
+    alert.leftBlock = ^() {
+        connectBT= [[BlueToothViewController alloc] init];
+    [self.navigationController pushViewController:connectBT animated:YES];
+
+    };
+    alert.rightBlock = ^() {
+        NSLog(@"right button clicked");
+    };
+    alert.dismissBlock = ^() {
+        NSLog(@"Do something interesting after dismiss block");
+    };
+}
 /**获取蓝牙连接之后返回的设备模式相关信息，并且初始化显示**/
 -(void)setModel{
     NSArray *temparray=[[CBLEManager sharedManager] getModel];
@@ -79,6 +102,7 @@ NSInteger _time;
         _timeIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",[temp intValue]]];
         _time=[temp intValue];
     }
+    
 }
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView

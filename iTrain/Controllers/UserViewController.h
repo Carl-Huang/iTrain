@@ -7,10 +7,14 @@
 //
 //用户列表
 #import <UIKit/UIKit.h>
-#include "UserCollectionViewCell.h"
+#import "UserCollectionViewCell.h"
+#import "UserInfoViewController.h"
+
 @interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     UserCollectionViewCell *scell;
+    UserInfoViewController *userinfoController;
 }
+
 
 @property (weak, nonatomic) IBOutlet UITableView *contetTabelView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;

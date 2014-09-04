@@ -98,21 +98,11 @@
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-//
-
-
-
 //响应用户单击事件
+
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
     if (indexPath.row==0) {
         _blueTooth= [[BlueToothViewController alloc] init];
         [self.navigationController pushViewController:_blueTooth
@@ -124,7 +114,14 @@
 
     }else if(indexPath.row==2){
         //        跳转到百科页面
-        _baike= [[BaiKeViewController alloc] init];
+        
+        
+        if (DEVICE_IS_IPHONE5) {
+           _baike= [[BaiKeViewController alloc] initWithNibName:@"BaiKeViewController4" bundle:nil];
+        }else {
+           _baike= [[BaiKeViewController alloc]initWithNibName:@"BaiKeViewController" bundle:nil];
+        }
+        
         [self.navigationController pushViewController:_baike animated:YES];
     }else if(indexPath.row==3){
         _about= [[AboutViewController alloc] init];
@@ -132,7 +129,11 @@
 
     }
     
+    
 }
+
+
+
 
 
 @end

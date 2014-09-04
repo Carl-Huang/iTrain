@@ -128,7 +128,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"开始训练";
+    self.title = @"蓝牙连接";
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [[CBLEManager sharedManager] startScan];
     [[CBLEManager sharedManager] setDiscoverHandler:^(void){

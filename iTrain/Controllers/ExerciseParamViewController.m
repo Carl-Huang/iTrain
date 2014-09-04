@@ -33,7 +33,7 @@ NSInteger stong;
             [temp addObject:[NSString stringWithFormat:@"%d",i]];
         }
         self.titles=[[NSArray alloc]initWithArray:temp];
-        self.titles2=@[@"1",@"2",@"3",@"4",@"5"];
+    self.titles2=@[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15"];
         speedIndex=-1;
         stongIndex=-1;
         speed=1;
@@ -55,10 +55,10 @@ NSInteger stong;
 {
     [super viewDidLoad];
     self.pickerView.delegate = self;
-	[self.view addSubview:self.pickerView];
+//	[self.view addSubview:self.pickerView];
 
     self.pickerView2.delegate = self;
-	[self.view addSubview:self.pickerView2];
+//	[self.view addSubview:self.pickerView2];
     
 	[self.pickerView reloadData];
     [self.pickerView2 reloadData];
@@ -88,7 +88,7 @@ NSInteger stong;
             [[CBLEManager sharedManager] setSendDataHandler:Nil];
         }
     }];
-    [self changeModel];
+//    [self changeModel];
    }
 
 /**暂停按钮响应事件**/

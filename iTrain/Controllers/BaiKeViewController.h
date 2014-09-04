@@ -15,4 +15,8 @@
 }
 
 
+
+@property (weak, nonatomic) IBOutlet UILabel *page;
+
+@property (weak, nonatomic) IBOutlet UIView *tittleView;
 @end

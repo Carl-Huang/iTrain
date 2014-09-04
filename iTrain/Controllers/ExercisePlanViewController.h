@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ExercisePlanCell.h"
-#import "CustomSwitch.h"
-
-@interface ExercisePlanViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
-    ExercisePlanCell *scell;
+#import "CommonViewController.h"
+#import "DXAlertView.h"
+@interface ExercisePlanViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>{
+    
+    ExercisePlanCell * scell;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 @property (weak, nonatomic) IBOutlet UIButton *createPlan;//新加计划
@@ -21,3 +22,5 @@
 @property (weak, nonatomic) IBOutlet UIButton*clockBtn;//闹钟
 @property (weak, nonatomic) IBOutlet UIView*notifyView;//闹钟
 @end
+
+

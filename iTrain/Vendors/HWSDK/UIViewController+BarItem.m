@@ -13,6 +13,16 @@
 - (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector
 {
     self.navigationItem.leftBarButtonItem = [self customBarItem:imageName action:selector];
+    self.navigationItem.title=@"";
+   
+    UIBarButtonItem *item=self.navigationItem.leftBarButtonItem;
+    UIButton *barButton=(UIButton *)[item customView];
+    [barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [barButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+     [barButton setTitle:self.title forState:UIControlStateNormal];
+    
+    [barButton setFrame:CGRectMake(0, 0, 200, 32)];
+
 }
 
 - (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets
@@ -21,13 +31,9 @@
 }
 
 -(void)setRightCustomBarItems:(UIView*)sview{
-//
-//    UIBarButtonItem *badPushBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"糟糕的", @"") style:UIBarButtonItemStylePlain target:self action:@selector(badPushBarButtonItemHandle)];
-//    
-//    UIBarButtonItem *likePushBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"喜欢的", @"") style:UIBarButtonItemStylePlain target:self action:@selector(likePushBarButtonItemHandle)];
-//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:badPushBarButtonItem, likePushBarButtonItem, nil];
     UIBarButtonItem *bar=[[UIBarButtonItem alloc]initWithCustomView:sview];
     self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:bar, nil];
+    
 }
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector
 {
@@ -51,6 +57,7 @@
     barButton.exclusiveTouch = YES;
     [barButton setFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
     [barButton setImage:image forState:UIControlStateNormal];
+    
     //[barButton setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
     if(selector)
     {

@@ -16,7 +16,6 @@
     ExerciseRecordViewController * record;
     ExercisePlanViewController * plan;
 }
-@property (strong, nonatomic) UINavigationController *navController;
 @property (weak, nonatomic) UIView *tabelView;
 @property (weak, nonatomic) IBOutlet UIImageView *startView;
 @property (weak, nonatomic) IBOutlet UIImageView *recordView;

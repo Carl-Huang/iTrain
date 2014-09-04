@@ -26,6 +26,6 @@
 @property (nonatomic, strong) IBOutlet  UIImageView         *userImage;
 @property (nonatomic, strong) IBOutlet  UIButton         *select;
 @property (nonatomic, strong) IBOutlet  UIImageView         *selectImg;
-@property (nonatomic, strong) IBOutlet  UIView         *view;
+@property (nonatomic, strong) IBOutlet  UIView         *sview;
 @property (nonatomic, strong) IBOutlet  UIImageView         *divline;
 @end
