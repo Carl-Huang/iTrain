@@ -13,5 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel*date;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *time;
-
+@property (weak, nonatomic) IBOutlet UIImageView *btnImg;
 @end

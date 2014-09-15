@@ -7,15 +7,21 @@
 //
 
 #import "SysNotiViewController.h"
+#import "HttpService.h"
+#import "SVProgressHUD.h"
+#import "RTLabel.h"
+#import "SyTableViewCell.h"
 
-@interface SysNotiViewController ()
+@interface SysNotiViewController ()<LoadingDelegate>
 
 @end
 
 NSInteger second;
+NSInteger page;
 @implementation SysNotiViewController
-
+CGFloat cellHeight;
 UIView *headView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,17 +38,33 @@ UIView *headView;
     self.tv.delegate = self;
     self.tv.dataSource = self;
     [self.view addSubview:self.tv];
-//    [self setExtraCellLineHidden:self.tv];
+    //    [self setExtraCellLineHidden:self.tv];
     
-    child_array= [[NSMutableArray alloc]initWithObjects:@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。",@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。",@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。", nil];
-    father_array= [[NSMutableArray alloc]initWithObjects:@"本产品适用于各个年龄阶段的人么？",@"肌肉会不会锻炼过度或者过度疲劳?", @"使用本产品又没有什么禁忌?", nil];
+    child_array= [[NSMutableArray alloc]init];
+    father_array= [[NSMutableArray alloc]init];
     //    UINib * nib = [UINib nibWithNibName:@"HelpChildCell" bundle:[NSBundle bundleForClass:[HelpChildCell class]]];
     //    [_tv registerNib:nib forCellReuseIdentifier:@"Cell"];
     UIColor *bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+    self.view.backgroundColor=bg;
     _tv.backgroundColor=bg;
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
+    page=1;
 }
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"系统通知";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    
+    _tv.frame=self.view.frame;
+    NSLog(@"%f",_tv.frame.size.height);
+    [self initData];
+}
+
 - (void)tapSetion:(UIGestureRecognizer *)sender
 {
     UIView * view = sender.view;
@@ -55,11 +77,41 @@ UIView *headView;
     [self.tv reloadData];
 }
 
+-(void)initData{
+    NSDictionary *dic=[[NSDictionary alloc]initWithObjects:@[@"10",[NSNumber numberWithInt:page]] forKeys:@[@"pageSize",@"pageNum"]];
+    [SVProgressHUD show];
+    [[HttpService sharedInstance] news:dic completionBlock:^(id object) {
+        NSDictionary *dic=object;
+        if([[dic valueForKey:@"success"] boolValue]){
+            [SVProgressHUD dismissWithSuccess:@"数据加载成功"];
+            NSArray *tArray=[dic valueForKey:@"rows"];
+            for(int i=0;i<tArray.count;i++){
+                NSDictionary *tDic=[tArray objectAtIndex:i];
+                [father_array addObject:[tDic valueForKey:@"title"]];
+                [child_array addObject:[tDic valueForKey:@"context"]];
+            }
+            for(int i=0;i<tArray.count;i++){
+                NSDictionary *tDic=[tArray objectAtIndex:i];
+                [father_array addObject:[tDic valueForKey:@"title"]];
+                [child_array addObject:[tDic valueForKey:@"context"]];
+            }
+            [_tv reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"数据加载错误" duration:2];
+        }
+        
+        
+    } failureBlock:^(NSError *error, NSString *reponseString) {
+        [SVProgressHUD dismissWithError:@"数据加载失败"];
+    }];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [father_array count];
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return cellHeight;
+}
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *headView ;//=[[UIView alloc]init];
@@ -89,13 +141,6 @@ UIView *headView;
     return 40.0f;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"系统通知";
-    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-}
 
 
 
@@ -113,64 +158,36 @@ UIView *headView;
     
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // 列寬
-    CGFloat contentWidth = self.tv.frame.size.width;
-    // 用何種字體進行顯示
-    UIFont *font = [UIFont systemFontOfSize:13];
-    
-    // 該行要顯示的內容
-    NSString *content = [child_array objectAtIndex:indexPath.section];
-    // 計算出顯示完內容需要的最小尺寸
-    CGSize size = [content sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 1000) lineBreakMode:UILineBreakModeWordWrap];
-    
-    // 這裏返回需要的高度
-    return size.height;
-}
-
 // 设置cell高度和uiLabel高度自适应
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    // 列寬
-    CGFloat contentWidth = self.tv.frame.size.width;
-    // 用何種字體進行顯示
-    UIFont *font = [UIFont systemFontOfSize:13];
     // 該行要顯示的內容
-    NSString *content = [child_array objectAtIndex:indexPath.section];
-    // 計算出顯示完內容需要的最小尺寸
-    CGSize size = [content sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 0) lineBreakMode:UILineBreakModeWordWrap];
-    
-    // 構建顯示行
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    SyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[SyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [cell settDelagate:self];
     }
-    CGRect rect = [cell.textLabel textRectForBounds:cell.textLabel.frame limitedToNumberOfLines:0];
     UIColor *bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
     cell.backgroundColor=bg;
     
-    // 設置顯示榘形大小
-    rect.size = size;
-    // 重置列文本區域
-    
-    cell.textLabel.frame= rect;
-    cell.textLabel.text = content;
-    // 設置自動換行(重要)
-    cell.textLabel.numberOfLines = 0;
+    [cell.rtLabel setBackgroundColor:bg];
+    [cell.rtLabel setOpaque:NO];
+    NSString *HTMLData =[child_array objectAtIndex:indexPath.section];
+    NSLog(@"%@",HTMLData);
+    [cell.rtLabel loadHTMLString:HTMLData baseURL:[NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]]];
+
     // 設置顯示字體(一定要和之前計算時使用字體一至)
-    cell.textLabel.font = font;
-    
     return cell;
 }
 
+-(void)WebViewHeight:(CGFloat)height{
+    if(cellHeight==height){
+        return;
+    }
+    cellHeight=height;
+    [_tv reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

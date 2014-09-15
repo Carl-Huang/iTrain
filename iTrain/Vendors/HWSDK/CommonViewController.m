@@ -9,6 +9,7 @@
 #import "CommonViewController.h"
 #import "HWSDK_Constants.h"
 #import "AppMacros.h"
+#import "DXAlertView.h"
 @interface CommonViewController ()
 
 @end
@@ -77,11 +78,12 @@
 
 - (void)showAlertViewWithMessage:(NSString *)message
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
-        [alertView show];
-        alertView = nil;
-    });
+    DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:@"保存成功" leftButtonTitle:nil rightButtonTitle:@"OK"];
+    [alert show];
+    alert.dismissBlock=^(){
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    
 }
 
 @end

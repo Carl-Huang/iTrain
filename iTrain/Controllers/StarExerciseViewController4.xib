@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="body" destination="ZjK-VP-DZy" id="dMl-CL-4vp"/>
                 <outlet property="paramView" destination="aVh-XQ-ahj" id="jcj-e0-Su6"/>
+                <outlet property="popView" destination="vwQ-MS-oSY" id="PwM-Tl-ABx"/>
                 <outlet property="startBtn" destination="6ZY-3D-BlB" id="gyk-RI-bPD"/>
                 <outlet property="view" destination="alu-Lx-4Nm" id="O8N-uv-i7O"/>
             </connections>
@@ -22,10 +23,13 @@
                     <rect key="frame" x="0.0" y="7" width="320" height="394"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start_ren.png" id="ZjK-VP-DZy">
-                            <rect key="frame" x="0.0" y="-22" width="320" height="420"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start_ren.png" id="ZjK-VP-DZy" customClass="MTImageMapView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="390"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="ZGi-mC-hb2"/>
+                            </connections>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="训练部位" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kg9-uE-JQO">
                             <rect key="frame" x="12" y="8" width="68" height="21"/>
@@ -34,6 +38,15 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start_quan2.png" id="vwQ-MS-oSY" customClass="MTImageMapView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Eqn-UG-js0"/>
+                            </connections>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
@@ -63,9 +76,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6We-44-LAd">
-                    <rect key="frame" x="173" y="391" width="16" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6We-44-LAd">
+                    <rect key="frame" x="168" y="391" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -77,6 +91,7 @@
     </objects>
     <resources>
         <image name="start_kaishixunlian.png" width="249" height="38"/>
+        <image name="start_quan2.png" width="320" height="337"/>
         <image name="start_ren.png" width="320" height="337"/>
     </resources>
 </document>

@@ -99,7 +99,8 @@
     
     
     if (indexPath.row==0) {
-      
+        NSString *evaluateString = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=587767923"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:evaluateString]];
     }else if(indexPath.row==1){
         //        跳转系统通知页面
 //        sugg= [[SuggestViewController alloc] init];

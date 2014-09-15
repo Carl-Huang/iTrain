@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserInfoViewController">
             <connections>
+                <outlet property="editBtn" destination="JcH-0V-wV9" id="2Fb-8j-Bsr"/>
                 <outlet property="myTableView" destination="eDS-dB-u8s" id="b5J-IV-tK9"/>
                 <outlet property="view" destination="QMb-cY-jb4" id="SjB-Kb-W0x"/>
             </connections>

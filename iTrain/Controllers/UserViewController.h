@@ -10,6 +10,7 @@
 #import "UserCollectionViewCell.h"
 #import "UserInfoViewController.h"
 
+
 @interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     UserCollectionViewCell *scell;
     UserInfoViewController *userinfoController;
@@ -24,15 +25,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentUserAge;
 @property (weak, nonatomic) IBOutlet UILabel *contentUserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentUserLine;
+@property (weak, nonatomic) IBOutlet UIView *popContentView;
 
 
-
-@property (nonatomic, retain) NSArray *dataList;
 @property (nonatomic, retain) NSArray *imageList;
 @property (nonatomic, retain) NSArray *contentNameList;
 @property (nonatomic, retain) NSArray *contentImageList;
 @property (weak, nonatomic) IBOutlet UITableView *userTabelView;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
+@property (strong, nonatomic) NSMutableArray *dataArray;
 - (void)popoverBtnClicked:(id)sender forEvent:(UIEvent *)event;
 
 @end

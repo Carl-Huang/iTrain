@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import  "AKPickerView.h"
 #import "CBLEManager.h"
-
+#import "User.h"
 @interface ParamSetViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *save;

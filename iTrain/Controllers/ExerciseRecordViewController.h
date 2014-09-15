@@ -14,10 +14,7 @@
     ExerciseRecordDetailViewController * _detail;
     
 }
-@property (nonatomic, retain) NSArray *dateList;
-@property (nonatomic, retain) NSArray *timeList;
-@property (nonatomic, retain) NSArray *nameList;
-@property (nonatomic, retain) NSArray *imageList;
+
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 @property (weak, nonatomic) IBOutlet UIButton *delBtn;
 

@@ -7,11 +7,15 @@
 //
 
 #import "ExerciseRecordViewController.h"
+#import "Record.h"
+#import "AppDelegate.h"
 
 @interface ExerciseRecordViewController ()
 
 @end
 UIColor *bg;
+NSMutableArray *dataarray;
+int deleteRow;
 @implementation ExerciseRecordViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -19,23 +23,26 @@ UIColor *bg;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        dataarray=[[NSMutableArray alloc]init];
+        deleteRow=-1;
     }
     return self;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"训练";
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [self initData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // 初始化tableView的数据
-    NSArray *list = [NSArray arrayWithObjects:@"6月10日",@"6月10日",@"6月10日",@"6月10日", nil];
-    NSArray *imagelist = [NSArray arrayWithObjects:@"2013",@"2013",@"2013",@"2014", nil];
-    NSArray *time = [NSArray arrayWithObjects:@"35min",@"35min",@"35min",@"35min", nil];
-    
-    NSArray *name = [NSArray arrayWithObjects:@"腿部",@"腿部",@"腿部",@"腿部", nil];
-    self.dateList = list;
-    self.imageList=imagelist;
-    self.timeList=time;
-  self.nameList=name;
     
     // 设置tableView的数据源
     _tabelView.dataSource = self;
@@ -45,7 +52,7 @@ UIColor *bg;
     bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
     self.view.backgroundColor=bg;
     self.tabelView.backgroundColor=bg;
-//    设置分割线
+    //    设置分割线
     self.tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     //    self.userTabelView = tableView;
@@ -53,19 +60,16 @@ UIColor *bg;
     //    _userTabelView.scrollEnabled = NO;
     
     [self setExtraCellLineHidden:self.tabelView];
-    //    [self.view addSubview:self.tabelView];
+    [_delBtn setEnabled:NO];
+    [_delBtn addTarget:self  action:@selector(deleteCell:) forControlEvents:UIControlEventTouchUpInside];
     
-    //设置按钮按下状态图片
-    [_delBtn setImage:[UIImage imageNamed:@"record_shanchujilu_01.png"] forState:UIControlStateNormal];
-    [_delBtn setImage:[UIImage imageNamed:@"record_shanchujilu.png"] forState:UIControlStateHighlighted];
 }
+
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return dataarray.count;
 }
-
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,18 +80,29 @@ UIColor *bg;
         scell = [[[NSBundle mainBundle] loadNibNamed:@"ExerciseRecordCell" owner:self options:nil]lastObject];
     }
     int row=[indexPath row];
-    scell.year.text = [_imageList objectAtIndex:row];
-    scell.name.text =[_nameList objectAtIndex:row];
-    scell.time.text=[_timeList objectAtIndex:row];
-    scell.date.text=[_dateList objectAtIndex:row];
-    scell.accessoryType=UITableViewCellSeparatorStyleSingleLine;
-    //    cell.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ul_ti"]];
-    //    cell.divline.backgroundColor=bg;
-    //    //    禁止选中效果
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    Record *trecord=[dataarray objectAtIndex:row];
+    scell.year.text = [trecord year];
+    scell.name.text =[trecord part];
+    scell.time.text=[[NSString stringWithFormat:@"%d",[[trecord time] integerValue]] stringByAppendingString:@"min"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
+    [dateFormatter setDateFormat:@"MM月dd日"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:[trecord date]];
+    scell.date.text=destDateString;
+    
+    UIButton *btn =[[UIButton alloc]initWithFrame:CGRectMake(290, 11,32 ,22)];
+    [scell addSubview:btn];
+    [btn setTag:indexPath.row];
+    [btn addTarget:self action:@selector(gotoDetailView:) forControlEvents:UIControlEventTouchUpInside];
+    //    设置选中背景
+    scell.selectedBackgroundView = [[UIView alloc] initWithFrame:scell.frame] ;
+    scell.selectedBackgroundView.backgroundColor=  [UIColor colorWithPatternImage:[UIImage imageNamed:@"record_xuanzhongbeijing.png"]];
     return scell;
 }
+
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -105,30 +120,66 @@ UIColor *bg;
     [tableView setTableFooterView:view];
 }
 
-//响应用户单击事件
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    if (indexPath.row==0) {
-        _detail=[[ExerciseRecordDetailViewController alloc]init];
-        [self.navigationController pushViewController:_detail animated:YES];
-    }else if(indexPath.row==1){
-    }else if(indexPath.row==2){
-        //        跳转到百科页面
-        //        _baike= [[BaiKeViewController alloc] init];
-        //        [self.navigationController pushViewController:_baike animated:YES];
-    }else if(indexPath.row==3){
-        //        _about= [[AboutViewController alloc] init];
-        //        [self.navigationController pushViewController:_about animated:YES];
-        
-    }
+-(void)gotoDetailView:(id)sender{
+    _detail=[[ExerciseRecordDetailViewController alloc]init];
+    _detail.record=[dataarray objectAtIndex:[sender tag]];
+    [self.navigationController pushViewController:_detail animated:YES];
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"训练";
-    [self setLeftCustomBarItem:@"ul_back.png" action:nil];}
+//响应用户单击事件
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //    _delBtn.backgroundColor=
+    //     [UIColor colorWithPatternImage:[UIImage imageNamed:@"record_shanchujilu.png"]];
+    deleteRow=indexPath.row;
+    [_delBtn setEnabled:YES];
+    [_delBtn setImage:[UIImage imageNamed:@"record_shanchujilu.png"] forState:UIControlStateNormal];
+}
+
+
+//删除事件
+-(void)deleteCell:(id)sender{
+    if (deleteRow!=-1) {
+        AppDelegate *myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+        Record *re=[dataarray objectAtIndex:deleteRow];
+        [myAppDelegate.managedObjectContext deleteObject:re];
+        NSError *error=nil;
+        [myAppDelegate.managedObjectContext save:&error];
+        [dataarray removeObjectAtIndex:deleteRow];
+        [_tabelView reloadData];
+        deleteRow=-1;
+        [_delBtn setEnabled:NO];
+        [_delBtn setImage:[UIImage imageNamed:@"record_shanchujilu_01.png"] forState:UIControlStateNormal];
+    }else{
+        return;
+    }
+}
+
+-(void)initData{
+    AppDelegate *myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要检索哪种类型的实体对象
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Record"inManagedObjectContext:myAppDelegate.managedObjectContext];
+    //设置请求实体
+    [request setEntity:entity];
+    //指定对结果的排序方式
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time"ascending:NO];
+    NSArray *sortDescriptions = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptions];
+    NSError *error = nil;
+    //执行获取数据请求，返回数组
+    NSMutableArray *mutableFetchResult = [[myAppDelegate.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResult == nil) {
+        NSLog(@"Error: %@,%@",error,[error userInfo]);
+    }else{
+//        Record *tt=[NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:myAppDelegate.managedObjectContext];;
+//        [tt setStarttime:[NSDate date]];
+//        [tt setDate:[NSDate date]];
+//        [tt setPart:@""];
+//        [tt setWeekday:@""];
+//        [mutableFetchResult addObject:tt];
+        dataarray=mutableFetchResult;
+        [_tabelView reloadData];
+    }
+}
 @end

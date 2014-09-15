@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "DaiDodgeKeyboard.h"
+#import "CommonViewController.h"
 
-@interface NewUserViewController : UIViewController<UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface NewUserViewController : CommonViewController<UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,KeyboardDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 @property (weak, nonatomic) IBOutlet UILabel *sexText;
@@ -20,8 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *sexBtn;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
-@property  (readonly,nonatomic,strong)NSManagedObjectContext *manger;
-- (IBAction)textFiledReturnEditing:(id)sender;
+
+
+
+@property (weak, nonatomic) IBOutlet UIButton *save;
 - (IBAction)backgroundTap:(id)sender;
 
 

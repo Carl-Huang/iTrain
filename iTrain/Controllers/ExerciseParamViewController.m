@@ -8,6 +8,12 @@
 
 #import "ExerciseParamViewController.h"
 #import "CBLEManager.h"
+#import "Record.h"
+#import "AppDelegate.h"
+#import "DXAlertView.h"
+#import "CBLEPeriphral.h"
+#import "ExerciseRecordDetailViewController.h"
+
 @interface ExerciseParamViewController ()<AKPickerViewDelegate>
 
 //@property (nonatomic, strong) AKPickerView *pickerView;
@@ -21,6 +27,11 @@ NSInteger speedIndex;
 NSInteger stongIndex;
 NSInteger speed;
 NSInteger stong;
+AppDelegate *myAppDelegate;
+NSDate *start;
+BOOL isStart;
+BOOL isPuse;
+
 @implementation ExerciseParamViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,7 +44,7 @@ NSInteger stong;
             [temp addObject:[NSString stringWithFormat:@"%d",i]];
         }
         self.titles=[[NSArray alloc]initWithArray:temp];
-    self.titles2=@[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15"];
+        self.titles2=@[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15"];
         speedIndex=-1;
         stongIndex=-1;
         speed=1;
@@ -47,56 +58,82 @@ NSInteger stong;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"训练";
-    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
+    myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    start=[NSDate date];
+    User *user=myAppDelegate.user;
     
+    if(user!=nil){
+        speedIndex=[[user speedIndex] integerValue];
+        stongIndex=[[user strongIndex] integerValue];
+        speed=[self.titles2[speedIndex] integerValue];
+        stong=[self.titles[stongIndex] integerValue];
+    }else{
+        speed=[(NSNumber*)[_modelArray objectAtIndex:3] integerValue];
+        stong=[(NSNumber*)[_modelArray objectAtIndex:4] integerValue];
+        speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
+        stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
+    }
+
+    
+    [self.pickerView selectItem:1 animated:NO];
+    [self.pickerView selectItem:stongIndex animated:NO];
+    [self.pickerView2 selectItem:1 animated:NO];
+    [self.pickerView2 selectItem:speedIndex animated:NO];
+    
+    
+    [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"连接错误" contentText:@"设备即将断开连接" leftButtonTitle:nil rightButtonTitle:@"OK"];
+        alertView.rightBlock=^(){
+            [self back];
+        };
+        [alertView show];
+    }];
+    isStart=false;
+    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+        
+        if([[[st substringFromIndex:4] substringToIndex:2] isEqualToString:@"01"]){
+            [self start];
+            isStart=true;
+            isPuse=false;
+            
+        }
+    }];
+    [self changeModel];
+}
+
+-(void)back{
+    [[CBLEManager sharedManager]setSendDataHandler:nil];
+    [[CBLEManager sharedManager] setDisconnectHandler:nil];
+    Record *record=[self saveRecord];
+    ExerciseRecordDetailViewController *_detail=[[ExerciseRecordDetailViewController alloc]init];
+    _detail.record=record;
+    [self.navigationController pushViewController:_detail animated:YES];
+   
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.pickerView.delegate = self;
-//	[self.view addSubview:self.pickerView];
-
+    
     self.pickerView2.delegate = self;
-//	[self.view addSubview:self.pickerView2];
     
 	[self.pickerView reloadData];
     [self.pickerView2 reloadData];
-    speed=[(NSNumber*)[_modelArray objectAtIndex:3] integerValue];
-    stong=[(NSNumber*)[_modelArray objectAtIndex:4] integerValue];
-    speedIndex=[self.titles2 indexOfObject:[NSString stringWithFormat:@"%d",speed]];
-    stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
-    [self.pickerView selectItem:1 animated:NO];
-    [self.pickerView selectItem:stongIndex animated:NO];
-    [self.pickerView2 selectItem:1 animated:NO];
-    [self.pickerView2 selectItem:speedIndex animated:NO];
-    //设置按钮按下状态图片
-//    [_save setImage:[UIImage imageNamed:@"baocun.png"] forState:UIControlStateNormal];
-//    [_save setImage:[UIImage imageNamed:@"baocun_1.png"] forState:UIControlStateHighlighted];
-    
-    
-    
-    //
-    //    [_save setImage:[UIImage imageNamed:@"baocun"] forState:UIControlStateNormal];
-    //
-    //    [_save addTarget:self action:@selector(selectedBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_btn addTarget:self action:@selector(selectedBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_btn2 addTarget:self action:@selector(selectedBtn2Pressed:) forControlEvents:UIControlEventTouchUpInside];
-    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st){
-        if([st isEqualToString:@"01"]){
-            [self start];
-            [[CBLEManager sharedManager] setSendDataHandler:Nil];
-        }
-    }];
-//    [self changeModel];
-   }
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(stopBtnPressed)];
+    
+    longPress.minimumPressDuration = 0.8; //定义按的时间
+    
+    [_btn2 addGestureRecognizer:longPress];
+    
+}
 
-/**暂停按钮响应事件**/
+/**发送按钮响应事件**/
 -(void)selectedBtnPressed:(id)sender{
-    
-    NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x05], nil];
-    [[CBLEManager sharedManager] createData:array];
-    
+    [self changeModel];
 }
 
 -(void)changeModel{
@@ -104,20 +141,59 @@ NSInteger stong;
         /**速度是0x01对应第一个，所以提交修改的时候要+1**/
         [_modelArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithInt:speed]];
         [_modelArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:stong]];
+        if(isStart){
+            [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+                [[CBLEManager sharedManager] setModelArray:_modelArray];
+                DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"发送成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+                [alertView show];
+                User *user=myAppDelegate.user;
+                speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
+                stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
+                [user setSpeedIndex:[NSNumber numberWithInteger:speedIndex]];
+                [user setStrongIndex:[NSNumber numberWithInteger:stongIndex]];
+                NSError *error=nil;
+                [myAppDelegate.managedObjectContext save:&error];
+            }];
+        }
         [[CBLEManager sharedManager] createData:_modelArray];
     }
 }
+
+-(void)stopBtnPressed{
+    NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x07], nil];
+    [[CBLEManager sharedManager]setDisconnectHandler:nil];
+    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"停止成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        alertView.dismissBlock=^(){
+            [self back];
+        };
+        [alertView show];
+    }];
+    [[CBLEManager sharedManager] createData:array];
+}
 /**停止按钮响应事件**/
 -(void)selectedBtn2Pressed:(id)sender{
-    //[self changeModel];
-//return;
-    NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x07], nil];
+    if(isPuse){
+        [self start];
+        return;
+    }
+    NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x05], nil];
+    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"暂停成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alertView show];
+        isPuse=true;
+    }];
     [[CBLEManager sharedManager] createData:array];
     
 }
 
 -(void)start{
     NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x06], nil];
+    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+        isPuse=false;
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"设备启动成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alertView show];
+    }];
     [[CBLEManager sharedManager] createData:array];
 }
 
@@ -132,21 +208,20 @@ NSInteger stong;
 - (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
 {
     if(pickerView==self.pickerView){
-	   return self.titles[item];
+        return self.titles[item];
     }
     return self.titles2[item];
 }
 
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
-    
 	if(pickerView==self.pickerView){
         stong=[self.titles[item] integerValue];
-        [self changeModel];
+        
         return;
     }
     speed=[self.titles2[item] integerValue];
-    [self changeModel];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,4 +230,38 @@ NSInteger stong;
     // Dispose of any resources that can be recreated.
 }
 
+
+-(Record *)saveRecord{
+    
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit|NSWeekdayCalendarUnit;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
+    int year = [dateComponent year];
+    Record *record=[NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:myAppDelegate.managedObjectContext];
+    [record setYear:[NSString stringWithFormat:@"%d",year]];
+    [record setPart:_part];
+    
+    [record setWeekday:[NSString stringWithFormat:@"%d",[dateComponent weekday]]];
+    [record setStarttime:start];
+    
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *  senddate=[NSDate date];
+    //结束时间
+    NSDate *endDate = start;
+    //当前时间
+    NSDate *senderDate = [dateFormatter dateFromString:[dateFormatter stringFromDate:senddate]];
+    //得到相差秒数
+    NSTimeInterval time=[endDate timeIntervalSinceDate:senderDate];
+    int minute = ((int)time)%(3600*24)/600/60;
+    [record setTime:[NSNumber numberWithInt:minute]];
+    [record setDate:start];
+    NSError *error=nil;
+    Boolean isSU=[myAppDelegate.managedObjectContext save:&error];
+    if(isSU){
+        NSLog(@"保存成功");
+    }
+    return record;
+}
 @end

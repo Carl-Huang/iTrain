@@ -13,6 +13,7 @@
                 <outlet property="hightText" destination="m1q-3H-VqH" id="3GG-iz-cLa"/>
                 <outlet property="nameLabel" destination="pCF-L5-gsM" id="K9p-O1-J4O"/>
                 <outlet property="nameText" destination="ReR-DH-7oO" id="M3M-V2-Qof"/>
+                <outlet property="save" destination="vZo-fB-uMx" id="6Bm-qT-dDK"/>
                 <outlet property="sexBtn" destination="R2E-kD-SfD" id="3Ql-jz-u6l"/>
                 <outlet property="sexLabel" destination="8co-aL-9LD" id="Ft8-nM-yih"/>
                 <outlet property="sexText" destination="ch5-hN-YvO" id="UyD-O5-KoP"/>
@@ -132,36 +133,24 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="yyW-rp-lak"/>
-                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" id="m1q-3H-VqH">
                             <rect key="frame" x="87" y="183" width="200" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="yiq-n1-log"/>
-                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" id="fle-sG-kVy">
                             <rect key="frame" x="87" y="142" width="200" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="suP-Bc-baE"/>
-                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" id="ReR-DH-7oO">
                             <rect key="frame" x="87" y="74" width="200" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="textFiledReturnEditing:" destination="-1" eventType="editingDidEndOnExit" id="5gI-uR-ZjH"/>
-                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R2E-kD-SfD">
                             <rect key="frame" x="89" y="104" width="198" height="30"/>
@@ -178,19 +167,27 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <connections>
-                        <action selector="backgroundTap:" destination="-1" eventType="touchDown" id="BMG-lt-OKg"/>
-                    </connections>
                 </view>
                 <view contentMode="scaleToFill" id="hAE-L1-Sqa">
                     <rect key="frame" x="0.0" y="435" width="320" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vZo-fB-uMx">
+                    <rect key="frame" x="209" y="337" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="保存">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.93725496529999996" green="0.93725496529999996" blue="0.93725496529999996" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <action selector="backgroundTap:" destination="-1" eventType="touchDown" id="8ZC-28-olS"/>
+            </connections>
         </view>
     </objects>
     <resources>

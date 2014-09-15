@@ -7,11 +7,13 @@
 //
 
 #import "NewUserViewController.h"
-
+#import "AppDelegate.h"
 @interface NewUserViewController ()<UITextFieldDelegate>
 
 @end
 NSInteger orginY;
+UITextField *nowField;
+NSString *photo;
 @implementation NewUserViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -28,7 +30,7 @@ NSInteger orginY;
 {
     [super viewDidLoad];
     [self initUI];
-
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -36,10 +38,46 @@ NSInteger orginY;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"新建用户";
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    //    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(save)];
+    
+    
+    [self setRightCustomBarItems:_save];
+    [_save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [DaiDodgeKeyboard addRegisterTheViewNeedDodgeKeyboard:self.view inputViewDelegate:self];
+    photo=nil;
+    
+}
 
+-(void)save:(id)sender{
+    AppDelegate *myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *user=[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:myAppDelegate.managedObjectContext];
+    [user setName:_nameText.text];
+    [user setAge:[NSNumber numberWithInteger:[_ageText.text integerValue]]];
+    [user setWeight:[NSNumber numberWithInteger:[_weightText.text integerValue]]];
+    [user setHeight:[NSNumber numberWithInteger:[_hightText.text integerValue]]];
+    [user setSex:[NSNumber numberWithBool:[_sexText.text isEqual:@"男"]]];
+    if(photo!=nil){
+        photo=[self saveImage:_headImg.image withName:photo];
+        [user setPhoto:photo];
+    }
+    [user setUzIndex:[NSNumber numberWithInt:0]];
+    [user setHzIndex:[NSNumber numberWithInt:0]];
+    [user setSpeedIndex:[NSNumber numberWithInt:0]];
+    [user setStrongIndex:[NSNumber numberWithInt:0]];
+    NSError *error = nil;
+    BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
+    if (!isSave) {
+        NSLog(@"error:%@,%@",error,[error userInfo]);
+    }
+    else{
+        NSLog(@"保存成功");
+        [self showAlertViewWithMessage:@"保存成功！"];
+        
+    }
+    
 }
 -(void)initUI{
-//设置圆角
+    //设置圆角
     _userInfoView.layer.cornerRadius = 8;
     _userInfoView.layer.masksToBounds = YES;
     _nameText.delegate=self;
@@ -56,119 +94,15 @@ NSInteger orginY;
     _headImg.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoUserinfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoUserinfoView:)];
     [_headImg addGestureRecognizer:gotoUserinfoTap];
-    ;
+    
     
 }
 
--(IBAction)textFiledReturnEditing:(id)sender {
-    [sender resignFirstResponder];
-}
 - (IBAction)backgroundTap:(id)sender {
-//    [_t1 resignFirstResponder];
-//    [_t2 resignFirstResponder];
-//    NSTimeInterval animationDuration = 0.30f;
-//    
-//    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-//    
-//    [UIView setAnimationDuration:animationDuration];
-//    
-//    CGRect rect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
-//    
-//    self.view.frame = rect;
-    
-    
-    // 发送resignFirstResponder.
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-    
-}
-
-#pragma mark -
-
-#pragma mark 解决虚拟键盘挡住UITextField的方法
-
-- (void)keyboardWillShow:(NSNotification *)noti
-
-{
-    
-    //键盘输入的界面调整
-    
-    //键盘的高度
-    
-    float height = 216.0;
-    
-    CGRect frame = self.view.frame;
-    
-    frame.size = CGSizeMake(frame.size.width, frame.size.height - height);
-    
-    [UIView beginAnimations:@"Curl"context:nil];//动画开始
-    
-    [UIView setAnimationDuration:0.30];
-    
-    [UIView setAnimationDelegate:self];
-    
-    [self.view setFrame:frame];
-    
-    [UIView commitAnimations];
-    
+    [DaiDodgeKeyboard textFieldDone];
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-
-{
-    
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    
-    NSTimeInterval animationDuration = 0.30f;
-    
-    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-    
-    [UIView setAnimationDuration:animationDuration];
-    CGRect rect = CGRectMake(0.0f,orginY, self.view.frame.size.width, self.view.frame.size.height);
-    //CGRect rect = CGRectMake(0.0f, 20.0f, self.view.frame.size.width, self.view.frame.size.height);
-    
-    self.view.frame = rect;
-    
-    [UIView commitAnimations];
-    
-    [textField resignFirstResponder];
-    
-    return YES;
-    
-}
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-
-{
-    if(orginY==-1){
-         orginY=self.view.frame.origin.y;
-    }
-   
-    CGRect frame = textField.frame;
-    NSLog(@"%f,%f",textField.frame.origin.y,self.view.frame.size.height);
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
-    
-    NSTimeInterval animationDuration = 0.30f;
-    
-    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
-    
-    [UIView setAnimationDuration:animationDuration];
-    
-    float width = self.view.frame.size.width;
-    
-    float height = self.view.frame.size.height;
-    
-    if(offset > 0)
-        
-    {
-        
-        CGRect rect = CGRectMake(0.0f, -offset,width,height);
-        self.view.frame = rect;
-        
-    }
-    
-    [UIView commitAnimations];
-    
-}
 
 #pragma mark -
 
@@ -196,37 +130,39 @@ NSInteger orginY;
         }else if (buttonIndex == 1) {
             _sexText.text=@"女";
         }
-    
+        
     }else{
         if (buttonIndex == 0) {
-       
+            
             [self photoFromCamera];
         }else if (buttonIndex == 1) {
             [self photoFromAlbum];
             
+        }
     }
-    }
-   
+    
 }
-
+/*
+ 选取照片模块
+ */
 //选取照片
 //             - (void)gotoUserinfoView:(id)sender {
 - (void)gotoUserinfoView:(id)sender {
-//    userView= [[UserViewController alloc] init];
-//    [self.navigationController pushViewController:userView animated:YES];
+    //    userView= [[UserViewController alloc] init];
+    //    [self.navigationController pushViewController:userView animated:YES];
     
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:nil
                                   delegate:self
                                   cancelButtonTitle:@"取消"
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"拍照", @"从相册选择",nil];
+    //    [actionSheet add]
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-     [actionSheet setTag:2];
+    [actionSheet setTag:2];
     [actionSheet showInView:self.view];
-
+    
 }
 
 
@@ -282,22 +218,26 @@ NSInteger orginY;
     //NSLog(@"%@",info);
     //保存原始图片
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self saveImage:image withName:@"currentImage.png"];
-    
+    [_headImg setImage:image];
+    photo=[[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+    //if(photo==nil){
+    NSDate *datenow = [NSDate date];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+    photo=[timeSp stringByAppendingString:@".png"];
+    //}
 }
 
 //保存图片
-- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+- (NSString *) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
     NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
     // 获取沙盒目录
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
     // 将图片写入文件
     [imageData writeToFile:fullPath atomically:NO];
-    //将选择的图片显示出来
-    [_headImg setImage:[UIImage imageWithContentsOfFile:fullPath]];
     //将图片保存到disk
-    UIImageWriteToSavedPhotosAlbum(currentImage, nil, nil, nil);
+    //UIImageWriteToSavedPhotosAlbum(currentImage, nil, nil, nil);
+    return fullPath;
 }
 
 //取消操作时调用
@@ -305,7 +245,9 @@ NSInteger orginY;
     [picker dismissViewControllerAnimated:YES completion:^{
     }];
 }
-
+/*
+ 选取照片模块
+ */
 
 - (void)didReceiveMemoryWarning
 {
@@ -314,4 +256,25 @@ NSInteger orginY;
 }
 
 
+#pragma mark -
+-(NSArray *)inputArray{
+    NSArray *array=[[NSArray alloc]initWithObjects:_nameText,_ageText,_hightText,_weightText, nil];
+    return array;
+}
+
+-(Boolean)prev:(UIView *)view{
+    if(view==_ageText){
+        [self showSheet:self.sexBtn];
+        return false;
+    }
+    return true;
+}
+
+-(Boolean)next:(UIView *)view{
+    if(view==_nameText){
+        [self showSheet:self.sexBtn];
+        return false;
+    }
+    return true;
+}
 @end

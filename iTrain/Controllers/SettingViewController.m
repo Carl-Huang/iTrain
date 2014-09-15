@@ -114,7 +114,8 @@
 
     }else if(indexPath.row==2){
         //        跳转到百科页面
-        
+
+
         
         if (DEVICE_IS_IPHONE5) {
            _baike= [[BaiKeViewController alloc] initWithNibName:@"BaiKeViewController4" bundle:nil];

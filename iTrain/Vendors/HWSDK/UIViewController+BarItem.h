@@ -31,7 +31,7 @@
 -(void)setRightCustomBarItems:(UIView*)view;
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector;
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets;
-
+-(void)setRightCustomBarItemState:(BOOL)isHide;
 /*
  *  @desc 生成导航栏上面的按钮
  *  @param NSString imageName 图标名称

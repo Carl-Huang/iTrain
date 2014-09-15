@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface UserInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "DaiDodgeKeyboard.h"
+#import "User.h"
+@interface UserInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,KeyboardDelegate>
 @property (nonatomic, retain) NSArray *dataList;
 @property (nonatomic, retain) NSArray *imageList;
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (weak, nonatomic)  UIImageView*headImg;
+@property (weak ,nonatomic)    UITextField *edit;
+@property (weak, nonatomic) IBOutlet UIButton *editBtn;
+
+@property(nonatomic,strong)User *user;
 
 
 @end

@@ -25,7 +25,9 @@ static KWPopoverView *popView;
     }
     return self;
 }
-
++(void)ReShow{
+    popView=nil;
+}
 + (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView
 {
     if(popView){
@@ -75,35 +77,6 @@ static KWPopoverView *popView;
 }
 - (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView
 {
-//    self.boxFrame = cView.frame;
-//    self.boxFrame = CGRectMake(cView.frame.origin.x,65.0f,cView.frame.size.width,cView.frame.size.height);
-//    self.contentView = cView;
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    if(!window) {
-//        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-//    }
-//    UIView *topView = [[window subviews] objectAtIndex:0];
-//    
-//    CGPoint topPoint = [topView convertPoint:point fromView:view];
-//    CGRect topViewBounds = topView.bounds;
-//    _contentView.frame = _boxFrame;
-//    _contentView.hidden = NO;
-//    [self addSubview:_contentView];
-//    
-//    self.layer.anchorPoint = CGPointMake(topPoint.x / topViewBounds.size.width, topPoint.y / topViewBounds.size.height);
-//    self.frame = topViewBounds;
-//    [self setNeedsDisplay];
-//    
-//    [topView addSubview:self];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-//    tap.delegate=self;
-//    [self addGestureRecognizer:tap];
-//    
-//    self.userInteractionEnabled = YES;
-//    
-//    self.alpha = 0.f;
-//    self.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-    
     [UIView animateWithDuration:0.2f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.alpha = 1.f;
         self.transform = CGAffineTransformMakeScale(1.05f, 1.05f);

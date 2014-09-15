@@ -12,19 +12,23 @@
 #import <AudioToolbox/AudioToolbox.h>
 #define Peripheral_Count 1
 typedef void (^DiscoverNewPeripheralHandler)(void);
-typedef void (^SendDataHandler)(NSString *st);
+typedef void (^CloseHandler)(void);
+typedef void (^SendDataHandler)(NSString *st,CBPeripheral * peripheral);
 typedef void (^ConnectedPeripheralHandler)(CBPeripheral * peripheral);
 typedef void (^ConnectedAllCompleteHandler)(CBPeripheral * peripheral);
 typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 @interface CBLEManager : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate>
 @property (nonatomic,readonly) CBCentralManager * bleCentralManager;
-@property (nonatomic,retain) CBPeripheral * peripheral;
+@property (nonatomic,strong)NSMutableArray *peripherals;
+@property (nonatomic,strong)NSMutableDictionary *writecharacteristics;
+@property (nonatomic,strong)NSMutableDictionary *receivecharacteristics;
+//@property (nonatomic,retain) CBPeripheral * peripheral;
 @property (nonatomic,retain) NSMutableArray * connectedPeripherals;
 @property (nonatomic,retain) NSMutableArray * foundPeripherals;
-@property (nonatomic,retain) CBCharacteristic * characteristicForWrite;
 @property (nonatomic,copy) DiscoverNewPeripheralHandler discoverHandler;
 @property (nonatomic,copy) ConnectedPeripheralHandler connectedHandler;
 @property (nonatomic,copy) ConnectedAllCompleteHandler connectedAllCompleteHandler;
+@property (nonatomic,copy) CloseHandler closeHandler;
 @property (nonatomic,copy) DisconnectPeripheralHandler disconnectHandler;
 @property (nonatomic,copy) SendDataHandler sendDataHandler;
 @property (nonatomic ,copy)NSArray *modelArray;
@@ -39,6 +43,7 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 -(void)sendData:(NSData *)data;
 -(void)createData:(NSArray *)array;
 -(BOOL)isConnected;
+-(void)createData:(NSArray *)array withCBPeripheral:(CBPeripheral *)peripheral;
 -(NSArray *)getModel;
 
 

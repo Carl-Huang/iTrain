@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <ShareSDK/ShareSDK.h>
+#import "Record.h"
 
-@interface ExerciseRecordDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface ExerciseRecordDetailViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weekLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 
-@property (nonatomic, retain) NSArray *dateList;
-@property (nonatomic, retain) NSArray *timeList;
-@property (nonatomic, retain) NSArray *nameList;
-@property (nonatomic, retain) NSArray *imageList;
+@property (weak, nonatomic) IBOutlet UIView *popView;
+@property (weak, nonatomic) IBOutlet UIImageView *popWx;
+@property (weak, nonatomic) IBOutlet UIImageView *popFb;
+@property (weak, nonatomic) IBOutlet UIButton *popCancel;
 
+@property (nonatomic, strong) Record *record;
 @end

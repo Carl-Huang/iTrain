@@ -8,19 +8,25 @@
 
 #import "AppDelegate.h"
 #import "WXApi.h"
-
+#import "APService.h"
 
 @implementation AppDelegate
-
+@synthesize managedObjectModel=_managedObjectModel;
+@synthesize managedObjectContext=_managedObjectContext;
+@synthesize persistentStoreCoordinator=_persistentStoreCoordinator;
+@synthesize eventDB=_eventDB;
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    
+    application.applicationIconBadgeNumber = 0;
     /**
      注册SDK应用，此应用请到http://www.sharesdk.cn中进行注册申请。
      此方法必须在启动时调用，否则会限制SDK的使用。
      **/
- [ShareSDK registerApp:@"2f5f22504fd1"];     //参数为ShareSDK官网中添加应用后得到的AppKey
-    
+    [ShareSDK registerApp:@"2f5f22504fd1"];     //参数为ShareSDK官网中添加应用后得到的AppKey
+
     //如果使用服务中配置的app信息，请把初始化代码改为下面的初始化方法。
     //    [ShareSDK registerApp:@"iosv1101" useAppTrusteeship:YES];
     [self initializePlat];
@@ -39,16 +45,24 @@
     [ShareSDK addNotificationWithName:SSN_USER_INFO_UPDATE
                                target:self
                                action:@selector(userInfoUpdateHandler:)];
-    
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                   UIRemoteNotificationTypeSound |
+                                                   UIRemoteNotificationTypeAlert)];
+    // Required
+    [APService setupWithOption:launchOptions];
  
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-     rootView = [[MainViewController alloc] init];
-//    rootView.title = @"Root View";
-
+//     rootView = [[MainViewController alloc] init];
+    if (DEVICE_IS_IPHONE5) {
+        rootView= [[MainViewController alloc] initWithNibName:@"MainViewController4" bundle:nil];
+    }else {
+        rootView= [[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
+    }
+    
     self.navController = [[UINavigationController alloc] init];
     [self.navController pushViewController:rootView animated:YES];
     [self.window setRootViewController:_navController];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarStyleDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarMetricsDefault];
     
 //    [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
@@ -67,7 +81,6 @@
      http://open.weixin.qq.com上注册应用，并将相关信息填写以下字段
      **/
     [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885" wechatCls:[WXApi class]];
-    
     /**
      连接Facebook应用以使用相关功能，此应用需要引用FacebookConnection.framework
      https://developers.facebook.com上注册应用，并将相关信息填写到以下字段
@@ -76,17 +89,27 @@
                               appSecret:@"38053202e1a5fe26c80c753071f0b573"];
     
     
+  
+    
     /**
      连接Line应用以使用相关功能，此应用需要引用LineConnection.framework库
      **/
-    [ShareSDK connectLine];
+   // [ShareSDK connectLine];
     
     /**
      连接WhatsApp应用以使用相关功能，此应用需要引用WhatsAppConnection.framework库
      **/
-    [ShareSDK connectWhatsApp];
+   // [ShareSDK connectWhatsApp];
 
 
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    
+    [defaultCenter addObserver:self selector:@selector(networkDidSetup:) name:kAPNetworkDidSetupNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidClose:) name:kAPNetworkDidCloseNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidRegister:) name:kAPNetworkDidRegisterNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidLogin:) name:kAPNetworkDidLoginNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kAPNetworkDidReceiveMessageNotification object:nil];
+    
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -109,7 +132,10 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
-
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -125,24 +151,54 @@
 //        self.viewController.leftSize = self.window.width - (320 - 44.0);
 //    }
 //}
-
-
-- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
-{
-    return [ShareSDK handleOpenURL:url
-                        wxDelegate:self];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // Required
+    [APService registerDeviceToken:deviceToken];
+    
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    return [ShareSDK handleOpenURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation
-                        wxDelegate:self];
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+     application.applicationIconBadgeNumber = 0;
+    // Required
+    [APService handleRemoteNotification:userInfo];
+    [self goTo];
 }
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    
+    // IOS 7 Support Required
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+    application.applicationIconBadgeNumber = 0;
+    [self goTo];
+}
+
+-(void)goTo{
+    [self.navController pushViewController:[[SettingViewController alloc] init] animated:NO];
+    [self.navController pushViewController:[[AboutViewController alloc] init] animated:NO];
+    [self.navController pushViewController:[[SysNotiViewController alloc]init] animated:YES];
+}
+
+//- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+//{
+//    return [ShareSDK handleOpenURL:url
+//                        wxDelegate:self];
+//}
+//
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation
+//{
+//    return [ShareSDK handleOpenURL:url
+//                 sourceApplication:sourceApplication
+//                        annotation:annotation
+//                        wxDelegate:self];
+//}
 
 
 - (void)userInfoUpdateHandler:(NSNotification *)notif
@@ -233,10 +289,7 @@
     [authList writeToFile:[NSString stringWithFormat:@"%@/authListCache.plist",NSTemporaryDirectory()] atomically:YES];
 }
 
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
-{
-    return self.interfaceOrientationMask;
-}
+
 
 #pragma mark - WXApiDelegate
 
@@ -249,6 +302,97 @@
 {
     
 }
+//托管对象
+-(NSManagedObjectModel *)managedObjectModel
+{
+    
+    if (_managedObjectModel!=nil) {
+        return _managedObjectModel;
+    }
+    //    NSURL* modelURL=[[NSBundle mainBundle] URLForResource:@"CoreDataExample" withExtension:@"momd"];
+    //    _managedObjectModel=[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    _managedObjectModel=[NSManagedObjectModel mergedModelFromBundles:nil];
+    return _managedObjectModel;
+}
+//托管对象上下文
+-(NSManagedObjectContext *)managedObjectContext
+{
+    if (_managedObjectContext!=nil) {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator* coordinator=[self persistentStoreCoordinator];
+    if (coordinator!=nil) {
+        _managedObjectContext=[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return _managedObjectContext;
+}
+//持久化存储协调器
+-(NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator!=nil) {
+        return _persistentStoreCoordinator;
+    }
+    //    NSURL* storeURL=[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CoreaDataExample.CDBStore"];
+    //    NSFileManager* fileManager=[NSFileManager defaultManager];
+    //    if(![fileManager fileExistsAtPath:[storeURL path]])
+    //    {
+    //        NSURL* defaultStoreURL=[[NSBundle mainBundle] URLForResource:@"CoreDataExample" withExtension:@"CDBStore"];
+    //        if (defaultStoreURL) {
+    //            [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
+    //        }
+    //    }
+    NSString* docs=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSURL* storeURL=[NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"CoreDataExample.sqlite"]];
+    NSLog(@"path is %@",storeURL);
+    NSError* error=nil;
+    _persistentStoreCoordinator=[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        NSLog(@"Error: %@,%@",error,[error userInfo]);
+    }
+    return _persistentStoreCoordinator;
+}
+
+-(EKEventStore *)eventDB{
+    if(_eventDB!=nil){
+        return _eventDB;
+    }
+    _eventDB=[[EKEventStore alloc]init];
+    return _eventDB;
+}
 
 
+- (void)networkDidSetup:(NSNotification *)notification {
+    //[_infoLabel setText:@"已连接"];
+    NSLog(@"已连接");
+}
+
+- (void)networkDidClose:(NSNotification *)notification {
+    //[_infoLabel setText:@"未连接。。。"];
+    NSLog(@"未连接。。。");
+}
+
+- (void)networkDidRegister:(NSNotification *)notification {
+//[_infoLabel setText:@"已注册"];
+    NSLog(@"已注册");
+}
+
+- (void)networkDidLogin:(NSNotification *)notification {
+    //[_infoLabel setText:@"已登录"];
+    NSLog(@"已登录");
+}
+
+- (void)networkDidReceiveMessage:(NSNotification *)notification {
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *title = [userInfo valueForKey:@"title"];
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    
+    NSLog(@"%@",[NSString stringWithFormat:@"收到消息\ndate:%@\ntitle:%@\ncontent:%@", [dateFormatter stringFromDate:[NSDate date]],title,content]);
+    
+}
 @end

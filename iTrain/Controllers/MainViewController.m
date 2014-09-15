@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "ExerciseMainViewController.h"
-
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 
@@ -43,7 +43,33 @@
     _userinfo.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoUserinfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoUserinfoView:)];
     [_userinfo addGestureRecognizer:gotoUserinfoTap];
-    
+    [self initData];
+}
+
+-(void)initData{
+    AppDelegate *myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    //创建取回数据请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要检索哪种类型的实体对象
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"inManagedObjectContext:myAppDelegate.managedObjectContext];
+    //设置请求实体
+    [request setEntity:entity];
+    //指定对结果的排序方式
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"ascending:NO];
+    NSArray *sortDescriptions = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptions];
+    NSError *error = nil;
+    //执行获取数据请求，返回数组
+    NSMutableArray *mutableFetchResult = [[myAppDelegate.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResult == nil) {
+        NSLog(@"Error: %@,%@",error,[error userInfo]);
+    }
+    for(User *user in mutableFetchResult){
+        if([[user isChoose] boolValue]){
+            [myAppDelegate setUser:user];
+            return;
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,20 +93,17 @@
    
     [self.navigationController pushViewController:_ecerciseView animated:YES];
 }
+
 - (void)gotoSettingView:(id)sender {
     _settingView= [[SettingViewController alloc] init];
     [self.navigationController pushViewController:_settingView animated:YES];
 }
-//- (void)gotoSettingView:(id)sender {
-//    _about= [[AboutViewController alloc] init];
-//    [self.navigationController pushViewController:_about animated:YES];
-//}
-//- (void)gotoUserinfoView:(id)sender {
-//    _userinfoView= [[UserInfoViewController alloc] init];
-//    [self.navigationController pushViewController:_userinfoView animated:YES];
-//}
+
 - (void)gotoUserinfoView:(id)sender {
-    userView= [[UserViewController alloc] init];
+    if(userView==nil){
+        userView= [[UserViewController alloc] init];
+
+    }
     [self.navigationController pushViewController:userView animated:YES];
 }
 

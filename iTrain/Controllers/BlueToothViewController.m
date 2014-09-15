@@ -10,19 +10,19 @@
 #import "CBLEManager.h"
 #import "CBLEPeriphral.h"
 #import "Device.h"
-
+#import "DXAlertView.h"
 
 @interface BlueToothViewController ()
-@property (nonatomic,strong) NSArray * dataSource;
+@property (nonatomic,strong) NSMutableArray * dataSource;
 @end
-
+BOOL isScan;
 @implementation BlueToothViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _dataSource = @[];
+        _dataSource = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -36,21 +36,20 @@
     self.view.backgroundColor=bg;
     _tv.backgroundColor=bg;
     _tv.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
-    //    self.userTabelView = tableView;
-    //    禁止滑动
-    //    _userTabelView.scrollEnabled = NO;
-    
-     _tv.delegate = self;
-        _tv.dataSource = self;
+    _tv.delegate = self;
+    _tv.dataSource = self;
     [self setExtraCellLineHidden:_tv];
     [self.view addSubview:_tv];
-
+    
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataSource.count;
+    if (isScan) {
+        return 1;
+    }else {
+        return _dataSource.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,54 +58,40 @@
     if(!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"BlueToothCell" owner:self options:nil]lastObject];
     }
-//    cell.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ul_ti"]];
-//    int row=[indexPath row];
-    
-    CBPeripheral * peripheral = _dataSource[indexPath.row];
-    cell.nameLabel.text = peripheral.name;
-    
-    //cell.nameLabel.text=[_dataSource objectAtIndex:row];
-    //    禁止选中效果
-//    cell.nameLabel.text = @"ll";
-//    [cell.connectLabel setHidden:NO];
+    if (isScan) {
+        cell.searchLabel.hidden=NO;
+    }else{
+        cell.searchLabel.hidden=YES;
+        cell.nameLabel.hidden=NO;
+        cell.iconImg.hidden=NO;
+        cell.connectLabel.hidden=NO;
+        CBPeripheral * peripheral = _dataSource[indexPath.row];
+        if(peripheral.isConnected){
+            cell.connectLabel.text=@"已连接";
+        }else{
+            cell.connectLabel.text=@"未连接";
+        }
+        cell.nameLabel.text = peripheral.name;
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if(isScan){
+        [tableView reloadData];
+        return;
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CBPeripheral * peripheral = _dataSource[indexPath.row];
     if(peripheral.isConnected)
     {
-        
-       
         return ;
     }
     
-//    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.labelText = @"Connecting...";
-   // [[CBLEManager sharedManager] ]
     [[CBLEManager sharedManager] connectToPeripheral:peripheral];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        if([CBLEManager sharedManager].peripheral == nil)
-        {
-           // hud.labelText = @"Time out";
-//[hud hide:YES afterDelay:1];
-            [[CBLEManager sharedManager] disconnectFromPeripheral:peripheral];
-            return ;
-        }
-        
-        if([CBLEManager sharedManager].characteristicForWrite == nil)
-        {
-           // hud.labelText = @"Time out";
-            //[hud hide:YES afterDelay:1];
-            [[CBLEManager sharedManager] disconnect];
-        }
-        
-    });
+   
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,29 +115,54 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"蓝牙连接";
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [[CBLEManager sharedManager] stopScan];
     [[CBLEManager sharedManager] startScan];
+    
+    _dataSource = [[CBLEManager sharedManager] foundPeripherals];
+    if(_dataSource.count==0){
+        isScan=YES;
+    }else{
+        isScan=NO;
+    }
     [[CBLEManager sharedManager] setDiscoverHandler:^(void){
         _dataSource = [[CBLEManager sharedManager] foundPeripherals];
+        isScan=NO;
         [_tv reloadData];
     }];
     
     [[CBLEManager sharedManager] setConnectedHandler:^(CBPeripheral * peripheral){
-
+        
     }];
     
     [[CBLEManager sharedManager] setConnectedAllCompleteHandler:^(CBPeripheral * peripheral){
-        
-        //[MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self getMoelData];
+        [self getMoelData:peripheral];
     }];
     
     [_tv reloadData];
 }
 
--(void)getMoelData{
-    [[CBLEManager sharedManager] createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x03], nil]];
+-(void)getMoelData:(CBPeripheral *)per{
+    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:@"蓝牙连接成功" leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alert show];
+        alert.leftBlock = ^() {
+            
+        };
+        alert.rightBlock = ^() {
+            [self.navigationController popViewControllerAnimated:YES];
+            //[_tv reloadData];
+        };
+        alert.dismissBlock = ^() {
+            NSLog(@"Do something interesting after dismiss block");
+        };
+        
+    }];
+    [[CBLEManager sharedManager] createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x03], nil] withCBPeripheral:per];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [[CBLEManager sharedManager] setSendDataHandler:nil];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

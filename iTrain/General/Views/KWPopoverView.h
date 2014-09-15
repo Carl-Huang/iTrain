@@ -14,5 +14,6 @@
 }
 + (void)showPopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView;
 +(void)Dismiss;
++(void)ReShow;
 @end
 

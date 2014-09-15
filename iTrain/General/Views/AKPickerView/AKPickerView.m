@@ -162,11 +162,12 @@
     }
 	cell.label.highlightedTextColor = self.highlightedTextColor;
 	cell.label.font = self.font;
-		if ([cell.label respondsToSelector:@selector(setAttributedText:)]) {
+    if ([cell.label respondsToSelector:@selector(setAttributedText:)]) {
 		cell.label.attributedText = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: self.font}];
 	} else {
 		cell.label.text = title;
 	}
+    cell.label.backgroundColor=[UIColor clearColor];
     cell.label.frame=CGRectMake(cell.label.frame.origin.x, cell.label.frame.origin.y,cell.frame.size.width,cell.frame.size.height);
     [cell.label setTextAlignment:NSTextAlignmentCenter];
 	return cell;
@@ -176,7 +177,7 @@
 {
 	NSString *title = [self.delegate pickerView:self titleForItem:indexPath.item];
 	CGSize size;
-     UIFont *font=[UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    UIFont *font=[UIFont fontWithName:@"HelveticaNeue-Light" size:20];
 	if ([title respondsToSelector:@selector(sizeWithAttributes:)]) {
 		size = [title sizeWithAttributes:@{NSFontAttributeName: self.font}];
 	} else {

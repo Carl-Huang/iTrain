@@ -40,6 +40,9 @@
     self.navigationItem.rightBarButtonItem = [self customBarItem:imageName action:selector];
 }
 
+-(void)setRightCustomBarItemState:(BOOL)isHide{
+     [self.navigationItem.rightBarButtonItem.customView setHidden:isHide];
+}
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets
 {
     self.navigationItem.rightBarButtonItem = [self customBarItem:imageName action:selector size:CGSizeMake(60, 32) imageEdgeInsets:sets];

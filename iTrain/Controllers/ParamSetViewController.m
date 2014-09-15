@@ -7,7 +7,7 @@
 //
 
 #import "ParamSetViewController.h"
-
+#import "AppDelegate.h"
 
 @interface ParamSetViewController () <AKPickerViewDelegate>
 
@@ -42,11 +42,11 @@ NSMutableArray *modelArray;
 {
     [super viewDidLoad];
     self.pickerView.delegate = self;
-//	[self.view addSubview:self.pickerView];
+    //	[self.view addSubview:self.pickerView];
     self.titles=[[NSMutableArray alloc]initWithArray:
-  @[@"100",@"200",@"300",@"400",@"500",@"600",@"700"]];
+                 @[@"100",@"200",@"300",@"400",@"500",@"600",@"700"]];
     self.titles2=[[NSMutableArray alloc]initWithArray:
-  @[@"10",@"20",@"30",@"40",@"50",@"60",@"70",@"80"]];
+                  @[@"10",@"20",@"30",@"40",@"50",@"60",@"70",@"80"]];
     self.pickerView2.delegate = self;
 	[self.pickerView reloadData];
     [self.pickerView2 reloadData];
@@ -60,31 +60,32 @@ NSMutableArray *modelArray;
     [self.pickerView2 selectItem:hzIndex animated:NO];
     //设置按钮按下状态图片
     [_save setImage:[UIImage imageNamed:@"baocun.png"] forState:UIControlStateNormal];
-     [_save setImage:[UIImage imageNamed:@"baocun_1.png"] forState:UIControlStateHighlighted];
-     [_save addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    [_save setImage:[UIImage imageNamed:@"baocun_1.png"] forState:UIControlStateHighlighted];
+    [_save addTarget:self action:@selector(saveUser) forControlEvents:UIControlEventTouchUpInside];
 }
 
 /**设置参数**/
-- (void)save{
-    if([[CBLEManager sharedManager] isConnected]){
-        [modelArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:hzIndex]];
-        [modelArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:usIndex]];
-        [[CBLEManager sharedManager] createData:modelArray];
-    }
+- (void)saveUser{
+    AppDelegate *app=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *user=app.user;
+    [user setUzIndex:[NSNumber numberWithInt:usIndex]];
+    [user setHzIndex:[NSNumber numberWithInt:hzIndex]];
+    NSError *error=nil;
+    [app.managedObjectContext save:&error];
 }
 
 
 /**获取蓝牙连接之后返回的设备模式相关信息，并且初始化显示**/
 -(void)setModel{
-    NSArray *temparray=[[CBLEManager sharedManager] getModel];
-    if(temparray==nil||temparray.count==0){
+    AppDelegate *app=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *user=app.user;
+    if(user==nil){
         usIndex=0;
         hzIndex=0;
     }else{
-        modelArray=[[NSMutableArray alloc]initWithArray:temparray];
-        hzIndex=[(NSNumber*)[modelArray objectAtIndex:0] integerValue];
-        usIndex=[(NSNumber*)[modelArray objectAtIndex:1] integerValue];
-
+        hzIndex=[[user hzIndex] integerValue];
+        usIndex=[[user uzIndex] integerValue];
+        
     }
 }
 

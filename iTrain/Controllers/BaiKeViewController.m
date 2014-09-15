@@ -41,7 +41,7 @@
     index = 0;
     //_tittleView.backgroundColor=[UIColor redColor];
     //[_tittleView setBackgroundColor:[UIColor redColor]];
-	imgArr= [NSArray arrayWithObjects:@"setting_renti.png",@"setting_renti22.png",nil];
+	imgArr= [NSArray arrayWithObjects:@"setting_renti.png",@"setting_renti2.png",nil];
 	klpImgArr = [[NSMutableArray alloc] initWithCapacity:2];
     CGSize size = self.imgScroll.frame.size;
     hight=size.height-60;

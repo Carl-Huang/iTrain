@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SuggestViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextView *tv;
+@property (weak, nonatomic) IBOutlet UIButton *save;
 
 @end

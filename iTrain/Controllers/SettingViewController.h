@@ -16,8 +16,8 @@
 @interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     BaiKeViewController *_baike;
-     AboutViewController *_about;
-        BlueToothViewController *_blueTooth;
+    AboutViewController *_about;
+    BlueToothViewController *_blueTooth;
     ParamSetViewController *_paramSet;
 }
 @property (nonatomic, retain) NSArray *dataList;
