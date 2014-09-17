@@ -31,6 +31,9 @@
     AboutViewController * _about;
     UserViewController *userView;
 }
+@property (weak, nonatomic) IBOutlet UILabel *UserTv;
+@property (weak, nonatomic) IBOutlet UILabel *TrainTv;
+@property (weak, nonatomic) IBOutlet UILabel *SettingTv;
 @property (strong, nonatomic) UIWindow *window;
 @property (weak, nonatomic) IBOutlet UIImageView *exercise;
 

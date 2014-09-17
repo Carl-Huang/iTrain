@@ -15,6 +15,7 @@
 }
 
 
+@property (weak, nonatomic) IBOutlet UILabel *BaiKeTitle;
 
 @property (weak, nonatomic) IBOutlet UILabel *page;
 

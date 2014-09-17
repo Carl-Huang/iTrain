@@ -31,7 +31,7 @@ AppDelegate *myAppDelegate;
 NSDate *start;
 BOOL isStart;
 BOOL isPuse;
-
+NSArray *parts;
 @implementation ExerciseParamViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,6 +49,7 @@ BOOL isPuse;
         stongIndex=-1;
         speed=1;
         stong=0;
+        parts=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
     }
     return self;
 }
@@ -57,7 +58,7 @@ BOOL isPuse;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"训练";
+    self.title =NSLocalizedString(@"xunlian", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
     myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     start=[NSDate date];
@@ -74,7 +75,7 @@ BOOL isPuse;
         speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
         stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
     }
-
+    
     
     [self.pickerView selectItem:1 animated:NO];
     [self.pickerView selectItem:stongIndex animated:NO];
@@ -83,7 +84,7 @@ BOOL isPuse;
     
     
     [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
-        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"连接错误" contentText:@"设备即将断开连接" leftButtonTitle:nil rightButtonTitle:@"OK"];
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"ConnectError", nil) contentText:NSLocalizedString(@"ConnectErrorTip", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
         alertView.rightBlock=^(){
             [self back];
         };
@@ -109,7 +110,7 @@ BOOL isPuse;
     ExerciseRecordDetailViewController *_detail=[[ExerciseRecordDetailViewController alloc]init];
     _detail.record=record;
     [self.navigationController pushViewController:_detail animated:YES];
-   
+    
 }
 
 - (void)viewDidLoad
@@ -128,7 +129,11 @@ BOOL isPuse;
     longPress.minimumPressDuration = 0.8; //定义按的时间
     
     [_btn2 addGestureRecognizer:longPress];
-    
+    [_setTv setText:NSLocalizedString(@"TrainSetting", nil)];
+    [_speedTv setText:NSLocalizedString(@"Speed", nil)];
+    [_stongTv setText:NSLocalizedString(@"Stong", nil)];
+    [_StartTip setText:NSLocalizedString(@"Start", nil)];
+    [_StopTip setText:NSLocalizedString(@"Puase", nil)];
 }
 
 /**发送按钮响应事件**/
@@ -144,7 +149,7 @@ BOOL isPuse;
         if(isStart){
             [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
                 [[CBLEManager sharedManager] setModelArray:_modelArray];
-                DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"发送成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+                DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"SendSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
                 [alertView show];
                 User *user=myAppDelegate.user;
                 speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
@@ -163,7 +168,7 @@ BOOL isPuse;
     NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x07], nil];
     [[CBLEManager sharedManager]setDisconnectHandler:nil];
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
-        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"停止成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"StopSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         alertView.dismissBlock=^(){
             [self back];
         };
@@ -179,7 +184,7 @@ BOOL isPuse;
     }
     NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x05], nil];
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
-        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"暂停成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"PauseSu", nil)  contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alertView show];
         isPuse=true;
     }];
@@ -191,7 +196,7 @@ BOOL isPuse;
     NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x06], nil];
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
         isPuse=false;
-        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"设备启动成功" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"StartSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alertView show];
     }];
     [[CBLEManager sharedManager] createData:array];

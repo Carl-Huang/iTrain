@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExercisePlanViewController">
             <connections>
+                <outlet property="CreateTv" destination="opy-MG-cqu" id="GQp-3Z-mEb"/>
+                <outlet property="ReNewTv" destination="5CZ-44-AMx" id="AHY-xZ-rPX"/>
                 <outlet property="clockBtn" destination="1Ly-AS-4io" id="t5q-lI-gjc"/>
                 <outlet property="clockLabel" destination="1TL-Lz-nav" id="Qfq-vQ-uNk"/>
                 <outlet property="createPlan" destination="o69-7m-dEf" id="7lO-R6-vIO"/>
@@ -52,7 +54,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重新计划" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5CZ-44-AMx">
-                            <rect key="frame" x="175" y="26" width="42" height="21"/>
+                            <rect key="frame" x="175" y="26" width="54" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -67,18 +69,18 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view contentMode="scaleToFill" id="Xes-c1-j8t">
-            <rect key="frame" x="0.0" y="0.0" width="95" height="28"/>
+            <rect key="frame" x="0.0" y="0.0" width="105" height="28"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="闹钟" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1TL-Lz-nav">
-                    <rect key="frame" x="0.0" y="3" width="29" height="21"/>
+                    <rect key="frame" x="0.0" y="3" width="87" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Ly-AS-4io">
-                    <rect key="frame" x="10" y="0.0" width="85" height="30"/>
+                    <rect key="frame" x="15" y="0.0" width="85" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                 </button>

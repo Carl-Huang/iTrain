@@ -13,6 +13,8 @@
 @property (nonatomic, retain) NSArray *dataList;
 @property (nonatomic, retain) NSArray *imageList;
 
+@property (weak, nonatomic) IBOutlet UILabel *Tip;
+
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic)  UIImageView*headImg;
 @property (weak ,nonatomic)    UITextField *edit;

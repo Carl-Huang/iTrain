@@ -40,7 +40,7 @@ BOOL isScan;
     _tv.dataSource = self;
     [self setExtraCellLineHidden:_tv];
     [self.view addSubview:_tv];
-    
+    [_deviceTv setText:NSLocalizedString(@"Device", nil) ];
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -60,6 +60,7 @@ BOOL isScan;
     }
     if (isScan) {
         cell.searchLabel.hidden=NO;
+        [cell.searchLabel setText: NSLocalizedString(@"Search", nil)];
     }else{
         cell.searchLabel.hidden=YES;
         cell.nameLabel.hidden=NO;
@@ -67,9 +68,9 @@ BOOL isScan;
         cell.connectLabel.hidden=NO;
         CBPeripheral * peripheral = _dataSource[indexPath.row];
         if(peripheral.isConnected){
-            cell.connectLabel.text=@"已连接";
+            cell.connectLabel.text= NSLocalizedString(@"Connected", nil) ;
         }else{
-            cell.connectLabel.text=@"未连接";
+            cell.connectLabel.text= NSLocalizedString(@"UnConnected", nil) ;
         }
         cell.nameLabel.text = peripheral.name;
     }
@@ -113,7 +114,7 @@ BOOL isScan;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"蓝牙连接";
+    self.title = NSLocalizedString(@"BLEConnect", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [[CBLEManager sharedManager] stopScan];
     [[CBLEManager sharedManager] startScan];
@@ -143,7 +144,7 @@ BOOL isScan;
 
 -(void)getMoelData:(CBPeripheral *)per{
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
-        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:@"蓝牙连接成功" leftButtonTitle:nil rightButtonTitle:@"OK"];
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText: NSLocalizedString(@"ConnectSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alert show];
         alert.leftBlock = ^() {
             

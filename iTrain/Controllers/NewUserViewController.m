@@ -14,6 +14,8 @@
 NSInteger orginY;
 UITextField *nowField;
 NSString *photo;
+BOOL iSCreted;
+BOOL isEn;
 @implementation NewUserViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -22,6 +24,8 @@ NSString *photo;
     if (self) {
         // Custom initialization
         orginY=-1;
+        iSCreted=false;
+         isEn=[NSLocalizedString(@"laun", nil) isEqual:@"En"];
     }
     return self;
 }
@@ -36,25 +40,49 @@ NSString *photo;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"新建用户";
+    self.title =NSLocalizedString(@"NewUser", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-    //    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(save)];
-    
-    
     [self setRightCustomBarItems:_save];
     [_save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-    [DaiDodgeKeyboard addRegisterTheViewNeedDodgeKeyboard:self.view inputViewDelegate:self];
+    [_save setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
+    if(!iSCreted){
+        [DaiDodgeKeyboard addRegisterTheViewNeedDodgeKeyboard:self.view inputViewDelegate:self];
+        iSCreted=true;
+    }
     photo=nil;
     
 }
 
 -(void)save:(id)sender{
+    [DaiDodgeKeyboard textFieldDone];
     AppDelegate *myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *user=[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:myAppDelegate.managedObjectContext];
     [user setName:_nameText.text];
     [user setAge:[NSNumber numberWithInteger:[_ageText.text integerValue]]];
-    [user setWeight:[NSNumber numberWithInteger:[_weightText.text integerValue]]];
-    [user setHeight:[NSNumber numberWithInteger:[_hightText.text integerValue]]];
+    NSString *stt;
+    double istt;
+    if(isEn){
+        double m = [_hightText.text doubleValue]/0.0328;
+        stt=[self notRounding:m afterPoint:0];
+        istt=[_hightText.text doubleValue];
+    }else{
+        istt=[_hightText.text floatValue] * 0.0328;
+        stt=[self notRounding:[_hightText.text floatValue] afterPoint:0];
+    }
+    NSString *st;
+    double ist;
+    if(isEn){
+        double m = [_weightText.text doubleValue]/2.2046;
+        st=[self notRounding:m afterPoint:0];
+        ist=[_weightText.text doubleValue];
+    }else{
+        ist=[_weightText.text floatValue] * 2.2046;
+        st=[self notRounding:[_weightText.text floatValue] afterPoint:0];
+    }
+    [user setWeight:[NSNumber numberWithInteger:[st floatValue]]];
+    [user setPound:[NSNumber numberWithDouble:ist]];
+    [user setHeight:[NSNumber numberWithInteger:[stt floatValue]]];
+    [user setFeet:[NSNumber numberWithDouble:istt]];
     [user setSex:[NSNumber numberWithBool:[_sexText.text isEqual:@"男"]]];
     if(photo!=nil){
         photo=[self saveImage:_headImg.image withName:photo];
@@ -71,7 +99,11 @@ NSString *photo;
     }
     else{
         NSLog(@"保存成功");
-        [self showAlertViewWithMessage:@"保存成功！"];
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"SaveSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alert show];
+        alert.dismissBlock=^(){
+            [self.navigationController popViewControllerAnimated:YES];
+        };
         
     }
     
@@ -90,7 +122,12 @@ NSString *photo;
     _weightText.keyboardType = UIKeyboardTypeNumberPad;
     [_sexBtn addTarget:self action:@selector(showSheet:) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    [_NameTip setText:[NSLocalizedString(@"Name", nil) stringByAppendingString:@":"]];
+    [_SexTip setText:[NSLocalizedString(@"Sex", nil) stringByAppendingString:@":"]];
+    [_AgeTip setText:NSLocalizedString(@"NAge", nil)];
+    [_HeightTip setText:NSLocalizedString(@"NHeight", nil)];
+    [_WeightTip setText:NSLocalizedString(@"NWeight", nil)];
+    [_PhotoTip setText:NSLocalizedString(@"Photo", nil)];
     _headImg.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoUserinfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoUserinfoView:)];
     [_headImg addGestureRecognizer:gotoUserinfoTap];
@@ -113,9 +150,9 @@ NSString *photo;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:nil
                                   delegate:self
-                                  cancelButtonTitle:@"取消"
+                                  cancelButtonTitle:NSLocalizedString(@"cancle", nil)
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"男", @"女",nil];
+                                  otherButtonTitles:NSLocalizedString(@"Man", nil), NSLocalizedString(@"WoMan", nil),nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionSheet showInView:self.view];
     [actionSheet setTag:1];
@@ -126,9 +163,9 @@ NSString *photo;
 {
     if ([actionSheet tag]==1) {
         if (buttonIndex == 0) {
-            _sexText.text=@"男";
+            _sexText.text= NSLocalizedString(@"Man", nil);
         }else if (buttonIndex == 1) {
-            _sexText.text=@"女";
+            _sexText.text= NSLocalizedString(@"WoMan", nil);
         }
         
     }else{
@@ -155,9 +192,9 @@ NSString *photo;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:nil
                                   delegate:self
-                                  cancelButtonTitle:@"取消"
+                                  cancelButtonTitle:NSLocalizedString(@"cancle", nil)
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"拍照", @"从相册选择",nil];
+                                  otherButtonTitles:NSLocalizedString(@"Take", nil), NSLocalizedString(@"Choose", nil),nil];
     //    [actionSheet add]
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionSheet setTag:2];
@@ -276,5 +313,24 @@ NSString *photo;
         return false;
     }
     return true;
+}
+
+-(NSString *)notRounding:(float)price afterPoint:(int)position{
+    
+    NSDecimalNumberHandler* roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:position raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    
+    NSDecimalNumber *ouncesDecimal;
+    
+    NSDecimalNumber *roundedOunces;
+    
+    
+    
+    ouncesDecimal = [[NSDecimalNumber alloc] initWithFloat:price];
+    
+    roundedOunces = [ouncesDecimal decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+    
+    
+    return [NSString stringWithFormat:@"%@",roundedOunces];
+    
 }
 @end

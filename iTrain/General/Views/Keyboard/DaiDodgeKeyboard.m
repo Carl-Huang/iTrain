@@ -161,7 +161,6 @@ NSInteger orginY;
 
 +(void) textFieldDone {
     [[self findFirstResponder:uiview] resignFirstResponder];
-    
 }
 
 #pragma mark - UITextViewDelegate

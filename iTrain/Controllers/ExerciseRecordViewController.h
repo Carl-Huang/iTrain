@@ -17,5 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 @property (weak, nonatomic) IBOutlet UIButton *delBtn;
+@property (weak, nonatomic) IBOutlet UILabel *DelTip;
 
 @end

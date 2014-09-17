@@ -17,6 +17,8 @@
 }
 
 
+
+@property (weak, nonatomic) IBOutlet UIButton *NewTip;
 @property (weak, nonatomic) IBOutlet UITableView *contetTabelView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *contentCell;

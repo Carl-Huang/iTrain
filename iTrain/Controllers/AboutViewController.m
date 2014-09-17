@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // 初始化tableView的数据
 //        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"main_bg"]];
-    NSArray *list = [NSArray arrayWithObjects:@"给我评分",@"功能介绍",@"系统通知",@"帮助与反馈", nil];
+    NSArray *list = [NSArray arrayWithObjects:NSLocalizedString(@"Score", nil),NSLocalizedString(@"Introduction", nil),NSLocalizedString(@"Notification", nil),NSLocalizedString(@"Feedback", nil), nil];
 
     self.dataList = list;
     // 设置tableView的数据源
@@ -37,6 +37,8 @@
     self.seTabelView.delegate = self;
 //    设置不允许滑动
     _seTabelView.scrollEnabled = NO;
+    [_TitleTv setText:NSLocalizedString(@"System", nil)];
+    [_Copyright setText:NSLocalizedString(@"CopyRight", nil)];
   
 
 }
@@ -79,7 +81,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"关于系统";
+    self.title =NSLocalizedString(@"About", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
 

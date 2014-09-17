@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BlueToothCell.h"
 @interface BlueToothViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *deviceTv;
 @property (weak, nonatomic) IBOutlet UITableView *tv;
 
 @end

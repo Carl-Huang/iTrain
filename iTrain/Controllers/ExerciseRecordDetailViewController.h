@@ -11,6 +11,8 @@
 #import "Record.h"
 
 @interface ExerciseRecordDetailViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *wxTv;
+@property (weak, nonatomic) IBOutlet UILabel *shareTitle;
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weekLabel;

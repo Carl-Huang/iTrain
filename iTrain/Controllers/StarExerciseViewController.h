@@ -18,6 +18,11 @@
     ExerciseParamViewController *exerciseParam;
      BlueToothViewController *connectBT;
 }
+@property (weak, nonatomic) IBOutlet UIButton *RightBtn;
+@property (weak, nonatomic) IBOutlet UIButton *LeftBtn;
+@property (weak, nonatomic) IBOutlet UILabel *StartTip;
+@property (weak, nonatomic) IBOutlet UILabel *bottomTrain;
+@property (weak, nonatomic) IBOutlet UILabel *topTrain;
 @property (weak, nonatomic) IBOutlet MTImageMapView *popView;
 @property (weak, nonatomic) IBOutlet MTImageMapView *body;
 @property (weak, nonatomic) IBOutlet AKPickerView *paramView;

@@ -36,7 +36,7 @@ UIView *headView;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"帮助与反馈";
+    self.title =NSLocalizedString(@"Feedback", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [self setRightCustomBarItems:_suggestView];
     //    [ _suggestBtn addTarget:self action:@selector(gotoSuggestView) forControlEvents:UIControlEventTouchUpInside];
@@ -60,6 +60,8 @@ UIView *headView;
     _tv.backgroundColor=bg;
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
      [_suggestBtn addTarget:self action:@selector(gotoSuggestView)forControlEvents:UIControlEventTouchUpInside];
+    [_SendTv setText:NSLocalizedString(@"FeedbackSend", nil)];
+    [_TitleTv setText:NSLocalizedString(@"FAQ", nil)];
 }
 
 

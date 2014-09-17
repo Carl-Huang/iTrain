@@ -11,6 +11,11 @@
 
 
 @interface ExerciseParamViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *StopTip;
+@property (weak, nonatomic) IBOutlet UILabel *StartTip;
+@property (weak, nonatomic) IBOutlet UILabel *setTv;
+@property (weak, nonatomic) IBOutlet UILabel *speedTv;
+@property (weak, nonatomic) IBOutlet UILabel *stongTv;
 @property (weak, nonatomic) IBOutlet AKPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet AKPickerView *pickerView2;
 @property (weak, nonatomic) IBOutlet UIButton *btn;

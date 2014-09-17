@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaiKeViewController">
             <connections>
+                <outlet property="BaiKeTitle" destination="vVi-q2-qTH" id="81v-Af-ayI"/>
                 <outlet property="imgScroll" destination="jWC-nC-beF" id="nNY-F9-X8F"/>
                 <outlet property="page" destination="iXa-Or-U9l" id="1hV-nM-Whq"/>
                 <outlet property="tittleView" destination="O68-GZ-pAO" id="DF5-vZ-uF6"/>
@@ -23,7 +24,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人体肌肉分布图示" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vVi-q2-qTH">
-                            <rect key="frame" x="7" y="9" width="149" height="21"/>
+                            <rect key="frame" x="7" y="9" width="246" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HelpViewController">
             <connections>
+                <outlet property="SendTv" destination="ph1-tb-Gw0" id="QMr-zY-rz9"/>
+                <outlet property="TitleTv" destination="Fzk-lc-mny" id="dpE-a4-pur"/>
                 <outlet property="suggestBtn" destination="e4l-GM-4VM" id="uA2-E3-Das"/>
                 <outlet property="suggestView" destination="pmB-na-Pkg" id="axS-su-EUy"/>
                 <outlet property="tv" destination="eAI-6h-lgV" id="9qi-IF-hgl"/>
@@ -36,18 +38,18 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view contentMode="scaleToFill" id="pmB-na-Pkg">
-            <rect key="frame" x="0.0" y="0.0" width="80" height="28"/>
+            <rect key="frame" x="0.0" y="0.0" width="112" height="28"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="意见反馈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph1-tb-Gw0">
-                    <rect key="frame" x="0.0" y="3" width="54" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="意见反馈" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph1-tb-Gw0">
+                    <rect key="frame" x="0.0" y="3" width="86" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4l-GM-4VM">
-                    <rect key="frame" x="59" y="5" width="21" height="18"/>
+                    <rect key="frame" x="91" y="5" width="21" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="detail_fenxiang.png"/>

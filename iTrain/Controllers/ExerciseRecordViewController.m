@@ -16,6 +16,8 @@
 UIColor *bg;
 NSMutableArray *dataarray;
 int deleteRow;
+NSArray *parts;
+UIColor *tipColor;
 @implementation ExerciseRecordViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,6 +27,8 @@ int deleteRow;
         // Custom initialization
         dataarray=[[NSMutableArray alloc]init];
         deleteRow=-1;
+        parts=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
+        
     }
     return self;
 }
@@ -34,16 +38,17 @@ int deleteRow;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"训练";
+    self.title = NSLocalizedString(@"xunlian", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [self initData];
+    [_DelTip setTextColor:[UIColor lightGrayColor]];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // 初始化tableView的数据
-    
+    tipColor=[_DelTip textColor];
     // 设置tableView的数据源
     _tabelView.dataSource = self;
     // 设置tableView的委托
@@ -54,14 +59,10 @@ int deleteRow;
     self.tabelView.backgroundColor=bg;
     //    设置分割线
     self.tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
-    //    self.userTabelView = tableView;
-    //    禁止滑动
-    //    _userTabelView.scrollEnabled = NO;
-    
     [self setExtraCellLineHidden:self.tabelView];
     [_delBtn setEnabled:NO];
     [_delBtn addTarget:self  action:@selector(deleteCell:) forControlEvents:UIControlEventTouchUpInside];
+    [_DelTip setText:NSLocalizedString(@"DelRecord", nil)];
     
 }
 
@@ -82,11 +83,11 @@ int deleteRow;
     int row=[indexPath row];
     Record *trecord=[dataarray objectAtIndex:row];
     scell.year.text = [trecord year];
-    scell.name.text =[trecord part];
+    scell.name.text =[parts objectAtIndex:[[trecord part] integerValue]];
     scell.time.text=[[NSString stringWithFormat:@"%d",[[trecord time] integerValue]] stringByAppendingString:@"min"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
-    [dateFormatter setDateFormat:@"MM月dd日"];
+    [dateFormatter setDateFormat:NSLocalizedString(@"RecordDetailFormat", nil)];
     
     NSString *destDateString = [dateFormatter stringFromDate:[trecord date]];
     scell.date.text=destDateString;
@@ -129,10 +130,9 @@ int deleteRow;
 
 //响应用户单击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    _delBtn.backgroundColor=
-    //     [UIColor colorWithPatternImage:[UIImage imageNamed:@"record_shanchujilu.png"]];
     deleteRow=indexPath.row;
     [_delBtn setEnabled:YES];
+    [_DelTip setTextColor:tipColor];
     [_delBtn setImage:[UIImage imageNamed:@"record_shanchujilu.png"] forState:UIControlStateNormal];
 }
 
@@ -172,12 +172,9 @@ int deleteRow;
     if (mutableFetchResult == nil) {
         NSLog(@"Error: %@,%@",error,[error userInfo]);
     }else{
-//        Record *tt=[NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:myAppDelegate.managedObjectContext];;
-//        [tt setStarttime:[NSDate date]];
-//        [tt setDate:[NSDate date]];
-//        [tt setPart:@""];
-//        [tt setWeekday:@""];
-//        [mutableFetchResult addObject:tt];
+//        Record *record=[NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:myAppDelegate.managedObjectContext];
+//        [record setWeekday:@"1"];
+//        [mutableFetchResult addObject:record];
         dataarray=mutableFetchResult;
         [_tabelView reloadData];
     }

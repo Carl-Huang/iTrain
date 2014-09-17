@@ -17,6 +17,8 @@
     NSMutableArray *father_array;
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *TitleTv;
+@property (weak, nonatomic) IBOutlet UILabel *SendTv;
 @property (weak, nonatomic) IBOutlet UITableView *tv;
 @property (weak, nonatomic) IBOutlet UIView *suggestView;
 @property (weak, nonatomic) IBOutlet UIButton *suggestBtn;

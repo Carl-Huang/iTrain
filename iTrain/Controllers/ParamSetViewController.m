@@ -35,7 +35,7 @@ NSMutableArray *modelArray;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"高级设置";
+    self.title =NSLocalizedString(@"AdSetting", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];}
 
 - (void)viewDidLoad
@@ -62,6 +62,10 @@ NSMutableArray *modelArray;
     [_save setImage:[UIImage imageNamed:@"baocun.png"] forState:UIControlStateNormal];
     [_save setImage:[UIImage imageNamed:@"baocun_1.png"] forState:UIControlStateHighlighted];
     [_save addTarget:self action:@selector(saveUser) forControlEvents:UIControlEventTouchUpInside];
+    [_HzTv setText:NSLocalizedString(@"Hz", nil)];
+    [_Pw setText:NSLocalizedString(@"Pulse-Width", nil)];
+    [_SettingTv setText:NSLocalizedString(@"Adparameters", nil)];
+    [_saveTip setText:NSLocalizedString(@"Save", nil)];
 }
 
 /**设置参数**/

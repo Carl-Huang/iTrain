@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BlueToothViewController">
             <connections>
+                <outlet property="deviceTv" destination="dWm-GG-3Eq" id="ouO-xG-34K"/>
                 <outlet property="tv" destination="ONW-Lo-C6U" id="gbD-Lv-x9P"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -23,7 +24,7 @@
                     <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.49019610879999997" blue="0.49019610879999997" alpha="1" colorSpace="deviceRGB"/>
                 </tableView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dWm-GG-3Eq">
-                    <rect key="frame" x="14" y="37" width="42" height="21"/>
+                    <rect key="frame" x="14" y="37" width="74" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController">
             <connections>
+                <outlet property="NewTip" destination="fCs-un-qAO" id="bWz-xV-U3U"/>
                 <outlet property="addBtn" destination="s5D-VB-h70" id="ZwO-ZL-DuC"/>
                 <outlet property="contentCell" destination="fJu-Vf-UEz" id="Ehj-eE-b0y"/>
                 <outlet property="contentImg" destination="NmE-m1-CsP" id="sKO-PZ-lkE"/>
@@ -35,7 +36,7 @@
                     <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="ul_xinjian.png">
+                    <state key="normal" image="ul_xinjian2.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -73,8 +74,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23岁" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n96-iq-uW4">
-                                        <rect key="frame" x="109" y="28" width="39" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23岁" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n96-iq-uW4">
+                                        <rect key="frame" x="77" y="28" width="71" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
@@ -92,6 +93,16 @@
                         </tableViewCell>
                     </subviews>
                 </view>
+                <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="fCs-un-qAO">
+                    <rect key="frame" x="86" y="455" width="160" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.18039216101169586" green="0.85490202903747559" blue="0.84313732385635376" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -99,7 +110,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ul_xinjian.png" width="320" height="49"/>
+        <image name="ul_xinjian2.png" width="320" height="49"/>
         <image name="user_icon1.png" width="22" height="21"/>
     </resources>
 </document>

@@ -57,10 +57,11 @@ UIView *headView;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"系统通知";
+    self.title = NSLocalizedString(@"Notification", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     
     _tv.frame=self.view.frame;
+    
     NSLog(@"%f",_tv.frame.size.height);
     [self initData];
 }
@@ -83,7 +84,7 @@ UIView *headView;
     [[HttpService sharedInstance] news:dic completionBlock:^(id object) {
         NSDictionary *dic=object;
         if([[dic valueForKey:@"success"] boolValue]){
-            [SVProgressHUD dismissWithSuccess:@"数据加载成功"];
+            [SVProgressHUD dismissWithSuccess:NSLocalizedString(@"HttpSu", nil)];
             NSArray *tArray=[dic valueForKey:@"rows"];
             for(int i=0;i<tArray.count;i++){
                 NSDictionary *tDic=[tArray objectAtIndex:i];
@@ -97,12 +98,12 @@ UIView *headView;
             }
             [_tv reloadData];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"数据加载错误" duration:2];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"HttpFaile", nil) duration:2];
         }
         
         
     } failureBlock:^(NSError *error, NSString *reponseString) {
-        [SVProgressHUD dismissWithError:@"数据加载失败"];
+        [SVProgressHUD dismissWithError:NSLocalizedString(@"HttpErroe", nil)];
     }];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

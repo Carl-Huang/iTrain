@@ -17,6 +17,8 @@
 @end
 UIColor *bg;
 BOOL isFirst;
+NSArray *parts;
+NSArray *weekDays;
 @implementation ExerciseRecordDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,6 +26,8 @@ BOOL isFirst;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         isFirst=true;
+        parts=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
+        weekDays=@[NSLocalizedString(@"Sunday", nil),NSLocalizedString(@"Monday", nil),NSLocalizedString(@"Tuesday", nil),NSLocalizedString(@"Wednesday", nil),NSLocalizedString(@"Thursday", nil),NSLocalizedString(@"Friday", nil),NSLocalizedString(@"Saturday",nil)];
     }
     return self;
 }
@@ -48,6 +52,9 @@ BOOL isFirst;
     
     [self setExtraCellLineHidden:self.tabelView];
     _popView.hidden=YES;
+    [_shareTitle setText:NSLocalizedString(@"ShareTitle", nil)];
+    [_wxTv setText:NSLocalizedString(@"WxFriend", nil)];
+
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -67,28 +74,19 @@ BOOL isFirst;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     NSInteger row=[indexPath row];
-    
-    //xy wh
-    //    UITextField *edit=[[UITextField alloc]initWithFrame:CGRectMake(240,12,70,40)];
-    //    [cell addSubview:edit];
-    //    if (row==0) {
-    //        [edit setHidden:YES];
-    //    }else{
-    //        [edit setHidden:NO];
-    //    }
     NSString *st;
     NSString *st1;
     if(row==0){
-        st=@"训练部位";
-        st1=[_record part];
+        st=NSLocalizedString(@"TrainPart", nil);
+        st1=[parts objectAtIndex:[[_record part] integerValue]];
     }else if(row==1){
-        st=@"开始训练时间";
+        st=NSLocalizedString(@"StartTrainTime", nil);
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"HH:mm"];
         NSString *destDateString = [dateFormatter stringFromDate:[_record starttime]];
         st1=destDateString;
     }else{
-        st=@"训练总时长";
+        st=NSLocalizedString(@"TotalTrainTime", nil);
         st1=[[NSString stringWithFormat:@"%d",[[_record time] integerValue]] stringByAppendingString:@"min"];
     }
     cell.textLabel.text= st;
@@ -123,7 +121,7 @@ BOOL isFirst;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"详细记录";
+    self.title =NSLocalizedString(@"RecordDetail", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
     [self setRightCustomBarItem:@"detail_fenxiang.png" action:@selector(popoverBtnClicked:forEvent:)];
     [KWPopoverView ReShow];
@@ -134,8 +132,8 @@ BOOL isFirst;
 -(void)initData{
     [_yearLabel setText:[_record year]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    [dateFormatter setDateFormat:@"MM月dd日"];
+    NSLog(NSLocalizedString(@"RecordDetailFormat", nil));
+    [dateFormatter setDateFormat:NSLocalizedString(@"RecordDetailFormat", nil)];
     
     NSString *destDateString = [dateFormatter stringFromDate:[_record date]];
     
@@ -144,22 +142,8 @@ BOOL isFirst;
     destDateString=[dateFormatter stringFromDate:[_record starttime]];
     [_timeLabel setText:destDateString];
     NSString *st;
-    if ([[_record weekday] isEqual:@"1"]) {
-        st=@"周日";
-    }else  if ([[_record weekday] isEqual:@"2"]){
-        st=@"周一";
-    }else  if ([[_record weekday] isEqual:@"3"]){
-        st=@"周二";
-    }else  if ([[_record weekday] isEqual:@"4"]){
-        st=@"周三";
-    }else  if ([[_record weekday] isEqual:@"5"]){
-        st=@"周四";
-    }else  if ([[_record weekday] isEqual:@"6"]){
-        st=@"周五";
-    }else  if ([[_record weekday] isEqual:@"7"]){
-        st=@"周六";
-    }
-    NSLog(@"%@,%@",[_record weekday],st);
+    NSInteger weekIndex=[[_record weekday] integerValue]-1;
+    st=[weekDays objectAtIndex:weekIndex];
     [_weekLabel setText:st];
 }
 
@@ -185,13 +169,14 @@ BOOL isFirst;
 
 -(void)wxTapped{
     [self tappedCancel];
-    NSString *content=[NSString stringWithFormat:@"我今天做了%@部位的训练%d分钟",[_record part],[[_record time] integerValue]];
+    
+    NSString *content=[NSString stringWithFormat:NSLocalizedString(@"ShareContent", nil),[parts objectAtIndex:[[_record part] integerValue]],[[_record time] integerValue]];
     [self showShare:content ShareType:ShareTypeWeixiSession ImagePath:nil];
 }
 
 -(void)fbTapped{
     [self tappedCancel];
-    NSString *content=[NSString stringWithFormat:@"我今天做了%@部位的训练%d分钟",[_record part],[[_record time] integerValue]];
+    NSString *content=[NSString stringWithFormat:NSLocalizedString(@"ShareContent", nil),[parts objectAtIndex:[[_record part] integerValue]],[[_record time] integerValue]];
     [self showShare:content ShareType:ShareTypeFacebook ImagePath:nil];
 }
 
@@ -214,7 +199,7 @@ BOOL isFirst;
         UIViewController *vc=( UIViewController *)[array objectAtIndex:(array.count-3)];
         [self.navigationController popToViewController:vc animated:YES];
     }else{
-       [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
@@ -231,7 +216,7 @@ BOOL isFirst;
     [screenWindow.layer renderInContext:context];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-   NSData *imageViewData = UIImageJPEGRepresentation(image, 1);
+    NSData *imageViewData = UIImageJPEGRepresentation(image, 1);
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"share1.jpg"];
     // 将图片写入文件
     [imageViewData writeToFile:fullPath atomically:NO];

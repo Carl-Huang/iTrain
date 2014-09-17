@@ -23,6 +23,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *sexBtn;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
+@property (weak, nonatomic) IBOutlet UILabel *NameTip;
+@property (weak, nonatomic) IBOutlet UILabel *SexTip;
+@property (weak, nonatomic) IBOutlet UILabel *AgeTip;
+@property (weak, nonatomic) IBOutlet UILabel *HeightTip;
+@property (weak, nonatomic) IBOutlet UILabel *WeightTip;
+@property (weak, nonatomic) IBOutlet UILabel *PhotoTip;
 
 
 

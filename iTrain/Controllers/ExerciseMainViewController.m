@@ -19,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-            
+        
     }
     return self;
 }
@@ -39,14 +39,17 @@
     _planView.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoPlanView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPlanView:)];
     [_planView addGestureRecognizer:gotoPlanView];
+    [_StartTv setText:NSLocalizedString(@"startxunlian", nil)];
+    [_RecordTv setText:NSLocalizedString(@"TrainRecord", nil)];
+    [_PlanTv setText:NSLocalizedString(@"TrainPlan", nil)];
 }
 #define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 - (void)gotoStartView:(id)sender {
-
+    
     if (DEVICE_IS_IPHONE5) {
         start= [[StarExerciseViewController alloc] initWithNibName:@"StarExerciseViewController4" bundle:nil];
     }else {
-         start= [[StarExerciseViewController alloc] initWithNibName:@"StarExerciseViewController" bundle:nil];
+        start= [[StarExerciseViewController alloc] initWithNibName:@"StarExerciseViewController" bundle:nil];
     }
     
     [self.navigationController pushViewController:start animated:YES];
@@ -63,7 +66,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"训练";
+    self.title =NSLocalizedString(@"xunlian", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
 - (void)didReceiveMemoryWarning

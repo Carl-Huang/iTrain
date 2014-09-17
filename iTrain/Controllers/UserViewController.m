@@ -12,14 +12,16 @@
 #import "UserInfoViewController.h"
 #import "AppDelegate.h"
 #import <AssetsLibrary/ALAsset.h>
+#import <objc/objc.h>
 
+#import <objc/runtime.h>
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
 #import <AssetsLibrary/ALAssetsGroup.h>
 
 #import <AssetsLibrary/ALAssetRepresentation.h>
 
-@interface UserViewController (){
+@interface UserViewController ()<UIGestureRecognizerDelegate>{
     UserViewController* sview;
     NewUserViewController *newUser;
     UserInfoViewController *UserInfo;
@@ -28,6 +30,7 @@
 //@property (nonatomic, readonly)UIImageView *mimageview;
 
 @end
+UIColor *tipColor;
 UIColor *bg;
 NSMutableArray *imageArray;
 @implementation UserViewController
@@ -50,6 +53,7 @@ ALAssetsLibrary* lib;
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,13 +61,14 @@ ALAssetsLibrary* lib;
     [self initUI];
 }
 
+
+
 -(void)initUI{
     _contentView.hidden = YES;
     // 初始化tableView的数据
     
     _dataArray=[[NSMutableArray alloc]init];
-    
-    NSArray *namelist = [NSArray arrayWithObjects:@"详情",@"删除", nil];
+    NSArray *namelist = [NSArray arrayWithObjects:NSLocalizedString(@"Content", nil),NSLocalizedString(@"del", nil), nil];
     NSArray *imagelist = [NSArray arrayWithObjects:@"user_xiangqing@2x.png",@"user_shanchu@2x.png", nil];
     
     self.contentImageList=imagelist;
@@ -90,20 +95,50 @@ ALAssetsLibrary* lib;
     _contetTabelView.scrollEnabled = NO;
     _contetTabelView.tableHeaderView=_contentCell;
     [self setExtraCellLineHidden:_userTabelView];
+    [_addBtn addTarget:self action:@selector(AddBtnDow) forControlEvents:UIControlEventTouchDown];
+    [_addBtn addTarget:self action:@selector(AddBtnUp) forControlEvents:UIControlEventTouchUpOutside];
+    [_addBtn addTarget:self action:@selector(AddBtnUp) forControlEvents:UIControlEventTouchDragOutside];
+    [_addBtn addTarget:self action:@selector(AddBtnDow) forControlEvents:UIControlEventTouchDragEnter];
     
     //设置按钮按下状态图片
     [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian.png"] forState:UIControlStateNormal];
     [_addBtn setImage:[UIImage imageNamed:@"ul_xinjian2.png"] forState:UIControlStateHighlighted];
+    [_addBtn addTarget:self action:@selector(addPage) forControlEvents:UIControlEventTouchUpInside];
     sview=self;
-    [_addBtn addTarget:self action:@selector(addPage)forControlEvents:UIControlEventTouchUpInside];
+    [_NewTip setTitle:NSLocalizedString(@"NewUser", nil) forState:UIControlStateNormal];
+    tipColor=[_NewTip titleColorForState:UIControlStateNormal];
+}
+
+-(void)AddBtnDow{
     
+    [_NewTip setTitleColor:tipColor forState:UIControlStateNormal];
+}
+-(void)AddBtnUp{
+    [_NewTip setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title =NSLocalizedString(@"UserList", nil);
+    [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
     
+    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(popoverBtnClicked:forEvent:)];
+    [self initData];
+    if(_dataArray.count==0){
+        [self setRightCustomBarItemState:YES];
+    }else{
+        [self setRightCustomBarItemState:NO];
+    }
+    [_userTabelView reloadData];
+    [_NewTip setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 }
 
 -(void)update{
     NSError* error=nil;
     [myAppDelegate.managedObjectContext save:&error];
 }
+
 -(void)initData{
     //创建取回数据请求
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -170,7 +205,9 @@ ALAssetsLibrary* lib;
                  }
                  ];
             }else{
-                cell.userImage.image = [UIImage imageWithContentsOfFile:st];
+                UIImage *avImage= [UIImage imageWithContentsOfFile:st];
+                NSLog(@"%f,%f",avImage.size.width,avImage.size.height);
+                cell.userImage.image = avImage;
             }
         }else{
             cell.userImage.image=[UIImage imageNamed:@"user_icon.png"];
@@ -192,10 +229,10 @@ ALAssetsLibrary* lib;
         cell.sview.layer.borderWidth = 0.1;
         cell.sview.layer.borderColor = [[UIColor grayColor] CGColor];
         
-        NSString *string=@"用户";
+        NSString *string=NSLocalizedString(@"UserNo", nil);
         cell.userName.text=[user name];
         cell.userLabel.text=[string stringByAppendingFormat:@"%d",(1+indexPath.row)];
-        cell.userAge.text=[[NSString stringWithFormat:@"%d",[[user age] integerValue]] stringByAppendingString:@"岁"];
+        cell.userAge.text=[NSLocalizedString(@"Age", nil) stringByAppendingFormat:@"%d",[[user age] integerValue]];
         [imageArray addObject:cell.select];
         return cell;
     }else{
@@ -252,22 +289,7 @@ ALAssetsLibrary* lib;
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"用户列表";
-    [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
-   
-    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(popoverBtnClicked:forEvent:)];
-    [self initData];
-    if(_dataArray.count==0){
-        [self setRightCustomBarItemState:YES];
-    }else{
-         [self setRightCustomBarItemState:NO];
-    }
-    [_userTabelView reloadData];
-}
+
 
 -(void)back{
     [KWPopoverView Dismiss];
@@ -275,6 +297,7 @@ ALAssetsLibrary* lib;
 }
 //跳转到新建用户页面
 -(void)addPage{
+    [self AddBtnUp];
     newUser= [[NewUserViewController alloc] init];
     [self.navigationController pushViewController:newUser animated:YES];
     
@@ -295,7 +318,6 @@ ALAssetsLibrary* lib;
     [[imageArray objectAtIndex:_index] setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateHighlighted];
     [self update];
     [tArray addObject:[NSIndexPath indexPathForRow:_index inSection:0]];
-//    [_userTabelView reloadRowsAtIndexPaths:tArray withRowAnimation:UITableViewRowAnimationNone];
     [_userTabelView reloadData];
     [myAppDelegate setUser:user];
 }
@@ -314,11 +336,12 @@ ALAssetsLibrary* lib;
     CGPoint point1 = [touch locationInView:window];
     User *user=[self.dataArray objectAtIndex:_index];
     UILabel *label=(UILabel *)[[_popContentView subviews] objectAtIndex:1];
-    [label setText:[@"用户" stringByAppendingFormat:@"%d",(_index+1)]];
+    [label setText:[NSLocalizedString(@"UserNo", nil) stringByAppendingFormat:@"%d",(_index+1)]];
     UILabel *label1=(UILabel *)[[_popContentView subviews] objectAtIndex:2];
     [label1 setText:[user name]];
     UILabel *label2=(UILabel *)[[_popContentView subviews] objectAtIndex:3];
-    [label2 setText:[[NSString stringWithFormat:@"%d",[[user age] integerValue]] stringByAppendingString:@"岁"]];
+    [label2 setText:[NSLocalizedString(@"Age", nil) stringByAppendingFormat:@"%d",[[user age] integerValue]]];
+    
     NSString *pt=[user photo];
     if(pt!=nil){
         if([pt hasPrefix:@"assets-library"]){
@@ -341,12 +364,12 @@ ALAssetsLibrary* lib;
              }
              ];
         }else{
-             [[[_popContentView subviews] objectAtIndex:0] setImage:[UIImage imageWithContentsOfFile:pt]];
+            [[[_popContentView subviews] objectAtIndex:0] setImage:[UIImage imageWithContentsOfFile:pt]];
         }
     }else{
         [[[_popContentView subviews] objectAtIndex:0] setImage:[UIImage imageNamed:@"user_icon.png"]];
     }
-   
+    
     [KWPopoverView showPopoverAtPoint:point1 inView:_contentView withContentView:_contentView];
 }
 //响应用户单击事件

@@ -20,5 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *startView;
 @property (weak, nonatomic) IBOutlet UIImageView *recordView;
 @property (weak, nonatomic) IBOutlet UIImageView *planView;
+@property (weak, nonatomic) IBOutlet UILabel *StartTv;
+@property (weak, nonatomic) IBOutlet UILabel *RecordTv;
+@property (weak, nonatomic) IBOutlet UILabel *PlanTv;
 
 @end

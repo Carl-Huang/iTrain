@@ -23,6 +23,7 @@ NSInteger tindex;
 NSArray *StartTimeArray;
 NSArray *Partrray;
 NSArray *TimeArray;
+NSArray *parts;
 @implementation ExercisePlanViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,8 +34,9 @@ NSArray *TimeArray;
         dataarray=[[NSMutableArray alloc]init];
         oindex=-1;
         isOpen=NO;
+        parts=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
         StartTimeArray=[[NSArray alloc]initWithObjects:@"06:30",@"06:45",@"07:00",@"07:15",@"18:30",@"18:55",@"19:20",@"19:45", nil];
-        Partrray=[[NSArray alloc]initWithObjects:@"手臂",@"胸部",@"腹部",@"腿部",@"手臂",@"胸部",@"腹部",@"腿部", nil];
+        Partrray=[[NSArray alloc]initWithObjects:@"0",@"1",@"2",@"5",@"0",@"1",@"2",@"5", nil];
         TimeArray=[[NSArray alloc]initWithObjects:@"10",@"10",@"10",@"10",@"20",@"20",@"20",@"20", nil];
     }
     return self;
@@ -52,9 +54,8 @@ NSArray *TimeArray;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"训练计划";
+    self.title = NSLocalizedString(@"TrainPlan", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-    //    [self setRightCustomBarItem:@"ul_kuang.png" action:@selector(popoverBtnClicked:forEvent:)];
     [self setRightCustomBarItems:_notifyView];
     [self initData];
 }
@@ -75,7 +76,9 @@ NSArray *TimeArray;
     [_clockBtn addTarget:self action:@selector(selectClicked:forEvent:)forControlEvents:UIControlEventTouchUpInside];
     [_createPlan addTarget:self action:@selector(gotoCreatePlan) forControlEvents:UIControlEventTouchUpInside];
     [_editPlan addTarget:self action:@selector(editClearPlan) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_clockLabel setText:NSLocalizedString(@"Alert", nil)];
+    [_CreateTv setText:NSLocalizedString(@"NewPlan", nil)];
+    [_ReNewTv setText:NSLocalizedString(@"ReNewPlan", nil)];
 }
 
 //Itme个数
@@ -102,8 +105,8 @@ NSArray *TimeArray;
     scell.num.text=[NSString stringWithFormat:@"%d",(row+1)];
     scell.num.layer.borderColor  = [UIColor darkGrayColor].CGColor;
     scell.num.layer.cornerRadius = 10.0f;
-    scell.name.text=[plan part];
-    
+    scell.name.text=[parts objectAtIndex:[[plan part] integerValue]];
+    [scell.modifyOrDel setTitle:[NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"edit", nil),NSLocalizedString(@"del", nil)] forState:UIControlStateNormal];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     [dateFormatter setDateFormat:@"HH:mm"];
@@ -121,7 +124,7 @@ NSArray *TimeArray;
 
 - (void)twoBtnClicked:(id)sender
 {
-    DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:@"请选择操作类型" leftButtonTitle:@"删除" rightButtonTitle:@"修改"];
+    DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"editType", nil) leftButtonTitle:NSLocalizedString(@"del", nil) rightButtonTitle:NSLocalizedString(@"edit", nil)];
     [alert show];
     alert.leftBlock = ^() {
         [self ClearPlan:[[NSArray alloc]initWithObjects:[dataarray objectAtIndex:[sender tag]], nil] withUI:YES];

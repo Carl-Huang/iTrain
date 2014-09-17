@@ -121,7 +121,7 @@
  */
 - (void)feeback:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * reponseString))failure
 {
-    [self get:@"http://192.168.1.113/mesgInfo/insert.action" parameters:params completionBlock:^(id obj) {
+    [self get:@"http://120.24.53.87:8080/news/mesgInfo/insert.action" parameters:params completionBlock:^(id obj) {
         NSDictionary *dic=(NSDictionary *)obj;
         success(dic);
     } failureBlock:failure];
@@ -135,7 +135,7 @@
  */
 - (void)news:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * reponseString))failure
 {
-    [self get:@"http://192.168.1.113/news/list.action?type=mobile" parameters:params completionBlock:^(id obj) {
+    [self get:@"http://120.24.53.87:8080/news/news/list.action?type=mobile" parameters:params completionBlock:^(id obj) {
         NSDictionary *dic=(NSDictionary *)obj;
         success(dic);
     } failureBlock:failure];

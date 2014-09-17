@@ -15,5 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *save;
 @property (weak, nonatomic) IBOutlet AKPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet AKPickerView *pickerView2;
+@property (weak, nonatomic) IBOutlet UILabel *Pw;
+@property (weak, nonatomic) IBOutlet UILabel *HzTv;
+@property (weak, nonatomic) IBOutlet UILabel *SettingTv;
+@property (weak, nonatomic) IBOutlet UILabel *saveTip;
 
 @end

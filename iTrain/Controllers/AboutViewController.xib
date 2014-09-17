@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController">
             <connections>
+                <outlet property="Copyright" destination="xdc-b7-hIi" id="SJe-Md-rBM"/>
+                <outlet property="TitleTv" destination="omC-kx-RMC" id="fGG-gd-fq1"/>
                 <outlet property="seTabelView" destination="KqR-b2-Uk7" id="vmp-f2-cet"/>
                 <outlet property="view" destination="1" id="25G-xG-rlV"/>
             </connections>
@@ -20,8 +22,8 @@
                     <rect key="frame" x="113" y="26" width="84" height="84"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="肌肉训练系统" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omC-kx-RMC">
-                    <rect key="frame" x="109" y="127" width="102" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="肌肉训练系统" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omC-kx-RMC">
+                    <rect key="frame" x="74" y="127" width="173" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     // 初始化tableView的数据
-    NSArray *list = [NSArray arrayWithObjects:@"蓝牙连接",@"高级设置",@"百科",@"关于APP功能选择", nil];
+    NSArray *list = [NSArray arrayWithObjects:NSLocalizedString(@"BLEConnect", nil),NSLocalizedString(@"Setting", nil),NSLocalizedString(@"Baike", nil),NSLocalizedString(@"AboutApp", nil) ,nil];
     NSArray *imagelist = [NSArray arrayWithObjects:@"setting_lanya",@"setting_shezhi",@"setting_baike",@"setting_app", nil];
     self.dataList = list;
     self.imageList=imagelist;
@@ -94,7 +94,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"设置";
+    self.title =NSLocalizedString(@"Setting", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
 

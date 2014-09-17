@@ -12,10 +12,12 @@
                 <outlet property="popFb" destination="arf-wJ-Q3R" id="sGh-7f-GSs"/>
                 <outlet property="popView" destination="J8F-WE-eaw" id="HYi-yF-ccN"/>
                 <outlet property="popWx" destination="zUe-oi-tFK" id="54t-qW-NhF"/>
+                <outlet property="shareTitle" destination="zol-3P-x5i" id="x2I-RU-5U2"/>
                 <outlet property="tabelView" destination="c1T-Eo-05M" id="vk0-KC-8yX"/>
                 <outlet property="timeLabel" destination="pam-m7-907" id="1z6-J8-lC8"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="weekLabel" destination="ctc-NJ-OQs" id="8wV-gI-gVD"/>
+                <outlet property="wxTv" destination="Vwq-iK-OZv" id="CdT-Lx-VgW"/>
                 <outlet property="yearLabel" destination="Y50-D6-PJv" id="eoz-CN-Qt4"/>
             </connections>
         </placeholder>
@@ -92,7 +94,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_weixin.png" id="zUe-oi-tFK">
-                            <rect key="frame" x="24" y="66" width="55" height="50"/>
+                            <rect key="frame" x="26" y="66" width="55" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_facebook.png" id="arf-wJ-Q3R">
@@ -100,7 +102,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信好友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vwq-iK-OZv">
-                            <rect key="frame" x="25" y="124" width="58" height="21"/>
+                            <rect key="frame" x="25" y="124" width="74" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="highlightedColor"/>

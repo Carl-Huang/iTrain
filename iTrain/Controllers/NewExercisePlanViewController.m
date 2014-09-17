@@ -10,8 +10,8 @@
 
 #import "AppDelegate.h"
 #define ANIMATE_DURATION                        0.25f
-@interface NewExercisePlanViewController ()<UIPickerViewDelegate,UIPickerViewDataSource>{
-   NSArray *fontAry;
+@interface NewExercisePlanViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate>{
+    NSArray *fontAry;
 }
 @end
 UIColor *bg;
@@ -21,6 +21,7 @@ NSString * startText;//开始时间
 NSString * timeLong;//时长
 UITapGestureRecognizer *tapGesture ;
 NSString *part;
+NSInteger partIndex;
 AppDelegate *myAppDelegate;
 @implementation NewExercisePlanViewController
 
@@ -30,8 +31,9 @@ AppDelegate *myAppDelegate;
     if (self) {
         isTime=true;
         part=@"";
-        fontAry=[[NSArray alloc] initWithObjects:@"手臂",@"胸部",@"腹部",@"背部",@"臀部",@"大腿",nil];
+        fontAry=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
         myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+ 
     }
     return self;
 }
@@ -40,7 +42,7 @@ AppDelegate *myAppDelegate;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"训练计划";
+    self.title = NSLocalizedString(@"TrainPlan", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [self setRightCustomBarItems:_save];
     if(_oPlan!=nil){
@@ -55,7 +57,7 @@ AppDelegate *myAppDelegate;
     [_tabelView reloadData];
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewDidDisappear:(BOOL)animated{
     part=@"";
     timeLong=@"";
     startText=@"";
@@ -79,6 +81,9 @@ AppDelegate *myAppDelegate;
     [_save addTarget:self action:@selector(savePlan) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn addTarget:self action:@selector(cancelbuttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [_subBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_save setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
+    [_subBtn setTitle:NSLocalizedString(@"Enter", nil) forState:UIControlStateNormal];
+    [_cancelBtn setTitle:NSLocalizedString(@"cancle", nil) forState:UIControlStateNormal];
     _partPick.delegate=self;
     _partPick.dataSource=self;
 }
@@ -86,13 +91,13 @@ AppDelegate *myAppDelegate;
 -(void)savePlan{
     Plan *sPlan;
     if(_oPlan==nil){
-       sPlan=[NSEntityDescription insertNewObjectForEntityForName:@"Plan" inManagedObjectContext:myAppDelegate.managedObjectContext];
+        sPlan=[NSEntityDescription insertNewObjectForEntityForName:@"Plan" inManagedObjectContext:myAppDelegate.managedObjectContext];
     }else{
         sPlan=_oPlan;
     }
     [sPlan setStartTime:_date];
     [sPlan setTime:[NSNumber numberWithInteger:[[timeLong substringToIndex:(timeLong.length-3)] integerValue]]];
-    [sPlan setPart:part];
+    [sPlan setPart:[NSString stringWithFormat:@"%d",partIndex]];
     NSLog(@"%@",[sPlan eventId]);
     if([sPlan eventId]!=nil){
         NSError *err=nil;
@@ -138,19 +143,20 @@ AppDelegate *myAppDelegate;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     NSInteger row=[indexPath row];
- 
+    
     NSString *st;
     if(row==0){
-        st=@"训练部位";
-        cell.detailTextLabel.text=part;
+        st=NSLocalizedString(@"TrainPart", nil);
+        cell.detailTextLabel.text=[fontAry objectAtIndex:[part integerValue]];
+;
     }else if(row==1){
-        st=@"开始训练时间";
-         cell.detailTextLabel.text=startText;
+        st=NSLocalizedString(@"StartTrainTime", nil);
+        cell.detailTextLabel.text=startText;
         
     }else{
-        st=@"训练总时长";
+        st=NSLocalizedString(@"TotalTrainTime", nil);
         cell.detailTextLabel.text=timeLong;
-
+        
     }
     cell.textLabel.text= st;
     cell.selectionStyle = UITableViewCellStyleValue1;
@@ -161,6 +167,10 @@ AppDelegate *myAppDelegate;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    if(indexPath.row==2){
+        CGRect frame=tableView.frame;
+        [tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, cell.frame.size.height*3)];
+    }
     return cell.frame.size.height;
 }
 
@@ -175,7 +185,9 @@ AppDelegate *myAppDelegate;
 
 //响应用户单击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCancel)];
+    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCancel)];
+    self.view.exclusiveTouch=NO;
+    tapGesture.delegate=self;
     [self.view addGestureRecognizer:tapGesture];
     [_popView setHidden:NO];
     [_popView setAlpha:1];
@@ -197,10 +209,17 @@ AppDelegate *myAppDelegate;
     }
     
 }
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    NSLog(@"%f,%f",(_tabelView.frame.origin.y+_tabelView.frame.size.height),[touch locationInView:self.view].y);
+    if((_tabelView.frame.origin.y+_tabelView.frame.size.height)>[touch locationInView:self.view].y){
+        return _popView.hidden;
+    }else{
+        return true;
+    }
+}
 
 - (void)tappedCancel
 {
-    //[_tabelView performSelector:@selector(<#selector#>)]
     [UIView animateWithDuration:ANIMATE_DURATION animations:^{
         _popView.alpha = 0;
     } completion:^(BOOL finished) {
@@ -209,6 +228,7 @@ AppDelegate *myAppDelegate;
         }
     }];
     [self.view removeGestureRecognizer:tapGesture];
+    [_tabelView reloadData];
 }
 
 
@@ -220,24 +240,24 @@ AppDelegate *myAppDelegate;
         NSString *destDateString = [dateFormatter stringFromDate:_date];
         startText=destDateString;
         [_tabelView reloadData];
-        }else{
-            //设置定时器
-       
-            NSDate *selected = [_pickView date];
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"mm"];
-            
-            NSString *mmDateString = [dateFormatter stringFromDate:selected];
-            [dateFormatter setDateFormat:@"HH"];
-              NSString *hhString = [dateFormatter stringFromDate:selected];
-            int hh=[hhString intValue]*60;
-            int mm=[mmDateString intValue]==0?1:[mmDateString intValue];
-            timeLong=[[NSString stringWithFormat:@"%d",  (hh+mm) ] stringByAppendingString:@" min"];
-            [_tabelView reloadData];
-        }
+    }else{
+        //设置定时器
+        
+        NSDate *selected = [_pickView date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"mm"];
+        
+        NSString *mmDateString = [dateFormatter stringFromDate:selected];
+        [dateFormatter setDateFormat:@"HH"];
+        NSString *hhString = [dateFormatter stringFromDate:selected];
+        int hh=[hhString intValue]*60;
+        int mm=[mmDateString intValue]==0?1:[mmDateString intValue];
+        timeLong=[[NSString stringWithFormat:@"%d",  (hh+mm) ] stringByAppendingString:@" min"];
+        [_tabelView reloadData];
+    }
     [_popView setHidden:YES];
     [self tappedCancel];
-  
+    
 }
 -(void)cancelbuttonPressed{
     [_popView setHidden:YES];
@@ -284,6 +304,7 @@ AppDelegate *myAppDelegate;
 {
     NSString *fontname=[fontAry objectAtIndex:row];
     part=fontname;
+    partIndex=row;
     [_tabelView reloadData];
 }
 

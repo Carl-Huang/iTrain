@@ -59,13 +59,14 @@
     self.imgScroll.showsVerticalScrollIndicator=NO;
     self.imgScroll.delegate=self;
     [self.imgScroll setContentSize:CGSizeMake(size.width * 2,hight-10)];
+    [self.BaiKeTitle setText:NSLocalizedString(@"BaiKeTitle", nil)];
 
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = @"百科";
+    self.title =NSLocalizedString(@"Baike", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
 }
 

@@ -30,7 +30,7 @@
 {
 
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"main_bg"]];
+
     
     _exercise.userInteractionEnabled = YES;
     UITapGestureRecognizer *gotoExerciseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoSecondView:)];
@@ -44,6 +44,9 @@
     UITapGestureRecognizer *gotoUserinfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoUserinfoView:)];
     [_userinfo addGestureRecognizer:gotoUserinfoTap];
     [self initData];
+    [_TrainTv setText:NSLocalizedString(@"xunlian", nil)];
+    [_UserTv setText:NSLocalizedString(@"UserInfo", nil)];
+    [_SettingTv setText:NSLocalizedString(@"Setting", nil)];
 }
 
 -(void)initData{

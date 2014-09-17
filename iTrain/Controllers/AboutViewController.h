@@ -21,6 +21,8 @@
 
     
 }
+@property (weak, nonatomic) IBOutlet UILabel *Copyright;
+@property (weak, nonatomic) IBOutlet UILabel *TitleTv;
 @property (nonatomic, retain) NSArray *dataList;
 
 @property (weak, nonatomic) IBOutlet UITableView *seTabelView;

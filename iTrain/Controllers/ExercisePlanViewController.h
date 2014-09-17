@@ -17,6 +17,8 @@
     ExercisePlanCell * scell;
     NewExercisePlanViewController *createPlanController;
 }
+@property (weak, nonatomic) IBOutlet UILabel *ReNewTv;
+@property (weak, nonatomic) IBOutlet UILabel *CreateTv;
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 @property (weak, nonatomic) IBOutlet UIButton *createPlan;//新加计划
 @property (weak, nonatomic) IBOutlet UIButton *editPlan;//删除计划（重新计划）
