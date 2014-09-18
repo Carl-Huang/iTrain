@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="HzTv" destination="p1f-Nz-Z6c" id="Cuj-g8-4ls"/>
                 <outlet property="Pw" destination="jof-S8-6Ds" id="Uyz-Dq-IWb"/>
+                <outlet property="SaveView" destination="L3i-2u-bLm" id="dPi-2T-GOH"/>
                 <outlet property="SettingTv" destination="6jO-mU-98A" id="sLv-gm-chr"/>
                 <outlet property="pickerView" destination="LiI-54-XW4" id="Sgh-te-o7C"/>
                 <outlet property="pickerView2" destination="AIY-5P-ecC" id="HWo-s5-Cdw"/>
@@ -59,7 +60,7 @@
                 </label>
                 <view contentMode="scaleToFill" id="L3i-2u-bLm">
                     <rect key="frame" x="0.0" y="498" width="320" height="70"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uOb-EC-ai7">
                             <rect key="frame" x="35" y="16" width="250" height="40"/>
@@ -71,7 +72,7 @@
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FHQ-RN-gkd">
                             <rect key="frame" x="35" y="16" width="250" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="highlightedColor"/>
                         </label>

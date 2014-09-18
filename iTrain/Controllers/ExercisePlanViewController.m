@@ -121,7 +121,6 @@ NSArray *parts;
     }
     return scell;
 }
-
 - (void)twoBtnClicked:(id)sender
 {
     DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"editType", nil) leftButtonTitle:NSLocalizedString(@"del", nil) rightButtonTitle:NSLocalizedString(@"edit", nil)];
@@ -137,9 +136,6 @@ NSArray *parts;
         NSLog(@"Do something interesting after dismiss block");
     };
 }
-
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -155,12 +151,6 @@ NSArray *parts;
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
-
-
-
-
-
-
 //#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
 - (void)selectClicked:(id)sender forEvent:(UIEvent *)event{

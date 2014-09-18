@@ -114,15 +114,11 @@
 
     }else if(indexPath.row==2){
         //        跳转到百科页面
-
-
-        
         if (DEVICE_IS_IPHONE5) {
            _baike= [[BaiKeViewController alloc] initWithNibName:@"BaiKeViewController4" bundle:nil];
         }else {
            _baike= [[BaiKeViewController alloc]initWithNibName:@"BaiKeViewController" bundle:nil];
         }
-        
         [self.navigationController pushViewController:_baike animated:YES];
     }else if(indexPath.row==3){
         _about= [[AboutViewController alloc] init];

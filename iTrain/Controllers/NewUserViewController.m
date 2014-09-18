@@ -54,6 +54,12 @@ BOOL isEn;
 }
 
 -(void)save:(id)sender{
+    if([_nameText.text isEqualToString:@""]||[_sexText.text isEqualToString:@""]||[_ageText.text isEqualToString:@""]){
+        
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"InfoIsNil", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alert show];
+      
+    }else{
     [DaiDodgeKeyboard textFieldDone];
     AppDelegate *myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *user=[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:myAppDelegate.managedObjectContext];
@@ -98,6 +104,8 @@ BOOL isEn;
         NSLog(@"error:%@,%@",error,[error userInfo]);
     }
     else{
+       
+        
         NSLog(@"保存成功");
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"SaveSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alert show];
@@ -105,7 +113,7 @@ BOOL isEn;
             [self.navigationController popViewControllerAnimated:YES];
         };
         
-    }
+    }}
     
 }
 -(void)initUI{

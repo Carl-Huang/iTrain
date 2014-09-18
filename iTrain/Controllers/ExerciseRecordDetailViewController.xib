@@ -133,7 +133,7 @@
         <image name="detail_facebook.png" width="47" height="42"/>
         <image name="detail_weixin.png" width="47" height="42"/>
         <image name="shareCancel.png" width="320" height="52"/>
-        <image name="shareTittle.png" width="320" height="42"/>
+        <image name="shareTittle.png" width="46" height="42"/>
         <image name="sharebg.png" width="320" height="112"/>
     </resources>
 </document>

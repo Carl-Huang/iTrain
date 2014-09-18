@@ -63,7 +63,14 @@
     [self.navController pushViewController:rootView animated:YES];
     [self.window setRootViewController:_navController];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarMetricsDefault];
-    
+//    if([OSHelper iOS7])
+//    {
+//        
+//    }
+//    else
+//    {
+//        
+//    }
 //    [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
     /**延长启动页面时间**/

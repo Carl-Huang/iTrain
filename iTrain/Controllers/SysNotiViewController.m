@@ -59,9 +59,10 @@ UIView *headView;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = NSLocalizedString(@"Notification", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-    
-    _tv.frame=self.view.frame;
-    
+    if(![OSHelper iOS7]){
+         _tv.frame=self.view.frame;
+    }
+   
     NSLog(@"%f",_tv.frame.size.height);
     [self initData];
 }
@@ -127,7 +128,12 @@ UIView *headView;
     UILabel *textLabel=[[headView subviews] objectAtIndex:0];
     textLabel.font=font;
     textLabel.text=[father_array objectAtIndex:section];
-    
+    UIImageView *imageView=[[headView subviews] objectAtIndex:2];
+    if(section==second){
+        imageView.image=[UIImage imageNamed:@"notify_click.png"];
+    }else{
+              imageView.image=[UIImage imageNamed:@"notify_default.png"];
+    }
     return headView;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

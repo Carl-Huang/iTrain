@@ -66,6 +66,12 @@ NSMutableArray *modelArray;
     [_Pw setText:NSLocalizedString(@"Pulse-Width", nil)];
     [_SettingTv setText:NSLocalizedString(@"Adparameters", nil)];
     [_saveTip setText:NSLocalizedString(@"Save", nil)];
+    if(![OSHelper iOS7]){
+        CGFloat offset=self.view.frame.size.height-(_SaveView.frame.size.height+_SaveView.frame.origin.y);
+        CGRect newFrame=CGRectMake(_SaveView.frame.origin.x, _SaveView.frame.origin.y+offset, _SaveView.frame.size.width, _SaveView.frame.size.height);
+        [_SaveView setFrame:newFrame];
+    }
+   
 }
 
 /**设置参数**/

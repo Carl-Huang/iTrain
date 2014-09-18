@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *HzTv;
 @property (weak, nonatomic) IBOutlet UILabel *SettingTv;
 @property (weak, nonatomic) IBOutlet UILabel *saveTip;
+@property (weak, nonatomic) IBOutlet UIView *SaveView;
 
 @end

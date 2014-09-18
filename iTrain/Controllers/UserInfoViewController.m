@@ -218,7 +218,9 @@ BOOL isEn;
         photo=[self saveImage:_headImg.image withName:photo];
         [_user setPhoto:photo];
     }
-    
+    for(int i=0;i<textArray.count;i++){
+        [self save:i withView:[textArray objectAtIndex:i]];
+    }
     NSError *error;
     BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
     if (!isSave) {
@@ -386,7 +388,7 @@ BOOL isEn;
 }
 
 -(Boolean)prev:(UIView *)view{
-    [self save:[textArray indexOfObject:view] withView:view];
+//    [self save:[textArray indexOfObject:view] withView:view];
     if([view tag]==4){
         [self showSheet];
         return false;
@@ -395,7 +397,7 @@ BOOL isEn;
 }
 
 -(Boolean)next:(UIView *)view{
-    [self save:[textArray indexOfObject:view] withView:view];
+//    [self save:[textArray indexOfObject:view] withView:view];
     if(view==[tcell viewWithTag:2]){
         [self showSheet];
         return false;

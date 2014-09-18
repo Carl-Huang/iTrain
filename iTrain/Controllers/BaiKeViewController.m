@@ -60,6 +60,8 @@
     self.imgScroll.delegate=self;
     [self.imgScroll setContentSize:CGSizeMake(size.width * 2,hight-10)];
     [self.BaiKeTitle setText:NSLocalizedString(@"BaiKeTitle", nil)];
+    self.view.backgroundColor=[UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];;
+//    self.imgScroll.backgroundColor=[UIColor redColor];
 
 }
 - (void)viewWillAppear:(BOOL)animated

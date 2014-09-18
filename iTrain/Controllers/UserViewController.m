@@ -394,6 +394,10 @@ ALAssetsLibrary* lib;
                 _index=self.dataArray.count-1;
             }
             [_userTabelView reloadData];
+            if(_dataArray.count==0){
+                [self setRightCustomBarItemState:YES];
+            }
+            
         }
         [KWPopoverView Dismiss];
     }

@@ -99,6 +99,13 @@ UIView *headView;
     textLabel.font=font;
     textLabel.text=[father_array objectAtIndex:section];
     
+    UIImageView *imageView=[[headView subviews] objectAtIndex:2];
+    if(section==second){
+        imageView.image=[UIImage imageNamed:@"notify_click.png"];
+    }else{
+        imageView.image=[UIImage imageNamed:@"notify_default.png"];
+    }
+    
     return headView;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

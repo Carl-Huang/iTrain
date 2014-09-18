@@ -52,13 +52,14 @@ NSString *str;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
-
 {
+    [webView sizeToFit];
     CGRect frame = webView.frame;
     CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
     frame.size = fittingSize;
     webView.frame = frame;
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, frame.size.height);
+    NSLog(@"%f",fittingSize.height);
     [delagate WebViewHeight:frame.size.height];
 }
 
