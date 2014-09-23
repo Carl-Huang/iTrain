@@ -54,6 +54,7 @@ BOOL isEn;
 }
 
 -(void)save:(id)sender{
+    [DaiDodgeKeyboard textFieldDone];
     if([_nameText.text isEqualToString:@""]||[_sexText.text isEqualToString:@""]||[_ageText.text isEqualToString:@""]){
         
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"InfoIsNil", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
@@ -104,8 +105,6 @@ BOOL isEn;
         NSLog(@"error:%@,%@",error,[error userInfo]);
     }
     else{
-       
-        
         NSLog(@"保存成功");
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"SaveSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alert show];

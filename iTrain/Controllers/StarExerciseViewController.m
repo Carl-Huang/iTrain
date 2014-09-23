@@ -14,6 +14,7 @@
 NSString *part;
 NSInteger _time;
 BOOL isBack;
+UITapGestureRecognizer *tapGesture ;
 @implementation StarExerciseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -23,7 +24,7 @@ BOOL isBack;
         // Custom initialization
         _timeIndex=-1;
         _modelArray=[[NSMutableArray alloc]init];
-        _time=5;
+        _time=10;
         
     }
     return self;
@@ -76,11 +77,26 @@ BOOL isBack;
      }];
     [_topTrain setText:NSLocalizedString(@"TrainPart", nil)];
     [_bottomTrain setText:NSLocalizedString(@"TrainTime", nil)];
+    [_LeftBtn setImage:[UIImage imageNamed:@"left.png"] forState:UIControlStateNormal];
+    [_LeftBtn setImage:[UIImage imageNamed:@"leftp.png"] forState:UIControlStateHighlighted];
+    [_LeftBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [_LeftBtn setBackgroundImage:[UIImage imageNamed:@"切换按钮背景.png"] forState:UIControlStateHighlighted];
+    
+    [_RightBtn setImage:[UIImage imageNamed:@"right.png"] forState:UIControlStateNormal];
+    [_RightBtn setImage:[UIImage imageNamed:@"rightp.png"] forState:UIControlStateHighlighted];
+    [_RightBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [_RightBtn setBackgroundImage:[UIImage imageNamed:@"切换按钮背景.png"] forState:UIControlStateHighlighted];
     [_LeftBtn addTarget:self action:@selector(BtnPress) forControlEvents:UIControlEventTouchUpInside];
     [_RightBtn addTarget:self action:@selector(BtnPress) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)BtnPress{
+    [_popView setHidden:YES];
+    _popView.alpha = 0;
+    if(tapGesture!=nil){
+        [self.view removeGestureRecognizer:tapGesture];
+        tapGesture=nil;
+    }
     if(isBack){
         [_body setImage:[UIImage imageNamed:@"start_ren.png"]];
     }else{
@@ -149,14 +165,14 @@ BOOL isBack;
             [_popView setImage:[UIImage imageNamed:@"start_quan4.png"]];
         }
     }
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCancel:)];
+    tapGesture= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCancel)];
     [self.view addGestureRecognizer:tapGesture];
     [_startBtn setEnabled:YES];
     [_StartTip setTextColor:[UIColor blackColor]];
     [_startBtn setImage:[UIImage imageNamed:@"start_kaishixunlian2.png"] forState:UIControlStateNormal];
 }
 
--(void)tappedCancel:(UITapGestureRecognizer *)sender{
+-(void)tappedCancel{
     [UIView animateWithDuration:0.25f animations:^{
         _popView.alpha = 0;
     } completion:^(BOOL finished) {
@@ -164,7 +180,11 @@ BOOL isBack;
             [_popView setHidden:YES];
         }
     }];
-    [self.view removeGestureRecognizer:sender];
+    if(tapGesture!=nil){
+         [self.view removeGestureRecognizer:tapGesture];
+        tapGesture=nil;
+    }
+   
 }
 
 
@@ -209,9 +229,9 @@ BOOL isBack;
         _timeIndex=0;
     }else{
         _modelArray=[[NSMutableArray alloc]initWithArray:temparray];
-        NSNumber *temp=[_modelArray objectAtIndex:2];
-        _timeIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",[temp intValue]]];
-        _time=[temp intValue];
+        //NSNumber *temp=[_modelArray objectAtIndex:2];
+        _timeIndex=1;
+        _time=10;
     }
     
 }

@@ -52,8 +52,8 @@ UIView *headView;
     [self.view addSubview:self.tv];
     [self setExtraCellLineHidden:self.tv];
     
-    child_array= [[NSMutableArray alloc]initWithObjects:@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。",@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。",@"答： 可以绝对可以。本产品年龄无关适用于任何年龄阶段的人，但是老人与小孩应该在成人监护下使用，脉宽强度也要调小一点。", nil];
-    father_array= [[NSMutableArray alloc]initWithObjects:@"本产品适用于各个年龄阶段的人么？",@"肌肉会不会锻炼过度或者过度疲劳?", @"使用本产品又没有什么禁忌?", nil];
+    father_array= [[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"HelpQ1", nil), NSLocalizedString(@"HelpQ2", nil),NSLocalizedString(@"HelpQ3", nil),NSLocalizedString(@"HelpQ4", nil),NSLocalizedString(@"HelpQ5", nil),NSLocalizedString(@"HelpQ6", nil),NSLocalizedString(@"HelpQ7", nil),nil];
+    child_array= [[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"HelpR1", nil),NSLocalizedString(@"HelpR2", nil),NSLocalizedString(@"HelpR3", nil),NSLocalizedString(@"HelpR4", nil),NSLocalizedString(@"HelpR5", nil),NSLocalizedString(@"HelpR6", nil),NSLocalizedString(@"HelpR7", nil), nil];
 //    UINib * nib = [UINib nibWithNibName:@"HelpChildCell" bundle:[NSBundle bundleForClass:[HelpChildCell class]]];
 //    [_tv registerNib:nib forCellReuseIdentifier:@"Cell"];
     UIColor *bg= [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
@@ -63,9 +63,6 @@ UIView *headView;
     [_SendTv setText:NSLocalizedString(@"FeedbackSend", nil)];
     [_TitleTv setText:NSLocalizedString(@"FAQ", nil)];
 }
-
-
-
 
 - (void)tapSetion:(UIGestureRecognizer *)sender
 {
@@ -96,10 +93,14 @@ UIView *headView;
     [headView addGestureRecognizer:tap];
     UIFont *font = [UIFont systemFontOfSize:15];
     UILabel *textLabel=[[headView subviews] objectAtIndex:0];
+    UIImageView *imageView=[[headView subviews] objectAtIndex:2];
     textLabel.font=font;
     textLabel.text=[father_array objectAtIndex:section];
+    CGRect frame=textLabel.frame;
+   
     
-    UIImageView *imageView=[[headView subviews] objectAtIndex:2];
+    textLabel.adjustsFontSizeToFitWidth = YES;
+     [textLabel setFrame:CGRectMake(frame.origin.x, frame.origin.y, imageView.frame.origin.x-frame.origin.x, frame.size.height)];
     if(section==second){
         imageView.image=[UIImage imageNamed:@"notify_click.png"];
     }else{

@@ -23,14 +23,14 @@ UITableViewCell *tcell;
 AppDelegate *myAppDelegate;
 UITextField *field;
 NSString *photo;
-BOOL isEn;
+BOOL isInch;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         textArray=[[NSMutableArray alloc]init];
-       isEn=[NSLocalizedString(@"laun", nil) isEqual:@"En"];
+       
     }
     return self;
 }
@@ -47,7 +47,7 @@ BOOL isEn;
     // 初始化tableView的数据
     NSArray *list = [NSArray arrayWithObjects:NSLocalizedString(@"Photo", nil),NSLocalizedString(@"Name", nil),NSLocalizedString(@"Sex", nil),NSLocalizedString(@"UAge", nil),NSLocalizedString(@"Height", nil),NSLocalizedString(@"Weight", nil),NSLocalizedString(@"Unit", nil), nil];
     NSArray *imagelist = [NSArray arrayWithObjects:@"user_icon",@"user_icon1",@"user_icon2",@"user_icon3",@"user_icon4",@"user_icon5",@"user_icon6", nil];
-    self.dataList = list;
+    self.dataList = [[NSMutableArray alloc]initWithArray:list];
     self.imageList=imagelist;
     [self setExtraCellLineHidden:_myTableView];
     [_headImg setFrame:CGRectMake(10, 10, 10,10)];
@@ -96,7 +96,6 @@ BOOL isEn;
         }
     }
     NSInteger row=[indexPath row];
-   
     if(row==1){
         [(UITextField *)[cell viewWithTag:(indexPath.row+1)] setText:[_user name]];
     }else if(row==2){
@@ -105,7 +104,7 @@ BOOL isEn;
         [(UITextField *)[cell viewWithTag:(indexPath.row+1)] setText:[NSString stringWithFormat:@"%d",[[_user age] integerValue]]];
     }else if(row==4){
         NSString *stt;
-        if(isEn){
+        if(isInch){
             stt= [self notRounding:[[_user feet] floatValue] afterPoint:1];
         }else{
             stt=[[_user height] stringValue];
@@ -114,20 +113,27 @@ BOOL isEn;
          setText:stt];
     }else if(row==5){
         NSString *stt;
-        if(isEn){
+        if(isInch){
             stt= [self notRounding:[[_user pound] floatValue] afterPoint:1];
         }else{
             stt=[[_user weight] stringValue];
         }
         [(UITextField *)[cell viewWithTag:(indexPath.row+1)] setText:stt];
     }else{
-         NSString *stt=NSLocalizedString(@"Unit_", nil);
-//        if(isEn){
-//            stt=@"Inch";
-//        }else{
-//            stt=@"公制";
-//        }
-        [(UITextField *)[cell viewWithTag:(indexPath.row+1)] setText:stt];
+        _yingzhiBtn.frame= CGRectMake(150, 8, 70, 30);
+        
+        _gongzhiBtn.frame= CGRectMake(220, 8, 70, 30);
+        if(isInch){
+            [_yingzhiBtn setImage:[UIImage imageNamed:@"选择.png"] forState:UIControlStateNormal];
+            [_gongzhiBtn setImage:[UIImage imageNamed:@"未选择.png"] forState:UIControlStateNormal];
+        }else{
+            [_gongzhiBtn setImage:[UIImage imageNamed:@"选择.png"] forState:UIControlStateNormal];
+            [_yingzhiBtn setImage:[UIImage imageNamed:@"未选择.png"] forState:UIControlStateNormal];
+        }
+        [_gongzhiBtn addTarget:self action:@selector(gongzhiPress) forControlEvents:UIControlEventTouchUpInside];
+        [_yingzhiBtn addTarget:self action:@selector(yingzhiPress) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:_gongzhiBtn];
+        [cell addSubview:_yingzhiBtn];
     }
     if (row==0) {
         [[cell viewWithTag:(indexPath.row+1)] setHidden:YES];
@@ -209,6 +215,19 @@ BOOL isEn;
     // 设置tableView的背景图
     _myTableView.scrollEnabled=NO;
     [_myTableView reloadData];
+    isInch=[NSLocalizedString(@"laun", nil) isEqual:@"En"];
+    if(myAppDelegate.isUserUnit){
+        BOOL temp=isInch;
+        isInch=![[_user unit] boolValue];
+        if((temp==NO&&isInch==YES)||(temp==YES&&isInch==NO)){
+            [_dataList replaceObjectAtIndex:4 withObject:NSLocalizedString(@"UHeight", nil)];
+             [_dataList replaceObjectAtIndex:5 withObject:NSLocalizedString(@"UWeight", nil)];
+        }else{
+            [_dataList replaceObjectAtIndex:4 withObject:NSLocalizedString(@"Height", nil)];
+             [_dataList replaceObjectAtIndex:5 withObject:NSLocalizedString(@"Weight", nil)];
+        }
+    }
+    
     
 }
 
@@ -218,8 +237,10 @@ BOOL isEn;
         photo=[self saveImage:_headImg.image withName:photo];
         [_user setPhoto:photo];
     }
-    for(int i=0;i<textArray.count;i++){
-        [self save:i withView:[textArray objectAtIndex:i]];
+    if(isEditer){
+        for(int i=0;i<textArray.count;i++){
+            [self save:i withView:[textArray objectAtIndex:i]];
+        }
     }
     NSError *error;
     BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
@@ -232,6 +253,39 @@ BOOL isEn;
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)gongzhiPress{
+    [_gongzhiBtn setImage:[UIImage imageNamed:@"选择.png"] forState:UIControlStateNormal];
+    [_yingzhiBtn setImage:[UIImage imageNamed:@"未选择.png"] forState:UIControlStateNormal];
+    [_user setUnit:[NSNumber numberWithBool:YES]];
+    isInch=NO;
+    [_myTableView reloadData];
+    myAppDelegate.isUserUnit=YES;
+    if([NSLocalizedString(@"laun", nil) isEqual:@"En"]){
+        [_dataList replaceObjectAtIndex:4 withObject:NSLocalizedString(@"UHeight", nil)];
+         [_dataList replaceObjectAtIndex:5 withObject:NSLocalizedString(@"UWeight", nil)];
+    }else{
+         [_dataList replaceObjectAtIndex:4 withObject:NSLocalizedString(@"Height", nil)];
+         [_dataList replaceObjectAtIndex:5 withObject:NSLocalizedString(@"Weight", nil)];
+    }
+}
+
+-(void)yingzhiPress{
+    [_gongzhiBtn setImage:[UIImage imageNamed:@"未选择.png"] forState:UIControlStateNormal];
+    [_yingzhiBtn setImage:[UIImage imageNamed:@"选择.png"] forState:UIControlStateNormal];
+    [_user setUnit:[NSNumber numberWithBool:NO]];
+    isInch=YES;
+    [_myTableView reloadData];
+    myAppDelegate.isUserUnit=YES;
+    if(![NSLocalizedString(@"laun", nil) isEqual:@"En"]){
+        [_dataList replaceObjectAtIndex:4 withObject:NSLocalizedString(@"UHeight", nil)];
+        [_dataList replaceObjectAtIndex:5 withObject:NSLocalizedString(@"UWeight", nil)];
+    }else{
+        [_dataList replaceObjectAtIndex:4 withObject:NSLocalizedString(@"Height", nil)];
+         [_dataList replaceObjectAtIndex:5 withObject:NSLocalizedString(@"Weight", nil)];
+    }
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if([actionSheet tag]==2){
@@ -415,7 +469,7 @@ BOOL isEn;
     }else if(row==2){
         NSString *stt;
         double istt;
-        if(isEn){
+        if(isInch){
             double m = [cell.text doubleValue]/0.0328;
             stt=[self notRounding:m afterPoint:0];
             istt=[cell.text doubleValue];
@@ -429,7 +483,7 @@ BOOL isEn;
     }else if(row==3){
         NSString *stt;
         double istt;
-        if(isEn){
+        if(isInch){
             double m = [cell.text doubleValue]/2.2046;
             stt=[self notRounding:m afterPoint:0];
             istt=[cell.text doubleValue];

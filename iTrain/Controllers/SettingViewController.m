@@ -123,10 +123,7 @@
     }else if(indexPath.row==3){
         _about= [[AboutViewController alloc] init];
         [self.navigationController pushViewController:_about animated:YES];
-
     }
-    
-    
 }
 
 

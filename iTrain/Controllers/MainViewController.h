@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *SettingTv;
 @property (strong, nonatomic) UIWindow *window;
 @property (weak, nonatomic) IBOutlet UIImageView *exercise;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userinfo;
 

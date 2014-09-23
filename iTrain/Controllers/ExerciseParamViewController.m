@@ -44,7 +44,7 @@ NSArray *parts;
             [temp addObject:[NSString stringWithFormat:@"%d",i]];
         }
         self.titles=[[NSArray alloc]initWithArray:temp];
-        self.titles2=@[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15"];
+        self.titles2=@[@"01",@"02",@"03",@"04",@"05"];
         speedIndex=-1;
         stongIndex=-1;
         speed=1;
@@ -179,9 +179,12 @@ NSArray *parts;
 /**停止按钮响应事件**/
 -(void)selectedBtn2Pressed:(id)sender{
     if(isPuse){
+        [_StopTip setText:NSLocalizedString(@"Puase", nil)];
         [self start];
         return;
     }
+    [_StopTip setText:NSLocalizedString(@"Resume", nil)];
+    
     NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x05], nil];
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
         DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"PauseSu", nil)  contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
@@ -256,10 +259,12 @@ NSArray *parts;
     //结束时间
     NSDate *endDate = start;
     //当前时间
-    NSDate *senderDate = [dateFormatter dateFromString:[dateFormatter stringFromDate:senddate]];
+
+    
     //得到相差秒数
-    NSTimeInterval time=[endDate timeIntervalSinceDate:senderDate];
-    int minute = ((int)time)%(3600*24)/600/60;
+    NSTimeInterval time=[senddate timeIntervalSince1970]-[endDate timeIntervalSince1970];
+    int hour=(int)(time/3600);
+    int minute = hour*60+(int)(time-hour*3600)/60;
     [record setTime:[NSNumber numberWithInt:minute]];
     [record setDate:start];
     NSError *error=nil;

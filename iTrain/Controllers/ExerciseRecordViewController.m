@@ -38,10 +38,15 @@ UIColor *tipColor;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title = NSLocalizedString(@"xunlian", nil);
+    self.title = NSLocalizedString(@"TrainRecord", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [self initData];
-    [_DelTip setTextColor:[UIColor lightGrayColor]];
+    if(![_delBtn isEnabled]){
+        [_DelTip setTextColor:[UIColor lightGrayColor]];
+    }else{
+        
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -150,6 +155,7 @@ UIColor *tipColor;
         deleteRow=-1;
         [_delBtn setEnabled:NO];
         [_delBtn setImage:[UIImage imageNamed:@"record_shanchujilu_01.png"] forState:UIControlStateNormal];
+        [_DelTip setTextColor:[UIColor lightGrayColor]];
     }else{
         return;
     }
@@ -163,7 +169,7 @@ UIColor *tipColor;
     //设置请求实体
     [request setEntity:entity];
     //指定对结果的排序方式
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time"ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time"ascending:YES];
     NSArray *sortDescriptions = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:sortDescriptions];
     NSError *error = nil;

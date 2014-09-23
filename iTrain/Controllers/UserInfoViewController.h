@@ -10,7 +10,7 @@
 #import "DaiDodgeKeyboard.h"
 #import "User.h"
 @interface UserInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,KeyboardDelegate>
-@property (nonatomic, retain) NSArray *dataList;
+@property (nonatomic, retain) NSMutableArray *dataList;
 @property (nonatomic, retain) NSArray *imageList;
 
 @property (weak, nonatomic) IBOutlet UILabel *Tip;
@@ -19,6 +19,9 @@
 @property (weak, nonatomic)  UIImageView*headImg;
 @property (weak ,nonatomic)    UITextField *edit;
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
+@property (weak, nonatomic) IBOutlet UIButton *gongzhiBtn;
+@property (weak, nonatomic) IBOutlet UIButton *yingzhiBtn;
+
 
 @property(nonatomic,strong)User *user;
 

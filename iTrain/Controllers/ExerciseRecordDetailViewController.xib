@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExerciseRecordDetailViewController">
             <connections>
                 <outlet property="dateLabel" destination="ue6-XL-lCe" id="jHC-lN-mtQ"/>
-                <outlet property="popCancel" destination="Fxf-SD-FwN" id="9eW-ra-nWT"/>
+                <outlet property="popCancel" destination="hBP-Fu-nnR" id="HDQ-eI-yrQ"/>
                 <outlet property="popFb" destination="arf-wJ-Q3R" id="sGh-7f-GSs"/>
                 <outlet property="popView" destination="J8F-WE-eaw" id="HYi-yF-ccN"/>
                 <outlet property="popWx" destination="zUe-oi-tFK" id="54t-qW-NhF"/>
@@ -76,7 +76,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" id="J8F-WE-eaw">
-                    <rect key="frame" x="0.0" y="247" width="320" height="235"/>
+                    <rect key="frame" x="0.0" y="252" width="320" height="235"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shareTittle.png" id="TbG-xg-s0Q">
@@ -113,10 +113,11 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fxf-SD-FwN">
-                            <rect key="frame" x="0.0" y="179" width="320" height="55"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hBP-Fu-nnR">
+                            <rect key="frame" x="0.0" y="176" width="320" height="52"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="shareCancel.png">
+                            <state key="normal" backgroundImage="shareCancel.png">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -133,7 +134,7 @@
         <image name="detail_facebook.png" width="47" height="42"/>
         <image name="detail_weixin.png" width="47" height="42"/>
         <image name="shareCancel.png" width="320" height="52"/>
-        <image name="shareTittle.png" width="46" height="42"/>
+        <image name="shareTittle.png" width="320" height="42"/>
         <image name="sharebg.png" width="320" height="112"/>
     </resources>
 </document>

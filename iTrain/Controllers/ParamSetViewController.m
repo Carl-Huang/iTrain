@@ -8,7 +8,7 @@
 
 #import "ParamSetViewController.h"
 #import "AppDelegate.h"
-
+#import "DXAlertView.h"
 @interface ParamSetViewController () <AKPickerViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titles;
@@ -36,7 +36,11 @@ NSMutableArray *modelArray;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title =NSLocalizedString(@"AdSetting", nil);
-    [self setLeftCustomBarItem:@"ul_back.png" action:nil];}
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [self setModel];
+    [self.pickerView selectItem:usIndex animated:NO];
+    [self.pickerView2 selectItem:hzIndex animated:NO];
+}
 
 - (void)viewDidLoad
 {
@@ -55,9 +59,7 @@ NSMutableArray *modelArray;
      **/
     [self.pickerView selectItem:1 animated:NO];
     [self.pickerView2 selectItem:1 animated:NO];
-    [self setModel];
-    [self.pickerView selectItem:usIndex animated:NO];
-    [self.pickerView2 selectItem:hzIndex animated:NO];
+    
     //设置按钮按下状态图片
     [_save setImage:[UIImage imageNamed:@"baocun.png"] forState:UIControlStateNormal];
     [_save setImage:[UIImage imageNamed:@"baocun_1.png"] forState:UIControlStateHighlighted];
@@ -82,6 +84,17 @@ NSMutableArray *modelArray;
     [user setHzIndex:[NSNumber numberWithInt:hzIndex]];
     NSError *error=nil;
     [app.managedObjectContext save:&error];
+    if ([app.managedObjectContext save:&error]) {
+//        SaveSu
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"SaveSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
+        [alert show];
+        alert.dismissBlock=^(){
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+
+        
+        
+    }
 }
 
 

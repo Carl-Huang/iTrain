@@ -43,10 +43,12 @@
     _userinfo.userInteractionEnabled=YES;
     UITapGestureRecognizer *gotoUserinfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoUserinfoView:)];
     [_userinfo addGestureRecognizer:gotoUserinfoTap];
+
     [self initData];
-    [_TrainTv setText:NSLocalizedString(@"xunlian", nil)];
+    [_TrainTv setText:NSLocalizedString(@"Exercise", nil)];
     [_UserTv setText:NSLocalizedString(@"UserInfo", nil)];
     [_SettingTv setText:NSLocalizedString(@"Setting", nil)];
+    
 }
 
 -(void)initData{
@@ -81,7 +83,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.title = @"首页";
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
-    
+    _imageView.image=[UIImage imageNamed:@"mian_text.png"];
 }
 
 #define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)

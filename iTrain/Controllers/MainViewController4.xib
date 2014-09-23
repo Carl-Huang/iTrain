@@ -11,6 +11,7 @@
                 <outlet property="TrainTv" destination="hJb-YZ-tZP" id="soi-fD-9WL"/>
                 <outlet property="UserTv" destination="6lZ-sc-jZX" id="8AB-9T-0mQ"/>
                 <outlet property="exercise" destination="YAG-hb-CgU" id="5S3-PJ-rbu"/>
+                <outlet property="imageView" destination="ATE-qj-CtI" id="iGo-yC-FL5"/>
                 <outlet property="setting" destination="tGh-Wz-N64" id="KRe-Lg-pHy"/>
                 <outlet property="userinfo" destination="tEP-me-rdv" id="B9W-iJ-933"/>
                 <outlet property="view" destination="0dj-9r-2j6" id="Tvh-we-t9j"/>
@@ -80,6 +81,6 @@
         <image name="main_logo.png" width="96" height="40"/>
         <image name="main_shezhin.png" width="218" height="123"/>
         <image name="main_xunlian.png" width="218" height="123"/>
-        <image name="mian_text.png" width="124" height="40"/>
+        <image name="mian_text.png" width="154" height="36"/>
     </resources>
 </document>

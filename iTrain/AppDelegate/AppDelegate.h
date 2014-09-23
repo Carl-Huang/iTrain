@@ -27,6 +27,7 @@ WXApiDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong,nonatomic) User  *user;
+@property (nonatomic) BOOL isUserUnit;
 @property (nonatomic) SSInterfaceOrientationMask interfaceOrientationMask;
 
 @property(strong,nonatomic,readonly)NSManagedObjectModel* managedObjectModel;

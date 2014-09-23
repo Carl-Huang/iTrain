@@ -74,6 +74,8 @@
 		C329556119B0874500ECDFED /* ExerciseParamViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C329556019B0874500ECDFED /* ExerciseParamViewController4.xib */; };
 		C32C4315199B3182009FED09 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32C4313199B3182009FED09 /* SettingViewController.m */; };
 		C32C4316199B3182009FED09 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32C4314199B3182009FED09 /* SettingViewController.xib */; };
+		C33863D619CC3C1800C52F58 /* del_xinjian_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33863D419CC3C1800C52F58 /* del_xinjian_1@2x.png */; };
+		C33863D719CC3C1800C52F58 /* del_xinjian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33863D519CC3C1800C52F58 /* del_xinjian@2x.png */; };
 		C33C434019C6CC0300C76263 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C33C434219C6CC0300C76263 /* Localizable.strings */; };
 		C3443879198BE08500133B51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3443878198BE08500133B51 /* Foundation.framework */; };
 		C344387B198BE08500133B51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C344387A198BE08500133B51 /* CoreGraphics.framework */; };
@@ -103,6 +105,8 @@
 		C3443964198BE61D00133B51 /* VersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3443956198BE61D00133B51 /* VersionManager.m */; };
 		C3443966198BE62A00133B51 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3443965198BE62A00133B51 /* CoreBluetooth.framework */; };
 		C3443968198BE63200133B51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3443967198BE63200133B51 /* QuartzCore.framework */; };
+		C34D043F19CFD6FD0004ECCE /* SubtoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34D043D19CFD6FD0004ECCE /* SubtoolViewController.m */; };
+		C34D044019CFD6FD0004ECCE /* SubtoolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34D043E19CFD6FD0004ECCE /* SubtoolViewController.xib */; };
 		C34D962F19B4440B00F98BFA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C34D962D19B4440B00F98BFA /* Model.xcdatamodeld */; };
 		C34D963119B4537100F98BFA /* BaiKeViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34D963019B4537100F98BFA /* BaiKeViewController4.xib */; };
 		C352D07D19AD78DF00705D21 /* KWPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352D07C19AD78DF00705D21 /* KWPopoverView.m */; };
@@ -110,6 +114,10 @@
 		C352D08119ADE05700705D21 /* user_shezhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C352D07F19ADE05700705D21 /* user_shezhi@2x.png */; };
 		C352D08319ADE07E00705D21 /* user_xiangqing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C352D08219ADE07E00705D21 /* user_xiangqing@2x.png */; };
 		C352D08519ADE9C500705D21 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C352D08419ADE9C500705D21 /* UserSettingCell.xib */; };
+		C35803C419CC088B003959E9 /* mian_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C35803C619CC088B003959E9 /* mian_text@2x.png */; };
+		C35803CB19CC1389003959E9 /* sharebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C35803C819CC1388003959E9 /* sharebg@2x.png */; };
+		C35803CC19CC1389003959E9 /* shareCancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C35803C919CC1388003959E9 /* shareCancel@2x.png */; };
+		C35803CD19CC1389003959E9 /* shareTittle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C35803CA19CC1388003959E9 /* shareTittle@2x.png */; };
 		C35BF03619B6BA54006397EC /* ExerciseMainViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C35BF03519B6BA54006397EC /* ExerciseMainViewController4.xib */; };
 		C35BF03A19B6C2CD006397EC /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF03919B6C2CD006397EC /* DXAlertView.m */; };
 		C35BF04A19B7199A006397EC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35BF04919B7199A006397EC /* CFNetwork.framework */; };
@@ -245,16 +253,21 @@
 		C37ACB1B19A7494B00F3332A /* main_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACABC19A7494A00F3332A /* main_logo@2x.png */; };
 		C37ACB1C19A7494B00F3332A /* main_shezhin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACABD19A7494A00F3332A /* main_shezhin@2x.png */; };
 		C37ACB1D19A7494B00F3332A /* main_xunlian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACABE19A7494B00F3332A /* main_xunlian@2x.png */; };
-		C37ACB1E19A7494B00F3332A /* mian_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C37ACABF19A7494B00F3332A /* mian_text@2x.png */; };
 		C37F9382199C510600B0153D /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37F9380199C510600B0153D /* UserViewController.m */; };
 		C37F9383199C510600B0153D /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37F9381199C510600B0153D /* UserViewController.xib */; };
 		C37F99B2199C9C3B00B0153D /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37F99B0199C9C3B00B0153D /* HelpViewController.m */; };
 		C37F99B3199C9C3B00B0153D /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37F99B1199C9C3B00B0153D /* HelpViewController.xib */; };
+		C39A64E119CD11AF00535F31 /* share_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A64E019CD11AF00535F31 /* share_icon@2x.png */; };
+		C39A64E319CD1AAF00535F31 /* 切换按钮背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A64E219CD1AAF00535F31 /* 切换按钮背景@2x.png */; };
+		C39A64E619CD1CA500535F31 /* leftp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A64E419CD1CA500535F31 /* leftp@2x.png */; };
+		C39A64E719CD1CA500535F31 /* rightp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A64E519CD1CA500535F31 /* rightp@2x.png */; };
 		C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */; };
 		C3AA4F6C1999FCB0003E8DD9 /* klpView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA4F6B1999FCB0003E8DD9 /* klpView.m */; };
 		C3B8886119BEE1CE00A7BEDD /* orange_fangxing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B8885F19BEE1CE00A7BEDD /* orange_fangxing@2x.png */; };
 		C3B8886219BEE1CE00A7BEDD /* orange_yuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B8886019BEE1CE00A7BEDD /* orange_yuan@2x.png */; };
 		C3B8886419BEF19300A7BEDD /* MainViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B8886319BEF19300A7BEDD /* MainViewController4.xib */; };
+		C3C5C68E19CC4FBE005A0921 /* 未选择@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C5C68C19CC4FBE005A0921 /* 未选择@2x.png */; };
+		C3C5C68F19CC4FBE005A0921 /* 选择@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C5C68D19CC4FBE005A0921 /* 选择@2x.png */; };
 		C3DD699619A2539C0026D272 /* SysNotiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD699419A2539C0026D272 /* SysNotiViewController.m */; };
 		C3DD699719A2539C0026D272 /* SysNotiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DD699519A2539C0026D272 /* SysNotiViewController.xib */; };
 		C3DD699B19A256F20026D272 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD699919A256F20026D272 /* SuggestViewController.m */; };
@@ -398,10 +411,10 @@
 		C31F555819AF02D900C2A34A /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserViewController.xib; sourceTree = "<group>"; };
 		C320D1E91995BCC6005637BF /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		C320D1EB1995BDE4005637BF /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
-		C323812719C96202002E89BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/plan_kai@2x.png"; sourceTree = "<group>"; };
-		C323812919C96207002E89BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/plan_kai@2x.png"; sourceTree = "<group>"; };
-		C323812B19C96230002E89BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/plan_guan@2x.png"; sourceTree = "<group>"; };
-		C323812D19C96235002E89BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/plan_guan@2x.png"; sourceTree = "<group>"; };
+		C323812719C96202002E89BC /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/plan_kai@2x.png"; sourceTree = "<group>"; };
+		C323812919C96207002E89BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/plan_kai@2x.png"; sourceTree = "<group>"; };
+		C323812B19C96230002E89BC /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/plan_guan@2x.png"; sourceTree = "<group>"; };
+		C323812D19C96235002E89BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/plan_guan@2x.png"; sourceTree = "<group>"; };
 		C323812E19C96B59002E89BC /* notify_click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notify_click@2x.png"; sourceTree = "<group>"; };
 		C323812F19C96B59002E89BC /* notify_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notify_default@2x.png"; sourceTree = "<group>"; };
 		C329555D19B03E1400ECDFED /* StarExerciseViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StarExerciseViewController4.xib; sourceTree = "<group>"; };
@@ -409,6 +422,8 @@
 		C32C4312199B3182009FED09 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		C32C4313199B3182009FED09 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C32C4314199B3182009FED09 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		C33863D419CC3C1800C52F58 /* del_xinjian_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "del_xinjian_1@2x.png"; sourceTree = "<group>"; };
+		C33863D519CC3C1800C52F58 /* del_xinjian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "del_xinjian@2x.png"; sourceTree = "<group>"; };
 		C33C434119C6CC0300C76263 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C33C434319C6CC0700C76263 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C3443875198BE08500133B51 /* iTrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,6 +477,9 @@
 		C3443956198BE61D00133B51 /* VersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionManager.m; sourceTree = "<group>"; };
 		C3443965198BE62A00133B51 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		C3443967198BE63200133B51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C34D043C19CFD6FD0004ECCE /* SubtoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtoolViewController.h; sourceTree = "<group>"; };
+		C34D043D19CFD6FD0004ECCE /* SubtoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtoolViewController.m; sourceTree = "<group>"; };
+		C34D043E19CFD6FD0004ECCE /* SubtoolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubtoolViewController.xib; sourceTree = "<group>"; };
 		C34D962E19B4440B00F98BFA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C34D963019B4537100F98BFA /* BaiKeViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaiKeViewController4.xib; sourceTree = "<group>"; };
 		C352D07B19AD78DF00705D21 /* KWPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWPopoverView.h; sourceTree = "<group>"; };
@@ -470,6 +488,11 @@
 		C352D07F19ADE05700705D21 /* user_shezhi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_shezhi@2x.png"; sourceTree = "<group>"; };
 		C352D08219ADE07E00705D21 /* user_xiangqing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_xiangqing@2x.png"; sourceTree = "<group>"; };
 		C352D08419ADE9C500705D21 /* UserSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingCell.xib; sourceTree = "<group>"; };
+		C35803C519CC088B003959E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/mian_text@2x.png"; sourceTree = "<group>"; };
+		C35803C719CC0890003959E9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/mian_text@2x.png"; sourceTree = "<group>"; };
+		C35803C819CC1388003959E9 /* sharebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharebg@2x.png"; sourceTree = "<group>"; };
+		C35803C919CC1388003959E9 /* shareCancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareCancel@2x.png"; sourceTree = "<group>"; };
+		C35803CA19CC1388003959E9 /* shareTittle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareTittle@2x.png"; sourceTree = "<group>"; };
 		C35BF03519B6BA54006397EC /* ExerciseMainViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMainViewController4.xib; sourceTree = "<group>"; };
 		C35BF03819B6C2CD006397EC /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
 		C35BF03919B6C2CD006397EC /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
@@ -617,19 +640,24 @@
 		C37ACABC19A7494A00F3332A /* main_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_logo@2x.png"; sourceTree = "<group>"; };
 		C37ACABD19A7494A00F3332A /* main_shezhin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_shezhin@2x.png"; sourceTree = "<group>"; };
 		C37ACABE19A7494B00F3332A /* main_xunlian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_xunlian@2x.png"; sourceTree = "<group>"; };
-		C37ACABF19A7494B00F3332A /* mian_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mian_text@2x.png"; sourceTree = "<group>"; };
 		C37F937F199C510600B0153D /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		C37F9380199C510600B0153D /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		C37F9381199C510600B0153D /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
 		C37F99AF199C9C3B00B0153D /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		C37F99B0199C9C3B00B0153D /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		C37F99B1199C9C3B00B0153D /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		C39A64E019CD11AF00535F31 /* share_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_icon@2x.png"; sourceTree = "<group>"; };
+		C39A64E219CD1AAF00535F31 /* 切换按钮背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "切换按钮背景@2x.png"; sourceTree = "<group>"; };
+		C39A64E419CD1CA500535F31 /* leftp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftp@2x.png"; sourceTree = "<group>"; };
+		C39A64E519CD1CA500535F31 /* rightp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightp@2x.png"; sourceTree = "<group>"; };
 		C3A7696A19935D8900538AEC /* ExerciseMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMainViewController.xib; sourceTree = "<group>"; };
 		C3AA4F6A1999FCB0003E8DD9 /* klpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = klpView.h; sourceTree = "<group>"; };
 		C3AA4F6B1999FCB0003E8DD9 /* klpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = klpView.m; sourceTree = "<group>"; };
 		C3B8885F19BEE1CE00A7BEDD /* orange_fangxing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_fangxing@2x.png"; sourceTree = "<group>"; };
 		C3B8886019BEE1CE00A7BEDD /* orange_yuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_yuan@2x.png"; sourceTree = "<group>"; };
 		C3B8886319BEF19300A7BEDD /* MainViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController4.xib; sourceTree = "<group>"; };
+		C3C5C68C19CC4FBE005A0921 /* 未选择@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选择@2x.png"; sourceTree = "<group>"; };
+		C3C5C68D19CC4FBE005A0921 /* 选择@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择@2x.png"; sourceTree = "<group>"; };
 		C3DD699319A2539C0026D272 /* SysNotiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysNotiViewController.h; sourceTree = "<group>"; };
 		C3DD699419A2539C0026D272 /* SysNotiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysNotiViewController.m; sourceTree = "<group>"; };
 		C3DD699519A2539C0026D272 /* SysNotiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SysNotiViewController.xib; sourceTree = "<group>"; };
@@ -1009,6 +1037,9 @@
 				C365B73B19A356F600554CF6 /* ParamSetViewController.h */,
 				C365B73C19A356F600554CF6 /* ParamSetViewController.m */,
 				C365B73D19A356F600554CF6 /* ParamSetViewController.xib */,
+				C34D043C19CFD6FD0004ECCE /* SubtoolViewController.h */,
+				C34D043D19CFD6FD0004ECCE /* SubtoolViewController.m */,
+				C34D043E19CFD6FD0004ECCE /* SubtoolViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1266,6 +1297,7 @@
 		C37ACA5819A7494A00F3332A /* 09训练记录 */ = {
 			isa = PBXGroup;
 			children = (
+				C39A64E019CD11AF00535F31 /* share_icon@2x.png */,
 				C36EC63719AB30CA00813ACD /* record_shanchujilu_01@2x.png */,
 				C37ACA5919A7494A00F3332A /* record_hengkuang@2x.png */,
 				C37ACA5A19A7494A00F3332A /* record_jiantou@2x.png */,
@@ -1315,6 +1347,8 @@
 		C37ACA7119A7494A00F3332A /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				C33863D419CC3C1800C52F58 /* del_xinjian_1@2x.png */,
+				C33863D519CC3C1800C52F58 /* del_xinjian@2x.png */,
 				C37ACA7219A7494A00F3332A /* user_bianji@2x.png */,
 				C37ACA7319A7494A00F3332A /* user_hang@2x.png */,
 				C37ACA7419A7494A00F3332A /* user_icon1@2x.png */,
@@ -1340,6 +1374,9 @@
 		C37ACA7E19A7494A00F3332A /* 开始训练 */ = {
 			isa = PBXGroup;
 			children = (
+				C39A64E419CD1CA500535F31 /* leftp@2x.png */,
+				C39A64E519CD1CA500535F31 /* rightp@2x.png */,
+				C39A64E219CD1AAF00535F31 /* 切换按钮背景@2x.png */,
 				C3FF09AA19C8370D001BBF81 /* back_arml_p@2x.png */,
 				C3FF09AB19C8370D001BBF81 /* back_armr_p@2x.png */,
 				C3FF09AC19C8370D001BBF81 /* back_back_p@2x.png */,
@@ -1404,6 +1441,9 @@
 		C37ACA9E19A7494A00F3332A /* 详细记录 */ = {
 			isa = PBXGroup;
 			children = (
+				C35803C819CC1388003959E9 /* sharebg@2x.png */,
+				C35803C919CC1388003959E9 /* shareCancel@2x.png */,
+				C35803CA19CC1388003959E9 /* shareTittle@2x.png */,
 				C37ACA9F19A7494A00F3332A /* detail_facebook@2x.png */,
 				C37ACAA019A7494A00F3332A /* detail_fasongchenggong@2x.png */,
 				C37ACAA119A7494A00F3332A /* detail_fenxiang@2x.png */,
@@ -1430,6 +1470,8 @@
 		C37ACAAC19A7494A00F3332A /* 用户列表 */ = {
 			isa = PBXGroup;
 			children = (
+				C3C5C68C19CC4FBE005A0921 /* 未选择@2x.png */,
+				C3C5C68D19CC4FBE005A0921 /* 选择@2x.png */,
 				C352D08219ADE07E00705D21 /* user_xiangqing@2x.png */,
 				C352D07E19ADE05700705D21 /* user_shanchu@2x.png */,
 				C352D07F19ADE05700705D21 /* user_shezhi@2x.png */,
@@ -1457,7 +1499,7 @@
 				C37ACABC19A7494A00F3332A /* main_logo@2x.png */,
 				C37ACABD19A7494A00F3332A /* main_shezhin@2x.png */,
 				C37ACABE19A7494B00F3332A /* main_xunlian@2x.png */,
-				C37ACABF19A7494B00F3332A /* mian_text@2x.png */,
+				C35803C619CC088B003959E9 /* mian_text@2x.png */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -1571,10 +1613,12 @@
 				C37ACB0619A7494B00F3332A /* detail_quxiao@2x.png in Resources */,
 				C37ACB1019A7494B00F3332A /* ul_gou2@2x.png in Resources */,
 				C31AAFD419AC917500CF3035 /* Images.xcassets in Resources */,
+				C3C5C68E19CC4FBE005A0921 /* 未选择@2x.png in Resources */,
 				C31AAFD919ACA51A00CF3035 /* 114.png in Resources */,
 				C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */,
 				C329555E19B03E1400ECDFED /* StarExerciseViewController4.xib in Resources */,
 				C37ACAE719A7494B00F3332A /* start_kaishixunlian@2x.png in Resources */,
+				C39A64E619CD1CA500535F31 /* leftp@2x.png in Resources */,
 				C37F99B3199C9C3B00B0153D /* HelpViewController.xib in Resources */,
 				C37ACAC319A7494B00F3332A /* record_jiantou@2x.png in Resources */,
 				C37ACB0319A7494B00F3332A /* detail_fenxiang@2x.png in Resources */,
@@ -1607,6 +1651,7 @@
 				C3FF09B419C8370D001BBF81 /* back_thighl_p@2x.png in Resources */,
 				C3FF099C19C83024001BBF81 /* left@2x.png in Resources */,
 				C37ACB0119A7494B00F3332A /* detail_facebook@2x.png in Resources */,
+				C34D044019CFD6FD0004ECCE /* SubtoolViewController.xib in Resources */,
 				C3FF099519C82E76001BBF81 /* back_back@2x.png in Resources */,
 				C37ACAC019A7494B00F3332A /* train_canshu@2x.png in Resources */,
 				C37ACAF519A7494B00F3332A /* start_zuotui@2x.png in Resources */,
@@ -1616,18 +1661,22 @@
 				C37ACAE619A7494B00F3332A /* start_kaishixunlian2@2x.png in Resources */,
 				C37ACB1319A7494B00F3332A /* ul_ti@2x.png in Resources */,
 				C37ACADA19A7494B00F3332A /* user_icon1@2x.png in Resources */,
+				C33863D619CC3C1800C52F58 /* del_xinjian_1@2x.png in Resources */,
 				C37ACAEF19A7494B00F3332A /* start_ren@2x.png in Resources */,
 				C37ACACD19A7494B00F3332A /* plan_shuzibeijign@2x.png in Resources */,
+				C3C5C68F19CC4FBE005A0921 /* 选择@2x.png in Resources */,
 				C37ACAE519A7494B00F3332A /* start_fu@2x.png in Resources */,
 				C35BF09719B7239A006397EC /* ShareSDKLocalizable.strings in Resources */,
 				C37ACAE219A7494B00F3332A /* about_line@2x.png in Resources */,
 				C37ACACE19A7494B00F3332A /* back@2x.png in Resources */,
 				C37ACB1B19A7494B00F3332A /* main_logo@2x.png in Resources */,
 				C37ACAC419A7494B00F3332A /* record_nian@2x.png in Resources */,
+				C39A64E119CD11AF00535F31 /* share_icon@2x.png in Resources */,
 				C320D1EC1995BDE4005637BF /* UserInfoViewController.xib in Resources */,
 				C30D3FD219C198DC00992DFD /* PushConfig.plist in Resources */,
 				C36EC63419AB28E500813ACD /* baocun.png in Resources */,
 				C37ACAFC19A7494B00F3332A /* setting_pic2@2x.png in Resources */,
+				C35803CC19CC1389003959E9 /* shareCancel@2x.png in Resources */,
 				C37ACB1C19A7494B00F3332A /* main_shezhin@2x.png in Resources */,
 				C37ACAFD19A7494B00F3332A /* setting_renti2@2x.png in Resources */,
 				C3FF09B519C8370D001BBF81 /* back_thighr_p@2x.png in Resources */,
@@ -1642,11 +1691,14 @@
 				C37ACAF619A7494B00F3332A /* setting_app@2x.png in Resources */,
 				C3FF09B219C8370D001BBF81 /* back_back_p@2x.png in Resources */,
 				C365B72D19A329F300554CF6 /* StarExerciseViewController.xib in Resources */,
+				C39A64E319CD1AAF00535F31 /* 切换按钮背景@2x.png in Resources */,
 				C3B8886219BEE1CE00A7BEDD /* orange_yuan@2x.png in Resources */,
 				C323813119C96B59002E89BC /* notify_default@2x.png in Resources */,
 				C37ACAD619A7494B00F3332A /* UpAccessory.png in Resources */,
+				C39A64E719CD1CA500535F31 /* rightp@2x.png in Resources */,
 				C37ACAE319A7494B00F3332A /* start_daren@2x.png in Resources */,
 				C37ACAD019A7494B00F3332A /* DownAccessory@2x.png in Resources */,
+				C35803CB19CC1389003959E9 /* sharebg@2x.png in Resources */,
 				C3B8886419BEF19300A7BEDD /* MainViewController4.xib in Resources */,
 				C37ACAF219A7494B00F3332A /* start_youshou@2x.png in Resources */,
 				C36EC67219AB608200813ACD /* ExercisePlanCell.xib in Resources */,
@@ -1660,7 +1712,7 @@
 				C37ACB0A19A7494B00F3332A /* train_xunlian2@2x.png in Resources */,
 				C365B73F19A356F600554CF6 /* ParamSetViewController.xib in Resources */,
 				C323813019C96B59002E89BC /* notify_click@2x.png in Resources */,
-				C37ACB1E19A7494B00F3332A /* mian_text@2x.png in Resources */,
+				C35803C419CC088B003959E9 /* mian_text@2x.png in Resources */,
 				C37ACB1719A7494B00F3332A /* ul_xinjian2@2x.png in Resources */,
 				C37ACB0919A7494B00F3332A /* train_pic@2x.png in Resources */,
 				C37ACAED19A7494B00F3332A /* start_quan7@2x.png in Resources */,
@@ -1671,6 +1723,7 @@
 				C30D400D19C1B0FE00992DFD /* README.md in Resources */,
 				C37ACB0E19A7494B00F3332A /* ul_biaoti@2x.png in Resources */,
 				C352D08319ADE07E00705D21 /* user_xiangqing@2x.png in Resources */,
+				C35803CD19CC1389003959E9 /* shareTittle@2x.png in Resources */,
 				C37ACAC119A7494B00F3332A /* train_tingzhi@2x.png in Resources */,
 				C35BF09D19B7239A006397EC /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				C37ACAE419A7494B00F3332A /* start_fanmian@2x.png in Resources */,
@@ -1710,6 +1763,7 @@
 				C320D1EA1995BCC6005637BF /* MainViewController.xib in Resources */,
 				C37ACAF019A7494B00F3332A /* start_shuzikuang@2x.png in Resources */,
 				C35BF07A19B720F0006397EC /* btn_close_normal.png in Resources */,
+				C33863D719CC3C1800C52F58 /* del_xinjian@2x.png in Resources */,
 				C37ACB0F19A7494B00F3332A /* ul_di@2x.png in Resources */,
 				C37ACB0219A7494B00F3332A /* detail_fasongchenggong@2x.png in Resources */,
 				C37ACAEE19A7494B00F3332A /* start_quan@2x.png in Resources */,
@@ -1763,6 +1817,7 @@
 				C317CBAF19C02AA9008DCAC8 /* MTImageMapView.m in Sources */,
 				C30D400419C1B0FE00992DFD /* AFHTTPRequestOperationManager.m in Sources */,
 				C30D401219C1B0FE00992DFD /* UIImageView+AFNetworking.m in Sources */,
+				C34D043F19CFD6FD0004ECCE /* SubtoolViewController.m in Sources */,
 				C3443960198BE61D00133B51 /* OSHelper.m in Sources */,
 				C30D400B19C1B0FE00992DFD /* AFURLSessionManager.m in Sources */,
 				C30D401119C1B0FE00992DFD /* UIButton+AFNetworking.m in Sources */,
@@ -1888,6 +1943,15 @@
 				C344389B198BE08500133B51 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C35803C619CC088B003959E9 /* mian_text@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C35803C519CC088B003959E9 /* en */,
+				C35803C719CC0890003959E9 /* zh-Hans */,
+			);
+			name = "mian_text@2x.png";
 			sourceTree = "<group>";
 		};
 		C35BF08419B7239A006397EC /* ShareSDKLocalizable.strings */ = {

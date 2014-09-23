@@ -9,6 +9,7 @@
 #import "ExercisePlanViewController.h"
 #import "Plan.h"
 #import "AppDelegate.h"
+#import "SVProgressHUD.h"
 //训练计划
 
 @interface ExercisePlanViewController()
@@ -16,7 +17,6 @@
 @end
 AppDelegate *myAppDelegate;
 UIColor *bg;
-BOOL isOpen;
 NSMutableArray *dataarray;
 NSInteger oindex;
 NSInteger tindex;
@@ -33,7 +33,6 @@ NSArray *parts;
         // Custom initialization
         dataarray=[[NSMutableArray alloc]init];
         oindex=-1;
-        isOpen=NO;
         parts=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
         StartTimeArray=[[NSArray alloc]initWithObjects:@"06:30",@"06:45",@"07:00",@"07:15",@"18:30",@"18:55",@"19:20",@"19:45", nil];
         Partrray=[[NSArray alloc]initWithObjects:@"0",@"1",@"2",@"5",@"0",@"1",@"2",@"5", nil];
@@ -57,7 +56,13 @@ NSArray *parts;
     self.title = NSLocalizedString(@"TrainPlan", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [self setRightCustomBarItems:_notifyView];
+    [_SwitchView setOn:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Clock"] boolValue]];
+     [_SwitchView addTarget:self action:@selector(selectClicked) forControlEvents:UIControlEventValueChanged];
     [self initData];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [_SwitchView removeTarget:self action:@selector(selectClicked) forControlEvents:UIControlEventValueChanged];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 -(void)initUI{
     // 设置tableView的数据源
@@ -69,11 +74,12 @@ NSArray *parts;
     self.view.backgroundColor=bg;
     self.tabelView.backgroundColor=bg;
     self.tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    isOpen=NO;
-    [_clockBtn setImage:[UIImage imageNamed:@"plan_guan.png"] forState:UIControlStateNormal];
+    [_SwitchView setOn:NO];
+
+    
     [self setExtraCellLineHidden: self.tabelView];
     //    [self.view addSubview: self.tabelView];
-    [_clockBtn addTarget:self action:@selector(selectClicked:forEvent:)forControlEvents:UIControlEventTouchUpInside];
+   
     [_createPlan addTarget:self action:@selector(gotoCreatePlan) forControlEvents:UIControlEventTouchUpInside];
     [_editPlan addTarget:self action:@selector(editClearPlan) forControlEvents:UIControlEventTouchUpInside];
     [_clockLabel setText:NSLocalizedString(@"Alert", nil)];
@@ -105,6 +111,7 @@ NSArray *parts;
     scell.num.text=[NSString stringWithFormat:@"%d",(row+1)];
     scell.num.layer.borderColor  = [UIColor darkGrayColor].CGColor;
     scell.num.layer.cornerRadius = 10.0f;
+    NSLog(@"%@",[plan part]);
     scell.name.text=[parts objectAtIndex:[[plan part] integerValue]];
     [scell.modifyOrDel setTitle:[NSString stringWithFormat:@"%@/%@",NSLocalizedString(@"edit", nil),NSLocalizedString(@"del", nil)] forState:UIControlStateNormal];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -153,18 +160,14 @@ NSArray *parts;
 }
 //#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
-- (void)selectClicked:(id)sender forEvent:(UIEvent *)event{
-    UIButton *btn=sender;
-    
-    if (!isOpen) {
-        [btn setImage:[UIImage imageNamed:@"plan_kai.png"] forState:UIControlStateNormal];
-        isOpen=YES;
+- (void)selectClicked{
+    if ([_SwitchView isOn]) {
         [self saveEvent:dataarray];
     }else{
-        [btn setImage:[UIImage imageNamed:@"plan_guan.png"] forState:UIControlStateNormal];
         [self ClearPlan:dataarray withUI:NO];
-        isOpen=NO;
     }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:[_SwitchView isOn]] forKey:@"Clock"];
 }
 
 //响应用户单击事件
@@ -185,7 +188,7 @@ NSArray *parts;
     //设置请求实体
     [request setEntity:entity];
     //指定对结果的排序方式
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime"ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime"ascending:YES];
     NSArray *sortDescriptions = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:sortDescriptions];
     NSError *error = nil;
@@ -198,6 +201,10 @@ NSArray *parts;
             [self defaultPlan];
         }else{
             dataarray=mutableFetchResult;
+            for(int i=0;i<dataarray.count;i++){
+                Plan *pplan=[dataarray objectAtIndex:i];
+                NSLog(@"%@,%@",[pplan eventId],[pplan part]);
+            }
         }
         [_tabelView reloadData];
     }
@@ -216,23 +223,24 @@ NSArray *parts;
         day=[day stringByAppendingFormat:@" %@",[StartTimeArray objectAtIndex:i]];
         [formatter setDateFormat:@"yyyy:MM:dd HH:mm"];
         [newPlan setStartTime: [formatter dateFromString:day]];
-        [myAppDelegate.managedObjectContext save:&error];
+       
         [dataarray addObject:newPlan];
     }
-    if(isOpen){
+    if([_SwitchView isOn]){
        [self saveEvent:dataarray];
     }
-    
+    [myAppDelegate.managedObjectContext save:&error];
 }
 
 -(void)gotoCreatePlan{
     createPlanController=[[NewExercisePlanViewController alloc]init];
     if(oindex!=-1){
         createPlanController.oPlan=[dataarray objectAtIndex:oindex];
+        oindex=-1;
     }else{
         createPlanController.oPlan=nil;
     }
-    createPlanController.isEvent=isOpen;
+    createPlanController.isEvent=[_SwitchView isOn];
     [self.navigationController pushViewController:createPlanController animated:YES];
     
 }
@@ -244,6 +252,7 @@ NSArray *parts;
 }
 
 -(void)ClearPlan:(NSArray *)tarray withUI:(BOOL)isDelteUi{
+    [SVProgressHUD show];
     NSError *err=nil;
     for(Plan *plan in tarray){
         EKEvent *ev=[myAppDelegate.eventDB eventWithIdentifier:[plan eventId]];
@@ -257,9 +266,7 @@ NSArray *parts;
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
          NSError *err=nil;
-        NSLog(@"aaaaaaaaa");
         [myAppDelegate.eventDB commit:&err];
-        NSLog(@"aaaaaaaaa");
     });
   
     [myAppDelegate.managedObjectContext save:&err];
@@ -267,15 +274,18 @@ NSArray *parts;
         [dataarray removeObjectsInArray:tarray];
         [_tabelView reloadData];
     }
+    [SVProgressHUD dismiss];
     
 }
 
 -(void)saveEvent:(NSArray *)tarray{
+    [SVProgressHUD show];
     [myAppDelegate.eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted,NSError *error) {
         for(Plan *tplan in tarray){
             if([myAppDelegate.eventDB eventWithIdentifier:[tplan eventId]]==nil){
                 EKEvent *myEvent  = [EKEvent eventWithEventStore:myAppDelegate.eventDB];
-                myEvent.title = [@"开始执行训练计划,训练部位:" stringByAppendingString:[tplan part]];
+                
+                myEvent.title = [NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[parts objectAtIndex:[[tplan part] integerValue]]];
                 NSDate *startDate=[tplan startTime];
                 myEvent.startDate =startDate;
                 
@@ -294,6 +304,10 @@ NSArray *parts;
                 }else{
                     NSLog(@"error:%@,%@",err,[err userInfo]);
                 }
+               
+            }
+            if([tarray indexOfObject:tplan]==(tarray.count-1)){
+                [SVProgressHUD dismiss];
             }
         }
     }];

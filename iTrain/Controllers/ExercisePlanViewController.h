@@ -24,7 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *editPlan;//删除计划（重新计划）
 
 @property (weak, nonatomic) IBOutlet UILabel* clockLabel;//闹钟
-@property (weak, nonatomic) IBOutlet UIButton*clockBtn;//闹钟
+@property (weak, nonatomic) IBOutlet UISwitch *SwitchView;
+
 @property (weak, nonatomic) IBOutlet UIView*notifyView;//闹钟
 @end
 

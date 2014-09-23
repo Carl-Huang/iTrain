@@ -51,9 +51,15 @@ NSArray *weekDays;
     self.tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     [self setExtraCellLineHidden:self.tabelView];
-    _popView.hidden=YES;
-    [_shareTitle setText:NSLocalizedString(@"ShareTitle", nil)];
-    [_wxTv setText:NSLocalizedString(@"WxFriend", nil)];
+    
+    /**分享相应
+     **/
+    UITapGestureRecognizer *wxtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wxTapped)];
+    UITapGestureRecognizer *fbtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fbTapped)];
+    [_popWx addGestureRecognizer:wxtapGesture];
+    [_popFb addGestureRecognizer:fbtapGesture];
+    [_popFb setUserInteractionEnabled:YES];
+    [_popWx setUserInteractionEnabled:YES];
 
 }
 //Itme个数
@@ -93,10 +99,9 @@ NSArray *weekDays;
     cell.selectionStyle = UITableViewCellStyleValue1;//  SelectionStyleNone;
     [cell.contentView addSubview:cell.textLabel];
     cell.detailTextLabel.text=st1;
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     //蓝色
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    [cell.contentView setBackgroundColor:[UIColor whiteColor]];
     return cell;
 }
 
@@ -123,8 +128,12 @@ NSArray *weekDays;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title =NSLocalizedString(@"RecordDetail", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
-    [self setRightCustomBarItem:@"detail_fenxiang.png" action:@selector(popoverBtnClicked:forEvent:)];
-    [KWPopoverView ReShow];
+    
+    [_popCancel setTitle: NSLocalizedString(@"Cancel", nil)forState: UIControlStateNormal];
+    [_popCancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_popCancel addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [_shareTitle setText:NSLocalizedString(@"ShareTitle", nil)];
+    [_wxTv setText:NSLocalizedString(@"WxFriend", nil)];
     [self initData];
     [_tabelView reloadData];
 }
@@ -147,53 +156,21 @@ NSArray *weekDays;
     [_weekLabel setText:st];
 }
 
-- (void)popoverBtnClicked:(id)sender forEvent:(UIEvent *)event {
-    if(isFirst){
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCancel)];
-        [self.view addGestureRecognizer:tapGesture];
-        [_popView setFrame:CGRectMake(0, [ UIScreen mainScreen ].bounds.size.height-_popView.frame.size.height, _popView.frame.size.width, _popView.frame.size.height)];
-        [_popCancel addTarget:self action:@selector(tappedCancel) forControlEvents:UIControlEventTouchDown];
-        /**分享相应
-         **/
-        UITapGestureRecognizer *wxtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wxTapped)];
-        UITapGestureRecognizer *fbtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fbTapped)];
-        [_popWx addGestureRecognizer:wxtapGesture];
-        [_popFb addGestureRecognizer:fbtapGesture];
-        [_popFb setUserInteractionEnabled:YES];
-        [_popWx setUserInteractionEnabled:YES];
-        [[UIApplication sharedApplication].delegate.window.rootViewController.view addSubview:_popView];
-    }
-    [_popView setHidden:NO];
-    [_popView setAlpha:1];
-}
+
 
 -(void)wxTapped{
-    [self tappedCancel];
-    
     NSString *content=[NSString stringWithFormat:NSLocalizedString(@"ShareContent", nil),[parts objectAtIndex:[[_record part] integerValue]],[[_record time] integerValue]];
     [self showShare:content ShareType:ShareTypeWeixiSession ImagePath:nil];
 }
 
 -(void)fbTapped{
-    [self tappedCancel];
     NSString *content=[NSString stringWithFormat:NSLocalizedString(@"ShareContent", nil),[parts objectAtIndex:[[_record part] integerValue]],[[_record time] integerValue]];
     [self showShare:content ShareType:ShareTypeFacebook ImagePath:nil];
 }
 
-- (void)tappedCancel
-{
-    [UIView animateWithDuration:ANIMATE_DURATION animations:^{
-        _popView.alpha = 0;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [_popView setHidden:YES];
-        }
-    }];
-}
+
 
 -(void)back{
-    [_popView setHidden:YES];
-    [_popView removeFromSuperview];
     NSArray *array=self.navigationController.viewControllers;
     if([[array objectAtIndex:(array.count-2)] isKindOfClass:[ExerciseParamViewController class]]){
         UIViewController *vc=( UIViewController *)[array objectAtIndex:(array.count-3)];

@@ -80,6 +80,6 @@
         <image name="main_logo.png" width="96" height="40"/>
         <image name="main_shezhin.png" width="218" height="123"/>
         <image name="main_xunlian.png" width="218" height="123"/>
-        <image name="mian_text.png" width="124" height="40"/>
+        <image name="mian_text.png" width="154" height="36"/>
     </resources>
 </document>

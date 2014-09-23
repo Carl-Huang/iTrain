@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    
+    _isUserUnit=NO;
     application.applicationIconBadgeNumber = 0;
     /**
      注册SDK应用，此应用请到http://www.sharesdk.cn中进行注册申请。

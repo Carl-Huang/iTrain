@@ -11,6 +11,7 @@
 #import "SysNotiViewController.h"
 #import "SuggestViewController.h"
 #import "BlueToothViewController.h"
+#import "SubtoolViewController.h"
 
 @interface AboutViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
@@ -18,6 +19,7 @@
     HelpViewController *help;
     SysNotiViewController *sys;
     SuggestViewController *sugg;
+    SubtoolViewController * subtool;
 
     
 }

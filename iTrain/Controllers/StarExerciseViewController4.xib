@@ -44,7 +44,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start_quan2.png" id="vwQ-MS-oSY" customClass="MTImageMapView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                            <rect key="frame" x="18" y="-8" width="282" height="389"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
@@ -53,7 +53,7 @@
                             </connections>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FEc-pF-UNh">
-                            <rect key="frame" x="10" y="183" width="12" height="24"/>
+                            <rect key="frame" x="13" y="139" width="45" height="85"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="left.png">
@@ -61,7 +61,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oaw-oM-WBH">
-                            <rect key="frame" x="294" y="185" width="13" height="24"/>
+                            <rect key="frame" x="262" y="139" width="45" height="85"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="right.png">
@@ -118,8 +118,8 @@
         </view>
     </objects>
     <resources>
-        <image name="left.png" width="12" height="24"/>
-        <image name="right.png" width="13" height="24"/>
+        <image name="left.png" width="12" height="27"/>
+        <image name="right.png" width="12" height="27"/>
         <image name="start_kaishixunlian.png" width="249" height="38"/>
         <image name="start_quan2.png" width="320" height="337"/>
         <image name="start_ren.png" width="320" height="337"/>

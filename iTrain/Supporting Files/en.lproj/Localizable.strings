@@ -6,6 +6,8 @@
   Copyright (c) 2014年 helloworld. All rights reserved.
 */
 "xunlian"="Train";
+"Exercise"="Exercise";
+"Cancel"="Cancel";
 "startxunlian"="StartTrain";
 "TrainPart"="TrainPart";
 "TrainTime"="TrainTime";
@@ -46,7 +48,7 @@
 "TotalTrainTime"="TotalTrainTime";
 "ShareTitle"="Share To";
 "WxFriend"="WxFriends";
-"ShareContent"="Today I am training %@ %d minutes";
+"ShareContent"="I just use the XFT - iTrain muscle training instrument, made the %@ muscles training %d minutes, feel very good!";
 "cancle"="Cancle";
 "del"="Del";
 "edit"="Edit";
@@ -87,7 +89,7 @@
 "Unit"="Unit";
 "Man"="Man";
 "WoMan"="WoMan";
-"UserInfo"="UserInfo";
+"UserInfo"="User Profile";
 "Save"="Save";
 "NewUser"="NewUser";
 "NAge"="Age （Year）:";
@@ -103,9 +105,36 @@
 "Pulse-Width"="Pulse-Width";
 "Hz"="Hz";
 "Adparameters"="Advanced Parameters";
-"Start"="Start";
-"Puase"="Puase";
+"Start"="Send";
+"Puase"="Puase/Stop";
 "SaveSu"="Save Successful";
 "laun"="En";
 "Unit_"="Inch";
 "InfoIsNil"="Please complete information and then to save with an asterisk !";
+
+
+
+
+"HelpQ1"="1) Is the muscle exercise excessively or too tired?";
+
+"HelpQ2"="2) Is this product suitable for different age groups?";
+
+"HelpQ3"="3) Will it be uncomfortable when use this product?";
+"HelpQ4"="4) Should the intensity be the same for different muscle groups?";
+"HelpQ5"="5) Is there some taboo when use this product?";
+"HelpQ6"="6) When will the training effect come out?";
+"HelpQ7"="7) How long does the battery last and be fully charged?";
+
+"HelpR1"="No. It’s the same with common Muscle Training. More training, stronger the muscle will be (Nevertheless, it needs reasonable time to rest).";
+"HelpR2"="Yes, of course. Our product has nothing to do with the age, it is suitable for any age groups. While, the aged and children must use this product under custody, and choose the lower intensity.";
+"HelpR3"="You will feel good as long as the pads stick on the skin tightly. It will have slight stabbing pain while the intensity is low, with the intensity increase, you only have the comfortable feeling of muscle contraction.";
+"HelpR4"="It has different program for different muscle groups, it intensity will change accordingly.";
+"HelpR5"="Yes. Please ask your doctor before use this product if health condition is not good to take exercises. And please read the Safety precautions before use.";
+"HelpR6"="It depends on the frequency you use this product and your fat mass. You will feel the muscle becomes stronger after 1-2 weeks. And you’ll find the muscle more of textured feel after 3 weeks.";
+"HelpR7"="It can last 5-10 hours after being fully charged. It takes about 2 hours to fully charge the battery.";
+"DelUser"="Userdel";
+"Resume"="continue";
+"UHeight"="Height(cm)";
+"UWeight"="Weight(Kg)";
+"TrainPlanContent"="Began the implementation of training plan, training part is";
+"Subtool"="Subtool";

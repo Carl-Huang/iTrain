@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="CreateTv" destination="opy-MG-cqu" id="GQp-3Z-mEb"/>
                 <outlet property="ReNewTv" destination="5CZ-44-AMx" id="AHY-xZ-rPX"/>
-                <outlet property="clockBtn" destination="1Ly-AS-4io" id="t5q-lI-gjc"/>
+                <outlet property="SwitchView" destination="25g-Gh-zWf" id="Z5E-bK-EZE"/>
                 <outlet property="clockLabel" destination="1TL-Lz-nav" id="Qfq-vQ-uNk"/>
                 <outlet property="createPlan" destination="o69-7m-dEf" id="7lO-R6-vIO"/>
                 <outlet property="editPlan" destination="hAF-3F-5h1" id="fhc-KT-bmE"/>
@@ -73,17 +73,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="闹钟" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1TL-Lz-nav">
-                    <rect key="frame" x="0.0" y="3" width="87" height="21"/>
+                    <rect key="frame" x="9" y="3" width="87" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Ly-AS-4io">
-                    <rect key="frame" x="15" y="0.0" width="85" height="30"/>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="25g-Gh-zWf">
+                    <rect key="frame" x="55" y="-2" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                </button>
+                </switch>
             </subviews>
         </view>
     </objects>
