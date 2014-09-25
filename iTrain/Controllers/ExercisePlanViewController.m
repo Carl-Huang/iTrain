@@ -24,6 +24,7 @@ NSArray *StartTimeArray;
 NSArray *Partrray;
 NSArray *TimeArray;
 NSArray *parts;
+bool isOn;
 @implementation ExercisePlanViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,8 +57,14 @@ NSArray *parts;
     self.title = NSLocalizedString(@"TrainPlan", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     [self setRightCustomBarItems:_notifyView];
-    [_SwitchView setOn:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Clock"] boolValue]];
-     [_SwitchView addTarget:self action:@selector(selectClicked) forControlEvents:UIControlEventValueChanged];
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"Clock"] boolValue]){
+        [_SwitchView setImage:[UIImage imageNamed:@"开.png"] forState:UIControlStateNormal];
+        isOn=YES;
+    }else{
+        [_SwitchView setImage:[UIImage imageNamed:@"关.png"] forState:UIControlStateNormal];
+        isOn=NO;
+    }
+    [_SwitchView addTarget:self action:@selector(selectClicked) forControlEvents:UIControlEventTouchUpInside];
     [self initData];
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -74,12 +81,9 @@ NSArray *parts;
     self.view.backgroundColor=bg;
     self.tabelView.backgroundColor=bg;
     self.tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [_SwitchView setOn:NO];
-
-    
     [self setExtraCellLineHidden: self.tabelView];
     //    [self.view addSubview: self.tabelView];
-   
+    
     [_createPlan addTarget:self action:@selector(gotoCreatePlan) forControlEvents:UIControlEventTouchUpInside];
     [_editPlan addTarget:self action:@selector(editClearPlan) forControlEvents:UIControlEventTouchUpInside];
     [_clockLabel setText:NSLocalizedString(@"Alert", nil)];
@@ -133,6 +137,28 @@ NSArray *parts;
     DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"editType", nil) leftButtonTitle:NSLocalizedString(@"del", nil) rightButtonTitle:NSLocalizedString(@"edit", nil)];
     [alert show];
     alert.leftBlock = ^() {
+        UIApplication *app = [UIApplication sharedApplication];
+        //获取本地推送数组
+        NSArray *localArr = [app scheduledLocalNotifications];
+        Plan *ttPlan=[dataarray objectAtIndex:[sender tag]];
+        //声明本地通知对象
+        UILocalNotification *localNoti;
+        if (localArr) {
+            for (UILocalNotification *noti in localArr) {
+                NSDictionary *dict = noti.userInfo;
+                if (dict) {
+                    NSString *inKey = [dict objectForKey:@"key"];
+                    if ([inKey isEqualToString:[ttPlan eventId]]) {
+                        localNoti = noti;
+                        break;
+                    }
+                }
+            }
+            //判断是否找到已经存在的相同key的推送
+            if (localNoti) {
+                [app cancelLocalNotification:localNoti];
+            }
+        }
         [self ClearPlan:[[NSArray alloc]initWithObjects:[dataarray objectAtIndex:[sender tag]], nil] withUI:YES];
     };
     alert.rightBlock = ^() {
@@ -161,13 +187,17 @@ NSArray *parts;
 //#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
 - (void)selectClicked{
-    if ([_SwitchView isOn]) {
+    if(!isOn){
+        [_SwitchView setImage:[UIImage imageNamed:@"开.png"] forState:UIControlStateNormal];
         [self saveEvent:dataarray];
     }else{
+        [_SwitchView setImage:[UIImage imageNamed:@"关.png"] forState:UIControlStateNormal];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
         [self ClearPlan:dataarray withUI:NO];
     }
+    isOn=!isOn;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithBool:[_SwitchView isOn]] forKey:@"Clock"];
+    [defaults setObject:[NSNumber numberWithBool:isOn] forKey:@"Clock"];
 }
 
 //响应用户单击事件
@@ -201,10 +231,6 @@ NSArray *parts;
             [self defaultPlan];
         }else{
             dataarray=mutableFetchResult;
-            for(int i=0;i<dataarray.count;i++){
-                Plan *pplan=[dataarray objectAtIndex:i];
-                NSLog(@"%@,%@",[pplan eventId],[pplan part]);
-            }
         }
         [_tabelView reloadData];
     }
@@ -223,11 +249,11 @@ NSArray *parts;
         day=[day stringByAppendingFormat:@" %@",[StartTimeArray objectAtIndex:i]];
         [formatter setDateFormat:@"yyyy:MM:dd HH:mm"];
         [newPlan setStartTime: [formatter dateFromString:day]];
-       
+        
         [dataarray addObject:newPlan];
     }
-    if([_SwitchView isOn]){
-       [self saveEvent:dataarray];
+    if(isOn){
+        [self saveEvent:dataarray];
     }
     [myAppDelegate.managedObjectContext save:&error];
 }
@@ -240,77 +266,75 @@ NSArray *parts;
     }else{
         createPlanController.oPlan=nil;
     }
-    createPlanController.isEvent=[_SwitchView isOn];
+    createPlanController.isEvent=isOn;
     [self.navigationController pushViewController:createPlanController animated:YES];
     
 }
 
 -(void)editClearPlan{
     [self ClearPlan:dataarray withUI:YES];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [self defaultPlan];
     [_tabelView reloadData];
 }
 
 -(void)ClearPlan:(NSArray *)tarray withUI:(BOOL)isDelteUi{
-    [SVProgressHUD show];
     NSError *err=nil;
     for(Plan *plan in tarray){
-        EKEvent *ev=[myAppDelegate.eventDB eventWithIdentifier:[plan eventId]];
-        if(ev!=nil){
-            //[myAppDelegate.eventDB delete:ev];
-            [myAppDelegate.eventDB removeEvent:ev span:EKSpanFutureEvents commit:NO error:&err];
-        }
         if(isDelteUi){
             [myAppDelegate.managedObjectContext deleteObject:plan];
         }
     }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         NSError *err=nil;
-        [myAppDelegate.eventDB commit:&err];
-    });
-  
     [myAppDelegate.managedObjectContext save:&err];
     if(isDelteUi){
         [dataarray removeObjectsInArray:tarray];
         [_tabelView reloadData];
     }
-    [SVProgressHUD dismiss];
-    
 }
 
 -(void)saveEvent:(NSArray *)tarray{
-    [SVProgressHUD show];
-    [myAppDelegate.eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted,NSError *error) {
-        for(Plan *tplan in tarray){
-            if([myAppDelegate.eventDB eventWithIdentifier:[tplan eventId]]==nil){
-                EKEvent *myEvent  = [EKEvent eventWithEventStore:myAppDelegate.eventDB];
-                
-                myEvent.title = [NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[parts objectAtIndex:[[tplan part] integerValue]]];
-                NSDate *startDate=[tplan startTime];
-                myEvent.startDate =startDate;
-                
-                myEvent.endDate   = startDate;
-                EKRecurrenceRule *rule=[[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:nil];
-                [myEvent addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -60.0f * 24]];
-                [myEvent addRecurrenceRule:rule];
-                [myEvent setCalendar:[myAppDelegate.eventDB defaultCalendarForNewEvents]];
-                NSError *err;
-                [myAppDelegate.eventDB saveEvent:myEvent span:EKSpanThisEvent commit:YES error:&err];
-                
-                BOOL isSu=[myAppDelegate.managedObjectContext save:&err];
-                if(isSu){
-                    [tplan setEventId:myEvent.eventIdentifier];
-                    NSLog(@"保存成功");
-                }else{
-                    NSLog(@"error:%@,%@",err,[err userInfo]);
-                }
-               
-            }
-            if([tarray indexOfObject:tplan]==(tarray.count-1)){
-                [SVProgressHUD dismiss];
-            }
+    UILocalNotification *noti = [[UILocalNotification alloc] init];
+    UIApplication *app = [UIApplication sharedApplication];
+    for(Plan *tplan in tarray){
+        if (noti) {
+            
+            //设置推送时间
+            
+            noti.fireDate =[tplan startTime];
+            
+            //设置时区
+            
+            noti.timeZone = [NSTimeZone defaultTimeZone];
+            
+            //设置重复间隔
+            noti.repeatInterval =NSDayCalendarUnit;
+            
+            //推送声音
+            
+            noti.soundName =UILocalNotificationDefaultSoundName;
+            
+            //内容
+            
+            noti.alertBody =[NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[parts objectAtIndex:[[tplan part] integerValue]]];
+            
+            //显示在icon上的红色圈中的数子
+            
+            noti.applicationIconBadgeNumber =1;
+            
+            //设置userinfo 方便在之后需要撤销的时候使用
+            
+            NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[[[tplan objectID]URIRepresentation]absoluteString] forKey:@"key"];
+            
+            noti.userInfo = infoDic;
+            
+            //添加推送到uiapplication
+            
+            
+            [app scheduleLocalNotification:noti];
+            [tplan setEventId:[[[tplan objectID]URIRepresentation]absoluteString]];
         }
-    }];
+        
+    }
 }
 
 

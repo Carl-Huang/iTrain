@@ -267,6 +267,11 @@ NSArray *parts;
     int minute = hour*60+(int)(time-hour*3600)/60;
     [record setTime:[NSNumber numberWithInt:minute]];
     [record setDate:start];
+    if(myAppDelegate.user){
+         [record setUser:[[[myAppDelegate.user objectID] URIRepresentation]absoluteString]];
+    }else{
+        [record setUser:@"defualt"];
+    }
     NSError *error=nil;
     Boolean isSU=[myAppDelegate.managedObjectContext save:&error];
     if(isSU){

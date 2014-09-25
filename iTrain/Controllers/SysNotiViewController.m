@@ -132,7 +132,7 @@ UIView *headView;
     if(section==second){
         imageView.image=[UIImage imageNamed:@"notify_click.png"];
     }else{
-              imageView.image=[UIImage imageNamed:@"notify_default.png"];
+        imageView.image=[UIImage imageNamed:@"notify_default.png"];
     }
     return headView;
 }
@@ -147,10 +147,6 @@ UIView *headView;
 {
     return 40.0f;
 }
-
-
-
-
 //隐藏TabelView下面多余分割线
 - (void)setExtraCellLineHidden: (UITableView *)tableView
 {

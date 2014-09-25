@@ -150,6 +150,8 @@
 		C365B73A19A346D500554CF6 /* BlueToothCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C365B73919A346D500554CF6 /* BlueToothCell.xib */; };
 		C365B73E19A356F600554CF6 /* ParamSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C365B73C19A356F600554CF6 /* ParamSetViewController.m */; };
 		C365B73F19A356F600554CF6 /* ParamSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C365B73D19A356F600554CF6 /* ParamSetViewController.xib */; };
+		C36A576119D3B40D0008B065 /* 关@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36A575F19D3B40D0008B065 /* 关@2x.png */; };
+		C36A576219D3B40D0008B065 /* 开@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36A576019D3B40D0008B065 /* 开@2x.png */; };
 		C36EC62E19AB1DC000813ACD /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C36EC62D19AB1DC000813ACD /* AKPickerView.m */; };
 		C36EC63319AB28E500813ACD /* baocun_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63119AB28E500813ACD /* baocun_1.png */; };
 		C36EC63419AB28E500813ACD /* baocun.png in Resources */ = {isa = PBXBuildFile; fileRef = C36EC63219AB28E500813ACD /* baocun.png */; };
@@ -278,7 +280,7 @@
 		C3F1093719BCE06D0029CA03 /* UIView+FirstResponderNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F1093319BCE06D0029CA03 /* UIView+FirstResponderNotify.m */; };
 		C3F1093C19BCE1250029CA03 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F1093B19BCE1250029CA03 /* CoreData.framework */; };
 		C3F960CA19BD840C00944210 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F960C919BD840C00944210 /* AssetsLibrary.framework */; };
-		C3F960D019BDA1C700944210 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F960CF19BDA1C700944210 /* Record.m */; };
+		C3F9994A19D3F0C400118441 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F9994919D3F0C400118441 /* Record.m */; };
 		C3FE2C0619A8494300892B73 /* ExerciseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FE2C0519A8494300892B73 /* ExerciseRecordCell.m */; };
 		C3FE2C0819A8495500892B73 /* ExerciseRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FE2C0719A8495500892B73 /* ExerciseRecordCell.xib */; };
 		C3FE2C0C19A890B300892B73 /* ExerciseRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FE2C0A19A890B300892B73 /* ExerciseRecordViewController.m */; };
@@ -533,6 +535,8 @@
 		C365B73B19A356F600554CF6 /* ParamSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamSetViewController.h; sourceTree = "<group>"; };
 		C365B73C19A356F600554CF6 /* ParamSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamSetViewController.m; sourceTree = "<group>"; };
 		C365B73D19A356F600554CF6 /* ParamSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParamSetViewController.xib; sourceTree = "<group>"; };
+		C36A575F19D3B40D0008B065 /* 关@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关@2x.png"; sourceTree = "<group>"; };
+		C36A576019D3B40D0008B065 /* 开@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "开@2x.png"; sourceTree = "<group>"; };
 		C36EC62C19AB1DC000813ACD /* AKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPickerView.h; sourceTree = "<group>"; };
 		C36EC62D19AB1DC000813ACD /* AKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKPickerView.m; sourceTree = "<group>"; };
 		C36EC63119AB28E500813ACD /* baocun_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baocun_1.png; sourceTree = "<group>"; };
@@ -674,8 +678,8 @@
 		C3F1093319BCE06D0029CA03 /* UIView+FirstResponderNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FirstResponderNotify.m"; sourceTree = "<group>"; };
 		C3F1093B19BCE1250029CA03 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C3F960C919BD840C00944210 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		C3F960CE19BDA1C700944210 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
-		C3F960CF19BDA1C700944210 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		C3F9994819D3F0C400118441 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		C3F9994919D3F0C400118441 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		C3FE2C0419A8494300892B73 /* ExerciseRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseRecordCell.h; sourceTree = "<group>"; };
 		C3FE2C0519A8494300892B73 /* ExerciseRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseRecordCell.m; sourceTree = "<group>"; };
 		C3FE2C0719A8495500892B73 /* ExerciseRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExerciseRecordCell.xib; path = AKPickerView/ExerciseRecordCell.xib; sourceTree = "<group>"; };
@@ -1087,13 +1091,13 @@
 			children = (
 				C31AA84919AC3D7000CF3035 /* Device.h */,
 				C31AA84A19AC3D7000CF3035 /* Device.m */,
-				C3F960CE19BDA1C700944210 /* Record.h */,
-				C3F960CF19BDA1C700944210 /* Record.m */,
 				C34D962D19B4440B00F98BFA /* Model.xcdatamodeld */,
 				C30D3FC819C17A8300992DFD /* Plan.h */,
 				C30D3FC919C17A8300992DFD /* Plan.m */,
 				C3FF09B919C84C6A001BBF81 /* User.h */,
 				C3FF09BA19C84C6A001BBF81 /* User.m */,
+				C3F9994819D3F0C400118441 /* Record.h */,
+				C3F9994919D3F0C400118441 /* Record.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1311,6 +1315,8 @@
 		C37ACA5E19A7494A00F3332A /* 11训练计划 */ = {
 			isa = PBXGroup;
 			children = (
+				C36A575F19D3B40D0008B065 /* 关@2x.png */,
+				C36A576019D3B40D0008B065 /* 开@2x.png */,
 				C35BF07619B720F0006397EC /* btn_close_normal.png */,
 				C35BF07719B720F0006397EC /* btn_close_normal@2x.png */,
 				C35BF07819B720F0006397EC /* btn_close_selected.png */,
@@ -1599,6 +1605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34D963119B4537100F98BFA /* BaiKeViewController4.xib in Resources */,
+				C36A576219D3B40D0008B065 /* 开@2x.png in Resources */,
 				C37ACB1219A7494B00F3332A /* ul_kuang@2x.png in Resources */,
 				C365B73A19A346D500554CF6 /* BlueToothCell.xib in Resources */,
 				C37ACAD319A7494B00F3332A /* start1@2x.png in Resources */,
@@ -1615,6 +1622,7 @@
 				C31AAFD419AC917500CF3035 /* Images.xcassets in Resources */,
 				C3C5C68E19CC4FBE005A0921 /* 未选择@2x.png in Resources */,
 				C31AAFD919ACA51A00CF3035 /* 114.png in Resources */,
+				C36A576119D3B40D0008B065 /* 关@2x.png in Resources */,
 				C3A7696B19935D8900538AEC /* ExerciseMainViewController.xib in Resources */,
 				C329555E19B03E1400ECDFED /* StarExerciseViewController4.xib in Resources */,
 				C37ACAE719A7494B00F3332A /* start_kaishixunlian@2x.png in Resources */,
@@ -1805,7 +1813,6 @@
 				C30D3FCA19C17A8300992DFD /* Plan.m in Sources */,
 				C3443889198BE08500133B51 /* AppDelegate.m in Sources */,
 				C34D962F19B4440B00F98BFA /* Model.xcdatamodeld in Sources */,
-				C3F960D019BDA1C700944210 /* Record.m in Sources */,
 				C3443963198BE61D00133B51 /* UIViewController+BarItem.m in Sources */,
 				C30D400619C1B0FE00992DFD /* AFNetworkReachabilityManager.m in Sources */,
 				C31F555919AF02D900C2A34A /* NewUserViewController.m in Sources */,
@@ -1831,6 +1838,7 @@
 				C36EC66219AB5A1900813ACD /* ExerciseParamViewController.m in Sources */,
 				C3443933198BE47C00133B51 /* MainViewController.m in Sources */,
 				C35BF03A19B6C2CD006397EC /* DXAlertView.m in Sources */,
+				C3F9994A19D3F0C400118441 /* Record.m in Sources */,
 				C344395E198BE61D00133B51 /* NSString+MD5_32.m in Sources */,
 				C31AA84119AC2BD400CF3035 /* CBLEManager.m in Sources */,
 				C3F1093519BCE06D0029CA03 /* DaiDodgeKeyboard+Animation.m in Sources */,
@@ -1999,7 +2007,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -2032,7 +2040,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

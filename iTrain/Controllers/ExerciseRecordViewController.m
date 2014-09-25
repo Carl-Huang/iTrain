@@ -168,6 +168,15 @@ UIColor *tipColor;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Record"inManagedObjectContext:myAppDelegate.managedObjectContext];
     //设置请求实体
     [request setEntity:entity];
+    NSString *stt;
+    if(myAppDelegate.user){
+        stt=[[[myAppDelegate.user objectID] URIRepresentation]absoluteString];
+    }else{
+        stt=@"defualt";
+    }
+    
+    request.predicate=[NSPredicate predicateWithFormat:@"user=%@",stt];
+
     //指定对结果的排序方式
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time"ascending:YES];
     NSArray *sortDescriptions = [[NSArray alloc]initWithObjects:sortDescriptor, nil];

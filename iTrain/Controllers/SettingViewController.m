@@ -33,7 +33,7 @@
     self.dataList = list;
     self.imageList=imagelist;
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain] ;
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.tv.frame style:UITableViewStylePlain] ;
     // 设置tableView的数据源
     tableView.dataSource = self;
     // 设置tableView的委托

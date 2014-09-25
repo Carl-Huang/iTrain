@@ -99,12 +99,30 @@ AppDelegate *myAppDelegate;
     [sPlan setTime:[NSNumber numberWithInteger:[[timeLong substringToIndex:(timeLong.length-3)] integerValue]]];
     [sPlan setPart:[NSString stringWithFormat: @"%d",partIndex]];
     if([sPlan eventId]!=nil){
-        NSError *err=nil;
-        [myAppDelegate.eventDB removeEvent:[myAppDelegate.eventDB eventWithIdentifier:[sPlan eventId]] span:EKSpanFutureEvents commit:YES error:&err];
+        UIApplication *app = [UIApplication sharedApplication];
+        //获取本地推送数组
+        NSArray *localArr = [app scheduledLocalNotifications];
+        //声明本地通知对象
+        UILocalNotification *localNoti;
+        if (localArr) {
+            for (UILocalNotification *noti in localArr) {
+                NSDictionary *dict = noti.userInfo;
+                if (dict) {
+                    NSString *inKey = [dict objectForKey:@"key"];
+                    if ([inKey isEqualToString:[sPlan eventId]]) {
+                        localNoti = noti;
+                        break;
+                    }
+                }
+            }
+            //判断是否找到已经存在的相同key的推送
+            if (localNoti) {
+                [app cancelLocalNotification:localNoti];
+            }
+        }
     }
     if(self.isEvent){
         [self saveEvent:sPlan];
-        return;
     }
     NSError *error = nil;
     BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
@@ -113,18 +131,16 @@ AppDelegate *myAppDelegate;
     }
     else{
         NSLog(@"保存成功");
-        [self showAlertViewWithMessage:@"保存成功！"];
+        [self showAlertViewWithMessage];
     }
 }
-- (void)showAlertViewWithMessage:(NSString *)message
+- (void)showAlertViewWithMessage
 {
-    dispatch_sync(dispatch_get_main_queue(), ^{
     DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText:NSLocalizedString(@"SaveSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
-        [alert show];
-        alert.dismissBlock=^(){
-            [self.navigationController popViewControllerAnimated:YES];
-        };
-    });
+    [alert show];
+    alert.dismissBlock=^(){
+        [self.navigationController popViewControllerAnimated:YES];
+    };
     
 }
 
@@ -311,33 +327,71 @@ AppDelegate *myAppDelegate;
 }
 
 -(void)saveEvent:(Plan *)tplan{
-    [myAppDelegate.eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted,NSError *error) {
+    UILocalNotification *noti = [[UILocalNotification alloc] init];
+    UIApplication *app = [UIApplication sharedApplication];
+    if (noti) {
         
-        EKEvent *myEvent  = [EKEvent eventWithEventStore:myAppDelegate.eventDB];
-        myEvent.title = [NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
+        //设置推送时间
+        noti.alertAction=[NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
+        noti.fireDate =[tplan startTime];
+        //设置时区
         
-        NSDate *startDate=[tplan startTime];
-        myEvent.startDate =startDate;
+        noti.timeZone = [NSTimeZone defaultTimeZone];
         
-        myEvent.endDate   = startDate;
-        EKRecurrenceRule *rule=[[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:nil];
-        [myEvent addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -60.0f * 24]];
-        [myEvent addRecurrenceRule:rule];
-        [myEvent setCalendar:[myAppDelegate.eventDB defaultCalendarForNewEvents]];
-        NSError *err;
-        [myAppDelegate.eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
-        [tplan setEventId:myEvent.eventIdentifier];
-        BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
-        if (!isSave) {
-            NSLog(@"error:%@,%@",error,[error userInfo]);
-        }
-        else{
-            NSLog(@"保存成功");
-            [self showAlertViewWithMessage:@""];
-        }
+        //设置重复间隔
+        noti.repeatInterval =NSDayCalendarUnit;
+        
+        //推送声音
+        
+        noti.soundName =UILocalNotificationDefaultSoundName;
+        
+        //内容
+        
+        noti.alertBody =[NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
+        
+        //显示在icon上的红色圈中的数子
+        
+        noti.applicationIconBadgeNumber =1;
+        
+        //设置userinfo 方便在之后需要撤销的时候使用
+        
+        NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[tplan eventId] forKey:@"key"];
+        
+        noti.userInfo = infoDic;
+        
+        //添加推送到uiapplication
         
         
-    }];
+        [app scheduleLocalNotification:noti];
+        [tplan setEventId:[[[tplan objectID]URIRepresentation]absoluteString]];
+    }
+//    [myAppDelegate.eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted,NSError *error) {
+//        
+//        EKEvent *myEvent  = [EKEvent eventWithEventStore:myAppDelegate.eventDB];
+//        myEvent.title = [NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
+//        
+//        NSDate *startDate=[tplan startTime];
+//        myEvent.startDate =startDate;
+//        
+//        myEvent.endDate   = startDate;
+//        EKRecurrenceRule *rule=[[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:nil];
+//        [myEvent addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -60.0f * 24]];
+//        [myEvent addRecurrenceRule:rule];
+//        [myEvent setCalendar:[myAppDelegate.eventDB defaultCalendarForNewEvents]];
+//        NSError *err;
+//        [myAppDelegate.eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
+//        [tplan setEventId:myEvent.eventIdentifier];
+//        BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
+//        if (!isSave) {
+//            NSLog(@"error:%@,%@",error,[error userInfo]);
+//        }
+//        else{
+//            NSLog(@"保存成功");
+//            [self showAlertViewWithMessage:@""];
+//        }
+//        
+//        
+//    }];
 }
 
 @end

@@ -21,26 +21,9 @@
     
     _isUserUnit=NO;
     application.applicationIconBadgeNumber = 0;
-    /**
-     注册SDK应用，此应用请到http://www.sharesdk.cn中进行注册申请。
-     此方法必须在启动时调用，否则会限制SDK的使用。
-     **/
     [ShareSDK registerApp:@"2f5f22504fd1"];     //参数为ShareSDK官网中添加应用后得到的AppKey
-
-    //如果使用服务中配置的app信息，请把初始化代码改为下面的初始化方法。
-    //    [ShareSDK registerApp:@"iosv1101" useAppTrusteeship:YES];
     [self initializePlat];
-    
-    //如果使用服务器中配置的app信息，请把初始化平台代码改为下面的方法
-    //    [self initializePlatForTrusteeship];
-    
-   
-    
     _interfaceOrientationMask = SSInterfaceOrientationMaskAll;
-    
-    //横屏设置
-    //    [ShareSDK setInterfaceOrientationMask:UIInterfaceOrientationMaskLandscape];
-    
     //监听用户信息变更
     [ShareSDK addNotificationWithName:SSN_USER_INFO_UPDATE
                                target:self
@@ -50,9 +33,8 @@
                                                    UIRemoteNotificationTypeAlert)];
     // Required
     [APService setupWithOption:launchOptions];
- 
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//     rootView = [[MainViewController alloc] init];
     if (DEVICE_IS_IPHONE5) {
         rootView= [[MainViewController alloc] initWithNibName:@"MainViewController4" bundle:nil];
     }else {
@@ -63,20 +45,14 @@
     [self.navController pushViewController:rootView animated:YES];
     [self.window setRootViewController:_navController];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"tittle_bg"] forBarMetrics:UIBarMetricsDefault];
-//    if([OSHelper iOS7])
-//    {
-//        
-//    }
-//    else
-//    {
-//        
-//    }
-//    [self.window addSubview:rootView.view];
     [self.window makeKeyAndVisible];
     /**延长启动页面时间**/
     [NSThread sleepForTimeInterval:1];
-
-   
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif){
+        
+    }
+    
     return YES;
 }
 
@@ -96,19 +72,19 @@
                               appSecret:@"38053202e1a5fe26c80c753071f0b573"];
     
     
-  
+    
     
     /**
      连接Line应用以使用相关功能，此应用需要引用LineConnection.framework库
      **/
-   // [ShareSDK connectLine];
+    // [ShareSDK connectLine];
     
     /**
      连接WhatsApp应用以使用相关功能，此应用需要引用WhatsAppConnection.framework库
      **/
-   // [ShareSDK connectWhatsApp];
-
-
+    // [ShareSDK connectWhatsApp];
+    
+    
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     
     [defaultCenter addObserver:self selector:@selector(networkDidSetup:) name:kAPNetworkDidSetupNotification object:nil];
@@ -126,7 +102,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -167,7 +143,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-     application.applicationIconBadgeNumber = 0;
+    application.applicationIconBadgeNumber = 0;
     // Required
     [APService handleRemoteNotification:userInfo];
     [self goTo];
@@ -382,7 +358,7 @@
 }
 
 - (void)networkDidRegister:(NSNotification *)notification {
-//[_infoLabel setText:@"已注册"];
+    //[_infoLabel setText:@"已注册"];
     NSLog(@"已注册");
 }
 
@@ -398,8 +374,27 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification
+
+{
     
-    NSLog(@"%@",[NSString stringWithFormat:@"收到消息\ndate:%@\ntitle:%@\ncontent:%@", [dateFormatter stringFromDate:[NSDate date]],title,content]);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                          
+                                                    message:notification.alertBody
+                          
+                                                   delegate:nil
+                          
+                                          cancelButtonTitle:@"确定"
+                          
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    
+    //这里，你就可以通过notification的useinfo，干一些你想做的事情了
+    
+    application.applicationIconBadgeNumber -=1;
     
 }
 @end

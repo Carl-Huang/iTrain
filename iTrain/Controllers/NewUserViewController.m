@@ -287,6 +287,7 @@ BOOL isEn;
 //取消操作时调用
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^{
+        photo=nil;
     }];
 }
 /*
