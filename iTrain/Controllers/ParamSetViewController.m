@@ -48,9 +48,9 @@ NSMutableArray *modelArray;
     self.pickerView.delegate = self;
     //	[self.view addSubview:self.pickerView];
     self.titles=[[NSMutableArray alloc]initWithArray:
-                 @[@"100",@"200",@"300",@"400",@"500",@"600",@"700"]];
+                 @[@"100",@"200",@"300",@"400"]];
     self.titles2=[[NSMutableArray alloc]initWithArray:
-                  @[@"10",@"20",@"30",@"40",@"50",@"60",@"70",@"80"]];
+                  @[@"100",@"200",@"250",@"333",@"500"]];
     self.pickerView2.delegate = self;
 	[self.pickerView reloadData];
     [self.pickerView2 reloadData];

@@ -76,6 +76,7 @@
 "AboutApp"="关于系统";
 "AdSetting"="高级设置";
 "Setting"="设置";
+"Setting_"="设置";
 "UserList"="用户列表";
 "UserNo"="用户";
 "Age"="年龄：";
@@ -113,6 +114,8 @@
 "Resume"="继续";
 "SaveSu"="保存成功";
 "laun"="中文";
+"Gongzhi"="公制";
+"Yingzhi"="英制";
 
 "InfoIsNil"="请完成带星号的信息再进行保存 ！";
 

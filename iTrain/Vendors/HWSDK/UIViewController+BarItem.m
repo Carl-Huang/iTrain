@@ -14,7 +14,7 @@
 {
     self.navigationItem.leftBarButtonItem = [self customBarItem:imageName action:selector];
     self.navigationItem.title=@"";
-   
+    
     UIBarButtonItem *item=self.navigationItem.leftBarButtonItem;
     UIButton *barButton=(UIButton *)[item customView];
     [barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

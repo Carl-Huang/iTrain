@@ -55,6 +55,11 @@ BOOL isInch;
     
     isEditer=NO;
     [_editBtn addTarget:self action:@selector(editClick)forControlEvents:UIControlEventTouchUpInside];
+  
+    [_gongzhiBtn setTitle: NSLocalizedString(@"Gongzhi", nil) forState: UIControlStateNormal];
+ 
+    [_yingzhiBtn setTitle: NSLocalizedString(@"Yingzhi", nil) forState: UIControlStateNormal];
+    
 }
 //Itme个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

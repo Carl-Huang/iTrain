@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     // 初始化tableView的数据
-    NSArray *list = [NSArray arrayWithObjects:NSLocalizedString(@"BLEConnect", nil),NSLocalizedString(@"Setting", nil),NSLocalizedString(@"Baike", nil),NSLocalizedString(@"AboutApp", nil) ,nil];
+    NSArray *list = [NSArray arrayWithObjects:NSLocalizedString(@"BLEConnect", nil),NSLocalizedString(@"Setting_", nil),NSLocalizedString(@"Baike", nil),NSLocalizedString(@"AboutApp", nil) ,nil];
     NSArray *imagelist = [NSArray arrayWithObjects:@"setting_lanya",@"setting_shezhi",@"setting_baike",@"setting_app", nil];
     self.dataList = list;
     self.imageList=imagelist;
