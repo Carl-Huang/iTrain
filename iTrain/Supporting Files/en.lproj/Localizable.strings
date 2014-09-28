@@ -25,8 +25,8 @@
 "StopSu"="Stop Successful";
 "PauseSu"="Pause Successful";
 "StartSu"="Start Successful";
-"Speed"="Intensity";
-"Stong"="Stong";
+"Speed"="Speed";
+"Stong"="Intensity";
 "TrainSetting"="Parameter";
 "Search"="Searching......";
 "Sunday"="Sunday";
@@ -142,3 +142,8 @@
 "UWeight"="Weight(Kg)";
 "TrainPlanContent"="Began the implementation of training plan, training part is";
 "Subtool"="Subtool";
+"Detail"="Details";
+"Hide"="Hide";
+"Body_Part"="Body Part";
+"View"="View";
+

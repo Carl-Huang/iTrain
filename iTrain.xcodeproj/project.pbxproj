@@ -41,6 +41,10 @@
 		C30D401319C1B0FE00992DFD /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = C30D3FFE19C1B0FE00992DFD /* UIProgressView+AFNetworking.m */; };
 		C30D401419C1B0FE00992DFD /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = C30D400019C1B0FE00992DFD /* UIRefreshControl+AFNetworking.m */; };
 		C30D401519C1B0FE00992DFD /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = C30D400219C1B0FE00992DFD /* UIWebView+AFNetworking.m */; };
+		C30E5D5919D69F1100FC8DCE /* 电量@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C30E5D5819D69F1100FC8DCE /* 电量@2x.png */; };
+		C30E5D5B19D69F3000FC8DCE /* time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C30E5D5A19D69F3000FC8DCE /* time@2x.png */; };
+		C30E5D5D19D6A4FC00FC8DCE /* 训练详情@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C30E5D5C19D6A4FC00FC8DCE /* 训练详情@2x.png */; };
+		C30E5D5F19D6A5FB00FC8DCE /* 隐藏显示按钮背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C30E5D5E19D6A5FB00FC8DCE /* 隐藏显示按钮背景@2x.png */; };
 		C3112DF1199E0A74002809FA /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3112DF0199E0A74002809FA /* UserCollectionViewCell.xib */; };
 		C3135DE019C7396C005EA28C /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3135DDF19C7396C005EA28C /* UserInfoCell.xib */; };
 		C317CBAF19C02AA9008DCAC8 /* MTImageMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C317CBAE19C02AA9008DCAC8 /* MTImageMapView.m */; };
@@ -376,6 +380,10 @@
 		C30D400019C1B0FE00992DFD /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		C30D400119C1B0FE00992DFD /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		C30D400219C1B0FE00992DFD /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		C30E5D5819D69F1100FC8DCE /* 电量@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "电量@2x.png"; sourceTree = "<group>"; };
+		C30E5D5A19D69F3000FC8DCE /* time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@2x.png"; sourceTree = "<group>"; };
+		C30E5D5C19D6A4FC00FC8DCE /* 训练详情@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "训练详情@2x.png"; sourceTree = "<group>"; };
+		C30E5D5E19D6A5FB00FC8DCE /* 隐藏显示按钮背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "隐藏显示按钮背景@2x.png"; sourceTree = "<group>"; };
 		C3112DF0199E0A74002809FA /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
 		C3135DDF19C7396C005EA28C /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		C317CBAD19C02AA9008DCAC8 /* MTImageMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTImageMapView.h; sourceTree = "<group>"; };
@@ -1380,6 +1388,10 @@
 		C37ACA7E19A7494A00F3332A /* 开始训练 */ = {
 			isa = PBXGroup;
 			children = (
+				C30E5D5E19D6A5FB00FC8DCE /* 隐藏显示按钮背景@2x.png */,
+				C30E5D5C19D6A4FC00FC8DCE /* 训练详情@2x.png */,
+				C30E5D5A19D69F3000FC8DCE /* time@2x.png */,
+				C30E5D5819D69F1100FC8DCE /* 电量@2x.png */,
 				C39A64E419CD1CA500535F31 /* leftp@2x.png */,
 				C39A64E519CD1CA500535F31 /* rightp@2x.png */,
 				C39A64E219CD1AAF00535F31 /* 切换按钮背景@2x.png */,
@@ -1657,6 +1669,7 @@
 				C37ACADE19A7494B00F3332A /* user_icon5@2x.png in Resources */,
 				C3FF09B419C8370D001BBF81 /* back_thighl_p@2x.png in Resources */,
 				C3FF099C19C83024001BBF81 /* left@2x.png in Resources */,
+				C30E5D5F19D6A5FB00FC8DCE /* 隐藏显示按钮背景@2x.png in Resources */,
 				C37ACB0119A7494B00F3332A /* detail_facebook@2x.png in Resources */,
 				C34D044019CFD6FD0004ECCE /* SubtoolViewController.xib in Resources */,
 				C3FF099519C82E76001BBF81 /* back_back@2x.png in Resources */,
@@ -1683,6 +1696,7 @@
 				C30D3FD219C198DC00992DFD /* PushConfig.plist in Resources */,
 				C3F999E619D424FF00118441 /* 57@2x.png in Resources */,
 				C36EC63419AB28E500813ACD /* baocun.png in Resources */,
+				C30E5D5D19D6A4FC00FC8DCE /* 训练详情@2x.png in Resources */,
 				C37ACAFC19A7494B00F3332A /* setting_pic2@2x.png in Resources */,
 				C35803CC19CC1389003959E9 /* shareCancel@2x.png in Resources */,
 				C37ACB1C19A7494B00F3332A /* main_shezhin@2x.png in Resources */,
@@ -1783,8 +1797,10 @@
 				C37ACAC619A7494B00F3332A /* record_xuanzhongbeijing@2x.png in Resources */,
 				C3FF099919C82E76001BBF81 /* belly@2x.png in Resources */,
 				C3FF098D19C822F6001BBF81 /* back_normal@2x.png in Resources */,
+				C30E5D5B19D69F3000FC8DCE /* time@2x.png in Resources */,
 				C35BF03619B6BA54006397EC /* ExerciseMainViewController4.xib in Resources */,
 				C37ACAC219A7494B00F3332A /* record_hengkuang@2x.png in Resources */,
+				C30E5D5919D69F1100FC8DCE /* 电量@2x.png in Resources */,
 				C37ACB0D19A7494B00F3332A /* ul_back@2x.png in Resources */,
 				C317CBB319C034DA008DCAC8 /* 4path.plist in Resources */,
 				C323812619C96202002E89BC /* plan_kai@2x.png in Resources */,

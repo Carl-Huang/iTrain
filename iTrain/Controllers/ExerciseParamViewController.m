@@ -31,6 +31,7 @@ AppDelegate *myAppDelegate;
 NSDate *start;
 BOOL isStart;
 BOOL isPuse;
+BOOL isHide;
 NSArray *parts;
 @implementation ExerciseParamViewController
 
@@ -50,6 +51,7 @@ NSArray *parts;
         speed=1;
         stong=0;
         parts=@[NSLocalizedString(@"Arm", nil),NSLocalizedString(@"Chest", nil),NSLocalizedString(@"Belly", nil),NSLocalizedString(@"Back", nil),NSLocalizedString(@"Buttocks", nil),NSLocalizedString(@"Thigh", nil)];
+        isHide=NO;
     }
     return self;
 }
@@ -64,43 +66,43 @@ NSArray *parts;
     start=[NSDate date];
     User *user=myAppDelegate.user;
     
-    if(user!=nil){
-        speedIndex=[[user speedIndex] integerValue];
-        stongIndex=[[user strongIndex] integerValue];
-        speed=[self.titles2[speedIndex] integerValue];
-        stong=[self.titles[stongIndex] integerValue];
-    }else{
-        speed=[(NSNumber*)[_modelArray objectAtIndex:3] integerValue];
-        stong=[(NSNumber*)[_modelArray objectAtIndex:4] integerValue];
-        speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
-        stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
-    }
-    
-    
-    [self.pickerView selectItem:1 animated:NO];
-    [self.pickerView selectItem:stongIndex animated:NO];
-    [self.pickerView2 selectItem:1 animated:NO];
-    [self.pickerView2 selectItem:speedIndex animated:NO];
-    
-    
-    [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
-        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"ConnectError", nil) contentText:NSLocalizedString(@"ConnectErrorTip", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
-        alertView.rightBlock=^(){
-            [self back];
-        };
-        [alertView show];
-    }];
-    isStart=false;
-    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
-        
-        if([[[st substringFromIndex:4] substringToIndex:2] isEqualToString:@"01"]){
-            [self start];
-            isStart=true;
-            isPuse=false;
-            
-        }
-    }];
-    [self changeModel];
+//    if(user!=nil){
+//        speedIndex=[[user speedIndex] integerValue];
+//        stongIndex=[[user strongIndex] integerValue];
+//        speed=[self.titles2[speedIndex] integerValue];
+//        stong=[self.titles[stongIndex] integerValue];
+//    }else{
+//        speed=[(NSNumber*)[_modelArray objectAtIndex:3] integerValue];
+//        stong=[(NSNumber*)[_modelArray objectAtIndex:4] integerValue];
+//        speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
+//        stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
+//    }
+//    
+//    
+//    [self.pickerView selectItem:1 animated:NO];
+//    [self.pickerView selectItem:stongIndex animated:NO];
+//    [self.pickerView2 selectItem:1 animated:NO];
+//    [self.pickerView2 selectItem:speedIndex animated:NO];
+//    
+//    
+//    [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
+//        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"ConnectError", nil) contentText:NSLocalizedString(@"ConnectErrorTip", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
+//        alertView.rightBlock=^(){
+//            [self back];
+//        };
+//        [alertView show];
+//    }];
+//    isStart=false;
+//    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+//        
+//        if([[[st substringFromIndex:4] substringToIndex:2] isEqualToString:@"01"]){
+//            [self start];
+//            isStart=true;
+//            isPuse=false;
+//            
+//        }
+//    }];
+//    [self changeModel];
 }
 
 -(void)back{
@@ -134,6 +136,13 @@ NSArray *parts;
     [_stongTv setText:NSLocalizedString(@"Stong", nil)];
     [_StartTip setText:NSLocalizedString(@"Start", nil)];
     [_StopTip setText:NSLocalizedString(@"Puase", nil)];
+    [_exercisePartLabel setText:NSLocalizedString(@"Body_Part", nil)];
+    [_exerciseTimeLabel setText:NSLocalizedString(@"TrainTime", nil)];
+    [_hideViewBtn setTitle :NSLocalizedString(@"Hide", nil) forState:UIControlStateNormal];
+    [_hideViewBtn addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_exerciseDetail setText:NSLocalizedString(@"Detail", nil)];
+    
 }
 
 /**发送按钮响应事件**/
@@ -278,5 +287,17 @@ NSArray *parts;
         NSLog(@"保存成功");
     }
     return record;
+}
+-(void)hideView{
+    if (isHide) {
+        _detailView.hidden=NO;
+        isHide=NO;
+        
+    }else{
+        _detailView.hidden=YES;
+        isHide=YES;
+        
+    }
+    
 }
 @end

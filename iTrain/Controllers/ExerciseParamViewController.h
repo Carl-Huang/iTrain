@@ -22,4 +22,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (nonatomic, strong) NSMutableArray *modelArray;
 @property (nonatomic,strong)NSString *part;
+
+@property (weak, nonatomic) IBOutlet UIView *detailView;
+@property (weak, nonatomic) IBOutlet UILabel *exercisePartLabel;
+@property (weak, nonatomic) IBOutlet UILabel *exercisePart;
+@property (weak, nonatomic) IBOutlet UILabel *exerciseTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *exerciseTime;
+@property (weak, nonatomic) IBOutlet UILabel *deviceName1;
+@property (weak, nonatomic) IBOutlet UILabel *deviceName2;
+
+@property (weak, nonatomic) IBOutlet UILabel *exerciseDetail;
+@property (weak, nonatomic) IBOutlet UIImageView * device1;
+@property (weak, nonatomic) IBOutlet UIImageView * device2;
+@property (weak, nonatomic) IBOutlet UIButton * hideViewBtn;
+@property (weak, nonatomic) IBOutlet UIImageView * timeImage;
+
 @end

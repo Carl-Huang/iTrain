@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "WXApi.h"
 #import "APService.h"
+#import "ExerciseParamViewController.h"
 
 @implementation AppDelegate
 @synthesize managedObjectModel=_managedObjectModel;
@@ -35,11 +36,18 @@
     [APService setupWithOption:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    if (DEVICE_IS_IPHONE5) {
+//        rootView= [[MainViewController alloc] initWithNibName:@"MainViewController4" bundle:nil];
+//    }else {
+//        rootView= [[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
+//    }
+    
     if (DEVICE_IS_IPHONE5) {
-        rootView= [[MainViewController alloc] initWithNibName:@"MainViewController4" bundle:nil];
+        rootView= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];
     }else {
-        rootView= [[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
+        rootView= [[ExerciseParamViewController alloc]initWithNibName:@"ExerciseParamViewController" bundle:nil];
     }
+    
     
     self.navController = [[UINavigationController alloc] init];
     [self.navController pushViewController:rootView animated:YES];

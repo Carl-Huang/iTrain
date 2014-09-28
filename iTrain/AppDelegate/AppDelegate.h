@@ -12,6 +12,7 @@
 #import "WXApi.h"
 #import <EventKit/EventKit.h>
 #import "User.h"
+#import "ExerciseParamViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,
 WXApiDelegate>
@@ -19,7 +20,9 @@ WXApiDelegate>
 {
     
     enum WXScene _scene;
-    MainViewController *rootView ;
+//    MainViewController *rootView ;
+    
+    ExerciseParamViewController *rootView ;
      SSInterfaceOrientationMask _interfaceOrientationMask;
 
 }

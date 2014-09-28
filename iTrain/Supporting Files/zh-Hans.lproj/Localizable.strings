@@ -142,3 +142,9 @@
 "UWeight"="体重(pound)";
 "TrainPlanContent"="开始执行训练计划,训练部位是";
 "Subtool"="功能介绍";
+
+"Hide"="隐藏";
+"Detail"="训练详情";
+"Body_Part"="训练部位";
+"View"="显示";
+
