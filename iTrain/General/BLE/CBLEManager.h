@@ -15,14 +15,20 @@ typedef void (^DiscoverNewPeripheralHandler)(void);
 typedef void (^CloseHandler)(void);
 typedef void (^SendDataHandler)(NSString *st,CBPeripheral * peripheral);
 typedef void (^ConnectedPeripheralHandler)(CBPeripheral * peripheral);
+typedef void (^EndPeripheralHandler)(CBPeripheral * peripheral);
+typedef void (^PowerHandler)(NSString *st,CBPeripheral * peripheral);
 typedef void (^ConnectedAllCompleteHandler)(CBPeripheral * peripheral);
 typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 @interface CBLEManager : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate>
 @property (nonatomic,readonly) CBCentralManager * bleCentralManager;
-@property (nonatomic,strong)NSMutableArray *peripherals;
-@property (nonatomic,strong)NSMutableDictionary *writecharacteristics;
-@property (nonatomic,strong)NSMutableDictionary *receivecharacteristics;
-//@property (nonatomic,retain) CBPeripheral * peripheral;
+@property (nonatomic,strong)CBCharacteristic *writecharacteristic1;
+@property (nonatomic,strong)CBCharacteristic *receivecharacteristic1;
+@property (nonatomic,strong)CBCharacteristic *writecharacteristic2;
+@property (nonatomic,strong)CBCharacteristic *receivecharacteristic2;
+@property (nonatomic,retain) CBPeripheral * peripheral1;
+@property (nonatomic,retain) CBPeripheral * peripheral2;
+@property (nonatomic)NSInteger Stu1;
+@property (nonatomic)NSInteger Stu2;
 @property (nonatomic,retain) NSMutableArray * connectedPeripherals;
 @property (nonatomic,retain) NSMutableArray * foundPeripherals;
 @property (nonatomic,copy) DiscoverNewPeripheralHandler discoverHandler;
@@ -31,7 +37,13 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 @property (nonatomic,copy) CloseHandler closeHandler;
 @property (nonatomic,copy) DisconnectPeripheralHandler disconnectHandler;
 @property (nonatomic,copy) SendDataHandler sendDataHandler;
+@property (nonatomic,copy) EndPeripheralHandler endHandler;
+@property (nonatomic,copy) PowerHandler powerHandler;
 @property (nonatomic ,copy)NSArray *modelArray;
+@property (nonatomic)BOOL isRenew1 ;
+@property (nonatomic)BOOL isRenew2 ;
+@property (nonatomic)BOOL sendSu1 ;
+@property (nonatomic)BOOL sendSu2 ;
 +(CBLEManager *)sharedManager;
 -(void)startScan;
 -(void)startScan:(NSArray *)services;
@@ -46,7 +58,7 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 -(void)createData:(NSArray *)array withCBPeripheral:(CBPeripheral *)peripheral;
 -(NSArray *)getModel;
 
-
+-(void)check;
 
 
 

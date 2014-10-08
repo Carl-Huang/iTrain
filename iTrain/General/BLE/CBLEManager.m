@@ -13,7 +13,6 @@
 #define READ_SERVICE_UUID      @"0xFFE0"
 #define READ_UUID              @"0xFFE4"
 @implementation CBLEManager
-NSMutableArray *sendArray;
 #pragma mark - Life Cycle
 +(id)sharedManager
 {
@@ -32,10 +31,8 @@ NSMutableArray *sendArray;
         _connectedPeripherals = [[NSMutableArray alloc] init];
         _foundPeripherals = [[NSMutableArray alloc] init];
         _bleCentralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-        _peripherals=[[NSMutableArray alloc]init];
-        _writecharacteristics=[[NSMutableDictionary alloc]init];
-        _receivecharacteristics=[[NSMutableDictionary alloc]init];
-        sendArray=[[NSMutableArray alloc]init];
+        _sendSu1=YES;
+        _sendSu2=YES;
     }
     return self;
 }
@@ -82,11 +79,21 @@ NSMutableArray *sendArray;
     [_bleCentralManager stopScan];
 }
 
+-(void)check{
+    NSMutableArray *temp=[[NSMutableArray alloc]init];
+    for(CBPeripheral *per in _foundPeripherals){
+        if(per==nil){
+            [temp addObject:per];
+        }
+        
+    }
+    [_foundPeripherals removeObjectsInArray:temp];
+}
 -(void)discoverServicesWithUUIDs:(NSArray *)uuids withCBPeripheral:(CBPeripheral *)_peripheral
 {
     if(_peripheral == nil)
     {
-        NSLog(@"The connected peripheral is nil.");
+       // NSLog(@"The connected peripheral is nil.");
         return;
     }
     NSMutableArray * services = [@[] mutableCopy];
@@ -105,10 +112,17 @@ NSMutableArray *sendArray;
 
 -(void)discoverCharacteristicWithService:(CBService *)service withCharacters:(NSArray *)uuids
 {
-    for(CBPeripheral *_peripheral in _peripherals){
+    
+    for(int i=0;i<2;i++){
+        CBPeripheral *_peripheral;
+        if(i==0){
+            _peripheral=_peripheral1;
+        }else{
+            _peripheral=_peripheral2;
+        }
         if(_peripheral == nil)
         {
-            NSLog(@"The connected peripheral is nil.");
+           // NSLog(@"The connected peripheral is nil.");
             return ;
         }
         
@@ -136,7 +150,7 @@ NSMutableArray *sendArray;
     if([peripheral isConnected])
     {
         //[self disconnectFromPeripheral:peripheral];
-        NSLog(@"The peripheral is already connected.");
+        //NSLog(@"The peripheral is already connected.");
         return ;
         
     }
@@ -145,11 +159,13 @@ NSMutableArray *sendArray;
 
 -(void)disconnect
 {
-    for(CBPeripheral *_peripheral in _peripherals){
-        if(_peripheral != nil && [_peripheral isConnected])
-        {
-            [self disconnectFromPeripheral:_peripheral];
-        }
+    if(_peripheral1 != nil && [_peripheral1 isConnected])
+    {
+        [self disconnectFromPeripheral:_peripheral1];
+    }
+    if(_peripheral2 != nil && [_peripheral2 isConnected])
+    {
+        [self disconnectFromPeripheral:_peripheral2];
     }
 }
 
@@ -161,20 +177,20 @@ NSMutableArray *sendArray;
 
 - (void)clear
 {
-    
     [_connectedPeripherals removeAllObjects];
     [_foundPeripherals removeAllObjects];
     
 }
 
 -(BOOL)isConnected{
-    BOOL isConnectes=false;
-    for(CBPeripheral *_peripheral in _peripherals){
-        if(_peripheral==nil||![_peripheral isConnected]){
-            
-        }else{
-            isConnectes= true;
-        }
+    BOOL isConnectes=NO;
+    if(_peripheral1 != nil && [_peripheral1 isConnected])
+    {
+        isConnectes= YES;
+    }
+    if(_peripheral2 != nil && [_peripheral2 isConnected])
+    {
+        isConnectes= YES;
     }
     return isConnectes;
 }
@@ -185,6 +201,7 @@ NSMutableArray *sendArray;
     {
         NSLog(@"Add peripheral");
         [_foundPeripherals addObject:peripheral];
+        peripheral.delegate=self;
         if(self.discoverHandler)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -213,33 +230,48 @@ NSMutableArray *sendArray;
 -(void)sendData:(NSData *)data
 {
     //[sendArray ]
-    for(CBPeripheral *_peripheral in _peripherals){
+    for(int i=0;i<2;i++){
+        CBPeripheral *_peripheral;
+        if(i==0){
+            _peripheral=_peripheral1;
+        }else{
+            _peripheral=_peripheral2;
+        }
         if(_peripheral == nil)
         {
-            NSLog(@"The connected peripheral is nil.");
+           // NSLog(@"The connected peripheral is nil.");
             return ;
         }
         
         if(![_peripheral isConnected])
         {
-            NSLog(@"The peripheral is disconnected.");
+           // NSLog(@"The peripheral is disconnected.");
             return ;
         }
-        CBCharacteristic * _characteristicForWrite=[_writecharacteristics valueForKey:CFBridgingRelease(CFUUIDCreateString(nil, [_peripheral UUID]))];
+        CBCharacteristic * _characteristicForWrite;
+        if(_peripheral1==_peripheral){
+            _characteristicForWrite=_writecharacteristic1;
+        }else{
+            _characteristicForWrite=_writecharacteristic2;
+        }
         if(_characteristicForWrite == nil)
         {
-            NSLog(@"The write characteristic is nil.");
+            //NSLog(@"The write characteristic is nil.");
             return ;
         }
         
         if(data == nil)
         {
-            NSLog(@"The data is nil.");
+            //NSLog(@"The data is nil.");
             return ;
         }
         
         [_peripheral writeValue:data forCharacteristic:_characteristicForWrite type:CBCharacteristicWriteWithResponse];
-        [sendArray addObject:CFBridgingRelease(CFUUIDCreateString(nil, [_peripheral UUID]))];
+        if(_peripheral1==_peripheral){
+            _sendSu1=NO;
+        }else{
+            _sendSu2=NO;
+        }
     }
 }
 
@@ -276,11 +308,9 @@ NSMutableArray *sendArray;
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     
-    NSLog(@"Discover peripheral,name:%@,RSSI:%d",peripheral.name,[RSSI intValue]);
-    
-    if([RSSI intValue] < -100)
+       if([RSSI intValue] < -100)
     {
-        NSLog(@"The rssi is weak.");
+       // NSLog(@"The rssi is weak.");
         return ;
     }
     
@@ -294,8 +324,23 @@ NSMutableArray *sendArray;
 
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    NSLog(@"CBCentralManager did connect peripheral %@",peripheral.name);
-    [_peripherals addObject:peripheral];
+   // NSLog(@"CBCentralManager did connect peripheral %@",peripheral.name);
+    if(_peripheral1==nil){
+        _peripheral1=peripheral;
+    }else if(_peripheral1!=nil&&_peripheral2==nil){
+        _peripheral2=peripheral;
+    }else{
+        if(!_isRenew1&&!_isRenew2){
+            _peripheral1=peripheral;
+            _isRenew1=!_isRenew1;
+        }else if(_isRenew1&&_isRenew2){
+            _peripheral2=peripheral;
+            _isRenew2=!_isRenew2;
+        }else{
+            _peripheral1=peripheral;
+            _isRenew2=!_isRenew2;
+        }
+    }
     peripheral.delegate = self;
     [self discoverServicesWithUUIDs:nil withCBPeripheral:peripheral];
     
@@ -303,16 +348,21 @@ NSMutableArray *sendArray;
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"CBCentralMananger did fail to connect peripheral:%@",error);
-    [_peripherals removeObject:peripheral];
-    [sendArray removeObject:CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID]))];
-    // [self removeFoundPeripheral:peripheral];
+   // NSLog(@"CBCentralMananger did fail to connect peripheral:%@",error);
+    if(peripheral==_peripheral1){
+        _peripheral1=nil;
+        _sendSu1=YES;
+    }else{
+        _sendSu2=YES;
+       _peripheral2=nil;
+    }
+    [self removeFoundPeripheral:peripheral];
     
 }
 
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"Disconnect peripheral:%@,rssi:%d,with error:%@",peripheral.name,peripheral.RSSI.intValue,error);
+//    NSLog(@"Disconnect peripheral:%@,rssi:%d,with error:%@",peripheral.name,peripheral.RSSI.intValue,error);
     if(error)
     {
         //some error
@@ -327,8 +377,13 @@ NSMutableArray *sendArray;
         
     }
     
-    [sendArray removeObject:CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID]))];
-    [_peripherals removeObject:peripheral];
+    if(peripheral==_peripheral1){
+        _peripheral1=nil;
+         _sendSu1=YES;
+    }else{
+         _sendSu2=YES;
+        _peripheral2=nil;
+    }
     [self removeFoundPeripheral:peripheral];
     
     
@@ -336,7 +391,7 @@ NSMutableArray *sendArray;
 
 -(void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
 {
-    NSLog(@"Did retrieve peripherals %lu",(unsigned long)[peripherals count]);
+   
     CBPeripheral * peripheral;
     for(peripheral in peripherals)
     {
@@ -353,10 +408,10 @@ NSMutableArray *sendArray;
 {
     if(error)
     {
-        NSLog(@"Discover services error : %@",[error description]);
+       // NSLog(@"Discover services error : %@",[error description]);
         return ;
     }
-    NSLog(@"Discover services %lu",(unsigned long)[peripheral.services count]);
+   
     for(CBService * service in peripheral.services)
     {
         if([service.UUID isEqual:[CBUUID UUIDWithString:WRITE_SERVICE_UUID]]||[service.UUID isEqual:[CBUUID UUIDWithString:READ_SERVICE_UUID]])
@@ -373,32 +428,40 @@ NSMutableArray *sendArray;
 {
     if(error)
     {
-        NSLog(@"Discover characteristics error : %@",[error description]);
+       // NSLog(@"Discover characteristics error : %@",[error description]);
         return ;
     }
-    NSLog(@"Discover characteristics %lu",(unsigned long)[service.characteristics count]);
+
     
-    CBPeripheral *_tperipheral=nil;
-    for(CBPeripheral *_peripheral in _peripherals){
-        if([CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID])) isEqual:CFBridgingRelease(CFUUIDCreateString(nil, [_peripheral UUID]))]){
-            _tperipheral=_peripheral;
-            break;
-        }
-    }
+//    CBPeripheral *_tperipheral=nil;
+//    for(CBPeripheral *_peripheral in _peripherals){
+//        if([CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID])) isEqual:CFBridgingRelease(CFUUIDCreateString(nil, [_peripheral UUID]))]){
+//            _tperipheral=_peripheral;
+//            break;
+//        }
+//    }
     for(CBCharacteristic * characteristic in service.characteristics)
     {
         if([characteristic.UUID isEqual:[CBUUID UUIDWithString:WRITE_UUID]])
         {
-            [_writecharacteristics setObject:characteristic forKey:CFBridgingRelease(CFUUIDCreateString(nil, [_tperipheral UUID]))];
-            
+            if(peripheral==_peripheral1){
+                _writecharacteristic1=characteristic;
+                _Stu1=2;
+            }else{
+                _writecharacteristic2=characteristic;
+            }
             if(self.connectedAllCompleteHandler)
             {
-                self.connectedAllCompleteHandler(_tperipheral);
+                self.connectedAllCompleteHandler(peripheral);
                 
             }
         }else if([characteristic.UUID isEqual:[CBUUID UUIDWithString:READ_UUID]]){
-            [_receivecharacteristics setObject:characteristic forKey:CFBridgingRelease(CFUUIDCreateString(nil, [_tperipheral UUID]))];
-            [_tperipheral setNotifyValue:YES forCharacteristic:characteristic];
+            if(peripheral==_peripheral1){
+                _receivecharacteristic1=characteristic;
+            }else{
+                _receivecharacteristic2=characteristic;
+            }
+            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
         }
     }
     
@@ -408,16 +471,16 @@ NSMutableArray *sendArray;
 {
     if(error)
     {
-        NSLog(@"Peripheral write value %@ with error :%@",characteristic.value,[error description]);
+       // NSLog(@"Peripheral write value %@ with error :%@",characteristic.value,[error description]);
         return ;
     }
     
-    if(characteristic.value == nil)
-    {
-        NSLog(@"The characteristic value is nil.");
-    }
+//    if(characteristic.value == nil)
+//    {
+//        NSLog(@"The characteristic value is nil.");
+//    }
     
-    NSLog(@"Did write value %@, characteristic uuid %@",[[NSString alloc] initWithData:characteristic.value encoding:NSASCIIStringEncoding],characteristic.UUID);
+    
     
 }
 
@@ -428,7 +491,7 @@ NSMutableArray *sendArray;
         NSLog(@"Peripheral read value with error : %@",[error description]);
         return ;
     }
-    NSLog(@"Did update value %@, in characteristic uuid %@, service uuid:%@",characteristic.value,characteristic.UUID,characteristic.service.UUID);
+    
     
     if(characteristic.value == nil)
     {
@@ -450,7 +513,7 @@ NSMutableArray *sendArray;
         else
             hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
     }
-    NSLog(@"%@",hexStr);
+   
     if(hexStr.length<8){
         return;
     }
@@ -460,14 +523,20 @@ NSMutableArray *sendArray;
     if(![[[hexStr substringFromIndex:2] substringToIndex:2] isEqualToString:@"a5"]){
         return;
     }
-   if([[[hexStr substringFromIndex:4] substringToIndex:2] isEqualToString:@"0a"]){
+    NSLog(@"==%@",hexStr);
+    if([[[hexStr substringFromIndex:4] substringToIndex:2] isEqualToString:@"0a"]){
+        if(self.endHandler){
+            self.endHandler(per);
+        }
         [self createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x01], nil]];
     }else if([[[hexStr substringFromIndex:4] substringToIndex:2] isEqualToString:@"08"]){
-        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:@"电极已脱落" contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"elec", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alertView show];
         [self createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x01], nil]];
     }else if([[[hexStr substringFromIndex:4] substringToIndex:2] isEqualToString:@"09"]){
-        
+        if(self.powerHandler){
+            self.powerHandler(hexStr,per);
+        }
     }else{
         if([[[hexStr substringFromIndex:4] substringToIndex:2] isEqualToString:@"03"]){
             NSMutableArray *temp=[[NSMutableArray alloc]init];
@@ -479,23 +548,24 @@ NSMutableArray *sendArray;
             [temp addObject: [NSNumber numberWithInt:[self parseInt:[[hexStr substringFromIndex:8] substringToIndex:2]]]];
             _modelArray=[[NSArray alloc]initWithArray:temp];
         }
-        if(sendArray.count==0){
+         NSLog(@"%@",hexStr);
+        if(_sendSu1&&_sendSu2){
             if(self.sendDataHandler){
                 self.sendDataHandler(hexStr,per);
             }
         }else{
-            NSInteger tindex=[sendArray indexOfObject:CFBridgingRelease(CFUUIDCreateString(nil, [per UUID]))];
-            if(tindex>=0&&tindex<sendArray.count){
-                [sendArray removeObjectAtIndex:tindex];
+            if(_peripheral1==per){
+                _sendSu1=YES;
+            }else{
+                _sendSu2=YES;
             }
-            if(sendArray.count==0){
+            if(_sendSu1&&_sendSu2){
                 if(self.sendDataHandler){
                     self.sendDataHandler(hexStr,per);
                 }
             }
         }
     }
-   
 }
 
 -(int)parseInt:(NSString *)str{
@@ -535,29 +605,38 @@ NSMutableArray *sendArray;
     NSArray *reArray=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x5A],[NSNumber numberWithInt:0xA5],array[0],[NSNumber numberWithInt:0x00], nil];
     if(peripheral == nil)
     {
-        NSLog(@"The connected peripheral is nil.");
+        //NSLog(@"The connected peripheral is nil.");
         return ;
     }
     
     if(![peripheral isConnected])
     {
-        NSLog(@"The peripheral is disconnected.");
+        //NSLog(@"The peripheral is disconnected.");
         return ;
     }
-    CBCharacteristic * _characteristicForWrite=[_writecharacteristics valueForKey:CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID]))];
+    CBCharacteristic * _characteristicForWrite;
+    if(peripheral==_peripheral1){
+        _characteristicForWrite=_writecharacteristic1;
+    }else{
+        _characteristicForWrite=_writecharacteristic2;
+    }
     if(_characteristicForWrite == nil)
     {
-        NSLog(@"The write characteristic is nil.");
+        //NSLog(@"The write characteristic is nil.");
         return ;
     }
     NSData *data=[self msrRead:reArray];
     if(data == nil)
     {
-        NSLog(@"The data is nil.");
+     //   NSLog(@"The data is nil.");
         return ;
     }
     [peripheral writeValue:data forCharacteristic:_characteristicForWrite type:CBCharacteristicWriteWithResponse];
-    [sendArray addObject:CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID]))];
+    if(_peripheral1==peripheral){
+         _sendSu1=NO;
+    }else{
+         _sendSu2=NO;
+    }
 }
 
 -(NSData *)msrRead:(NSArray *)array
@@ -582,10 +661,10 @@ NSMutableArray *sendArray;
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
 {
     if (error) {
-        NSLog(@"Update rssi with error:%@",error);
+        //NSLog(@"Update rssi with error:%@",error);
         return ;
     }
-    NSLog(@"New RSSI:%d",peripheral.RSSI.intValue);
+   // NSLog(@"New RSSI:%d",peripheral.RSSI.intValue);
     
 }
 
