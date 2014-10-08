@@ -8,6 +8,7 @@
 
 #import "StarExerciseViewController.h"
 #import "CBLEManager.h"
+#import "AppDelegate.h"
 #define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 @interface StarExerciseViewController ()<AKPickerViewDelegate,MTImageMapDelegate>
 @end
@@ -189,14 +190,24 @@ UITapGestureRecognizer *tapGesture ;
 
 
 - (void)gotoStartView{
-    if (DEVICE_IS_IPHONE5) {
-        exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];}
-    else{
-        exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController" bundle:nil];
+   // if(exerciseParam==nil){
+        if (DEVICE_IS_IPHONE5) {
+            exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];}
+        else{
+            exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController" bundle:nil];
+        }
+   // }
+    
+    if([CBLEManager sharedManager].Stu1==2){
+        [_modelArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithInteger:_time]];
+        exerciseParam.modelArray=_modelArray;
+        exerciseParam.part=part;
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).modelArray=_modelArray;
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).part=part;
+    }else{
+        exerciseParam.modelArray=((AppDelegate *)[[UIApplication sharedApplication] delegate]).modelArray;
+        exerciseParam.part=((AppDelegate *)[[UIApplication sharedApplication] delegate]).part;
     }
-    [_modelArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithInteger:_time]];
-    exerciseParam.modelArray=_modelArray;
-    exerciseParam.part=part;
     [self.navigationController pushViewController:exerciseParam animated:YES];
 }
 

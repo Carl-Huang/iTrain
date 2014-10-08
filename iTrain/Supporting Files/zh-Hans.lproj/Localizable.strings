@@ -60,7 +60,7 @@
 "BaiKeTitle"="人体肌肉分布图示";
 "About"="关于系统";
 "System"="肌肉训练系统";
-"CopyRight"="讯丰通公司 版权所有.";
+"CopyRight"="讯丰通公司 版权所有";
 "Score"="给我评分";
 "Introduction"="功能介绍";
 "Notification"="系统通知";
@@ -147,4 +147,21 @@
 "Detail"="训练详情";
 "Body_Part"="训练部位";
 "View"="显示";
+"Min"="分钟";
 
+
+
+
+"SMTittle"="使用说明";
+"SMMuscleTrainerOperation"="训练仪操作 ";
+"SMMuscleTrainerOperation1"="1. 将仪器安装于电极片上；\n2. 再将肌肉训练仪贴在想要塑型的部位上;\n3. 按电源键1秒后，仪器开机，电源指示灯常亮绿灯指示。";
+
+"SMiTrainOperation"="iTrain软件操作";
+"SMiTrainOperation1"="1. 连接主机";
+"SMiTrainOperation1Detail"="打开仪器后，运行iPhone手机上安装好的App软件。点击“设置”功能，在设置界面选择“蓝牙连接”选项，将仪器与手机App通过蓝牙连接。";
+"SMiTrainOperation2"="2. 开始训练 ";
+"SMiTrainOperation2Detail"="点击训练—>开始训练，进入训练部位和训练时间设置；训练部位包括6个：手臂(三角肌、肱二头肌、肱三头肌)、胸肌(胸大肌主要针对男性)、腹肌(腹直肌)、背部(斜方肌、背阔肌)、大腿(股直肌、股内侧肌、股外侧肌)、臀部(臀大肌)。触碰选择训练部位，选择部位之后会放大显示需要锻炼的肌肉群名称及位置。";
+"SMiTrainOperation3"="3. 训练控制";
+"SMiTrainOperation3Detail"="点击“开始训练”之后，训练仪的指示灯会闪烁，表示训练仪已经开始工作，APP会进入训练控制界面，训练时可以调节训练强度和训练速度，点击“发送”将调节的参数发送至训练仪，获取不同的体验。训练过程中可以暂停、继续和停止当前训练，训练结束自动保存训练记录。";
+"elec"="电极已脱落";
+"Power"="训练主机%@电量不足，请充电！";

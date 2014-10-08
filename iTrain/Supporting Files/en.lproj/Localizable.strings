@@ -59,13 +59,13 @@
 "NewPlan"="New";
 "Baike"="Knowledge";
 "BaiKeTitle"="Distribution of Human Muscles ";
-"About"="AboutSystem";
-"System"="Muscle training system";
-"CopyRight"="XFT Company All Rights Reserved.";
-"Score"="Give me the score";
-"Introduction"="Function introduction";
-"Notification"="System Notification";
-"Feedback"="Help Feedback";
+"About"="About";
+"System"="iTran Muscle Training System";
+"CopyRight"="All Rights Reserved by XFT";
+"Score"="Give a mark";
+"Introduction"="Functions";
+"Notification"="Notifications";
+"Feedback"="Help and Feedback";
 "FeedbackSend"="Feedback";
 "FAQ"="FAQ";
 "HttpSu"="Loading Successful";
@@ -141,9 +141,24 @@
 "UHeight"="Height(cm)";
 "UWeight"="Weight(Kg)";
 "TrainPlanContent"="Began the implementation of training plan, training part is";
-"Subtool"="Subtool";
+"Subtool"="Operation Instruction";
 "Detail"="Details";
 "Hide"="Hide";
 "Body_Part"="Body Part";
 "View"="View";
+"Min"="min";
+"SMTittle"="Operation Instruction";
+"SMMuscleTrainerOperation"="Muscle trainer operation";
+"SMMuscleTrainerOperation1"="1. Clasp the muscle trainer on theelectrode pad;\n2. Attach the trainer to thewanted body part;\n3. Press and hold the power buttonfor 1s to turn on the device,\nand the green light is on.";
 
+"SMiTrainOperation"="iTrain operation";
+"SMiTrainOperation1"="1.	Connect the host device";
+"SMiTrainOperation1Detail"="Turn on the host device, open the App oniPhone, click “Setting”, and then choose “Bluetooth Connection”,the App willconnect the host device.";
+"SMiTrainOperation2"="2.	Start Exercise";
+"SMiTrainOperation2Detail"="Click “Exercise” to select the exercise bodypart and time, the 6 body parts are: arm (deltoid, biceps brachii, and tricepsbrachii),pectorals, abdominal muscle (rectus abdominis), dorsal muscle(trapezius, latissimus dorsi), thigh (rectus femoris, vastusmedialis,vastuslateralis),gluteus (gluteus maximus).";
+
+
+"SMiTrainOperation3"="3. Exercise Management";
+"SMiTrainOperation3Detail"="Click “Start”, the light on the host devicewill flash, indicating exercise starting. It will enter into exercisemanagement interface, in which the intensity and speed of exercise areadjustable, click “Send” to send the parameter to the host device. It willautomatically save the exercise records when exercise is over.";
+"elec"="The electrode is off";
+"Power"="Training the host %@ Low battery, please charge!";
