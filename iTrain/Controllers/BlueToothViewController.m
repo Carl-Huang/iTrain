@@ -116,6 +116,7 @@ BOOL isScan;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = NSLocalizedString(@"BLEConnect", nil);
     [self setLeftCustomBarItem:@"ul_back.png" action:nil];
+    [[CBLEManager sharedManager]check];
     [[CBLEManager sharedManager] stopScan];
     [[CBLEManager sharedManager] startScan];
     

@@ -105,7 +105,7 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:evaluateString]];
     }else if(indexPath.row==1){
         //        跳转系统通知页面
-       subtool= [[SubtoolViewController alloc] init];
+       subtool= [[SMVViewController alloc] init];
         [self.navigationController pushViewController:subtool                                            animated:YES];
     }else if(indexPath.row==2){
         //        跳转系统通知页面

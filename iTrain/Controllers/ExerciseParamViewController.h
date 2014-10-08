@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AKPickerView.h"
-
+#import "ZDProgressView.h"
 
 @interface ExerciseParamViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *StopTip;
-@property (weak, nonatomic) IBOutlet UILabel *StartTip;
 @property (weak, nonatomic) IBOutlet UILabel *setTv;
 @property (weak, nonatomic) IBOutlet UILabel *speedTv;
 @property (weak, nonatomic) IBOutlet UILabel *stongTv;
@@ -35,6 +34,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView * device1;
 @property (weak, nonatomic) IBOutlet UIImageView * device2;
 @property (weak, nonatomic) IBOutlet UIButton * hideViewBtn;
-@property (weak, nonatomic) IBOutlet UIImageView * timeImage;
+@property (weak, nonatomic) IBOutlet ZDProgressView *prView;
 
 @end

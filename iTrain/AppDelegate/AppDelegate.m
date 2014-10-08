@@ -36,17 +36,17 @@
     [APService setupWithOption:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    if (DEVICE_IS_IPHONE5) {
-//        rootView= [[MainViewController alloc] initWithNibName:@"MainViewController4" bundle:nil];
-//    }else {
-//        rootView= [[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
-//    }
-    
     if (DEVICE_IS_IPHONE5) {
-        rootView= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];
+        rootView= [[MainViewController alloc] initWithNibName:@"MainViewController4" bundle:nil];
     }else {
-        rootView= [[ExerciseParamViewController alloc]initWithNibName:@"ExerciseParamViewController" bundle:nil];
+        rootView= [[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
     }
+//
+//    if (DEVICE_IS_IPHONE5) {
+//        rootView= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];
+//    }else {
+//        rootView= [[ExerciseParamViewController alloc]initWithNibName:@"ExerciseParamViewController" bundle:nil];
+//    }
     
     
     self.navController = [[UINavigationController alloc] init];

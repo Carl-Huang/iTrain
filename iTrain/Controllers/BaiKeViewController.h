@@ -10,7 +10,7 @@
 #import "klpView.h"
 @interface BaiKeViewController : UIViewController<UIScrollViewDelegate>{
 	NSArray *imgArr;
-	klpView *klp;
+
 	int index;
 }
 

@@ -20,6 +20,8 @@
 //@property (nonatomic, strong) AKPickerView *pickerView2;
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, strong) NSArray *titles2;
+@property (nonatomic,strong) UIView *oneView;
+@property (nonatomic,strong) UIView *twoView;
 @end
 
 
@@ -33,6 +35,9 @@ BOOL isStart;
 BOOL isPuse;
 BOOL isHide;
 NSArray *parts;
+NSTimer *timer;
+NSTimeInterval terval;
+NSDate *lastDate;
 @implementation ExerciseParamViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,60 +66,132 @@ NSArray *parts;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title =NSLocalizedString(@"xunlian", nil);
-    [self setLeftCustomBarItem:@"ul_back.png" action:@selector(back)];
+    [self setLeftCustomBarItem:@"ul_back.png" action:nil];
     myAppDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     start=[NSDate date];
     User *user=myAppDelegate.user;
     
-//    if(user!=nil){
-//        speedIndex=[[user speedIndex] integerValue];
-//        stongIndex=[[user strongIndex] integerValue];
-//        speed=[self.titles2[speedIndex] integerValue];
-//        stong=[self.titles[stongIndex] integerValue];
-//    }else{
-//        speed=[(NSNumber*)[_modelArray objectAtIndex:3] integerValue];
-//        stong=[(NSNumber*)[_modelArray objectAtIndex:4] integerValue];
-//        speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
-//        stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
-//    }
-//    
-//    
-//    [self.pickerView selectItem:1 animated:NO];
-//    [self.pickerView selectItem:stongIndex animated:NO];
-//    [self.pickerView2 selectItem:1 animated:NO];
-//    [self.pickerView2 selectItem:speedIndex animated:NO];
-//    
-//    
-//    [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
-//        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"ConnectError", nil) contentText:NSLocalizedString(@"ConnectErrorTip", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
-//        alertView.rightBlock=^(){
-//            [self back];
-//        };
-//        [alertView show];
-//    }];
-//    isStart=false;
-//    [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
-//        
-//        if([[[st substringFromIndex:4] substringToIndex:2] isEqualToString:@"01"]){
-//            [self start];
-//            isStart=true;
-//            isPuse=false;
-//            
-//        }
-//    }];
-//    [self changeModel];
+    if(user!=nil){
+        speedIndex=[[user speedIndex] integerValue];
+        stongIndex=[[user strongIndex] integerValue];
+        speed=[self.titles2[speedIndex] integerValue];
+        stong=[self.titles[stongIndex] integerValue];
+    }else{
+        speed=[(NSNumber*)[_modelArray objectAtIndex:3] integerValue];
+        stong=[(NSNumber*)[_modelArray objectAtIndex:4] integerValue];
+        speedIndex=[self.titles2 indexOfObject:speed<10?[@"0" stringByAppendingString:[NSString stringWithFormat:@"%d",speed]]:[NSString stringWithFormat:@"%d",speed]];
+        stongIndex=[self.titles indexOfObject:[NSString stringWithFormat:@"%d",stong]];
+    }
+    
+    
+    [self.pickerView selectItem:1 animated:NO];
+    [self.pickerView selectItem:stongIndex animated:NO];
+    [self.pickerView2 selectItem:1 animated:NO];
+    [self.pickerView2 selectItem:speedIndex animated:NO];
+    isStart=true;
+    
+    if([CBLEManager sharedManager].Stu1==2){
+        isStart=false;
+        [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
+            if([CBLEManager sharedManager].peripheral1==nil&&[CBLEManager sharedManager].peripheral2==nil){
+                DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"ConnectError", nil) contentText:NSLocalizedString(@"ConnectErrorTip", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
+                alertView.rightBlock=^(){
+                    [self back];
+                };
+                [alertView show];
+            }
+        }];
+        [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+            
+            if([[[st substringFromIndex:4] substringToIndex:2] isEqualToString:@"01"]){
+                [self start];
+                isStart=true;
+                isPuse=false;
+                [CBLEManager sharedManager].Stu1=1;
+            }
+        }];
+        [self changeModel];
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).startDate=[NSDate date];
+        lastDate=((AppDelegate *)[[UIApplication sharedApplication] delegate]).startDate;
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).lastDate=lastDate;
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).terval=0;
+        timer= [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(Change) userInfo:nil repeats:YES];
+        _prView.progress=0;
+        terval=0;
+    }else{
+        terval=((AppDelegate *)[[UIApplication sharedApplication] delegate]).terval;
+        lastDate=((AppDelegate *)[[UIApplication sharedApplication] delegate]).lastDate;
+        _prView.progress=terval/([((NSNumber *)[_modelArray objectAtIndex:2]) floatValue]*60);
+    }
+    
+    if(!timer){
+        timer= [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(Change) userInfo:nil repeats:YES];
+    }
+    
+    
+    NSNumber *number=[_modelArray objectAtIndex:2];
+    [_exerciseTime setText:[NSString stringWithFormat:@"%d%@",[number integerValue],NSLocalizedString(@"Min", nil)]];
+    [_exercisePart setText:(NSString *)[parts objectAtIndex:[_part integerValue]]];
+    if(![CBLEManager sharedManager].peripheral2){
+        [_deviceName1 setText:[CBLEManager sharedManager].peripheral1.name];
+        _deviceName2.hidden=YES;
+        _device2.hidden=YES;
+    }else{
+        [_deviceName1 setText:[CBLEManager sharedManager].peripheral1.name];
+        [_deviceName2 setText:[CBLEManager sharedManager].peripheral2.name];
+        _deviceName2.hidden=NO;
+        _device2.hidden=NO;
+    }
+    [[CBLEManager sharedManager]setEndHandler:^(CBPeripheral *per){
+        [timer invalidate];
+        DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"StopSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        alertView.dismissBlock=^(){
+            [self back];
+        };
+        [alertView show];
+    }];
+    [[CBLEManager sharedManager]setPowerHandler:^(NSString *st,CBPeripheral *per){
+        float progress=[[[st substringFromIndex:8] substringToIndex:2] floatValue]/100;
+        if(progress<0.2){
+             DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Power", nil),per.name] contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+            [alertView show];
+        }
+        if(per==[CBLEManager sharedManager].peripheral1){
+            
+            self.oneView.frame = CGRectMake(0, 0, self.device1.frame.size.width * progress, self.device1.frame.size.height);
+        }else{
+            self.twoView.frame = CGRectMake(0, 0, self.device2.frame.size.width * progress, self.device2.frame.size.height);
+        }
+    }];
 }
 
 -(void)back{
-    [[CBLEManager sharedManager]setSendDataHandler:nil];
-    [[CBLEManager sharedManager] setDisconnectHandler:nil];
     Record *record=[self saveRecord];
     ExerciseRecordDetailViewController *_detail=[[ExerciseRecordDetailViewController alloc]init];
     _detail.record=record;
+    [CBLEManager sharedManager].Stu1=2;
+    [timer invalidate];
     [self.navigationController pushViewController:_detail animated:YES];
-    
 }
 
+-(void)Change{
+    NSDate *tDate=[NSDate date];
+    NSDate *ttDate=lastDate;
+    terval=terval+[tDate timeIntervalSinceDate:ttDate];
+    float t=terval;
+    float tt=[((NSNumber *)[_modelArray objectAtIndex:2]) floatValue]*60;
+    float value=t/tt;
+    _prView.progress=value;
+    if(value==1){
+    DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"StopSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+        alertView.dismissBlock=^(){
+                [self back];
+            };
+            [alertView show];
+    
+        }
+    lastDate=[NSDate date];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -134,7 +211,7 @@ NSArray *parts;
     [_setTv setText:NSLocalizedString(@"TrainSetting", nil)];
     [_speedTv setText:NSLocalizedString(@"Speed", nil)];
     [_stongTv setText:NSLocalizedString(@"Stong", nil)];
-    [_StartTip setText:NSLocalizedString(@"Start", nil)];
+    [_btn setTitle:NSLocalizedString(@"Start", nil) forState:UIControlStateNormal];
     [_StopTip setText:NSLocalizedString(@"Puase", nil)];
     [_exercisePartLabel setText:NSLocalizedString(@"Body_Part", nil)];
     [_exerciseTimeLabel setText:NSLocalizedString(@"TrainTime", nil)];
@@ -142,7 +219,21 @@ NSArray *parts;
     [_hideViewBtn addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
     
     [_exerciseDetail setText:NSLocalizedString(@"Detail", nil)];
+    [_prView initView:_prView.frame];
+    _prView.noColor = [UIColor whiteColor];
+    _prView.prsColor =[UIColor yellowColor];
     
+    [_prView setBackgroundColor:[UIColor clearColor]];
+    self.oneView = [[UIView alloc] init];
+    self.oneView.clipsToBounds = YES;
+    [_device1 addSubview:self.oneView];
+    self.twoView = [[UIView alloc] init];
+    self.twoView.clipsToBounds = YES;
+    [_device2 addSubview:self.twoView];
+    self.oneView.frame = CGRectMake(0, 0, self.device1.frame.size.width * 0.9, self.device1.frame.size.height);
+    self.twoView.frame = CGRectMake(0, 0, self.device2.frame.size.width * 0.9, self.device2.frame.size.height);
+    [self.oneView setBackgroundColor:[UIColor grayColor]];
+    [self.twoView setBackgroundColor:[UIColor grayColor]];
 }
 
 /**发送按钮响应事件**/
@@ -190,12 +281,19 @@ NSArray *parts;
     if(isPuse){
         [_StopTip setText:NSLocalizedString(@"Puase", nil)];
         [self start];
+        [timer setFireDate:[NSDate date]];
+        lastDate=[NSDate date];
+        terval=((AppDelegate *)[[UIApplication sharedApplication] delegate]).terval;
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).lastDate=lastDate;
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).terval=terval;
         return;
     }
+    
     [_StopTip setText:NSLocalizedString(@"Resume", nil)];
     
     NSArray *array=[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x05], nil];
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
+        [timer setFireDate:[NSDate distantFuture]];
         DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"PauseSu", nil)  contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alertView show];
         isPuse=true;
@@ -268,7 +366,7 @@ NSArray *parts;
     //结束时间
     NSDate *endDate = start;
     //当前时间
-
+    
     
     //得到相差秒数
     NSTimeInterval time=[senddate timeIntervalSince1970]-[endDate timeIntervalSince1970];
@@ -277,7 +375,7 @@ NSArray *parts;
     [record setTime:[NSNumber numberWithInt:minute]];
     [record setDate:start];
     if(myAppDelegate.user){
-         [record setUser:[[[myAppDelegate.user objectID] URIRepresentation]absoluteString]];
+        [record setUser:[[[myAppDelegate.user objectID] URIRepresentation]absoluteString]];
     }else{
         [record setUser:@"defualt"];
     }
@@ -292,11 +390,11 @@ NSArray *parts;
     if (isHide) {
         _detailView.hidden=NO;
         isHide=NO;
-        
+        [_hideViewBtn setTitle :NSLocalizedString(@"Hide", nil) forState:UIControlStateNormal];
     }else{
         _detailView.hidden=YES;
         isHide=YES;
-        
+        [_hideViewBtn setTitle :NSLocalizedString(@"View", nil) forState:UIControlStateNormal];
     }
     
 }

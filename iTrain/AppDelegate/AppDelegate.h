@@ -16,21 +16,21 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,
 WXApiDelegate>
-
 {
-    
     enum WXScene _scene;
-//    MainViewController *rootView ;
-    
-    ExerciseParamViewController *rootView ;
-     SSInterfaceOrientationMask _interfaceOrientationMask;
-
+    MainViewController *rootView ;
+    SSInterfaceOrientationMask _interfaceOrientationMask;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong,nonatomic) User  *user;
 @property (nonatomic) BOOL isUserUnit;
+@property (nonatomic)NSDate *startDate;
+@property (nonatomic, strong) NSMutableArray *modelArray;
+@property (nonatomic, strong) NSString *part;
+@property (nonatomic)NSTimeInterval terval;
+@property (nonatomic, strong)NSDate *lastDate;
 @property (nonatomic) SSInterfaceOrientationMask interfaceOrientationMask;
 
 @property(strong,nonatomic,readonly)NSManagedObjectModel* managedObjectModel;

@@ -24,10 +24,10 @@
                 <outlet property="hideViewBtn" destination="TC3-qt-2s7" id="AcG-IC-RqV"/>
                 <outlet property="pickerView" destination="mQw-5s-O9a" id="pJ4-5p-vZa"/>
                 <outlet property="pickerView2" destination="XiL-G8-tbv" id="nxA-rI-xFi"/>
+                <outlet property="prView" destination="8gI-MH-6kI" id="Lgg-Nr-60c"/>
                 <outlet property="setTv" destination="PXQ-bq-iC2" id="n6p-cJ-VUg"/>
                 <outlet property="speedTv" destination="ag0-21-ndc" id="PkA-0i-0x0"/>
                 <outlet property="stongTv" destination="4ez-mR-xxg" id="DqM-6T-wp7"/>
-                <outlet property="timeImage" destination="EYt-Xo-Qyj" id="XZM-O9-hyk"/>
                 <outlet property="view" destination="Zgv-rc-6j0" id="awM-K1-xSq"/>
             </connections>
         </placeholder>
@@ -148,16 +148,17 @@
                             <color key="textColor" red="0.84705889229999998" green="0.35686275360000003" blue="0.1176470667" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.png" id="EYt-Xo-Qyj">
-                            <rect key="frame" x="40" y="63" width="240" height="26"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jqr-3h-SCr">
                             <rect key="frame" x="20" y="93" width="122" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" id="8gI-MH-6kI" customClass="ZDProgressView">
+                            <rect key="frame" x="40" y="63" width="240" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ehz-25-cNH">
                             <rect key="frame" x="171" y="93" width="122" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -225,7 +226,6 @@
         </view>
     </objects>
     <resources>
-        <image name="time.png" width="219" height="26"/>
         <image name="train_canshu.png" width="22" height="21"/>
         <image name="train_tingzhi.png" width="249" height="38"/>
         <image name="电量.png" width="86" height="32"/>
