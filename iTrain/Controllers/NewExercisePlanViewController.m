@@ -121,9 +121,6 @@ AppDelegate *myAppDelegate;
             }
         }
     }
-    if(self.isEvent){
-        [self saveEvent:sPlan];
-    }
     NSError *error = nil;
     BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
     if (!isSave) {
@@ -133,6 +130,10 @@ AppDelegate *myAppDelegate;
         NSLog(@"保存成功");
         [self showAlertViewWithMessage];
     }
+    if(self.isEvent){
+        [self saveEvent:sPlan];
+    }
+   
 }
 - (void)showAlertViewWithMessage
 {
@@ -354,7 +355,7 @@ AppDelegate *myAppDelegate;
         noti.applicationIconBadgeNumber =1;
         
         //设置userinfo 方便在之后需要撤销的时候使用
-        
+        NSLog(@"%@",[tplan eventId]);
         NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[tplan eventId] forKey:@"key"];
         
         noti.userInfo = infoDic;
@@ -365,33 +366,6 @@ AppDelegate *myAppDelegate;
         [app scheduleLocalNotification:noti];
         [tplan setEventId:[[[tplan objectID]URIRepresentation]absoluteString]];
     }
-//    [myAppDelegate.eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted,NSError *error) {
-//        
-//        EKEvent *myEvent  = [EKEvent eventWithEventStore:myAppDelegate.eventDB];
-//        myEvent.title = [NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
-//        
-//        NSDate *startDate=[tplan startTime];
-//        myEvent.startDate =startDate;
-//        
-//        myEvent.endDate   = startDate;
-//        EKRecurrenceRule *rule=[[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:nil];
-//        [myEvent addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -60.0f * 24]];
-//        [myEvent addRecurrenceRule:rule];
-//        [myEvent setCalendar:[myAppDelegate.eventDB defaultCalendarForNewEvents]];
-//        NSError *err;
-//        [myAppDelegate.eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err];
-//        [tplan setEventId:myEvent.eventIdentifier];
-//        BOOL isSave =   [myAppDelegate.managedObjectContext save:&error];
-//        if (!isSave) {
-//            NSLog(@"error:%@,%@",error,[error userInfo]);
-//        }
-//        else{
-//            NSLog(@"保存成功");
-//            [self showAlertViewWithMessage:@""];
-//        }
-//        
-//        
-//    }];
 }
 
 @end

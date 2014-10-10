@@ -550,12 +550,12 @@
 		C36C7E0E19E3A18400276980 /* SMVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMVViewController.m; sourceTree = "<group>"; };
 		C36C7E0F19E3A18400276980 /* SMVViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMVViewController.xib; sourceTree = "<group>"; };
 		C36C7E1219E3A28200276980 /* ScoolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoolView.xib; sourceTree = "<group>"; };
-		C36C7E1519E3C68200276980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/SMImage2@2x.png"; sourceTree = "<group>"; };
-		C36C7E1819E3C68700276980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/SMImage3@2x.png"; sourceTree = "<group>"; };
-		C36C7E1B19E3C68B00276980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/SMImage4@2x.png"; sourceTree = "<group>"; };
-		C36C7E1D19E3C68E00276980 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/SMImage2@2x.png"; sourceTree = "<group>"; };
-		C36C7E1E19E3C69100276980 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/SMImage3@2x.png"; sourceTree = "<group>"; };
-		C36C7E1F19E3C69500276980 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/SMImage4@2x.png"; sourceTree = "<group>"; };
+		C36C7E1519E3C68200276980 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/SMImage2@2x.png"; sourceTree = "<group>"; };
+		C36C7E1819E3C68700276980 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/SMImage3@2x.png"; sourceTree = "<group>"; };
+		C36C7E1B19E3C68B00276980 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/SMImage4@2x.png"; sourceTree = "<group>"; };
+		C36C7E1D19E3C68E00276980 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/SMImage2@2x.png"; sourceTree = "<group>"; };
+		C36C7E1E19E3C69100276980 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/SMImage3@2x.png"; sourceTree = "<group>"; };
+		C36C7E1F19E3C69500276980 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/SMImage4@2x.png"; sourceTree = "<group>"; };
 		C36EC62C19AB1DC000813ACD /* AKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPickerView.h; sourceTree = "<group>"; };
 		C36EC62D19AB1DC000813ACD /* AKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKPickerView.m; sourceTree = "<group>"; };
 		C36EC63119AB28E500813ACD /* baocun_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baocun_1.png; sourceTree = "<group>"; };
@@ -2300,7 +2300,7 @@
 					/Users/Carl/Documents/Ios_Projects/iTrain/iTrain/Vendors/Push,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "42f0a1cb-e238-4911-9090-2d4262e6a5c9";
+				PROVISIONING_PROFILE = "33496100-52bf-4828-b047-63a48810f218";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2340,7 +2340,7 @@
 					/Users/Carl/Documents/Ios_Projects/iTrain/iTrain/Vendors/Push,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "42f0a1cb-e238-4911-9090-2d4262e6a5c9";
+				PROVISIONING_PROFILE = "33496100-52bf-4828-b047-63a48810f218";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

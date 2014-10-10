@@ -162,3 +162,4 @@
 "SMiTrainOperation3Detail"="Click “Start”, the light on the host devicewill flash, indicating exercise starting. It will enter into exercisemanagement interface, in which the intensity and speed of exercise areadjustable, click “Send” to send the parameter to the host device. It willautomatically save the exercise records when exercise is over.";
 "elec"="The electrode is off";
 "Power"="Training the host %@ Low battery, please charge!";
+"PowerTitle"="Warning";

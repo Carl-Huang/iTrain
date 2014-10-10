@@ -93,12 +93,19 @@ NSDate *lastDate;
     if([CBLEManager sharedManager].Stu1==2){
         isStart=false;
         [[CBLEManager sharedManager] setDisconnectHandler:^(CBPeripheral * peripheral){
-            if([CBLEManager sharedManager].peripheral1==nil&&[CBLEManager sharedManager].peripheral2==nil){
+            if((peripheral==[CBLEManager sharedManager].peripheral1&&[CBLEManager sharedManager].peripheral2==nil)||(peripheral==[CBLEManager sharedManager].peripheral2&&[CBLEManager sharedManager].peripheral1==nil)){
                 DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"ConnectError", nil) contentText:NSLocalizedString(@"ConnectErrorTip", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
                 alertView.rightBlock=^(){
                     [self back];
                 };
                 [alertView show];
+            }
+            if(peripheral==[[CBLEManager sharedManager] peripheral1]){
+                _deviceName1.hidden=YES;
+                _device1.hidden=YES;
+            }else{
+                _deviceName2.hidden=YES;
+                _device2.hidden=YES;
             }
         }];
         [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
@@ -130,7 +137,7 @@ NSDate *lastDate;
     
     
     NSNumber *number=[_modelArray objectAtIndex:2];
-    [_exerciseTime setText:[NSString stringWithFormat:@"%d%@",[number integerValue],NSLocalizedString(@"Min", nil)]];
+    [_exerciseTime setText:[NSString stringWithFormat:@"%d%@",[number intValue],NSLocalizedString(@"Min", nil)]];
     [_exercisePart setText:(NSString *)[parts objectAtIndex:[_part integerValue]]];
     if(![CBLEManager sharedManager].peripheral2){
         [_deviceName1 setText:[CBLEManager sharedManager].peripheral1.name];
@@ -144,17 +151,25 @@ NSDate *lastDate;
     }
     [[CBLEManager sharedManager]setEndHandler:^(CBPeripheral *per){
         [timer invalidate];
+        [[CBLEManager sharedManager]setEndHandler:nil];
         DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"StopSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         alertView.dismissBlock=^(){
             [self back];
         };
         [alertView show];
     }];
+    [self CreatePowerHandler];
+}
+-(void)CreatePowerHandler{
     [[CBLEManager sharedManager]setPowerHandler:^(NSString *st,CBPeripheral *per){
         float progress=[[[st substringFromIndex:8] substringToIndex:2] floatValue]/100;
         if(progress<0.2){
-             DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Power", nil),per.name] contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
+            [[CBLEManager sharedManager]setPowerHandler:nil];
+            DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"PowerTitle", nil) contentText:[NSString stringWithFormat:NSLocalizedString(@"Power", nil),per.name] leftButtonTitle:nil rightButtonTitle:@"OK"];
             [alertView show];
+            alertView.dismissBlock=^(){
+                [self CreatePowerHandler];
+            };
         }
         if(per==[CBLEManager sharedManager].peripheral1){
             
@@ -164,8 +179,9 @@ NSDate *lastDate;
         }
     }];
 }
-
 -(void)back{
+    [[CBLEManager sharedManager] setEndHandler:nil];
+    [[CBLEManager sharedManager] setPowerHandler:nil];
     Record *record=[self saveRecord];
     ExerciseRecordDetailViewController *_detail=[[ExerciseRecordDetailViewController alloc]init];
     _detail.record=record;
@@ -216,7 +232,7 @@ NSDate *lastDate;
     [_exercisePartLabel setText:NSLocalizedString(@"Body_Part", nil)];
     [_exerciseTimeLabel setText:NSLocalizedString(@"TrainTime", nil)];
     [_hideViewBtn setTitle :NSLocalizedString(@"Hide", nil) forState:UIControlStateNormal];
-    [_hideViewBtn addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
+    [_hideViewBtn addTarget:self action:@selector(SthideView) forControlEvents:UIControlEventTouchUpInside];
     
     [_exerciseDetail setText:NSLocalizedString(@"Detail", nil)];
     [_prView initView:_prView.frame];
@@ -244,8 +260,8 @@ NSDate *lastDate;
 -(void)changeModel{
     if([[CBLEManager sharedManager] isConnected]){
         /**速度是0x01对应第一个，所以提交修改的时候要+1**/
-        [_modelArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithInt:speed]];
-        [_modelArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:stong]];
+        [_modelArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithInteger:speed]];
+        [_modelArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithInteger:stong]];
         if(isStart){
             [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
                 [[CBLEManager sharedManager] setModelArray:_modelArray];
@@ -296,6 +312,7 @@ NSDate *lastDate;
         [timer setFireDate:[NSDate distantFuture]];
         DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"PauseSu", nil)  contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];
         [alertView show];
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).terval=terval;
         isPuse=true;
     }];
     [[CBLEManager sharedManager] createData:array];
@@ -386,7 +403,7 @@ NSDate *lastDate;
     }
     return record;
 }
--(void)hideView{
+-(void)SthideView{
     if (isHide) {
         _detailView.hidden=NO;
         isHide=NO;
