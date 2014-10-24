@@ -243,11 +243,9 @@ bool isOn;
         [newPlan setTime:[NSNumber numberWithInteger:[[TimeArray objectAtIndex:i] integerValue]]];
         [newPlan setPart:[Partrray objectAtIndex:i]];
         NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy:MM:dd"];
-        NSString *day=[formatter stringFromDate:[NSDate date]];
+        NSString *day=@"";
+        day=[NSString stringWithFormat:@" %@",[StartTimeArray objectAtIndex:i]];
         [formatter setDateFormat:@"HH:mm"];
-        day=[day stringByAppendingFormat:@" %@",[StartTimeArray objectAtIndex:i]];
-        [formatter setDateFormat:@"yyyy:MM:dd HH:mm"];
         [newPlan setStartTime: [formatter dateFromString:day]];
         
         [dataarray addObject:newPlan];

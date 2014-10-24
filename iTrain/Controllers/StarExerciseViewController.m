@@ -41,7 +41,17 @@ UITapGestureRecognizer *tapGesture ;
     [self.paramView selectItem:1 animated:NO];
     [self.paramView selectItem:_timeIndex animated:NO];
     [_popView setHidden:YES];
-    [_StartTip setTextColor:[UIColor lightGrayColor]];
+    if ([[CBLEManager sharedManager] isConnected]) {
+          [_StartTip setTextColor:[UIColor blackColor]];
+    }else{
+        [_StartTip setTextColor:[UIColor lightGrayColor]];
+    }
+    
+    if(((AppDelegate *)[[UIApplication sharedApplication] delegate]).part!=nil){
+        [_startBtn setEnabled:YES];
+      
+        [_startBtn setImage:[UIImage imageNamed:@"start_kaishixunlian2.png"] forState:UIControlStateNormal];
+    }
     
 }
 
@@ -190,13 +200,15 @@ UITapGestureRecognizer *tapGesture ;
 
 
 - (void)gotoStartView{
-   // if(exerciseParam==nil){
+    exerciseParam= ((AppDelegate *)[[UIApplication sharedApplication] delegate]).evc;
+    if(exerciseParam==nil){
         if (DEVICE_IS_IPHONE5) {
             exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController4" bundle:nil];}
         else{
             exerciseParam= [[ExerciseParamViewController alloc] initWithNibName:@"ExerciseParamViewController" bundle:nil];
         }
-   // }
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).evc=exerciseParam;
+    }
     
     if([CBLEManager sharedManager].Stu1==2){
         [_modelArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithInteger:_time]];

@@ -160,9 +160,36 @@ NSDate *lastDate;
     }];
     [self CreatePowerHandler];
 }
+
+-(float)parseInt:(NSString *)strs{
+    
+    float t=0;
+    for(int i=0;i<strs.length;i++){
+        NSString *str=[[strs substringFromIndex:i] substringToIndex:1];
+        int d=0;
+        if([str isEqualToString:@"a"]){
+            d=10;
+        }else if([str isEqualToString:@"b"]){
+            d=11;
+        }else if([str isEqualToString:@"c"]){
+            d=12;
+        }else if([str isEqualToString:@"d"]){
+            d=13;
+        }else if([str isEqualToString:@"e"]){
+            d=14;
+        }else if([str isEqualToString:@"f"]){
+            d=15;
+        }else{
+            d=[str integerValue];
+        }
+        t=t+d*pow(16, (strs.length-i-1));
+    }
+    return t;
+}
 -(void)CreatePowerHandler{
     [[CBLEManager sharedManager]setPowerHandler:^(NSString *st,CBPeripheral *per){
-        float progress=[[[st substringFromIndex:8] substringToIndex:2] floatValue]/100;
+        
+        float progress=[self parseInt:[[st substringFromIndex:8] substringToIndex:2] ]/100;
         if(progress<0.2){
             [[CBLEManager sharedManager]setPowerHandler:nil];
             DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"PowerTitle", nil) contentText:[NSString stringWithFormat:NSLocalizedString(@"Power", nil),per.name] leftButtonTitle:nil rightButtonTitle:@"OK"];
@@ -187,6 +214,7 @@ NSDate *lastDate;
     _detail.record=record;
     [CBLEManager sharedManager].Stu1=2;
     [timer invalidate];
+    ((AppDelegate *)[[UIApplication sharedApplication] delegate]).evc=nil;
     [self.navigationController pushViewController:_detail animated:YES];
 }
 
@@ -197,6 +225,9 @@ NSDate *lastDate;
     float t=terval;
     float tt=[((NSNumber *)[_modelArray objectAtIndex:2]) floatValue]*60;
     float value=t/tt;
+    if(value>1){
+        value=1;
+    }
     _prView.progress=value;
     if(value==1){
     DXAlertView *alertView=[[DXAlertView alloc]initWithTitle:NSLocalizedString(@"StopSu", nil) contentText:nil leftButtonTitle:nil rightButtonTitle:@"OK"];

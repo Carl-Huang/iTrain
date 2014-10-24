@@ -153,10 +153,10 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" id="8gI-MH-6kI" customClass="ZDProgressView">
+                        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="8gI-MH-6kI" customClass="ZDProgressView">
                             <rect key="frame" x="40" y="63" width="240" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ehz-25-cNH">
                             <rect key="frame" x="171" y="93" width="122" height="21"/>
@@ -228,7 +228,7 @@
         <image name="train_canshu.png" width="22" height="21"/>
         <image name="train_tingzhi.png" width="249" height="38"/>
         <image name="电量.png" width="85" height="32"/>
-        <image name="训练详情.png" width="22" height="21"/>
+        <image name="训练详情.png" width="23" height="22"/>
         <image name="隐藏显示按钮背景.png" width="42" height="23"/>
     </resources>
 </document>

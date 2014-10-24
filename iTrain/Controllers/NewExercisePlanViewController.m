@@ -89,6 +89,13 @@ AppDelegate *myAppDelegate;
 }
 
 -(void)savePlan{
+    if(_date==nil){
+        [SVProgressHUD showErrorWithStatus:@"开始训练时间不能为空"];
+        return;
+    }else if(timeLong==nil){
+        [SVProgressHUD showErrorWithStatus:@"总训练时间不能为空"];
+        return;
+    }
     Plan *sPlan;
     if(_oPlan==nil){
         sPlan=[NSEntityDescription insertNewObjectForEntityForName:@"Plan" inManagedObjectContext:myAppDelegate.managedObjectContext];
@@ -260,6 +267,7 @@ AppDelegate *myAppDelegate;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"HH:mm"];
         NSString *destDateString = [dateFormatter stringFromDate:_date];
+        _date=[dateFormatter dateFromString:destDateString];
         startText=destDateString;
         [_tabelView reloadData];
         
@@ -331,38 +339,24 @@ AppDelegate *myAppDelegate;
     UILocalNotification *noti = [[UILocalNotification alloc] init];
     UIApplication *app = [UIApplication sharedApplication];
     if (noti) {
-        
         //设置推送时间
         noti.alertAction=[NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
         noti.fireDate =[tplan startTime];
         //设置时区
-        
         noti.timeZone = [NSTimeZone defaultTimeZone];
-        
         //设置重复间隔
         noti.repeatInterval =NSDayCalendarUnit;
-        
         //推送声音
-        
         noti.soundName =UILocalNotificationDefaultSoundName;
-        
         //内容
-        
         noti.alertBody =[NSLocalizedString(@"TrainPlanContent", nil) stringByAppendingString:[fontAry objectAtIndex:[[tplan part] integerValue]]];
-        
         //显示在icon上的红色圈中的数子
-        
         noti.applicationIconBadgeNumber =1;
-        
         //设置userinfo 方便在之后需要撤销的时候使用
-        NSLog(@"%@",[tplan eventId]);
-        NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[tplan eventId] forKey:@"key"];
-        
+        NSLog(@"%@",[[[tplan objectID]URIRepresentation]absoluteString]);
+        NSDictionary *infoDic = [NSDictionary dictionaryWithObject: [[[tplan objectID]URIRepresentation]absoluteString]forKey:@"key"];
         noti.userInfo = infoDic;
-        
         //添加推送到uiapplication
-        
-        
         [app scheduleLocalNotification:noti];
         [tplan setEventId:[[[tplan objectID]URIRepresentation]absoluteString]];
     }

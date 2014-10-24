@@ -19,7 +19,7 @@
 "UnConnected"="UnConnected";
 "Device"="Equipment";
 "ConnectSu"="Connect is Successful";
-"ConnectError"="Connection error";
+"ConnectError"="The host has been turned off";
 "ConnectErrorTip"="Device is disconnected ";
 "SendSu"="Send Successful";
 "StopSu"="Stop Successful";
@@ -124,19 +124,28 @@
 "HelpQ2"="2) Is this product suitable for different age groups?";
 
 "HelpQ3"="3) Will it be uncomfortable when use this product?";
-"HelpQ4"="4) Should the intensity be the same for different muscle groups?";
+"HelpQ4"="4) How to adjust the training intensity according to different muscles?";
 "HelpQ5"="5) Is there some taboo when use this product?";
 "HelpQ6"="6) When will the training effect come out?";
-"HelpQ7"="7) How long does the battery last and be fully charged?";
+"HelpQ7"="7) How long does the battery last?";
+"HelpQ8"="8) How long does the battery be fully charged?";
 
 "HelpR1"="No. It’s the same with common Muscle Training. More training, stronger the muscle will be (Nevertheless, it needs reasonable time to rest).";
-"HelpR2"="Yes, of course. Our product has nothing to do with the age, it is suitable for any age groups. While, the aged and children must use this product under custody, and choose the lower intensity.";
-"HelpR3"="You will feel good as long as the pads stick on the skin tightly. It will have slight stabbing pain while the intensity is low, with the intensity increase, you only have the comfortable feeling of muscle contraction.";
-"HelpR4"="It has different program for different muscle groups, it intensity will change accordingly.";
-"HelpR5"="Yes. Please ask your doctor before use this product if health condition is not good to take exercises. And please read the Safety precautions before use.";
-"HelpR6"="It depends on the frequency you use this product and your fat mass. You will feel the muscle becomes stronger after 1-2 weeks. And you’ll find the muscle more of textured feel after 3 weeks.";
-"HelpR7"="It can last 5-10 hours after being fully charged. It takes about 2 hours to fully charge the battery.";
-"DelUser"="Delete";
+"HelpR2"="Yes, of course. Our product has nothing to do with the age, it is suitable for any age groups. While, the aged and children must use this product under custody, and choose the lower intensity.
+";
+"HelpR3"="You will feel good as long as the pads stick on the skin tightly. It will have slight stabbing pain while the intensity is low, with the intensity increase, you only have the comfortable feeling of muscle contraction.
+";
+"HelpR4"="Different muscles have different response mode, and the training intensity varies from muscle to muscle. It’s better to start from low intensity, and then adjust it slowly with the increment of 1 mA until you have the best feeling.
+";
+"HelpR5"="Yes. Please ask your doctor before use this product if health condition is not good to take exercises. And please read the Safety precautions before use.
+";
+"HelpR6"="It depends on the frequency you use this product and your fat mass. You will feel the muscle becomes stronger after 1-2 weeks. And you’ll find the muscle more of textured feel after 3 weeks.
+";
+"HelpR7"="It can last 5-10 hours after being fully charged.
+";
+"HelpR8"="It takes about 2 hours to fully charge the battery.
+";
+"DelUser"="Delete    ";
 "Resume"="continue";
 "UHeight"="Height(cm)";
 "UWeight"="Weight(Kg)";

@@ -22,7 +22,7 @@ NSMutableArray *textArray;
 UITableViewCell *tcell;
 AppDelegate *myAppDelegate;
 UITextField *field;
-NSString *photo;
+NSString *tphoto;
 BOOL isInch;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -238,9 +238,9 @@ BOOL isInch;
 
 -(void)back{
     [DaiDodgeKeyboard textFieldDone];
-    if(photo!=nil){
-        photo=[self saveImage:_headImg.image withName:photo];
-        [_user setPhoto:photo];
+    if([self getPhoto]!=nil){
+        [self setPhoto:[self saveImage:_headImg.image withName:[self getPhoto]]];
+        [_user setPhoto:[self getPhoto]];
     }
     if(isEditer){
         for(int i=0;i<textArray.count;i++){
@@ -255,7 +255,7 @@ BOOL isInch;
     else{
         NSLog(@"保存成功");
     }
-    
+    [self setPhoto:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -407,8 +407,8 @@ BOOL isInch;
     //if(st==nil){
     NSDate *datenow = [NSDate date];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
-    photo=[timeSp stringByAppendingString:@".png"];
-    [self saveImage:image withName:photo];
+    [self setPhoto:[timeSp stringByAppendingString:@".png"]];
+    [self saveImage:image withName:[self getPhoto]];
     //return;
     //}
     
@@ -436,7 +436,7 @@ BOOL isInch;
 //取消操作时调用
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^{
-        photo=nil;
+        [self setPhoto:nil];
     }];
 }
 
@@ -537,5 +537,12 @@ BOOL isInch;
     
     return [NSString stringWithFormat:@"%@",roundedOunces];
     
+}
+-(void)setPhoto:(NSString *)st{
+    tphoto=st;
+}
+
+-(NSString *)getPhoto{
+    return tphoto;
 }
 @end

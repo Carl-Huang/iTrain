@@ -12,7 +12,6 @@
 #import <EventKit/EventKit.h>
 #import "User.h"
 #import "ExerciseParamViewController.h"
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate,
 WXApiDelegate>
 {
@@ -30,6 +29,7 @@ WXApiDelegate>
 @property (nonatomic, strong) NSString *part;
 @property (nonatomic)NSTimeInterval terval;
 @property (nonatomic, strong)NSDate *lastDate;
+@property (nonatomic,strong)ExerciseParamViewController *evc;
 @property (nonatomic) SSInterfaceOrientationMask interfaceOrientationMask;
 
 @property(strong,nonatomic,readonly)NSManagedObjectModel* managedObjectModel;

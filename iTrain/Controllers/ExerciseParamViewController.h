@@ -35,5 +35,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView * device2;
 @property (weak, nonatomic) IBOutlet UIButton * hideViewBtn;
 @property (weak, nonatomic) IBOutlet ZDProgressView *prView;
-
+@property (strong,nonatomic)ZDProgressView *prView1;
 @end

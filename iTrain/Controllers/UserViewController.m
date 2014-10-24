@@ -80,16 +80,7 @@ ALAssetsLibrary* lib;
     _contetTabelView.scrollEnabled = NO;
     _contetTabelView.tableHeaderView=_contentCell;
     [self setExtraCellLineHidden:_userTabelView];
-    [_addBtn addTarget:self action:@selector(AddBtnDow) forControlEvents:UIControlEventTouchDown];
-    [_addBtn addTarget:self action:@selector(AddBtnUp) forControlEvents:UIControlEventTouchUpOutside];
-    [_addBtn addTarget:self action:@selector(AddBtnUp) forControlEvents:UIControlEventTouchDragOutside];
-    [_addBtn addTarget:self action:@selector(AddBtnDow) forControlEvents:UIControlEventTouchDragEnter];
-    
-    
-    [_delBtn addTarget:self action:@selector(DelBtnDow) forControlEvents:UIControlEventTouchDown];
-    [_delBtn addTarget:self action:@selector(DelBtnUp) forControlEvents:UIControlEventTouchUpOutside];
-    [_delBtn addTarget:self action:@selector(DelBtnUp) forControlEvents:UIControlEventTouchDragOutside];
-    [_delBtn addTarget:self action:@selector(DelBtnDow) forControlEvents:UIControlEventTouchDragEnter];
+   
     
     
     //设置按钮按下状态图片
@@ -103,25 +94,15 @@ ALAssetsLibrary* lib;
     [_addBtn addTarget:self action:@selector(addPage) forControlEvents:UIControlEventTouchUpInside];
     [_delBtn addTarget:self  action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
     sview=self;
-    [_NewTip setTitle:NSLocalizedString(@"NewUser", nil) forState:UIControlStateNormal];
-    [_delBtnText setTitle:NSLocalizedString(@"DelUser", nil) forState:UIControlStateNormal];
-    tipColor=[_NewTip titleColorForState:UIControlStateNormal];
+    [_addBtn setTitle:NSLocalizedString(@"NewUser", nil) forState:UIControlStateNormal];
+    [_delBtn setTitle:NSLocalizedString(@"DelUser", nil) forState:UIControlStateNormal];
+    tipColor=[_addBtn titleColorForState:UIControlStateNormal];
+    [_addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_addBtn setTitleColor:tipColor forState:UIControlStateHighlighted];
+    [_delBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_delBtn setTitleColor:tipColor forState:UIControlStateHighlighted];
 }
 
--(void)AddBtnDow{
-    
-    [_NewTip setTitleColor:tipColor forState:UIControlStateNormal];
-}
--(void)AddBtnUp{
-    [_NewTip setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-}
--(void)DelBtnDow{
-    
-    [_delBtnText setTitleColor:tipColor forState:UIControlStateNormal];
-}
--(void)DelBtnUp{
-    [_delBtnText setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -132,14 +113,10 @@ ALAssetsLibrary* lib;
     [self initData];
     [_userTabelView reloadData];
     if(self.dataArray.count==0){
-        [_delBtnText setEnabled:NO];
         [_delBtn setEnabled:NO];
     }else{
-        [_delBtnText setEnabled:YES];
         [_delBtn setEnabled:YES];
     }
-    [_NewTip setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [_delBtnText setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 }
 
 -(void)update{
@@ -167,11 +144,6 @@ ALAssetsLibrary* lib;
     self.dataArray = mutableFetchResult;
     if(self.dataArray.count==0){
         return;
-    }else if(self.dataArray.count==1){
-        _index=0;
-        User *user=[self.dataArray objectAtIndex:0];
-        [user setIsChoose:[NSNumber numberWithBool:YES] ];
-        [myAppDelegate setUser:user];
     }else{
         for(User *user in self.dataArray){
             if([[user isChoose] boolValue]){
@@ -180,7 +152,7 @@ ALAssetsLibrary* lib;
             }
         }
         if(_index==-1){
-            _index=0;
+            [self.delBtn setEnabled:NO];
         }
     }
 }
@@ -277,7 +249,7 @@ ALAssetsLibrary* lib;
 }
 //跳转到新建用户页面
 -(void)addPage{
-    [self AddBtnUp];
+ 
     newUser= [[NewUserViewController alloc] init];
     [self.navigationController pushViewController:newUser animated:YES];
     
@@ -287,18 +259,25 @@ ALAssetsLibrary* lib;
         return;
     }
     UIButton *btn=sender;
-    User *user=[self.dataArray objectAtIndex:_index];
-    NSMutableArray *tArray=[[NSMutableArray alloc]init];
-    [tArray addObject:[NSIndexPath indexPathForRow:_index inSection:0]];
-    [user setIsChoose:[NSNumber numberWithBool:false]];
-    User *nuser=[self.dataArray objectAtIndex:btn.tag];
-    [nuser setIsChoose:[NSNumber numberWithBool:true]];
-    _index=btn.tag;
-    [[imageArray objectAtIndex:_index] setImage:[UIImage imageNamed:@"ul_gou.png"] forState:UIControlStateHighlighted];
+    if(_index!=-1){
+        User *user=[self.dataArray objectAtIndex:_index];
+        [user setIsChoose:[NSNumber numberWithBool:false]];
+
+    }
+      if(_index==btn.tag){
+        _index=-1;
+        [self.delBtn setEnabled:NO];
+        [myAppDelegate setUser:nil];
+    }else{
+        User *nuser=[self.dataArray objectAtIndex:btn.tag];
+        [nuser setIsChoose:[NSNumber numberWithBool:true]];
+        _index=btn.tag;
+        [myAppDelegate setUser:nuser];
+        [self.delBtn setEnabled:YES];
+    }
     [self update];
-    [tArray addObject:[NSIndexPath indexPathForRow:_index inSection:0]];
     [_userTabelView reloadData];
-    [myAppDelegate setUser:nuser];
+    
 }
 
 
@@ -312,7 +291,7 @@ ALAssetsLibrary* lib;
     [self.navigationController pushViewController:UserInfo animated:YES];
 }
 -(void)delete:(id)sender{
-    [self DelBtnUp];
+   
     [myAppDelegate.managedObjectContext deleteObject:[self.dataArray objectAtIndex:_index]];
     [self.dataArray removeObjectAtIndex:_index];
     NSError *error=nil;
@@ -322,7 +301,7 @@ ALAssetsLibrary* lib;
     }
     
     if(self.dataArray.count==0){
-        [_delBtnText setEnabled:NO];
+  
         [_delBtn setEnabled:NO];
         [myAppDelegate setUser:nil];
     }else{

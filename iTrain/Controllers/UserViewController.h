@@ -15,7 +15,6 @@
     UserCollectionViewCell *scell;
     UserInfoViewController *userinfoController;
 }
-@property (weak, nonatomic) IBOutlet UIButton *NewTip;
 @property (weak, nonatomic) IBOutlet UITableView *contetTabelView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *contentCell;
@@ -33,8 +32,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *userTabelView;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (strong, nonatomic) NSMutableArray *dataArray;
-- (void)popoverBtnClicked:(id)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet UIButton *delBtn;
-@property (weak, nonatomic) IBOutlet UIButton *delBtnText;
+
 
 @end

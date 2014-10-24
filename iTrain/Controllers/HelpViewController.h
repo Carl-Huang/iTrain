@@ -23,5 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *suggestView;
 @property (weak, nonatomic) IBOutlet UIButton *suggestBtn;
 
++ (BOOL)getPreferredLanguage;
+
 
 @end

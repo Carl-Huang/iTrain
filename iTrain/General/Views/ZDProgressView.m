@@ -107,6 +107,7 @@
 - (void)setProgress:(CGFloat)progress
 {
     self.oneView.frame = CGRectMake(0, 0, self.frame.size.width * progress, self.frame.size.height);
+
 }
 
 - (void)setBorderWidth:(NSInteger)borderWidth

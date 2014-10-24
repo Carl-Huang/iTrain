@@ -523,7 +523,7 @@
     if(![[[hexStr substringFromIndex:2] substringToIndex:2] isEqualToString:@"a5"]){
         return;
     }
-   // NSLog(@"==%@",hexStr);
+    NSLog(@"==%@",hexStr);
     if([[[hexStr substringFromIndex:4] substringToIndex:2] isEqualToString:@"0a"]){
         if(self.endHandler){
             self.endHandler(per);
@@ -548,7 +548,7 @@
             [temp addObject: [NSNumber numberWithInt:[self parseInt:[[hexStr substringFromIndex:8] substringToIndex:2]]]];
             _modelArray=[[NSArray alloc]initWithArray:temp];
         }
-        // NSLog(@"%@",hexStr);
+         NSLog(@"%@",hexStr);
         if(_sendSu1&&_sendSu2){
             if(self.sendDataHandler){
                 self.sendDataHandler(hexStr,per);

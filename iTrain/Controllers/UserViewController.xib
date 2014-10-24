@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController">
             <connections>
-                <outlet property="NewTip" destination="fCs-un-qAO" id="bWz-xV-U3U"/>
                 <outlet property="addBtn" destination="s5D-VB-h70" id="ZwO-ZL-DuC"/>
                 <outlet property="contentCell" destination="fJu-Vf-UEz" id="Ehj-eE-b0y"/>
                 <outlet property="contentImg" destination="NmE-m1-CsP" id="sKO-PZ-lkE"/>
@@ -18,7 +17,6 @@
                 <outlet property="contentView" destination="9qC-gB-HFZ" id="1zW-6E-DkM"/>
                 <outlet property="contetTabelView" destination="4X6-Jg-6wL" id="l6n-ke-zJ2"/>
                 <outlet property="delBtn" destination="HJU-3w-gtV" id="P4F-kH-hZp"/>
-                <outlet property="delBtnText" destination="Bx2-1B-qu6" id="fwh-eb-2OB"/>
                 <outlet property="popContentView" destination="6bV-KW-MHe" id="ghH-QC-Z2g"/>
                 <outlet property="userTabelView" destination="yE8-dx-av5" id="g7Z-AM-If9"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -92,39 +90,23 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s5D-VB-h70">
-                            <rect key="frame" x="95" y="-1" width="50" height="49"/>
+                            <rect key="frame" x="95" y="-7" width="80" height="49"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="ul_xinjian2.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="fCs-un-qAO">
-                            <rect key="frame" x="67" y="25" width="108" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Button">
-                                <color key="titleColor" red="0.18039216101169586" green="0.85490202903747559" blue="0.84313732385635376" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <inset key="titleEdgeInsets" minX="-50" minY="40" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Button" image="ul_xinjian2.png">
+                                <color key="titleColor" red="0.180392161" green="0.85490202900000001" blue="0.84313732389999996" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HJU-3w-gtV">
-                            <rect key="frame" x="174" y="-2" width="72" height="49"/>
+                            <rect key="frame" x="174" y="0.0" width="80" height="49"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="del_xinjian_1.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Bx2-1B-qu6">
-                            <rect key="frame" x="156" y="25" width="108" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Button">
+                            <inset key="titleEdgeInsets" minX="-68" minY="25" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Button" image="del_xinjian_1.png">
                                 <color key="titleColor" red="0.180392161" green="0.85490202900000001" blue="0.84313732389999996" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                     </subviews>
@@ -138,7 +120,7 @@
     </objects>
     <resources>
         <image name="del_xinjian_1.png" width="50" height="49"/>
-        <image name="ul_xinjian2.png" width="50" height="49"/>
+        <image name="ul_xinjian2.png" width="18" height="18"/>
         <image name="user_icon1.png" width="22" height="21"/>
     </resources>
 </document>

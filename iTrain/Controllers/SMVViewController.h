@@ -10,7 +10,8 @@
 
 @interface SMVViewController : CommonViewController<UIScrollViewDelegate>{
     NSArray *imgArr;
-    
+    NSArray *nibArr;
+     NSArray *nibArrEn;
 	int index;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *sView;

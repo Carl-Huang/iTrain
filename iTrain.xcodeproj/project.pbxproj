@@ -75,6 +75,11 @@
 		C329556119B0874500ECDFED /* ExerciseParamViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C329556019B0874500ECDFED /* ExerciseParamViewController4.xib */; };
 		C32C4315199B3182009FED09 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32C4313199B3182009FED09 /* SettingViewController.m */; };
 		C32C4316199B3182009FED09 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32C4314199B3182009FED09 /* SettingViewController.xib */; };
+		C32EFF3E19F6405300B4E4E2 /* ScoolViewStart.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32EFF3D19F6405300B4E4E2 /* ScoolViewStart.xib */; };
+		C32EFF4019F6418300B4E4E2 /* ScoolViewcontoller.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32EFF3F19F6418300B4E4E2 /* ScoolViewcontoller.xib */; };
+		C32EFF4219F6474400B4E4E2 /* ScoolViewEn.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32EFF4119F6474400B4E4E2 /* ScoolViewEn.xib */; };
+		C32EFF4419F647FA00B4E4E2 /* ScoolViewStartEn.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32EFF4319F647FA00B4E4E2 /* ScoolViewStartEn.xib */; };
+		C32EFF4619F648DF00B4E4E2 /* ScoolViewcontollerEn.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32EFF4519F648DF00B4E4E2 /* ScoolViewcontollerEn.xib */; };
 		C33863D619CC3C1800C52F58 /* del_xinjian_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33863D419CC3C1800C52F58 /* del_xinjian_1@2x.png */; };
 		C33863D719CC3C1800C52F58 /* del_xinjian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C33863D519CC3C1800C52F58 /* del_xinjian@2x.png */; };
 		C33C434019C6CC0300C76263 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C33C434219C6CC0300C76263 /* Localizable.strings */; };
@@ -435,6 +440,11 @@
 		C32C4312199B3182009FED09 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		C32C4313199B3182009FED09 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C32C4314199B3182009FED09 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		C32EFF3D19F6405300B4E4E2 /* ScoolViewStart.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoolViewStart.xib; sourceTree = "<group>"; };
+		C32EFF3F19F6418300B4E4E2 /* ScoolViewcontoller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoolViewcontoller.xib; sourceTree = "<group>"; };
+		C32EFF4119F6474400B4E4E2 /* ScoolViewEn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoolViewEn.xib; sourceTree = "<group>"; };
+		C32EFF4319F647FA00B4E4E2 /* ScoolViewStartEn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoolViewStartEn.xib; sourceTree = "<group>"; };
+		C32EFF4519F648DF00B4E4E2 /* ScoolViewcontollerEn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoolViewcontollerEn.xib; sourceTree = "<group>"; };
 		C33863D419CC3C1800C52F58 /* del_xinjian_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "del_xinjian_1@2x.png"; sourceTree = "<group>"; };
 		C33863D519CC3C1800C52F58 /* del_xinjian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "del_xinjian@2x.png"; sourceTree = "<group>"; };
 		C33C434119C6CC0300C76263 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1083,6 +1093,11 @@
 				C36C7E0E19E3A18400276980 /* SMVViewController.m */,
 				C36C7E0F19E3A18400276980 /* SMVViewController.xib */,
 				C36C7E1219E3A28200276980 /* ScoolView.xib */,
+				C32EFF4119F6474400B4E4E2 /* ScoolViewEn.xib */,
+				C32EFF3D19F6405300B4E4E2 /* ScoolViewStart.xib */,
+				C32EFF4319F647FA00B4E4E2 /* ScoolViewStartEn.xib */,
+				C32EFF3F19F6418300B4E4E2 /* ScoolViewcontoller.xib */,
+				C32EFF4519F648DF00B4E4E2 /* ScoolViewcontollerEn.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1686,6 +1701,7 @@
 				C37F99B3199C9C3B00B0153D /* HelpViewController.xib in Resources */,
 				C37ACAC319A7494B00F3332A /* record_jiantou@2x.png in Resources */,
 				C37ACB0319A7494B00F3332A /* detail_fenxiang@2x.png in Resources */,
+				C32EFF4619F648DF00B4E4E2 /* ScoolViewcontollerEn.xib in Resources */,
 				C37ACAD519A7494B00F3332A /* tittle_bg@2x.png in Resources */,
 				C37ACAE019A7494B00F3332A /* user_icon@2x.png in Resources */,
 				C31B749219C2934D00786593 /* SVProgressHUD.bundle in Resources */,
@@ -1713,6 +1729,7 @@
 				C37ACB1519A7494B00F3332A /* ul_touxiang3@2x.png in Resources */,
 				C37ACAF819A7494B00F3332A /* setting_icom@2x.png in Resources */,
 				C3F999E719D424FF00118441 /* 80@2x.png in Resources */,
+				C32EFF4419F647FA00B4E4E2 /* ScoolViewStartEn.xib in Resources */,
 				C37ACAD419A7494B00F3332A /* start2@2x.png in Resources */,
 				C37ACADE19A7494B00F3332A /* user_icon5@2x.png in Resources */,
 				C37ED4A919E29D7D006425F9 /* back_thighl_p@2x.png in Resources */,
@@ -1779,6 +1796,7 @@
 				C37ACADF19A7494B00F3332A /* user_icon6@2x.png in Resources */,
 				C352D08519ADE9C500705D21 /* UserSettingCell.xib in Resources */,
 				C3112DF1199E0A74002809FA /* UserCollectionViewCell.xib in Resources */,
+				C32EFF4219F6474400B4E4E2 /* ScoolViewEn.xib in Resources */,
 				C37ACB0A19A7494B00F3332A /* train_xunlian2@2x.png in Resources */,
 				C365B73F19A356F600554CF6 /* ParamSetViewController.xib in Resources */,
 				C36C7E1719E3C68700276980 /* SMImage3@2x.png in Resources */,
@@ -1815,6 +1833,7 @@
 				C37ACAE119A7494B00F3332A /* about_icon@2x.png in Resources */,
 				C37ACAF919A7494B00F3332A /* setting_lanya@2x.png in Resources */,
 				C37ACAFF19A7494B00F3332A /* setting_shebei@2x.png in Resources */,
+				C32EFF3E19F6405300B4E4E2 /* ScoolViewStart.xib in Resources */,
 				C37ACAC719A7494B00F3332A /* plan_bi@2x.png in Resources */,
 				C37ED4C919E29E05006425F9 /* start_quan4@2x.png in Resources */,
 				C37ACB0B19A7494B00F3332A /* train_xunlian3@2x.png in Resources */,
@@ -1854,6 +1873,7 @@
 				C37ACB0D19A7494B00F3332A /* ul_back@2x.png in Resources */,
 				C317CBB319C034DA008DCAC8 /* 4path.plist in Resources */,
 				C323812619C96202002E89BC /* plan_kai@2x.png in Resources */,
+				C32EFF4019F6418300B4E4E2 /* ScoolViewcontoller.xib in Resources */,
 				C36EC63819AB30CA00813ACD /* record_shanchujilu_01@2x.png in Resources */,
 				C3061FDC199389240075E8AC /* BaiKeViewController.xib in Resources */,
 				C329556119B0874500ECDFED /* ExerciseParamViewController4.xib in Resources */,
