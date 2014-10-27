@@ -31,6 +31,7 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 @property (nonatomic)NSInteger Stu2;
 @property (nonatomic,retain) NSMutableArray * connectedPeripherals;
 @property (nonatomic,retain) NSMutableArray * foundPeripherals;
+@property (nonatomic,strong) NSMutableDictionary * verDic;
 @property (nonatomic,copy) DiscoverNewPeripheralHandler discoverHandler;
 @property (nonatomic,copy) ConnectedPeripheralHandler connectedHandler;
 @property (nonatomic,copy) ConnectedAllCompleteHandler connectedAllCompleteHandler;
@@ -60,6 +61,6 @@ typedef void (^DisconnectPeripheralHandler)(CBPeripheral * peripheral);
 
 -(void)check;
 
-
+-(void)addVer:(NSString *)ver withKey:(NSString *)key;
 
 @end

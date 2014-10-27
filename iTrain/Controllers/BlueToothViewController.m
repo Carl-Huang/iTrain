@@ -14,6 +14,7 @@
 
 @interface BlueToothViewController ()
 @property (nonatomic,strong) NSMutableArray * dataSource;
+
 @end
 BOOL isScan;
 @implementation BlueToothViewController
@@ -63,7 +64,7 @@ BOOL isScan;
         [cell.searchLabel setText: NSLocalizedString(@"Search", nil)];
     }else{
         cell.searchLabel.hidden=YES;
-        cell.nameLabel.hidden=NO;
+        cell.ContentView.hidden=NO;
         cell.iconImg.hidden=NO;
         cell.connectLabel.hidden=NO;
         CBPeripheral * peripheral = _dataSource[indexPath.row];
@@ -72,7 +73,13 @@ BOOL isScan;
         }else{
             cell.connectLabel.text= NSLocalizedString(@"UnConnected", nil) ;
         }
-        cell.nameLabel.text = peripheral.name;
+        NSString *st=[[CBLEManager sharedManager].verDic objectForKey:CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID]))];
+        if(st!=nil){
+             cell.deviceVer.text =[NSString stringWithFormat:@"%@ Ver %@",peripheral.name,st];
+             NSInteger ss=[[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey] integerValue];
+            cell.appVer.text=[NSString stringWithFormat:@"App Ver %d.*",ss];
+        }
+        cell.nameLabel.text =peripheral.name;
     }
     return cell;
 }
@@ -137,29 +144,36 @@ BOOL isScan;
     }];
     
     [[CBLEManager sharedManager] setConnectedAllCompleteHandler:^(CBPeripheral * peripheral){
-        [self getMoelData:peripheral];
+        [self getMoelData:peripheral withMode:YES];
     }];
     
     [_tv reloadData];
 }
 
--(void)getMoelData:(CBPeripheral *)per{
+-(void)getMoelData:(CBPeripheral *)per withMode:(BOOL)mode{
     [[CBLEManager sharedManager] setSendDataHandler:^(NSString *st,CBPeripheral *per){
-        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText: NSLocalizedString(@"ConnectSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
-        [alert show];
-        alert.leftBlock = ^() {
+        if(mode){
             
-        };
-        alert.rightBlock = ^() {
-            [self.navigationController popViewControllerAnimated:YES];
-            //[_tv reloadData];
-        };
-        alert.dismissBlock = ^() {
-            NSLog(@"Do something interesting after dismiss block");
-        };
-        
+           
+            int a=[self parseInt:[[st substringFromIndex:8] substringToIndex:2]];
+            [[CBLEManager sharedManager]addVer:[NSString stringWithFormat:@"%d.*",a]  withKey:CFBridgingRelease(CFUUIDCreateString(nil, [per UUID]))];
+             [_tv reloadData];
+ 
+            [self getMoelData:per withMode:NO];
+        }else{
+            DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"" contentText: NSLocalizedString(@"ConnectSu", nil) leftButtonTitle:nil rightButtonTitle:@"OK"];
+            [alert show];
+            alert.rightBlock = ^() {
+                [self.navigationController popViewControllerAnimated:YES];
+            };
+        }
     }];
-    [[CBLEManager sharedManager] createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x03], nil] withCBPeripheral:per];
+    if(mode){
+      [[CBLEManager sharedManager] createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x0F], nil] withCBPeripheral:per];
+    }else{
+        [[CBLEManager sharedManager] createData:[[NSArray alloc]initWithObjects:[NSNumber numberWithInt:0x03], nil] withCBPeripheral:per];
+    }
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -170,4 +184,28 @@ BOOL isScan;
     [super didReceiveMemoryWarning];
 }
 
+-(int)parseInt:(NSString *)str{
+    int d=[[str substringFromIndex:1] integerValue];
+    if([[str substringFromIndex:1] isEqualToString:@"a"]){
+        d=10;
+    }else if([[str substringFromIndex:1] isEqualToString:@"b"]){
+        d=11;
+    }else if([[str substringFromIndex:1] isEqualToString:@"c"]){
+        d=12;
+    }else if([[str substringFromIndex:1] isEqualToString:@"d"]){
+        d=13;
+    }else if([[str substringFromIndex:1] isEqualToString:@"e"]){
+        d=14;
+    }else if([[str substringFromIndex:1] isEqualToString:@"f"]){
+        d=15;
+    }
+    int t=[[str substringToIndex:1] intValue]*16+d;
+    return t;
+}
+
+
+-(void)Nofication{
+    NSInteger ss=[[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey] integerValue];
+   
+}
 @end

@@ -33,6 +33,7 @@
         _bleCentralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
         _sendSu1=YES;
         _sendSu2=YES;
+        _verDic=[[NSMutableDictionary alloc]init];
     }
     return self;
 }
@@ -142,7 +143,9 @@
     }
 }
 
-
+-(void)addVer:(NSString *)ver withKey:(NSString *)key{
+     [_verDic setObject:ver forKey:key];
+}
 
 - (void)connectToPeripheral:(CBPeripheral *)peripheral
 {
@@ -179,7 +182,7 @@
 {
     [_connectedPeripherals removeAllObjects];
     [_foundPeripherals removeAllObjects];
-    
+    [_verDic removeAllObjects];
 }
 
 -(BOOL)isConnected{
@@ -218,6 +221,7 @@
     if([_foundPeripherals containsObject:peripheral])
     {
         [_foundPeripherals removeObject:peripheral];
+        [_verDic removeObjectForKey:CFBridgingRelease(CFUUIDCreateString(nil, [peripheral UUID]))];
         if(self.discoverHandler)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
